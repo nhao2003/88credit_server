@@ -1,0 +1,10 @@
+node_modules
+coverage
+reports
+dist
+jest.config.js
+.stryker-tmp
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

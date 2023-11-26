@@ -1,0 +1,25 @@
+{
+  "exclude": ["./coverage", "./dist", "tests", "jest.config.ts"], // Đường dẫn exclude cho các file không cần build
+  "compilerOptions": {
+    "types": ["node", "jest"], // Các type được sử dụng trong dự án
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "NodeNext", // Quy định output module được sử dụng
+    "moduleResolution": "NodeNext",
+    "target": "ESNext", // Target output cho code
+    "outDir": "./dist", // Đường dẫn output cho thư mục build
+    "esModuleInterop": true,
+    "strict": true /* Enable all strict type-checking options. */,
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "baseUrl": ".", // Đường dẫn base cho các import
+    "paths": {
+      "~/*": ["src/*"] // Đường dẫn tương đối cho các import (alias)
+    }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  
+  "files": ["src/type.d.ts"], // Các file dùng để defined global type cho dự án
+  "include": ["src/**/*"]
+}
