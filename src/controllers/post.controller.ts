@@ -4,6 +4,7 @@ import { wrapRequestHandler } from '~/utils/wrapRequestHandler';
 import { Service } from 'typedi';
 import { ParamsDictionary } from 'express-serve-static-core';
 import { PostCreateData } from '~/models/typing/request/PostCreateData';
+import AppResponse from '~/models/typing/AppRespone';
 @Service()
 class PostController {
   private postService: PostService;
@@ -38,12 +39,14 @@ class PostController {
     const query = this.postService.buildPostQuery(req.query);
     console.log(query);
     const posts = await this.postService.getPostsByQuery(query);
-    res.json({
+    const appRes : AppResponse = {
       status: 'success',
       code: 200,
       message: 'Get posts successfully',
-      result: posts,
-    });
+      num_of_pages: posts.numberOfPages,
+      result: posts.data,
+    };
+    res.status(200).json(appRes);
   });
 }
 
