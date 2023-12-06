@@ -35,7 +35,7 @@ export interface IPost {
   max_tenure_months: number | null;
   max_overdue_interest_rate: number | null;
   rejected_reason: string | null;
-  deleted_at: Date;
+  deleted_at: Date | null;
 }
 
 @Entity('posts')
@@ -101,7 +101,7 @@ class Post extends BaseEntity implements IPost {
   rejected_reason!: string | null;
 
   @DeleteDateColumn({ type: PostgresDataType.timestamp_without_timezone, nullable: true })
-  deleted_at!: Date;
+  deleted_at!: Date | null;
 
   @ManyToOne(() => User, (user) => user.posts)
   @JoinColumn({ name: 'user_id' })

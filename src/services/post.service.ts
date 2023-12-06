@@ -18,6 +18,7 @@ class PostServices {
     this.userRepository = dataSource.getRepository(User);
   }
   buildPostQuery(query: Record<string, any>): PostQuery {
+    console.log(query);
     const { page, orders, search } = query;
     const pageParam = Number(page) || 1;
     const postQueries: {

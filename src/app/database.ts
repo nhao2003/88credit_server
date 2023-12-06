@@ -1,7 +1,6 @@
 import path from 'path';
 import { DataSource } from 'typeorm';
 import AppConfig from '~/constants/configs';
-console.log('AppConfig.database', AppConfig);
 const AppDataSource = new DataSource({
   type: 'postgres',
   host: AppConfig.database.host,
