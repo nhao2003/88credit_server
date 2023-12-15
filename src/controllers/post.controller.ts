@@ -5,12 +5,15 @@ import { Service } from 'typedi';
 import { ParamsDictionary } from 'express-serve-static-core';
 import { PostCreateData } from '~/models/typing/request/PostCreateData';
 import AppResponse from '~/models/typing/AppRespone';
+import ReportService from '~/services/report.service';
 @Service()
 class PostController {
   private postService: PostService;
+  private reportService: ReportService;
 
-  constructor(postService: PostService) {
+  constructor(postService: PostService, reportService: ReportService) {
     this.postService = postService;
+    this.reportService = reportService;
   }
 
   public readonly createPost = wrapRequestHandler(
@@ -39,7 +42,7 @@ class PostController {
     const query = this.postService.buildPostQuery(req.query);
     console.log(query);
     const posts = await this.postService.getPostsByQuery(query);
-    const appRes : AppResponse = {
+    const appRes: AppResponse = {
       status: 'success',
       code: 200,
       message: 'Get posts successfully',
@@ -47,6 +50,20 @@ class PostController {
       result: posts.data,
     };
     res.status(200).json(appRes);
+  });
+
+  //report post
+  public readonly reportPost = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const reporter_id = req.user.id;
+    const {description, content_type, images} = req.body;
+    const report = await this.reportService.reportPost(reporter_id, id, content_type, description, images);
+    const appRes: AppResponse = {
+      status: 'success',
+      code: 200,
+      message: 'Report post successfully',
+      result: report,
+    };
   });
 }
 

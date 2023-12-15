@@ -10,7 +10,7 @@ import Contract from './Contract';
 import BankAccount from './BankAccount';
 import Relative from './Relative';
 import Transaction from './Transaction';
-
+import Report from './Report';
 @Entity('users')
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -62,10 +62,10 @@ export class User extends BaseEntity {
   updated_at!: Date;
 
   @Column(PostgresDataType.timestamp_without_timezone, { nullable: true })
-  banned_util!: Date;
+  banned_util!: Date | null;
 
   @Column(PostgresDataType.text, { nullable: true })
-  ban_reason!: string;
+  ban_reason!: string | null;
 
   @OneToMany(() => OTP, (otp) => otp.user)
   @JoinColumn({ name: 'id' })
@@ -106,4 +106,8 @@ export class User extends BaseEntity {
   @OneToMany(() => Transaction, (transaction) => transaction.user)
   @JoinColumn({ name: 'id' })
   transactions!: Transaction[];
+
+  @OneToMany(() => Report, (report) => report.reporter)
+  @JoinColumn({ name: 'id' })
+  reports!: Report[];
 }

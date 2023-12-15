@@ -68,3 +68,23 @@ export enum PostStatus {
   rejected = "rejected",
   hided = "hided"
 }
+
+export enum ReportStatus {
+  pending = 'pending',
+  resolved ='resolved',
+  rejected = 'rejected'
+}
+
+export enum ReportType {
+  user = 'user',
+  post = 'post',
+  conversation = 'conversation',
+}
+
+
+export enum ReportContentType {
+  spam = 'spam',
+  offensive = 'offensive',
+  inappropriate = 'inappropriate',
+  other = 'other',
+}

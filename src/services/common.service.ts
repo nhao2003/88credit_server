@@ -78,6 +78,14 @@ class CommonServices {
     await this.repository.update(id, data);
     return id;
   }
+
+  public async getOneById(id: string): Promise<BaseEntity> {
+    return await this.repository.findOne({
+      where: {
+        id: id,
+      },
+    });
+  }
 }
 
 export default CommonServices;

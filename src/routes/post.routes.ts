@@ -3,14 +3,23 @@ import PostController from '~/controllers/post.controller';
 import DependencyInjection from '~/di/di';
 import AuthValidation from '~/middlewares/auth.middleware';
 import CommonValidation from '~/middlewares/common.middlewares';
+import { PostValidation } from '~/middlewares/post.middleware';
+import ReportService from '~/services/report.service';
 
 const commonValidation = DependencyInjection.get<CommonValidation>(CommonValidation);
 const authValidation = DependencyInjection.get<AuthValidation>(AuthValidation);
+const postValidation = DependencyInjection.get<PostValidation>(PostValidation);
 const postController: PostController = DependencyInjection.get(PostController);
 const router = Router();
 router.route('/').get(postController.getPosts);
-router.route('/create').post(authValidation.accessTokenValidation, postController.createPost);
+router
+  .route('/create')
+  .post(authValidation.accessTokenValidation, postValidation.checkCreatePost, postController.createPost);
 router
   .route('/delete/:id')
   .delete(authValidation.accessTokenValidation, commonValidation.validateId, postController.deletePost);
+// Report post
+router
+  .route('/report/:id')
+  .post(authValidation.accessTokenValidation, commonValidation.validateId, postController.reportPost);
 export default router;

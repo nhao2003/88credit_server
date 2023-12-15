@@ -10,7 +10,7 @@ const AppDataSource = new DataSource({
   database: AppConfig.database.name,
   ssl: true,
   dropSchema: false,
-  synchronize: false,
+  synchronize: true,
   logging: false,
   entities: [
     AppConfig.isProduction

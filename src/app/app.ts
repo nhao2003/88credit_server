@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { Express } from 'express';
 import authRoutes from '../routes/auth.routes';
 import postRoutes from '../routes/post.routes';
+import adminRoutes from '../routes/admin.routes';
 import loanRequestRoutes from '../routes/loan_request.routes';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -34,6 +35,7 @@ export function initApp(): Express {
   app.use(`/api/${version}/bank-account`, bankAccountRoutes);
   app.use(`/api/${version}/contract`, contractRoutes);
   app.use(`/api/${version}/contract-template`, contractTemplateRoutes);
+  app.use(`/api/${version}/admin`, adminRoutes);
   app.use((req: Request, res: Response) => {
     res.status(404).json({
       status: 'fail',

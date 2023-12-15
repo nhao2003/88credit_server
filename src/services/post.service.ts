@@ -6,7 +6,7 @@ import { PostCreateData } from '~/models/typing/request/PostCreateData';
 import { Service } from 'typedi';
 import { PostQuery } from '~/models/typing/base_query';
 import { buildOrder, buildQuery } from '~/utils/build_query';
-import { PostTypes } from '~/constants/enum';
+import { PostStatus, PostTypes } from '~/constants/enum';
 import { AppError } from '~/models/Error';
 
 @Service()
@@ -61,10 +61,10 @@ class PostServices {
     throw new AppError('Invalid post type', 400);
   }
 
-  async createPostTypeLending(user_id: string, data: PostCreateData): Promise<Post> {
+  async createPostTypeBorrowing(user_id: string, data: PostCreateData): Promise<Post> {
     const post = new Post();
     post.user_id = user_id;
-    post.type = PostTypes.lending;
+    post.type = PostTypes.borrowing;
     post.title = data.title;
     post.description = data.description;
     post.images = data.images;
@@ -77,10 +77,10 @@ class PostServices {
     return await this.postRepository.save(post);
   }
 
-  async createPostTypeBorrowing(user_id: string, data: PostCreateData): Promise<Post> {
+  async createPostTypeLending(user_id: string, data: PostCreateData): Promise<Post> {
     const post = new Post();
     post.user_id = user_id;
-    post.type = PostTypes.borrowing;
+    post.type = PostTypes.lending;
     post.loan_reason_type = data.loan_reason_type;
     post.loan_reason = data.loan_reason;
     post.title = data.title;
@@ -129,6 +129,46 @@ class PostServices {
   async deletePost(postId: string) {
     const deletedPost = await this.postRepository.softDelete(postId);
     return deletedPost;
+  }
+
+  async approvePost(postId: string) {
+    const post = await this.postRepository.findOne({
+      where: {
+        id: postId,
+      },
+    });
+    if (!post) {
+      throw new AppError('Post not found', 404);
+    }
+    if (post.status === PostStatus.approved) {
+      throw new AppError('Post is already approved', 400);
+    }
+    post.status = PostStatus.approved;
+    return await this.postRepository.save(post);
+  }
+
+  async rejectPost(postId: string) {
+    const post = await this.postRepository.findOne({
+      where: {
+        id: postId,
+      },
+    });
+    if (!post) {
+      throw new AppError('Post not found', 404);
+    }
+    if (post.status === PostStatus.rejected) {
+      throw new AppError('Post is already rejected', 400);
+    }
+    post.status = PostStatus.rejected;
+    return await this.postRepository.save(post);
+  }
+
+  async getPostById(id: string): Promise<Post | null> {
+    return await this.postRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
   }
 }
 
