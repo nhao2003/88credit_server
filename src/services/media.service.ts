@@ -3,6 +3,8 @@ import ConcurrentQueue from '~/utils/queue';
 import { v4 as uuidv4 } from 'uuid';
 import AppConfig from '../constants/configs';
 import { Service } from 'typedi';
+import * as multer from 'multer';
+
 @Service()
 class MediaServices {
   private queue: ConcurrentQueue;

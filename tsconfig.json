@@ -1,7 +1,7 @@
 {
   "exclude": ["./coverage", "./dist", "tests", "jest.config.ts"], // Đường dẫn exclude cho các file không cần build
   "compilerOptions": {
-    "types": ["node", "jest", "Multer"],
+    "types": ["node", "jest"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "NodeNext", // Quy định output module được sử dụng
