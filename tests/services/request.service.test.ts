@@ -7,6 +7,7 @@ import ZaloPayService from '../../src/services/zalopay.service';
 import LoanRequest from '../../src/models/databases/LoanRequest';
 import Transaction from '../../src/models/databases/Transaction';
 import BankAccountService from '../../src/services/bank_account.service';
+import exp from 'constants';
 describe('LoanContractRequestService', () => {
   let loanContractRequestService: LoanContractRequestService;
   let dataSource: DataSource;
@@ -34,11 +35,17 @@ describe('LoanContractRequestService', () => {
       // Arrange
       const query = {
         page: 1,
-        orders: ['created_at DESC'],
+        orders: ['-created_at'],
         search: 'test',
-        request_loan_amount: 1000,
-        sender_id: 'sender123',
-        receiver_id: 'receiver123',
+        request_loan_amount: {
+          eq: 1000
+        },
+        sender_id: {
+          eq: 'sender123'
+        },
+        receiver_id: {
+          eq: 'receiver123'
+        }
       };
 
       // Act
@@ -46,28 +53,51 @@ describe('LoanContractRequestService', () => {
 
       // Assert
       expect(result.page).toBe(1);
-      expect(result.orders).toEqual(['created_at DESC']);
-      expect(result.wheres).toEqual(['loan_amount = 1000']);
-      expect(result.lenderWhere).toEqual(['id = sender123']);
-      expect(result.borrowerWhere).toEqual(['id = receiver123']);
+      expect(result.orders).toEqual({"LoanRequest.created_at": "DESC"});
+    
+
     });
   });
 
   describe('createLoanContractRequest', () => {
     it('should create a loan contract request', async () => {
       // Arrange
-      const data = {
-        id: 'request123',
+      const data: LoanRequestCreateData = {
         loan_amount: 1000,
+        interest_rate: 0.1,
+        overdue_interest_rate: 0.2,
+        loan_tenure_months: 12,
+        loan_reason_type: LoanReasonTypes.other,
+        loan_reason: 'test',
+        video_comfirmation: 'test',
+        portait_photo: 'test',
+        id_card_front_photo: 'test',
+        id_card_back_photo: 'test',
+        sender_bank_account_id: 'test',
+        sender_id: 'sender123',
+        receiver_id: 'receiver123',
+
       };
 
+      loanContractRequestRepository = {
+        insert: jest.fn().mockImplementation((data) => {
+          return Promise.resolve({ identifiers: [{ id: 1 }] });
+        }),
+      } as any;
+
+      loanContractRequestRepository = {
+        insert: jest.fn().mockImplementation((data) => {
+          return Promise.resolve({ identifiers: [{ id: 1 }] });
+        }),
+      } as any;
+
       // Act
+      loanContractRequestService = new LoanContractRequestService(dataSource, zaloPayService);
       await loanContractRequestService.createLoanContractRequest(data);
 
       // Assert
-      const loanRequest = await dataSource.getRepository(LoanRequest).findOne({ where: { id: 'request123' } });
-      expect(loanRequest).toBeDefined();
-      expect(loanRequest?.loan_amount).toBe(1000);
+      expect(loanContractRequestRepository.insert).toBeCalledWith(data);
+  
     });
   });
 

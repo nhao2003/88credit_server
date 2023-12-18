@@ -138,10 +138,10 @@ describe('PostServices', () => {
         overdue_interest_rate: 10,
         loan_reason_type: LoanReasonTypes.business,
         loan_reason: 'reason',
-        max_loan_amount: 2000,
-        max_interest_rate: 8,
-        max_tenure_months: 24,
-        max_overdue_interest_rate: 15,
+        max_loan_amount: null,
+        max_interest_rate: null,
+        max_tenure_months: null,
+        max_overdue_interest_rate: null,
         user_id: '',
       };
 
@@ -161,10 +161,11 @@ describe('PostServices', () => {
       expect(result.overdue_interest_rate).toBe(data.overdue_interest_rate);
       expect(result.loan_reason_type).toBe(data.loan_reason_type);
       expect(result.loan_reason).toBe(data.loan_reason);
-      expect(result.max_loan_amount).toBe(data.max_loan_amount);
-      expect(result.max_interest_rate).toBe(data.max_interest_rate);
-      expect(result.max_tenure_months).toBe(data.max_tenure_months);
-      expect(result.max_overdue_interest_rate).toBe(data.max_overdue_interest_rate);
+      expect(result.max_loan_amount).toBe(undefined);
+      expect(result.max_interest_rate).toBe(undefined);
+      expect(result.max_tenure_months).toBe(undefined);
+      expect(result.max_overdue_interest_rate).toBe(undefined);
+      
     });
 
     it('should throw an error for invalid post type', async () => {

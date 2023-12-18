@@ -27,16 +27,21 @@ const getOperatorValueString = (operatorAndValue: Record<string, any>): string =
   const operator = Object.keys(operatorAndValue)[0];
   // const value = operatorAndValue[operator];
   // decodeURIComponent operatorAndValue[operator]
-  const value = operatorAndValue[operator]
-    .replace(/%20/g, ' ')
-    .replace(/%2C/g, ',')
-    .replace(/%27/g, "'")
-    .replace(/%22/g, '"')
-    .replace(/%3E/g, '>')
-    .replace(/%3C/g, '<')
-    .replace(/%3D/g, '=')
-    .replace(/%3B/g, ';')
-    .replace(/%2F/g, '/');
+  let value = operatorAndValue[operator];
+
+  if (typeof value === 'string') {
+    value = value
+      .replace(/%20/g, ' ')
+      .replace(/%2C/g, ',')
+      .replace(/%27/g, "'")
+      .replace(/%22/g, '"')
+      .replace(/%3E/g, '>')
+      .replace(/%3C/g, '<')
+      .replace(/%3D/g, '=')
+      .replace(/%3B/g, ';')
+      .replace(/%2F/g, '/');
+  }
+  // DecodeURIComponent
   if (operatorMapping[operator]) {
     let query = operatorMapping[operator];
 
