@@ -5,6 +5,8 @@ export function wrapRequestHandler(handler: RequestHandler): RequestHandler {
     try {
       await handler(req, res, next);
     } catch (error) {
+      console.error('Catch in wrapRequestHandler:');
+      console.error(error);
       next(error);
     }
   };

@@ -10,6 +10,9 @@ import { errorHandler } from '../middlewares/error.middleware';
 import bankAccountRoutes from '../routes/bank_account.routes';
 import contractRoutes from '../routes/contract.routes';
 import contractTemplateRoutes from '../routes/contract_template.routes';
+import blogRoutes from '../routes/blog.routes';
+import reportRoutes from '../routes/report.routes';
+import ServerCodes from '~/constants/server_codes';
 export function initApp(): Express {
   const app = express();
   app.use(cors());
@@ -36,10 +39,12 @@ export function initApp(): Express {
   app.use(`/api/${version}/contract`, contractRoutes);
   app.use(`/api/${version}/contract-template`, contractTemplateRoutes);
   app.use(`/api/${version}/admin`, adminRoutes);
+  app.use(`/api/${version}/blogs`, blogRoutes);
+  app.use(`/api/${version}/report`, reportRoutes);
   app.use((req: Request, res: Response) => {
     res.status(404).json({
       status: 'fail',
-      code: 404,
+      code: ServerCodes.CommomCode.NotFound,
       message: 'Can not find the route' + req.originalUrl + ' on this server',
     });
   });

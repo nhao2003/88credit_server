@@ -5,6 +5,7 @@ import { Request, Response } from 'express';
 import { Service } from 'typedi';
 import AppResponse from '~/models/typing/AppRespone';
 import Blog from '~/models/databases/Blog';
+import ServerCodes from '~/constants/server_codes';
 
 @Service()
 class BlogController {
@@ -22,7 +23,7 @@ class BlogController {
     await this.blogService.create(blog);
     const appResponse: AppResponse = {
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Create blog successfully',
     };
     res.json(appResponse);
@@ -33,7 +34,7 @@ class BlogController {
     const blogs = await this.blogService.getAllWithFavoriteByQuery(query, req.user ? req.user.id : null);
     const appResponse: AppResponse = {
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Get all blogs successfully',
       num_of_pages: blogs.num_of_pages,
       result: blogs.data,
@@ -42,11 +43,12 @@ class BlogController {
   });
 
   public readonly getBlogById = wrapRequestHandler(async (req: any, res: any) => {
+    console.log("Get blog by id " + req.params.id);
     const { id } = req.params;
     const blog = await this.blogService.getById(id);
     const appResponse: AppResponse = {
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Get blog by id successfully',
       result: blog,
     };
@@ -58,7 +60,7 @@ class BlogController {
     const blog = await this.blogService.update(id, req.body);
     const appResponse: AppResponse = {
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Update blog successfully',
       result: blog,
     };
@@ -70,7 +72,7 @@ class BlogController {
     await this.blogService.softDelete(id);
     const appResponse: AppResponse = {
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Delete blog successfully',
     };
     res.json(appResponse);

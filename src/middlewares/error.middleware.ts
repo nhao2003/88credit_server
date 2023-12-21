@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import HttpStatus from '~/constants/httpStatus';
 import { APP_MESSAGES } from '~/constants/message';
 import ServerCodes from '~/constants/server_codes';
@@ -29,9 +29,6 @@ const handleDevelopmentError = (err: any, res: Response) => {
   console.log(err);
   res.status(err.statusCode || HttpStatus.INTERNAL_SERVER_ERROR).json({
     status: err.status,
-    // error: err,
-    // message: err.message,
-    // stack: err.stack
     code: err.code,
     message: err.message,
     result: {
@@ -42,7 +39,7 @@ const handleDevelopmentError = (err: any, res: Response) => {
 };
 
 const handleProductionError = (err: any, res: Response) => {
-  console.log(err);
+  console.log('Production error: ', err);
   if (err.isOperational !== undefined && err.isOperational) {
     console.log('OPERATIONAL ERROR');
     res.status(err.statusCode).json({
@@ -63,7 +60,8 @@ const handleProductionError = (err: any, res: Response) => {
   }
 };
 
-export const errorHandler = (err: any, req: Request, res: Response) => {
+export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+  console.log('ERROR HANDLER');
   console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'development') {
     handleDevelopmentError(err, res);

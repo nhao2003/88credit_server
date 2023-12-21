@@ -6,6 +6,7 @@ import { BaseQuery } from '~/models/typing/base_query';
 import { APP_MESSAGES } from '~/constants/message';
 import { Server } from 'http';
 import ServerCodes from '~/constants/server_codes';
+import StringUtils from '~/utils/StringUtils';
 class CommonServices {
   protected repository: Repository<any>;
   constructor(entity: EntityTarget<any>) {
@@ -50,7 +51,8 @@ class CommonServices {
   }
 
   public getAllByQuery = async (query: BaseQuery): Promise<{ num_of_pages: number; data: BaseEntity[] }> => {
-    let { page, wheres, orders } = query;
+    let { page } = query;
+    const { wheres, orders } = query;
     page = Number(page) || 1;
     const skip = (page - 1) * 10;
     const take = 10;
@@ -82,7 +84,11 @@ class CommonServices {
     return id;
   }
 
-  public async getOneById(id: string): Promise<BaseEntity> {
+  public async getOneById(id: string): Promise<BaseEntity | null> {
+    const stringUtils = new StringUtils();
+    if (!stringUtils.isUUID(id)) {
+      return null;
+    }
     return await this.repository.findOne({
       where: {
         id: id,

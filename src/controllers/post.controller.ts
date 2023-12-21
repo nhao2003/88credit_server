@@ -67,6 +67,18 @@ class PostController {
     };
     res.status(200).json(appRes);
   });
+
+  public getPostById = wrapRequestHandler(async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const post = await this.postService.getPostById(id);
+    const appRes: AppResponse = {
+      status: 'success',
+      code: ServerCodes.CommomCode.Success,
+      message: 'Get post successfully',
+      result: post,
+    };
+    res.status(200).json(appRes);
+  });
 }
 
 export default PostController;
