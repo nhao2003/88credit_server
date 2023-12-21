@@ -34,7 +34,7 @@ class BankAccountService {
   public deleteBankAccount = async (id: string) => {
     const bankAccount = await this.repository.findOne({ where: { id: id } });
     if (bankAccount === undefined || bankAccount === null) {
-      throw new AppError('Not found', 404);
+      throw AppError.notFound();
     }
     await this.repository.softDelete(id);
   };
@@ -43,7 +43,7 @@ class BankAccountService {
   public updateBankAccount = async (user_id: string, bank_account_id: string) => {
     const bankAccount = await this.repository.findOne({ where: { id: bank_account_id, user_id } });
     if (bankAccount === undefined || bankAccount === null) {
-      throw new AppError('Not found', 404);
+      throw AppError.notFound();
     }
     await Promise.all([
       this.repository.update({ user_id }, { is_primary: false }),

@@ -15,6 +15,10 @@ import { buildOrder, buildQuery } from '~/utils/build_query';
 import ZaloPayService, { ZaloPayOrderRequest } from './zalopay.service';
 import Contract from '~/models/databases/Contract';
 import BankAccountService from './bank_account.service';
+import HttpStatus from '~/constants/httpStatus';
+import { APP_MESSAGES } from '~/constants/message';
+import { Server } from 'http';
+import ServerCodes from '~/constants/server_codes';
 
 type FindResult = {
   data: LoanRequest[];
@@ -92,7 +96,7 @@ class LoanContractRequestService {
   async checkLoanContractRequestExistOrThrowError(id: string): Promise<LoanRequest> {
     const LoanRequest = await this.loanContractRequestRepository.findOne({ where: { id } });
     if (LoanRequest == null) {
-      throw new AppError('Loan contract request not found', 404);
+      throw AppError.notFound();
     }
     return LoanRequest;
   }
@@ -106,7 +110,7 @@ class LoanContractRequestService {
       .andWhere('sender_id = :user_id OR receiver_id = :user_id', { user_id })
       .getOne();
     if (LoanRequest == null) {
-      throw new AppError('Loan contract request not found', 404);
+      throw AppError.notFound();
     }
     return LoanRequest;
   }
@@ -159,10 +163,25 @@ class LoanContractRequestService {
   async acceptLoanContractRequest(id: string, user_id: string, bank_account_id: string | null): Promise<void> {
     const LoanContractRequest = await this.checkLoanContractRequestExistByIdAndUserOrThrowError(id, user_id);
     if (LoanContractRequest.receiver_id == user_id && LoanContractRequest.status != LoanContractRequestStatus.pending) {
-      throw new AppError('Loan contract request is not pending. Current status: ' + LoanContractRequest.status, 400);
+      // throw new AppError('Loan contract request is not pending. Current status: ' + LoanContractRequest.status, 400);
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyAcceptWhenStatusIsPending,
+        {
+          statusCode: ServerCodes.LoanRequestCode.AcceptFailed,
+          details: 'Current status: ' + LoanContractRequest.status,
+        },
+      );
     }
-    if(LoanContractRequest.receiver_id != user_id){
-      throw new AppError('You are not receiver of this loan contract request', 400);
+    if (LoanContractRequest.receiver_id != user_id) {
+      // throw new AppError('You are not receiver of this loan contract request', 400);
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        APP_MESSAGES.LoanContractRequestMessage.YouAreNotReceiverOfThisLoanContractRequest,
+        {
+          statusCode: ServerCodes.LoanRequestCode.AcceptFailed,
+        },
+      );
     }
     let lenderBankAccount = null;
     if (bank_account_id != null) {
@@ -171,7 +190,7 @@ class LoanContractRequestService {
       lenderBankAccount = await this.bankAccountService.getPrimaryBankAccount(user_id);
     }
     if (lenderBankAccount == null) {
-      throw new AppError('Lender bank account not found', 404);
+      throw AppError.notFound(APP_MESSAGES.BankMessage.LenderBankAccountIsNotExisted);
     }
     await this.loanContractRequestRepository.update(
       { id },
@@ -182,7 +201,14 @@ class LoanContractRequestService {
   async rejectLoanContractRequest(id: string, user_id: string): Promise<void> {
     const loanContractRequest = await this.checkLoanContractRequestExistByIdAndUserOrThrowError(id, user_id);
     if (loanContractRequest.receiver_id == user_id && loanContractRequest.status != LoanContractRequestStatus.pending) {
-      throw new AppError('Loan contract request is not pending. Current status: ' + loanContractRequest.status, 400);
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyRejectWhenStatusIsPending,
+        {
+          statusCode: ServerCodes.LoanRequestCode.RejectFailed,
+          details: 'Current status: ' + loanContractRequest.status,
+        },
+      );
     }
     await this.loanContractRequestRepository.update({ id }, { status: LoanContractRequestStatus.rejected });
   }
@@ -191,8 +217,12 @@ class LoanContractRequestService {
     const loanContractRequest = await this.checkLoanContractRequestExistByIdAndUserOrThrowError(id, user_id);
     if (loanContractRequest.sender_id == user_id && loanContractRequest.status != LoanContractRequestStatus.pending) {
       throw new AppError(
-        'This loan contract request is not pending. Current status: ' + loanContractRequest.status,
-        400,
+        HttpStatus.BAD_REQUEST,
+        APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyCancleWhenStatusIsPending,
+        {
+          statusCode: ServerCodes.LoanRequestCode.CancleFailed,
+          details: 'This loan contract request is not pending. Current status: ' + loanContractRequest.status,
+        },
       );
     }
     if (
@@ -200,22 +230,43 @@ class LoanContractRequestService {
       loanContractRequest.status != LoanContractRequestStatus.waiting_for_payment
     ) {
       throw new AppError(
-        'This loan contract request is not waiting for payment. Current status: ' + loanContractRequest.status,
-        400,
+        HttpStatus.BAD_REQUEST,
+        APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyCancleWhenStatusIsPending,
+        {
+          statusCode: ServerCodes.LoanRequestCode.CancleFailed,
+          details:
+            'This loan contract request is not waiting for payment. Current status: ' + loanContractRequest.status,
+        },
       );
     }
     await this.loanContractRequestRepository.update({ id }, { status: LoanContractRequestStatus.cancle });
   }
 
-  async payLoanContractRequest(id: string, user_id: string, payment_method: PaymentMethods = PaymentMethods.zalo_pay): Promise<Transaction> {
+  async payLoanContractRequest(
+    id: string,
+    user_id: string,
+    payment_method: PaymentMethods = PaymentMethods.zalo_pay,
+  ): Promise<Transaction> {
     const loanContractRequest = await this.checkLoanContractRequestExistByIdAndUserOrThrowError(id, user_id);
     if (loanContractRequest.receiver_id != user_id) {
-      throw new AppError('You are not receiver of this loan contract request', 400);
+      // throw new AppError('You are not receiver of this loan contract request', 400);
+      throw new AppError(
+        HttpStatus.BAD_REQUEST,
+        APP_MESSAGES.LoanContractRequestMessage.YouAreNotReceiverOfThisLoanContractRequest,
+        {
+          statusCode: ServerCodes.LoanRequestCode.PaymentFailed,
+        },
+      );
     }
     if (loanContractRequest.status != LoanContractRequestStatus.waiting_for_payment) {
       throw new AppError(
-        'This loan contract request is not waiting for payment. Current status: ' + loanContractRequest.status,
-        400,
+        HttpStatus.BAD_REQUEST,
+        APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyPayWhenStatusIsWaitingForPayment,
+        {
+          statusCode: ServerCodes.LoanRequestCode.PaymentFailed,
+          details:
+            'This loan contract request is not waiting for payment. Current status: ' + loanContractRequest.status,
+        },
       );
     }
     const zaloPayOrderRequest: ZaloPayOrderRequest = {
@@ -239,7 +290,10 @@ class LoanContractRequestService {
     };
     const zaloPayResponse = await this.zaloPayService.createOrder(zaloPayOrderRequest);
     if (zaloPayResponse.return_code != 1) {
-      throw new AppError('An error occurred while creating order', 500);
+      throw new AppError(HttpStatus.INTERNAL_SERVER_ERROR, APP_MESSAGES.LoanContractRequestMessage.AnErrorOccurredWhileProcessingThePayment, {
+        statusCode: ServerCodes.LoanRequestCode.PaymentFailed,
+        details: zaloPayResponse.return_message,
+      });
     }
     const transaction: Transaction = new Transaction();
     transaction.id_third_party = zaloPayResponse.app_trans_id;

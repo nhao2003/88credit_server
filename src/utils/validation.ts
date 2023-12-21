@@ -1,7 +1,8 @@
-import { Request, Response, NextFunction } from "express";
-import { validationResult, ValidationChain } from "express-validator";
-import { RunnableValidationChains } from "express-validator/src/middlewares/schema";
-import { AppError } from "~/models/Error";
+import { Request, Response, NextFunction } from 'express';
+import { validationResult, ValidationChain } from 'express-validator';
+import { RunnableValidationChains } from 'express-validator/src/middlewares/schema';
+import ServerCodes from '~/constants/server_codes';
+import { AppError } from '~/models/Error';
 
 export const validate = (validation: RunnableValidationChains<ValidationChain>) => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -14,9 +15,14 @@ export const validate = (validation: RunnableValidationChains<ValidationChain>) 
       return {
         message: error.msg,
         path: error.path,
-        value: error.value
+        value: error.value,
       };
     });
-    next(new AppError("Invalid Request Body", 401, details));
+    next(
+      new AppError(401, 'Invalid Request Body', {
+        statusCode: ServerCodes.CommomCode.FieldValidationFailed,
+        details,
+      }),
+    );
   };
 };

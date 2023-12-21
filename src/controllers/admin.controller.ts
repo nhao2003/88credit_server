@@ -1,4 +1,5 @@
 import { Service } from 'typedi';
+import ServerCodes from '~/constants/server_codes';
 import AppResponse from '~/models/typing/AppRespone';
 import PostServices from '~/services/post.service';
 import UserServices from '~/services/user.service';
@@ -17,7 +18,7 @@ class AdminController {
     const { postId } = req.params;
     const result = await this.postService.approvePost(postId);
     const response: AppResponse = {
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       status: 'success',
       message: 'Post approved',
       result,
@@ -29,7 +30,7 @@ class AdminController {
     const { postId } = req.params;
     const result = await this.postService.rejectPost(postId);
     const response: AppResponse = {
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       status: 'success',
       message: 'Post rejected',
       result,
@@ -42,7 +43,7 @@ class AdminController {
     const result = await this.userService.getUserByQuery(query);
      
     const response: AppResponse = {
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       status: 'success',
       message: 'Get all user',
       num_of_pages: result.num_of_pages,
@@ -55,7 +56,7 @@ class AdminController {
     const query = this.postService.buildPostQuery(req.query);
     const result = await this.postService.getPostsByQuery(query);
     const response: AppResponse = {
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       status: 'success',
       message: 'Get all post',
       num_of_pages: result.numberOfPages,

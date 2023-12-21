@@ -4,6 +4,7 @@ import { wrapRequestHandler } from '~/utils/wrapRequestHandler';
 import ReportService from '~/services/report.service';
 import PostServices from '~/services/post.service';
 import UserServices from '~/services/user.service';
+import ServerCodes from '~/constants/server_codes';
 @Service()
 class UserController {
   constructor(
@@ -19,7 +20,7 @@ class UserController {
     const report = await this.reportService.reportUser(reporter_id, id, content_type, description, images);
     res.json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Report user successfully',
       result: report,
     });

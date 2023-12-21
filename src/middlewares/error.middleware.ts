@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import HTTP_STATUS from "~/constants/httpStatus";
+import HttpStatus from "~/constants/httpStatus";
 import { APP_MESSAGES } from "~/constants/message";
+import ServerCodes from "~/constants/server_codes";
 import { AppError } from "~/models/Error";
 
 
@@ -11,17 +12,23 @@ const handleValidationErrorDB = (err: any) => {
       message: el.message
     };
   });
-  return new AppError(APP_MESSAGES.INVALID_INPUT_DATA, 400, details);
+  return new AppError(400, APP_MESSAGES.INVALID_INPUT_DATA, {
+    statusCode: HttpStatus.BAD_REQUEST,
+    details
+  });
 };
 
 const handleUserInputError = (error: any): AppError => {
   const keyValue = error.keyValue;
-  return new AppError(APP_MESSAGES.EMAIL_ALREADY_EXISTS, 400, keyValue);
+  return new AppError(400, APP_MESSAGES.INVALID_INPUT_DATA, {
+    statusCode: HttpStatus.BAD_REQUEST,
+    details: keyValue
+  });
 };
 
 const handleDevelopmentError = (err: any, res: Response) => {
   console.log(err);
-  res.status(err.statusCode || HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+  res.status(err.statusCode || HttpStatus.INTERNAL_SERVER_ERROR).json({
     status: err.status,
     // error: err,
     // message: err.message,
@@ -49,7 +56,7 @@ const handleProductionError = (err: any, res: Response) => {
     });
   } else {
     console.log("PROGRAMMING ERROR");
-    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+    res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
       status: "error",
       code: 500,
       message: APP_MESSAGES.INTERNAL_SERVER_ERROR
@@ -68,8 +75,12 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
     error.message = err.message;
     if (error.name === "ValidationError") error = handleValidationErrorDB(error);
     if (error.code === 11000) error = handleUserInputError(error);
-    if (error.name === "JsonWebTokenError") error = new AppError(APP_MESSAGES.INVALID_TOKEN, 401);
-    if (error.name === "TokenExpiredError") error = new AppError(APP_MESSAGES.TOKEN_IS_EXPIRED, 401);
+    if (error.name === "JsonWebTokenError") error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
+      statusCode: ServerCodes.AuthCode.InvalidCredentials
+    });
+    if (error.name === "TokenExpiredError") error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
+      statusCode: ServerCodes.AuthCode.TokenIsExpired
+    });
     handleProductionError(error, res);
   } else {
     throw new Error("NODE_ENV is not set");

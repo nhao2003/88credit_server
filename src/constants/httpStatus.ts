@@ -1,4 +1,4 @@
-const HTTP_STATUS = {
+const HttpStatus = {
   OK: 200,
   CREATED: 201,
   ACCEPTED: 202,
@@ -15,4 +15,4 @@ const HTTP_STATUS = {
   INTERNAL_SERVER_ERROR: 500
 } as const;
 
-export default HTTP_STATUS;
+export default HttpStatus;

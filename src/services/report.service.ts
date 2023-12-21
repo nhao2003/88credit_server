@@ -9,6 +9,9 @@ import Post from '~/models/databases/Post';
 import UserServices from './user.service';
 import PostServices from './post.service';
 import Report from '~/models/databases/Report';
+import { APP_MESSAGES } from '~/constants/message';
+import HttpStatus from '~/constants/httpStatus';
+import ServerCodes from '~/constants/server_codes';
 @Service()
 class ReportService extends CommonServices {
   private reportRepository: Repository<Report>;
@@ -63,14 +66,13 @@ class ReportService extends CommonServices {
         id,
       },
     });
-    if (!Object.values(ReportStatus).includes(status) || status === ReportStatus.pending) {
-      throw new AppError('Status is not valid', 400);
-    }
     if (report.status !== ReportStatus.pending) {
-      throw new AppError('Report has been processed', 400);
+      throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.ReportMessage.ReportIsAlreadyHandled, {
+        statusCode: ServerCodes.ReportCode.ReportIsAlreadyHandled,
+      });
     }
     if (!report) {
-      throw new AppError('Report not found', 404);
+      throw AppError.notFound();
     }
     report.status = status;
     return await this.repository.save(report);
@@ -85,7 +87,7 @@ class ReportService extends CommonServices {
   ) => {
     const post = await this.postServices.getPostById(reported_id);
     if (!post) {
-      throw new AppError('Post not found', 404);
+      throw AppError.notFound(APP_MESSAGES.POST_NOT_FOUND);
     }
     const report = await this.repository.findOne({
       where: {
@@ -95,7 +97,9 @@ class ReportService extends CommonServices {
       },
     });
     if (report) {
-      throw new AppError('You have reported this post', 400);
+      throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.ReportMessage.ReportIsAlreadExisted, {
+        statusCode: ServerCodes.ReportCode.AlReadyReported,
+      });
     }
     const newReport = new Report();
     newReport.reporter_id = reporter_id;
@@ -117,19 +121,7 @@ class ReportService extends CommonServices {
   ) => {
     const user = await this.userServices.getUserInfo(reported_id);
     if (!user) {
-      throw new AppError('User not found', 404);
-    }
-    const report = await this.reportRepository
-      .createQueryBuilder()
-      .where({
-        reporter_id,
-        reported_id,
-        type: ReportType.user,
-      })
-      .select()
-      .getOne();
-    if (report) {
-      throw new AppError('You have reported this user', 400);
+      throw AppError.notFound(APP_MESSAGES.USER_NOT_FOUND);
     }
     const newReport = new Report();
     newReport.reporter_id = reporter_id;

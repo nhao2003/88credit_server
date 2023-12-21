@@ -8,6 +8,9 @@ import { PostQuery } from '~/models/typing/base_query';
 import { buildOrder, buildQuery } from '~/utils/build_query';
 import { PostStatus, PostTypes } from '~/constants/enum';
 import { AppError } from '~/models/Error';
+import ServerCodes from '~/constants/server_codes';
+import { APP_MESSAGES } from '~/constants/message';
+import HttpStatus from '~/constants/httpStatus';
 
 @Service()
 class PostServices {
@@ -58,7 +61,10 @@ class PostServices {
     } else if (data.type === PostTypes.borrowing) {
       return this.createPostTypeBorrowing(user_id, data);
     }
-    throw new AppError('Invalid post type', 400);
+    throw new AppError(ServerCodes.CommomCode.FieldValidationFailed, APP_MESSAGES.InvalidRequestBody, {
+      statusCode: ServerCodes.CommomCode.FieldValidationFailed,
+      details: 'Invalid type: ' + data.type,
+    });
   }
 
   async createPostTypeBorrowing(user_id: string, data: PostCreateData): Promise<Post> {
@@ -138,10 +144,12 @@ class PostServices {
       },
     });
     if (!post) {
-      throw new AppError('Post not found', 404);
+      throw AppError.notFound();
     }
     if (post.status === PostStatus.approved) {
-      throw new AppError('Post is already approved', 400);
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.PostMessage.PostIsAlreadyApproved, {
+        statusCode: ServerCodes.PostCode.PostIsAlreadyApproved,
+      });
     }
     post.status = PostStatus.approved;
     return await this.postRepository.save(post);
@@ -154,10 +162,10 @@ class PostServices {
       },
     });
     if (!post) {
-      throw new AppError('Post not found', 404);
+      throw AppError.notFound();
     }
     if (post.status === PostStatus.rejected) {
-      throw new AppError('Post is already rejected', 400);
+      throw AppError.notFound();
     }
     post.status = PostStatus.rejected;
     return await this.postRepository.save(post);

@@ -1,5 +1,5 @@
 // import RefreshToken from "~/models/database/RefreshToken";
-import { DataSource, MoreThanOrEqual, Repository } from 'typeorm';
+import { DataSource, FindOneOptions, MoreThanOrEqual, Repository } from 'typeorm';
 import { AppDataSource } from '~/app/database';
 import { OTPTypes, UserStatus } from '~/constants/enum';
 import { OTP } from '~/models/databases/Otp';
@@ -10,6 +10,10 @@ import { UserPayload, signToken, verifyToken } from '~/utils/jwt';
 import { parseTimeToMilliseconds } from '~/utils/time';
 import AppConfig from '~/constants/configs';
 import { Service } from 'typedi';
+import { APP_MESSAGES } from '~/constants/message';
+import { AppError } from '~/models/Error';
+import ServerCodes from '~/constants/server_codes';
+import HttpStatus from '~/constants/httpStatus';
 type SignInResult = {
   access_token: string;
   refresh_token: string;
@@ -27,12 +31,46 @@ class AuthServices {
     this.sessionRepository = dataSource.getRepository(Session);
   }
 
-  /**
-   *
-   * @param user_id ID of user
-   * @param session_id ID of session
-   * @returns Access token
-   */
+  public async verifyOtpCode(email: string, otp_code: string, type: OTPTypes): Promise<boolean> {
+    const user = await this.checkUserExistByEmail(email);
+    if (user === null || user === undefined) {
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, {
+        statusCode: ServerCodes.AuthCode.UserNotFound,
+      });
+    }
+    const verifyOTPCodes = await this.getOTP(user.id, otp_code, type);
+    if (verifyOTPCodes === null) {
+      return false;
+    }
+    return true;
+  }
+
+  public async resetPassword(
+    email: string,
+    password: string,
+    otp_code: string,
+  ): Promise<{
+    access_token: string;
+    refresh_token: string;
+  }> {
+    const user = await this.checkUserExistByEmail(email);
+    if (user === null || user === undefined) {
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, {
+        statusCode: ServerCodes.AuthCode.UserNotFound,
+      });
+    }
+    const verifyOTPCodes = await this.verifyOTPCodeAndUse(user.id, otp_code, OTPTypes.password_recovery);
+    if (verifyOTPCodes === false) {
+      throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.OTPCodeIsIncorrectOrExpired, {
+        statusCode: ServerCodes.AuthCode.OTPCodeIsIncorrectOrExpired,
+      });
+    }
+    await this.changePassword(user.id, password);
+    await this.signOutAll(user.id);
+    const { access_token, refresh_token } = await this.createSession(user.id);
+    return { access_token, refresh_token };
+  }
+
   private generateAccessToken(user_id: string, session_id: string): Promise<string> {
     return signToken({
       payload: { user_id, session_id },
@@ -47,13 +85,6 @@ class AuthServices {
     });
   }
 
-  /**
-   *
-   * @param type OTPTypes enum
-   * @param user_id ID of user
-   * @param expiration_time Expiration time of OTP code. Default is 5 minutes
-   * @returns OTP code (6 digits)
-   */
   public async generateOTPCode(
     type: string,
     user_id: string,
@@ -71,12 +102,6 @@ class AuthServices {
     return otp_code;
   }
 
-  /**
-   *
-   * @param email Email of user
-   * @param password Password of user
-   * @returns Comfirmation token
-   */
   public async signUp(email: string, password: string): Promise<string> {
     const user = await this.userRepository.insert({ email, password: hashPassword(password) });
     const user_id = user.identifiers[0].id;
@@ -87,11 +112,10 @@ class AuthServices {
   // Resend OTP code if OPT code is expired
   public async resendOTPCode(email: string): Promise<string | null> {
     const user = await this.userRepository.findOne({ where: { email } });
-    if (user === null) return user;
+    if (user === null) return null;
     if (user.status !== UserStatus.unverified) {
-      throw new Error('User is already active');
+      throw new Error(APP_MESSAGES.UserIsAlreadyActive);
     }
-
     const otp_code = await this.generateOTPCode(OTPTypes.account_activation, user.id);
     return otp_code;
   }
@@ -109,9 +133,12 @@ class AuthServices {
   }
 
   public async signIn(email: string, password: string): Promise<SignInResult | null | undefined> {
-    const user = await this.userRepository.findOne({ where: { email, password: hashPassword(password) } });
-    if (user === null || user === undefined) return user;
-    return await this.createSession(user.id);
+    // const user = await this.userRepository.findOne({ where: { email, password: hashPassword(password) } });
+    const { user, password_is_correct } = await this.getUserByEmailAndPassword(email, password);
+    if (password_is_correct === false) {
+      return null;
+    }
+    return await this.createSession(user!.id);
   }
 
   public async grantNewAccessToken(refresh_token: string): Promise<string | null | undefined> {
@@ -151,15 +178,36 @@ class AuthServices {
     return true;
   }
 
-  public async activeAccount(id: string): Promise<boolean> {
-    const user = await this.userRepository.findOne({ where: { id } });
-    if (user !== null && user.status === UserStatus.unverified) {
-      user.status = UserStatus.not_update;
-      await this.userRepository.save(user);
-      return true;
-    } else {
-      return false;
+  /// Return true if account is active successfully else return false
+  public async activeAccount(
+    email: string,
+    password: string,
+    code: string,
+  ): Promise<{
+    access_token: string;
+    refresh_token: string;
+  }> {
+    const { user } = await this.getUserByEmailAndPassword(email, password);
+    if (user === null || user === undefined) {
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.INCORRECT_EMAIL_OR_PASSWORD, {
+        statusCode: ServerCodes.AuthCode.UserNotFound,
+      });
     }
+    const verifyOTPCodes = await this.verifyOTPCodeAndUse(user.id, code, OTPTypes.account_activation);
+    if (verifyOTPCodes === false) {
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.OTPCodeIsIncorrectOrExpired, {
+        statusCode: ServerCodes.AuthCode.OTPCodeIsIncorrectOrExpired,
+      });
+    }
+    if (user.status !== UserStatus.unverified) {
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.UserIsAlreadyActive, {
+        statusCode: ServerCodes.AuthCode.UserIsAlreadyActive,
+      });
+    }
+    user.status = UserStatus.not_update;
+    await this.userRepository.save(user);
+    const { access_token, refresh_token } = await this.createSession(user.id);
+    return { access_token, refresh_token };
   }
 
   async checkUserExistByEmail(email: string): Promise<User | null> {
@@ -199,12 +247,10 @@ class AuthServices {
   async signOut(session_id: string) {
     const session = await this.sessionRepository.findOne({ where: { id: session_id } });
     if (session) {
-      //Delete session
       await this.sessionRepository.delete({ id: session.id });
     }
   }
   async signOutAll(user_id: string) {
-    //Delete all session of user
     await this.sessionRepository.delete({ user_id });
   }
 
@@ -215,24 +261,27 @@ class AuthServices {
     return session;
   }
 
-  async changePassword(user_id: string, password: string): Promise<boolean> {
-    const user = await this.userRepository.findOne({ where: { id: user_id } });
-    if (user !== null) {
-      user.password = hashPassword(password);
-      await this.userRepository.save(user);
-      return true;
-    } else {
-      return false;
+  private async findUserOrThrow(option: FindOneOptions<User>): Promise<User> {
+    const user = await this.userRepository.findOne(option);
+    if (user === null) {
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, { statusCode: ServerCodes.AuthCode.UserNotFound });
     }
+    return user;
   }
-  async forgotPassword(email: string): Promise<string | null | undefined> {
-    const user = await this.userRepository.findOne({ where: { email } });
-    if (user) {
-      const otp_code = await this.generateOTPCode(OTPTypes.password_recovery, user.id);
-      return otp_code;
-    } else {
-      return null;
-    }
+
+  async changePassword(user_id: string, password: string): Promise<void> {
+    const user = await this.findUserOrThrow({
+      where: { id: user_id },
+    });
+    user.password = hashPassword(password);
+    await this.userRepository.save(user);
+  }
+  async forgotPassword(email: string): Promise<string> {
+    const user = await this.findUserOrThrow({
+      where: { email },
+    });
+    const otp_code = await this.generateOTPCode(OTPTypes.password_recovery, user.id);
+    return otp_code;
   }
 
   async generateResetPasswordToken(id: string, session_id: string): Promise<string | null> {

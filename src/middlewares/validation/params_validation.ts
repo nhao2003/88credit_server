@@ -32,7 +32,7 @@ export class ParamsValidation {
     custom: {
       options: (value, { req }) => {
         if (value !== req.body.new_password) {
-          throw new AppError(APP_MESSAGES.VALIDATION_MESSAGE.PASSWORD_AND_CONFIRM_PASSWORD_DO_NOT_MATCH, 400);
+          return false;
         }
         return true;
       },

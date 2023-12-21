@@ -6,6 +6,7 @@ import { ParamsDictionary } from 'express-serve-static-core';
 import { PostCreateData } from '~/models/typing/request/PostCreateData';
 import AppResponse from '~/models/typing/AppRespone';
 import ReportService from '~/services/report.service';
+import ServerCodes from '~/constants/server_codes';
 @Service()
 class PostController {
   private postService: PostService;
@@ -21,7 +22,7 @@ class PostController {
       const post = await this.postService.createPost(req.user.id, req.body);
       res.json({
         status: 'success',
-        code: 200,
+        code: ServerCodes.CommomCode.Success,
         message: 'Create post successfully',
         result: post,
       });
@@ -33,7 +34,7 @@ class PostController {
     await this.postService.deletePost(id);
     res.json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Delete post successfully',
     });
   });
@@ -44,7 +45,7 @@ class PostController {
     const posts = await this.postService.getPostsByQuery(query);
     const appRes: AppResponse = {
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Get posts successfully',
       num_of_pages: posts.numberOfPages,
       result: posts.data,
@@ -60,7 +61,7 @@ class PostController {
     const report = await this.reportService.reportPost(reporter_id, id, content_type, description, images);
     const appRes: AppResponse = {
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Report post successfully',
       result: report,
     };

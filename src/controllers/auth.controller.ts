@@ -20,7 +20,7 @@ class AuthController {
 
     res.status(200).json({
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SIGN_UP_SUCCESSFULLY,
       result: {
         otp_code,
@@ -34,11 +34,13 @@ class AuthController {
     const otp_code = await this.authServices.resendOTPCode(email);
 
     if (otp_code === null || otp_code === undefined) {
-      return next(new AppError(APP_MESSAGES.USER_NOT_FOUND, 404));
+      return next(
+        new AppError(404, APP_MESSAGES.INCORRECT_EMAIL_OR_PASSWORD, { statusCode: ServerCodes.AuthCode.UserNotFound }),
+      );
     }
     res.status(200).json({
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SUCCESS_MESSAGE.RESEND_ACTIVATION_CODE_SUCCESSFULLY,
       result: {
         otp_code,
@@ -48,40 +50,25 @@ class AuthController {
 
   public activeAccount = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
     const { email, password, code } = req.body;
-    const { user } = await this.authServices.getUserByEmailAndPassword(email, password);
-    if (user === null || user === undefined) {
-      return next(new AppError(APP_MESSAGES.INCORRECT_EMAIL_OR_PASSWORD, 404));
-    }
-    const verifyOTPCodes = await this.authServices.verifyOTPCodeAndUse(user.id, code, OTPTypes.account_activation);
-    if (verifyOTPCodes === false) {
-      return next(new AppError(APP_MESSAGES.ERROR_MESSAGE.OTP_CODE_IS_INCORRECT_OR_EXPIRED, 404));
-    }
-    const active = await this.authServices.activeAccount(user.id);
-    if (active === false) {
-      return next(new AppError(APP_MESSAGES.ERROR_MESSAGE.YOUR_ACCOUNT_IS_ALREADY_ACTIVE, 404));
-    }
-    const { access_token, refresh_token } = await this.authServices.createSession(user.id);
-
+    const { access_token, refresh_token } = await this.authServices.activeAccount(email, password, code);
     const appRes: AppResponse = {
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SUCCESS_MESSAGE.ACTIVE_ACCOUNT_SUCCESSFULLY,
       result: {
         access_token,
         refresh_token,
       },
     };
-
     res.status(200).json(appRes);
   });
 
   public signIn = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
     const user = req.user as User;
-    // Create new session
     const { access_token, refresh_token } = await this.authServices.createSession(user.id);
     const appRes: AppResponse = {
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SUCCESS_MESSAGE.SIGN_IN_SUCCESSFULLY,
       result: {
         access_token,
@@ -95,12 +82,16 @@ class AuthController {
     const { refresh_token } = req.body;
     const access_token = await this.authServices.grantNewAccessToken(refresh_token);
     if (access_token === null || access_token === undefined) {
-      return next(new AppError(APP_MESSAGES.ERROR_MESSAGE.REFRESH_TOKEN_IS_EXPIRED_OR_INVALID, 401));
+      return next(
+        new AppError(401, APP_MESSAGES.ERROR_MESSAGE.REFRESH_TOKEN_IS_EXPIRED_OR_INVALID, {
+          statusCode: ServerCodes.AuthCode.InvalidCredentials,
+        }),
+      );
     }
 
     const appRes: AppResponse = {
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SUCCESS_MESSAGE.RENEW_ACCESS_TOKEN_SUCCESSFULLY,
       result: {
         access_token,
@@ -113,7 +104,7 @@ class AuthController {
     await this.authServices.signOut(req.session!.id);
     const appRes: AppResponse = {
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SUCCESS_MESSAGE.SIGN_OUT_SUCCESSFULLY,
     };
     res.status(200).json(appRes);
@@ -121,13 +112,9 @@ class AuthController {
 
   public signOutAll = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
     await this.authServices.signOutAll(req.session!.user_id);
-    // res.status(200).json({
-    //   status: 'success',
-    //   message: APP_MESSAGES.SUCCESS_MESSAGE.SIGN_OUT_ALL_SUCCESSFULLY,
-    // });
     const appRes: AppResponse = {
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SUCCESS_MESSAGE.SIGN_OUT_ALL_SUCCESSFULLY,
     };
     res.status(200).json(appRes);
@@ -137,11 +124,13 @@ class AuthController {
     const { old_password, new_password } = req.body;
     const user = req.user;
     if (user === null || user === undefined) {
-      return next(new AppError(APP_MESSAGES.USER_NOT_FOUND, 404));
+      return next(new AppError(404, APP_MESSAGES.USER_NOT_FOUND, { statusCode: ServerCodes.AuthCode.UserNotFound }));
     }
     const isMatch = verifyPassword(old_password, user.password as string);
     if (!isMatch) {
-      return next(new AppError(APP_MESSAGES.INCORRECT_PASSWORD, 400));
+      return next(
+        new AppError(400, APP_MESSAGES.INCORRECT_PASSWORD, { statusCode: ServerCodes.AuthCode.UserNotFound }),
+      );
     }
     await this.authServices.changePassword(user.id, new_password);
     // Sign out all session
@@ -150,7 +139,7 @@ class AuthController {
     const { access_token, refresh_token } = await this.authServices.createSession(user.id);
     const appRes: AppResponse = {
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SUCCESS_MESSAGE.CHANGE_PASSWORD_SUCCESSFULLY,
       result: {
         access_token,
@@ -165,7 +154,7 @@ class AuthController {
     const otp_code = await this.authServices.forgotPassword(email);
     const appRes: AppResponse = {
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SUCCESS_MESSAGE.FORGOT_PASSWORD_SUCCESSFULLY,
       result: {
         otp_code,
@@ -176,18 +165,12 @@ class AuthController {
 
   public verifyRecoveryPasswordOTP = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
     const { email, code } = req.body;
-    const user = await this.authServices.checkUserExistByEmail(email);
-    if (user === null || user === undefined) {
-      return next(new AppError(APP_MESSAGES.USER_NOT_FOUND, 404));
-    }
-    const verifyOTPCodes = await this.authServices.getOTP(user.id, code, OTPTypes.password_recovery);
-    if (verifyOTPCodes === null) {
-      return next(new AppError(APP_MESSAGES.ERROR_MESSAGE.OTP_CODE_IS_INCORRECT_OR_EXPIRED, 404));
-    }
+    const result = await this.authServices.verifyOtpCode(email, code, OTPTypes.password_recovery);
     const appRes: AppResponse = {
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
-      message: APP_MESSAGES.SUCCESS_MESSAGE.OTP_CODE_IS_CORRECT,
+      code: ServerCodes.CommomCode.Success,
+      message: APP_MESSAGES.SUCCESS_MESSAGE.YourVerificationCodeResult + ' ' + code,
+      result,
     };
 
     res.status(200).json(appRes);
@@ -195,22 +178,11 @@ class AuthController {
 
   public resetPassword = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
     const { email, code, new_password } = req.body;
-    const user = await this.authServices.checkUserExistByEmail(email);
-    if (user === null || user === undefined) {
-      return next(new AppError(APP_MESSAGES.USER_NOT_FOUND, 404));
-    }
-    const verifyOTPCodes = await this.authServices.verifyOTPCodeAndUse(user.id, code, OTPTypes.password_recovery);
-    if (verifyOTPCodes === false) {
-      return next(new AppError(APP_MESSAGES.ERROR_MESSAGE.OTP_CODE_IS_INCORRECT_OR_EXPIRED, 404));
-    }
-    await this.authServices.changePassword(user.id, new_password);
-    // Sign out all session
-    await this.authServices.signOutAll(user.id);
     // Create new session
-    const { access_token, refresh_token } = await this.authServices.createSession(user.id);
+    const { access_token, refresh_token } = await this.authServices.resetPassword(email, new_password, code);
     const appRes: AppResponse = {
       status: 'success',
-      code: ServerCodes.AuthCode.Success,
+      code: ServerCodes.CommomCode.Success,
       message: APP_MESSAGES.SUCCESS_MESSAGE.RESET_PASSWORD_SUCCESSFULLY,
       result: {
         access_token,

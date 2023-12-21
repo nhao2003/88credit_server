@@ -5,6 +5,9 @@ import { AppError } from '~/models/Error';
 import { UserStatus } from '~/constants/enum';
 import { Service } from 'typedi';
 import { User } from '~/models/databases/User';
+import HttpStatus from '~/constants/httpStatus';
+import { APP_MESSAGES } from '~/constants/message';
+import ServerCodes from '~/constants/server_codes';
 export type UserQuery = {
   page: number;
   wheres: string[] | null;
@@ -79,18 +82,17 @@ class UserServices {
   async banUser(id: string, ban_reason: string, banned_util: Date): Promise<void> {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
-      throw new AppError('User not found', 404);
+      throw AppError.notFound();
     }
     if (user.status === UserStatus.banned) {
-      throw new AppError('User has been banned', 400);
-    }
-    if (banned_util < new Date()) {
-      throw new AppError('Banned util is not valid', 400);
+      throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.AuthMessage.UserHasBeenBaned, {
+        statusCode: ServerCodes.AuthCode.UserHasBeenBaned,
+      });
     }
     user.status = UserStatus.banned;
     user.ban_reason = ban_reason;
     user.banned_util = banned_util;
-    
+
     const ban = this.userRepository.save(user);
     const signOutAll = this.authServices.signOutAll(id);
     await Promise.all([ban, signOutAll]);
@@ -99,10 +101,12 @@ class UserServices {
   async unbanUser(id: string): Promise<void> {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
-      throw new AppError('User not found', 404);
+      throw AppError.notFound();
     }
     if (user.status !== UserStatus.banned) {
-      throw new AppError('User has not been banned', 400);
+      throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.AuthMessage.UserIsNotBaned, {
+        statusCode: ServerCodes.AuthCode.UserIsNotBaned,
+      });
     }
     user.status = UserStatus.verified;
     user.ban_reason = null;

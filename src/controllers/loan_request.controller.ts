@@ -7,33 +7,36 @@ import LoanRequestCreateData from '~/models/typing/request/RequestCreateData';
 import { LoanContractRequestStatus, LoanContractRequestTypes, PaymentMethods, PostTypes } from '~/constants/enum';
 import StringUisUUID from '~/utils/StringUtils';
 import { ParamsDictionary } from 'express-serve-static-core';
+import ServerCodes from '~/constants/server_codes';
 @Service()
 class LoanContractRequestController {
   constructor(private loanContractRequestService: LoanContractRequestService) {}
-  createLoanContractRequest = wrapRequestHandler(async (req: Request<ParamsDictionary, any, LoanRequestCreateData>, res: Response) => {
-    const data: LoanRequestCreateData = {
-      sender_id: req.user.id,
-      receiver_id: req.body.receiver_id,
-      loan_amount: req.body.loan_amount,
-      interest_rate: req.body.interest_rate,
-      overdue_interest_rate: req.body.overdue_interest_rate,
-      loan_tenure_months: req.body.loan_tenure_months,
-      loan_reason_type: req.body.loan_reason_type,
-      loan_reason: req.body.loan_reason,
-      video_comfirmation: req.body.video_comfirmation,
-      sender_bank_account_id: req.body.sender_bank_account_id,
-      portait_photo: req.body.portait_photo,
-      id_card_front_photo: req.body.id_card_front_photo,
-      id_card_back_photo: req.body.id_card_back_photo,
-    };
-    const result = await this.loanContractRequestService.createLoanContractRequest(data);
-    res.status(200).json({
-      status: 'success',
-      code: 200,
-      message: 'Create loan contract request successfully',
-      result,
-    });
-  });
+  createLoanContractRequest = wrapRequestHandler(
+    async (req: Request<ParamsDictionary, any, LoanRequestCreateData>, res: Response) => {
+      const data: LoanRequestCreateData = {
+        sender_id: req.user.id,
+        receiver_id: req.body.receiver_id,
+        loan_amount: req.body.loan_amount,
+        interest_rate: req.body.interest_rate,
+        overdue_interest_rate: req.body.overdue_interest_rate,
+        loan_tenure_months: req.body.loan_tenure_months,
+        loan_reason_type: req.body.loan_reason_type,
+        loan_reason: req.body.loan_reason,
+        video_comfirmation: req.body.video_comfirmation,
+        sender_bank_account_id: req.body.sender_bank_account_id,
+        portait_photo: req.body.portait_photo,
+        id_card_front_photo: req.body.id_card_front_photo,
+        id_card_back_photo: req.body.id_card_back_photo,
+      };
+      const result = await this.loanContractRequestService.createLoanContractRequest(data);
+      res.status(200).json({
+        status: 'success',
+        code: ServerCodes.CommomCode.Success,
+        message: 'Create loan contract request successfully',
+        result,
+      });
+    },
+  );
 
   getLoanContractRequestById = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
@@ -44,7 +47,7 @@ class LoanContractRequestController {
     const result = await this.loanContractRequestService.getLoanContractRequestById(id);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Get loan contract request by id successfully',
       result,
     });
@@ -56,7 +59,7 @@ class LoanContractRequestController {
     const result = await this.loanContractRequestService.getLoanContractRequestsByQuery(query);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Get loan contract requests by query successfully',
       result,
     });
@@ -69,7 +72,7 @@ class LoanContractRequestController {
     );
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Lender accept loan contract request successfully',
     });
   });
@@ -79,7 +82,7 @@ class LoanContractRequestController {
     const transaction = await this.loanContractRequestService.payLoanContractRequest(id, req.user.id);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Lender pay loan contract request successfully',
       result: transaction,
     });
@@ -90,7 +93,7 @@ class LoanContractRequestController {
     await this.loanContractRequestService.rejectLoanContractRequest(id, req.user.id);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Reject loan contract request successfully',
     });
   });
@@ -100,7 +103,7 @@ class LoanContractRequestController {
     await this.loanContractRequestService.cancelLoanContractRequest(id, req.user.id);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Cancel loan contract request successfully',
     });
   });

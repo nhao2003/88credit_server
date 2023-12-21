@@ -1,8 +1,15 @@
 export const APP_MESSAGES = {
+  //Server Message
+  InvalidRequestBody: "Invalid Request Body",
+  InvalidRequestParams: "Invalid Request Params",
+  InvalidQueryOperator: "Invalid Query Operator",
+  NotFound: "Not Found",
+
   // User
   USER_NOT_FOUND: "User not found",
   UPDATE_PROFILE_SUCCESSFULLY: "Update profile successfully",
   USER_NOT_VERIFIED: "User not verified",
+  UserIsAlreadyActive: "User is already active",
 
   // Auth
   EMAIL_ALREADY_EXISTS: "Email already exists",
@@ -30,7 +37,7 @@ export const APP_MESSAGES = {
   ACCESS_TOKEN_IS_REQUIRED: "Access token is required",
   REFRESH_TOKEN_IS_EXPIRED: "Refresh token is expired",
   REFRESH_TOKEN_IS_REQUIRED: "Refresh token is required",
-
+  OTPCodeIsIncorrectOrExpired: "OTP code is incorrect or expired",
   POST_NOT_FOUND: "Post not found",
 
   SUCCESS_MESSAGE: {
@@ -47,8 +54,10 @@ export const APP_MESSAGES = {
     YOUR_ACCOUNT_HAS_BEEN_SIGN_OUT_ON_ALL_DEVICES: "Your account has been sign out on all devices",
     YOUR_ACCOUNT_HAS_BEEN_SIGN_OUT_ON_ALL_DEVICES_YOU_CAN_CHANGE_PASSWORD_NOW: "Your account has been sign out on all devices, you can change password now",
     RESEND_ACTIVATION_CODE_SUCCESSFULLY: "Resend activation code successfully",
-    OTP_CODE_IS_CORRECT: "OTP code is correct",
+    YourVerificationCodeResult: "Your verification code is: ",
     CREATE_PROPERTY_TYPE_SUCCESSFULLY: "Create property type successfully",
+
+
 
     // Unit
     GET_UNIT_INFO_SUCCESSFULLY: "Get unit info successfully",
@@ -99,7 +108,11 @@ export const APP_MESSAGES = {
     PHONE_IS_INVALID: "Phone is invalid",
     IS_INVALID_ID: 'ID is not valid',
   },
-
+  AuthMessage: {
+    UserHasBeenBaned: "User has been baned",
+    UserIsNotBaned: "User is not baned",
+    
+  },
   ERROR_MESSAGE: {
     EMAIL_ALREADY_EXISTS: "Email already exists",
     OTP_CODE_IS_INCORRECT_OR_EXPIRED: "OTP code is incorrect or expired",
@@ -107,6 +120,32 @@ export const APP_MESSAGES = {
     REFRESH_TOKEN_IS_EXPIRED: "Refresh token is expired",
     REFRESH_TOKEN_IS_EXPIRED_OR_INVALID: "Refresh token is expired or invalid",
     RESET_PASSWORD_TOKEN_IS_INVALID: "Reset password token is invalid",
-  }
+  },
 
+  PostMessage: {
+    PostIsAlreadyApproved: "Post is already approved",
+    PostIsAlreadyRejected: "Post is already rejected",
+    PostIsAlreadyDeleted: "Post is already deleted",
+  },
+
+  LoanContractRequestMessage: {
+    LoanContractRequestIsAlreadyApproved: "Loan contract request is already approved",
+    LoanContractRequestIsAlreadyRejected: "Loan contract request is already rejected",
+    LoanRequestOnlyCancleWhenStatusIsPending: "Loan request only cancle when status is pending",
+    YouAreNotOwnerOfThisLoanContractRequest: "You are not owner of this loan contract request",
+    YouAreNotReceiverOfThisLoanContractRequest: "You are not receiver of this loan contract request",
+    LoanRequestOnlyPayWhenStatusIsWaitingForPayment: "Loan request only pay when status is waiting for payment",
+    AnErrorOccurredWhileProcessingThePayment: "An error occurred while processing the payment",
+    LoanRequestOnlyRejectWhenStatusIsPending: "Loan request only reject when status is pending",
+    LoanRequestOnlyAcceptWhenStatusIsPending: "Loan request only accept when status is pending",
+  },
+  BankMessage: {
+    LenderBankAccountIsNotExisted: "Lender bank account is not existed",
+  },
+  ReportMessage: {
+    ReportIsAlreadyApproved: "Report is already approved",
+    ReportIsAlreadyRejected: "Report is already rejected",
+    ReportIsAlreadExisted: "Report is already existed",
+    ReportIsAlreadyHandled: "Report is already handled",
+  },
 };

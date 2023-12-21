@@ -3,6 +3,7 @@ import { Service } from 'typedi';
 import BankAccountService from '~/services/bank_account.service';
 import { wrapRequestHandler } from '~/utils/wrapRequestHandler';
 import { Request, Response } from 'express';
+import ServerCodes from '~/constants/server_codes';
 type BankAccountCreateData = {
   user_id: string;
   bank_name: string;
@@ -27,7 +28,7 @@ class BankAccountController {
     const result = await this.bankAccountService.addBankAccount(data);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Create bank account successfully',
       result,
     });
@@ -37,7 +38,7 @@ class BankAccountController {
     const result = await this.bankAccountService.getAllBankAccount(req.user.id);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Get all bank account successfully',
       result,
     });
@@ -48,7 +49,7 @@ class BankAccountController {
     const result = await this.bankAccountService.getBankAccountById(id);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Get bank account by id successfully',
       result,
     });
@@ -59,7 +60,7 @@ class BankAccountController {
     await this.bankAccountService.deleteBankAccount(id);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Delete bank account successfully',
     });
   });
@@ -69,7 +70,7 @@ class BankAccountController {
     await this.bankAccountService.updateBankAccount(req.user.id, id);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Update bank account successfully',
     });
   });
@@ -78,7 +79,7 @@ class BankAccountController {
     const result = await this.bankAccountService.getPrimaryBankAccount(req.user.id);
     res.status(200).json({
       status: 'success',
-      code: 200,
+      code: ServerCodes.CommomCode.Success,
       message: 'Get primary bank account successfully',
       result,
     });

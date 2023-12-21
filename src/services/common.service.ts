@@ -3,6 +3,9 @@ import { AppDataSource } from '~/app/database';
 import { buildOrder, buildQuery } from '~/utils/build_query';
 import { AppError } from '~/models/Error';
 import { BaseQuery } from '~/models/typing/base_query';
+import { APP_MESSAGES } from '~/constants/message';
+import { Server } from 'http';
+import ServerCodes from '~/constants/server_codes';
 class CommonServices {
   protected repository: Repository<any>;
   constructor(entity: EntityTarget<any>) {
@@ -25,7 +28,7 @@ class CommonServices {
   public async softDelete(id: string): Promise<void> {
     const value = await this.repository.findOne({ where: { id } });
     if (value === undefined || value === null) {
-      throw new AppError('Not found', 404);
+      throw new AppError(404, APP_MESSAGES.NotFound, { statusCode: ServerCodes.CommomCode.NotFound });
     }
     await this.repository.softDelete(id);
   }
