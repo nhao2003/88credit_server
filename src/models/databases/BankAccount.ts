@@ -8,7 +8,7 @@ import {
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
-  OneToMany
+  OneToMany,
 } from 'typeorm';
 import { PostgresDataType } from '~/constants/database_constants';
 import { User } from './User';
@@ -46,10 +46,10 @@ class BankAccount extends BaseEntity implements IBankAccount {
   @Column(PostgresDataType.varchar, { length: 50, nullable: true })
   branch!: string | null;
 
-  @CreateDateColumn({type: PostgresDataType.timestamp_without_timezone})
+  @CreateDateColumn({ type: PostgresDataType.timestamp_without_timezone })
   created_at!: Date;
 
-  @DeleteDateColumn({type: PostgresDataType.timestamp_without_timezone})
+  @DeleteDateColumn({ type: PostgresDataType.timestamp_without_timezone })
   deleted_at!: Date | null;
 
   @ManyToOne(() => User, (user) => user.bank_accounts)

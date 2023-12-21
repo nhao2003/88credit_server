@@ -1,21 +1,28 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, VirtualColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  VirtualColumn,
+} from 'typeorm';
 import { User } from './User';
 import { PostgresDataType } from '~/constants/database_constants';
 import { ReportContentType, ReportStatus, ReportType } from '~/constants/enum';
 import Post from './Post';
 
 interface IReport {
-    id: string;
-    reporter_id: string;
-    reported_id: string;
-    status: ReportStatus;
-    type: ReportType;
-    content_type: ReportContentType;
-    description: string;
-    images?: string[] | null;
-    created_date: Date;
+  id: string;
+  reporter_id: string;
+  reported_id: string;
+  status: ReportStatus;
+  type: ReportType;
+  content_type: ReportContentType;
+  description: string;
+  images?: string[] | null;
+  created_date: Date;
 }
-
 
 @Entity('reports')
 class Report implements IReport {
@@ -51,7 +58,6 @@ class Report implements IReport {
   reporter!: User;
 
   reported!: Post | User;
-
 }
 
 export default Report;

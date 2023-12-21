@@ -5,7 +5,6 @@ export type BaseQuery = {
   orders: any;
 };
 
-
 export type PostQuery = {
   page: number;
   postWhere: string[];

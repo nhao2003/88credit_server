@@ -14,7 +14,7 @@ describe('MailService', () => {
       const html = '<p>Test Content</p>';
       const mockedTransporter = {
         sendMail: jest.fn((_, callback) => callback()),
-      }
+      };
       mailService = new MailService(mockedTransporter as any);
       // Act
       await mailService.sendMail(to, subject, html);
@@ -39,8 +39,8 @@ describe('MailService', () => {
 
       // Mock the sendMail function to simulate an error
       const mockedTransporter = {
-        sendMail: jest.fn((_, callback) => callback(new Error('Test Error')))
-      }
+        sendMail: jest.fn((_, callback) => callback(new Error('Test Error'))),
+      };
       mailService = new MailService(mockedTransporter as any);
 
       // Act & Assert

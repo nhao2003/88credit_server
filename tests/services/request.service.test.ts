@@ -38,14 +38,14 @@ describe('LoanContractRequestService', () => {
         orders: ['-created_at'],
         search: 'test',
         request_loan_amount: {
-          eq: 1000
+          eq: 1000,
         },
         sender_id: {
-          eq: 'sender123'
+          eq: 'sender123',
         },
         receiver_id: {
-          eq: 'receiver123'
-        }
+          eq: 'receiver123',
+        },
       };
 
       // Act
@@ -53,9 +53,7 @@ describe('LoanContractRequestService', () => {
 
       // Assert
       expect(result.page).toBe(1);
-      expect(result.orders).toEqual({"LoanRequest.created_at": "DESC"});
-    
-
+      expect(result.orders).toEqual({ 'LoanRequest.created_at': 'DESC' });
     });
   });
 
@@ -76,7 +74,6 @@ describe('LoanContractRequestService', () => {
         sender_bank_account_id: 'test',
         sender_id: 'sender123',
         receiver_id: 'receiver123',
-
       };
 
       loanContractRequestRepository = {
@@ -97,7 +94,6 @@ describe('LoanContractRequestService', () => {
 
       // Assert
       expect(loanContractRequestRepository.insert).toBeCalledWith(data);
-  
     });
   });
 

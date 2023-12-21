@@ -41,7 +41,7 @@ class ContractService {
     const offset = (page - 1) * limit;
     const where = query.wheres || [];
     const order = query.orders || {};
-    var queryBuilder = this.contractRepository.createQueryBuilder();
+    let queryBuilder = this.contractRepository.createQueryBuilder();
     where.forEach((w: string) => {
       queryBuilder = queryBuilder.andWhere('Contract.' + w);
     });

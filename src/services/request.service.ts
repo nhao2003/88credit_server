@@ -116,8 +116,8 @@ class LoanContractRequestService {
   }
 
   async getLoanContractRequestsByQuery(query: LoanContractRequestQuery): Promise<FindResult> {
-    var { page, wheres, orders, lenderWhere, borrowerWhere } = query;
-    var queryBuilder = this.loanContractRequestRepository
+    const { page, wheres, orders, lenderWhere, borrowerWhere } = query;
+    let queryBuilder = this.loanContractRequestRepository
       .createQueryBuilder()
       .where({
         sender_id: query.user_id,
@@ -290,10 +290,14 @@ class LoanContractRequestService {
     };
     const zaloPayResponse = await this.zaloPayService.createOrder(zaloPayOrderRequest);
     if (zaloPayResponse.return_code != 1) {
-      throw new AppError(HttpStatus.INTERNAL_SERVER_ERROR, APP_MESSAGES.LoanContractRequestMessage.AnErrorOccurredWhileProcessingThePayment, {
-        statusCode: ServerCodes.LoanRequestCode.PaymentFailed,
-        details: zaloPayResponse.return_message,
-      });
+      throw new AppError(
+        HttpStatus.INTERNAL_SERVER_ERROR,
+        APP_MESSAGES.LoanContractRequestMessage.AnErrorOccurredWhileProcessingThePayment,
+        {
+          statusCode: ServerCodes.LoanRequestCode.PaymentFailed,
+          details: zaloPayResponse.return_message,
+        },
+      );
     }
     const transaction: Transaction = new Transaction();
     transaction.id_third_party = zaloPayResponse.app_trans_id;

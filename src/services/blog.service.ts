@@ -1,5 +1,5 @@
 import CommonServices from './common.service';
-import { DataSource, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Service } from 'typedi';
 import Blog from '~/models/databases/Blog';
 
@@ -8,9 +8,9 @@ class BlogService extends CommonServices {
   constructor() {
     super(Blog);
   }
-
   async getAllWithFavoriteByQuery(query: any, current_user_id: string | null) {
-    let { page, wheres, orders } = query;
+    let { page } = query;
+    const { wheres, orders } = query;
     page = Number(page) || 1;
     const skip = (page - 1) * 10;
     const take = 10;

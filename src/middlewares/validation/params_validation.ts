@@ -1,7 +1,5 @@
-import { ValidationChain, body } from 'express-validator';
-import { DefaultSchemaKeys, ParamSchema, Schema } from 'express-validator/src/middlewares/schema';
+import { ParamSchema } from 'express-validator/src/middlewares/schema';
 import { APP_MESSAGES } from '~/constants/message';
-import { AppError } from '~/models/Error';
 import Address from '~/models/typing/address';
 
 export class ParamsValidation {
@@ -99,7 +97,7 @@ export class ParamsValidation {
   public static gender: ParamSchema = {
     isBoolean: {
       errorMessage: 'Gender is boolean',
-    }
+    },
   };
 
   public static uuid: ParamSchema = {

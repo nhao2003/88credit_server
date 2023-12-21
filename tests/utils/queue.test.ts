@@ -333,10 +333,8 @@ describe('ConcurrentQueue', () => {
         }
       }, 60);
     });
-   
-    expect(executeFn).toHaveBeenCalledTimes(4);
-  
 
+    expect(executeFn).toHaveBeenCalledTimes(4);
   });
 
   it('should execute async tasks correctly', async () => {
@@ -369,7 +367,6 @@ describe('ConcurrentQueue', () => {
     expect(executeFn).toHaveBeenCalledTimes(2);
   });
 });
-
 
 describe('ConcurrentQueue', () => {
   let queue: ConcurrentQueue;

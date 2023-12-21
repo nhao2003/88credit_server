@@ -25,8 +25,7 @@ export class OTP extends BaseEntity {
   @Column({ type: PostgresDataType.boolean, default: 'false' })
   is_used!: boolean;
 
-  @ManyToOne(() => User, user => user.otps)
+  @ManyToOne(() => User, (user) => user.otps)
   @JoinColumn({ name: 'user_id' })
   user!: User;
-  
 }

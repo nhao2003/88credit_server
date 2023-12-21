@@ -108,21 +108,19 @@ describe('AddressUtils', () => {
       expect(result).toBeNull();
     });
 
-    it("Return detailed address for a valid province, district, ward code", () => {
+    it('Return detailed address for a valid province, district, ward code', () => {
       const result = addressUtils.getDetailedAddress(1, 1, 1);
-      expect(result).toEqual("Phường Phúc Xá, Quận Ba Đình, Thành phố Hà Nội");
+      expect(result).toEqual('Phường Phúc Xá, Quận Ba Đình, Thành phố Hà Nội');
     });
 
-    it("Return detailed address for a valid province, district, ward code", () => {
+    it('Return detailed address for a valid province, district, ward code', () => {
       const result = addressUtils.getDetailedAddress(1, 1, 2);
       expect(result).toEqual(null);
     });
 
-    it("Return detailed address for a valid province, district, ward code", () => {
+    it('Return detailed address for a valid province, district, ward code', () => {
       const result = addressUtils.getDetailedAddress(1, 1, 4);
-      expect(result).toEqual("Phường Trúc Bạch, Quận Ba Đình, Thành phố Hà Nội");
+      expect(result).toEqual('Phường Trúc Bạch, Quận Ba Đình, Thành phố Hà Nội');
     });
-    
-
   });
 });

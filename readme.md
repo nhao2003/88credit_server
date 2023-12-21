@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `yarn dev`
 
-Before install, you need to create a .env file in the root of the project and add the assets in file: 
+Before install, you need to create a .env file in the root of the project and add the assets in file:
 [.env](assets/env.txt)\
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

@@ -26,7 +26,7 @@ class ContractTemplateService {
     const offset = (page - 1) * limit;
     const where = query.wheres || [];
     const order = query.orders || {};
-    var queryBuilder = this.contractTemplateRepository.createQueryBuilder();
+    let queryBuilder = this.contractTemplateRepository.createQueryBuilder();
     where.forEach((w) => {
       queryBuilder = queryBuilder.andWhere('ContractTemplate.' + w);
     });

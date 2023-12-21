@@ -1,5 +1,3 @@
-import Transaction from '~/models/databases/Transaction';
-
 export enum UserStatus {
   unverified = 'unverified',
   not_update = 'not_update',
@@ -63,16 +61,16 @@ export enum PaymentMethods {
 }
 
 export enum PostStatus {
-  pending = "pending",
-  approved = "approved",
-  rejected = "rejected",
-  hided = "hided"
+  pending = 'pending',
+  approved = 'approved',
+  rejected = 'rejected',
+  hided = 'hided',
 }
 
 export enum ReportStatus {
   pending = 'pending',
-  resolved ='resolved',
-  rejected = 'rejected'
+  resolved = 'resolved',
+  rejected = 'rejected',
 }
 
 export enum ReportType {
@@ -80,7 +78,6 @@ export enum ReportType {
   post = 'post',
   conversation = 'conversation',
 }
-
 
 export enum ReportContentType {
   spam = 'spam',

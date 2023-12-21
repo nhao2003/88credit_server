@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import BlogController from '../controllers/blog.controller';
+import AuthValidation from '../middlewares/auth.middleware';
+import DependencyInjection from '../di/di';
+const blogController = DependencyInjection.get<BlogController>(BlogController);
+const authValidation = DependencyInjection.get<AuthValidation>(AuthValidation);
+const router = Router();
+router.get('/', authValidation.getUserByTokenIfExist, blogController.getAllBlog);
+router.get('/:id', authValidation.getUserByTokenIfExist, blogController.getBlogById);
+export default router;

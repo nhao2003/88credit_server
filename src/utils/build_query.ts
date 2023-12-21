@@ -77,8 +77,8 @@ const getOperatorValueString = (operatorAndValue: Record<string, any>): string =
     return query;
   }
   throw new AppError(400, APP_MESSAGES.InvalidQueryOperator, {
-    details: `Operator ${operator} is not supported`, 
-    statusCode:ServerCodes.CommomCode.InvalidQueryOperator,
+    details: `Operator ${operator} is not supported`,
+    statusCode: ServerCodes.CommomCode.InvalidQueryOperator,
   });
 };
 
@@ -106,7 +106,7 @@ const buildOrder = (
       sort: string;
       order?: 'ASC' | 'DESC';
     }
-  | {} => {
+  | object => {
   if (!orders) {
     return {};
   }

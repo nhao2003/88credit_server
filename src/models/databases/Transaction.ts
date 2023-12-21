@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, DeleteDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
+} from 'typeorm';
 import { PostgresDataType } from '~/constants/database_constants';
 import { PaymentMethods, TransactionStatus } from '~/constants/enum';
 import { User } from './User';
@@ -50,13 +58,13 @@ class Transaction implements ITransaction {
   @Column(PostgresDataType.jsonb)
   embed_data!: Record<string, any>;
 
-  @CreateDateColumn({type: PostgresDataType.timestamp_without_timezone})
+  @CreateDateColumn({ type: PostgresDataType.timestamp_without_timezone })
   created_at!: Date;
 
   @Column(PostgresDataType.timestamp_without_timezone, { nullable: true })
   transaction_at!: Date | null;
 
-  @DeleteDateColumn({type: PostgresDataType.timestamp_without_timezone})
+  @DeleteDateColumn({ type: PostgresDataType.timestamp_without_timezone })
   deleted_at!: Date | null;
 
   @ManyToOne(() => User, (user) => user.transactions)

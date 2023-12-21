@@ -1,5 +1,5 @@
 import { Service } from 'typedi';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { wrapRequestHandler } from '~/utils/wrapRequestHandler';
 import ReportService from '~/services/report.service';
 import PostServices from '~/services/post.service';
@@ -13,7 +13,7 @@ class UserController {
     private reportService: ReportService,
   ) {}
 
-  public readonly reportUser = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
+  public readonly reportUser = wrapRequestHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     const reporter_id = req.user.id;
     const { description, content_type, images } = req.body;

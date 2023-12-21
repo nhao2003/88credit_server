@@ -74,8 +74,6 @@ describe('PostServices', () => {
       expect(result.userWhere).toEqual(["status = 'not_update'"]);
       expect(result.search).toBeUndefined();
     });
-
-
   });
 
   describe('createPost', () => {
@@ -165,7 +163,6 @@ describe('PostServices', () => {
       expect(result.max_interest_rate).toBe(undefined);
       expect(result.max_tenure_months).toBe(undefined);
       expect(result.max_overdue_interest_rate).toBe(undefined);
-      
     });
 
     it('should throw an error for invalid post type', async () => {
@@ -313,8 +310,7 @@ describe('PostServices', () => {
       expect(result).toBeDefined();
       expect(result.data).toEqual(posts);
       expect(result.numberOfPages).toBe(1);
-    }
-    );
+    });
   });
 
   describe('deletePost', () => {

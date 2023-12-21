@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { Service } from 'typedi';
 import BankAccountService from '~/services/bank_account.service';
 import { wrapRequestHandler } from '~/utils/wrapRequestHandler';

@@ -1,11 +1,4 @@
-import {
-  BaseEntity,
-  Entity,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Column,
-} from 'typeorm';
+import { BaseEntity, Entity, PrimaryGeneratedColumn, CreateDateColumn, DeleteDateColumn, Column } from 'typeorm';
 import { PostgresDataType } from '~/constants/database_constants';
 
 export interface IContractTemplate {

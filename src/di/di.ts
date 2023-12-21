@@ -3,7 +3,8 @@ import { DataSource } from 'typeorm';
 import { AppDataSource } from '~/app/database';
 import nodemailer, { Transporter } from 'nodemailer';
 import AppConfig from '~/constants/configs';
-import MailService from '~/services/mail.service';import ZaloPayService from '~/services/zalopay.service';
+import MailService from '~/services/mail.service';
+import ZaloPayService from '~/services/zalopay.service';
 
 class DependencyInjection {
   private static instance: DependencyInjection = new DependencyInjection();

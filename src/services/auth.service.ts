@@ -264,7 +264,9 @@ class AuthServices {
   private async findUserOrThrow(option: FindOneOptions<User>): Promise<User> {
     const user = await this.userRepository.findOne(option);
     if (user === null) {
-      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, { statusCode: ServerCodes.AuthCode.UserNotFound });
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, {
+        statusCode: ServerCodes.AuthCode.UserNotFound,
+      });
     }
     return user;
   }

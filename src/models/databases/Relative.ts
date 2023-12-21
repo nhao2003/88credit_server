@@ -79,8 +79,6 @@ class Relative extends BaseEntity implements IRelative {
   @ManyToOne(() => User, (user) => user.relatives)
   @JoinColumn({ name: 'user_id' })
   user!: User;
-
-  
 }
 
 export default Relative;

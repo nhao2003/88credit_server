@@ -19,6 +19,54 @@ class AuthValidation {
   constructor(auth: AuthServices) {
     this.authServices = auth;
   }
+  public getUserByTokenIfExist = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
+    const authorization = req.headers.authorization;
+    if (!authorization) {
+      return next();
+    }
+    const access_token = authorization?.split(' ')[1];
+    if (!access_token) {
+      // return next(new AppError(APP_MESSAGES.ACCESS_TOKEN_IS_REQUIRED, HTTP_STATUS.UNAUTHORIZED));
+      const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.ACCESS_TOKEN_IS_REQUIRED, {
+        statusCode: ServerCodes.AuthCode.AccessTokenIsRequired,
+      });
+      return next(error);
+    }
+    const result = await verifyToken(access_token, process.env.JWT_SECRET_KEY as string);
+    if (!result) {
+      // return next(new AppError(APP_MESSAGES.INVALID_TOKEN, HTTP_STATUS.UNAUTHORIZED));
+      const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
+        statusCode: ServerCodes.AuthCode.InvalidCredentials,
+      });
+      return next(error);
+    }
+    if (result.expired || !result.payload) {
+      // return next(new AppError(APP_MESSAGES.TOKEN_IS_EXPIRED, 401));
+      const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
+        statusCode: ServerCodes.AuthCode.TokenIsExpired,
+      });
+      return next(error);
+    }
+    const session = await this.authServices.checkSessionExist((result.payload as UserPayload).session_id);
+    if (session === null || session === undefined) {
+      // return next(new AppError(APP_MESSAGES.INVALID_TOKEN, 401));
+      const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
+        statusCode: ServerCodes.AuthCode.InvalidCredentials,
+      });
+      return next(error);
+    }
+    const user = await this.authServices.checkUserExistByID(session.user_id);
+    if (user === null || user === undefined) {
+      // return next(new AppError(APP_MESSAGES.INVALID_TOKEN, 401));
+      const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
+        statusCode: ServerCodes.AuthCode.InvalidCredentials,
+      });
+      return next(error);
+    }
+    req.user = user;
+    req.session = session;
+    next();
+  });
   public readonly signUpValidation = [
     validate(
       checkSchema({
@@ -38,7 +86,7 @@ class AuthValidation {
       }),
     ),
     async (req: Request, res: Response, next: NextFunction) => {
-      const { email, password } = req.body;
+      const { email } = req.body;
       const user = await this.authServices.checkUserExistByEmail(email);
       if (user) {
         return res.status(HttpStatus.CONFLICT).json({

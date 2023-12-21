@@ -1,4 +1,13 @@
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, JoinColumn, ManyToMany } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+  ManyToMany,
+} from 'typeorm';
 import { PostgresDataType } from '~/constants/database_constants';
 import ContractTemplate from './ContractTemplate';
 import { User } from './User';

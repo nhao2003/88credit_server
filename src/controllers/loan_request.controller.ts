@@ -1,10 +1,8 @@
 import { Service } from 'typedi';
 import LoanContractRequestService from '~/services/request.service';
 import { NextFunction, Request, Response } from 'express';
-import { buildBaseQuery } from '~/utils/build_query';
 import { wrapRequestHandler } from '~/utils/wrapRequestHandler';
 import LoanRequestCreateData from '~/models/typing/request/RequestCreateData';
-import { LoanContractRequestStatus, LoanContractRequestTypes, PaymentMethods, PostTypes } from '~/constants/enum';
 import StringUisUUID from '~/utils/StringUtils';
 import { ParamsDictionary } from 'express-serve-static-core';
 import ServerCodes from '~/constants/server_codes';
@@ -54,7 +52,7 @@ class LoanContractRequestController {
   });
 
   getLoanContractRequestsByQuery = wrapRequestHandler(async (req: Request, res: Response) => {
-    var query = this.loanContractRequestService.buildLoanContractRequestQuery(req.query);
+    const query = this.loanContractRequestService.buildLoanContractRequestQuery(req.query);
     query.user_id = req.user.id;
     const result = await this.loanContractRequestService.getLoanContractRequestsByQuery(query);
     res.status(200).json({

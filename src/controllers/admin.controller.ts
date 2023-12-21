@@ -41,7 +41,6 @@ class AdminController {
   public readonly getAllUser = wrapRequestHandler(async (req, res) => {
     const query = this.userService.buildUserQuery(req.query);
     const result = await this.userService.getUserByQuery(query);
-     
     const response: AppResponse = {
       code: ServerCodes.CommomCode.Success,
       status: 'success',

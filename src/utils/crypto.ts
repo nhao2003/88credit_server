@@ -1,11 +1,11 @@
-import { createHash } from "crypto";
-import AppConfig from "~/constants/configs";
+import { createHash } from 'crypto';
+import AppConfig from '~/constants/configs';
 
-export function hashString(content: string, algorithm: string = "sha256"): string {
-  return createHash(algorithm).update(content).digest("hex");
+export function hashString(content: string, algorithm: string = 'sha256'): string {
+  return createHash(algorithm).update(content).digest('hex');
 }
 
-export function verifyString(content: string, hash: string, algorithm: string = "sha256"): boolean {
+export function verifyString(content: string, hash: string, algorithm: string = 'sha256'): boolean {
   return hashString(content, algorithm) === hash;
 }
 

@@ -13,12 +13,7 @@ const requestValidation = DependencyInjection.get<RequestValidation>(RequestVali
 const routes = Router();
 routes.use(authValidation.accessTokenValidation);
 routes.route('/').get(loanContractRequestController.getLoanContractRequestsByQuery);
-routes
-  .route('/create')
-  .post(
-    requestValidation.createRequest,
-    loanContractRequestController.createLoanContractRequest,
-  );
+routes.route('/create').post(requestValidation.createRequest, loanContractRequestController.createLoanContractRequest);
 routes.route('/:id').get(loanContractRequestController.getLoanContractRequestById);
 routes
   .route('/lender-accept/:id')
