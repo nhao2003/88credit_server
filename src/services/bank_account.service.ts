@@ -13,7 +13,7 @@ class BankAccountService {
     const bankAccount = new BankAccount();
     const count = await this.repository.count({ where: { user_id: data.user_id } });
     bankAccount.bank_account = data.bank_account;
-    bankAccount.bank_name = data.bank_name;
+    // bankAccount.bank_name = data.bank_name;
     bankAccount.is_primary = count === 0;
     bankAccount.user_id = data.user_id;
     bankAccount.branch = data.branch;

@@ -5,7 +5,6 @@ import {
   DeleteDateColumn,
   Entity,
   JoinColumn,
-  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
   OneToMany,
@@ -14,16 +13,19 @@ import { PostgresDataType } from '~/constants/database_constants';
 import { User } from './User';
 import Contract from './Contract';
 import LoanRequest from './LoanRequest';
+import Bank from './Bank';
 
 interface IBankAccount {
   id: string;
   is_primary: boolean;
   user_id: string;
-  bank_name: string;
+  bank_id: string;
   bank_account: string;
   branch: string | null;
   created_at: Date;
   deleted_at: Date | null;
+
+  bank: Bank;
 }
 
 @Entity('bank_accounts')
@@ -37,8 +39,8 @@ class BankAccount extends BaseEntity implements IBankAccount {
   @Column(PostgresDataType.uuid)
   user_id!: string;
 
-  @Column(PostgresDataType.varchar, { length: 50 })
-  bank_name!: string;
+  @Column(PostgresDataType.uuid)
+  bank_id!: string;
 
   @Column(PostgresDataType.varchar, { length: 50, unique: true })
   bank_account!: string;
@@ -71,6 +73,10 @@ class BankAccount extends BaseEntity implements IBankAccount {
   @OneToMany(() => LoanRequest, (loan_request) => loan_request.receiver_bank_account)
   @JoinColumn({ name: 'id', referencedColumnName: 'receiver_bank_account_id' })
   loan_requests_received!: LoanRequest[];
+
+  @ManyToOne(() => Bank, (bank) => bank.bank_accounts)
+  @JoinColumn({ name: 'bank_id', referencedColumnName: 'id' })
+  bank!: Bank;
 }
 
 export default BankAccount;

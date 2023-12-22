@@ -55,6 +55,7 @@
     "dev": "npx nodemon",
     "build": "rimraf ./dist && tsc && tsc-alias",
     "start": "SET NODE_ENV=production&node dist/index.js",
+    "prod": "yarn build && yarn start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check .",

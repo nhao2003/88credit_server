@@ -30,6 +30,8 @@ export enum LoanReasonTypes {
   wedding = 'wedding',
   medical = 'medical',
   shopping = 'shopping',
+  houseBuying = 'house-buying',
+  carBuying = 'car-buying',
   other = 'other',
 }
 
@@ -83,5 +85,19 @@ export enum ReportContentType {
   spam = 'spam',
   offensive = 'offensive',
   inappropriate = 'inappropriate',
+  copyrighted = 'copyrighted',
+  misleading = 'misleading',
+  illegal = 'illegal',
+  adult_content = 'adult_content',
+  hate_speech = 'hate_speech',
+  bullying = 'bullying',
+  violence = 'violence',
+  fake_news = 'fake_news',
+  fraud = 'fraud',
+  impersonation = 'impersonation',
+  privacy_violation = 'privacy_violation',
+  harassment = 'harassment',
+  discrimination = 'discrimination',
+  political_bias = 'political_bias',
   other = 'other',
 }
