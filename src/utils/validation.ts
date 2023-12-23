@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { validationResult, ValidationChain } from 'express-validator';
 import { RunnableValidationChains } from 'express-validator/src/middlewares/schema';
+import HttpStatus from '~/constants/httpStatus';
 import ServerCodes from '~/constants/server_codes';
 import { AppError } from '~/models/Error';
 
@@ -19,7 +20,7 @@ export const validate = (validation: RunnableValidationChains<ValidationChain>) 
       };
     });
     next(
-      new AppError(401, 'Invalid Request Body', {
+      new AppError(HttpStatus.BAD_REQUEST, 'Invalid Request Body', {
         serverCode: ServerCodes.CommomCode.FieldValidationFailed,
         details,
       }),

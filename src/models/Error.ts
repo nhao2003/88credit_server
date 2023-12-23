@@ -34,4 +34,11 @@ export class AppError extends Error {
       details,
     });
   }
+
+  static queryFailed(details?: any) {
+    return new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.QueryFailed, {
+      serverCode: ServerCodes.CommomCode.QueryFailed,
+      details,
+    });
+  }
 }

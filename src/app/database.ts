@@ -19,6 +19,7 @@ const AppDataSource = new DataSource({
   ],
   migrations: [],
   subscribers: [],
+  cache: true,
 });
 
 export { AppDataSource };

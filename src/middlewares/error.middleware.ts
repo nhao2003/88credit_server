@@ -1,10 +1,11 @@
 import { error } from 'console';
 import { NextFunction, Request, Response } from 'express';
+import { QueryFailedError } from 'typeorm';
 import HttpStatus from '~/constants/httpStatus';
 import { APP_MESSAGES } from '~/constants/message';
 import ServerCodes from '~/constants/server_codes';
 import { AppError } from '~/models/Error';
-
+import appConfig from '~/constants/configs';
 const handleValidationErrorDB = (err: any) => {
   const details = Object.values(err.errors).map((el: any) => {
     return {
@@ -32,7 +33,7 @@ const handleDevelopmentError = (err: Error, res: Response) => {
   const error = { ...err } as any;
   res.status(error.statusCode || HttpStatus.INTERNAL_SERVER_ERROR).json({
     status: error.status || 'error',
-    code: error.statusCode || 500,
+    code: error.options.serverCode || 500,
     message: err.message,
     error,
   });
@@ -62,13 +63,14 @@ const handleProductionError = (err: any, res: Response) => {
 };
 
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+  const isProduction = appConfig.isProduction;
+  const isDevelopment = !isProduction;
   console.log('ERROR HANDLER');
   console.log(process.env.NODE_ENV);
-  if (process.env.NODE_ENV === 'development') console.log(err);
-
-  if (process.env.NODE_ENV === 'development') {
+  if (isDevelopment) console.log(err);
+  if (isDevelopment) {
     handleDevelopmentError(err, res);
-  } else if (process.env.NODE_ENV === 'production') {
+  } else if (isProduction) {
     console.log('PRODUCTION ERROR');
     let error = { ...err };
     error.message = err.message;

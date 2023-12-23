@@ -2,6 +2,7 @@ import { BaseQuery } from '~/models/typing/base_query';
 import { AppError } from '../models/Error';
 import { APP_MESSAGES } from '~/constants/message';
 import ServerCodes from '~/constants/server_codes';
+import HttpStatus from '~/constants/httpStatus';
 
 const getOperatorValueString = (operatorAndValue: Record<string, any>): string => {
   const operatorMapping: { [key: string]: string } = {
@@ -76,7 +77,7 @@ const getOperatorValueString = (operatorAndValue: Record<string, any>): string =
 
     return query;
   }
-  throw new AppError(400, APP_MESSAGES.InvalidQueryOperator, {
+  throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.InvalidQueryOperator, {
     details: `Operator ${operator} is not supported`,
     serverCode: ServerCodes.CommomCode.InvalidQueryOperator,
   });

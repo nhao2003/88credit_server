@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import PostController from '~/controllers/post.controller';
 import DependencyInjection from '~/di/di';
 import AuthValidation from '~/middlewares/auth.middleware';
 import CommonValidation from '~/middlewares/common.middlewares';
@@ -9,6 +8,7 @@ const commonValidation = DependencyInjection.get<CommonValidation>(CommonValidat
 const authValidation = DependencyInjection.get<AuthValidation>(AuthValidation);
 const userControllers: UserController = DependencyInjection.get(UserController);
 const router = Router();
+router.route('/').get(userControllers.getAllUsers);
 router
   .route('/report/:id')
   .post(authValidation.accessTokenValidation, commonValidation.validateId, userControllers.reportUser);

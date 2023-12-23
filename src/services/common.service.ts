@@ -1,4 +1,4 @@
-import { BaseEntity, EntityTarget, getRepository, Repository } from 'typeorm';
+import { BaseEntity, EntityTarget, getRepository, QueryFailedError, Repository } from 'typeorm';
 import { AppDataSource } from '~/app/database';
 import { buildOrder, buildQuery } from '~/utils/build_query';
 import { AppError } from '~/models/Error';
@@ -68,11 +68,17 @@ class CommonServices {
     }
     const getCount = devQuery.getCount();
     const getMany = devQuery.skip(skip).take(take).getMany();
-    const res = await Promise.all([getMany, getCount]);
-    return {
-      num_of_pages: Math.ceil(res[1] / take),
-      data: res[0],
-    };
+    try {
+      const [data, count] = await Promise.all([getMany, getCount]);
+      return {
+        num_of_pages: Math.ceil(count / take),
+        data,
+      };
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        throw AppError.queryFailed();
+      } else throw error;
+    }
   };
 
   public async create(data: Record<string, any>) {

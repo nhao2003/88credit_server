@@ -1,4 +1,4 @@
-import { DataSource } from 'typeorm';
+import { DataSource, QueryFailedError } from 'typeorm';
 import { Repository } from 'typeorm/browser';
 import Post from '~/models/databases/Post';
 import { User } from '~/models/databases/User';
@@ -120,16 +120,22 @@ class PostServices {
     }
     query = query.orderBy(postQuery.order);
     const take = appConfig.ResultPerPage;
-    const total = query.getCount();
-    const data = query
+    const getCount = query.getCount();
+    const getMany = query
       .skip((page - 1) * take)
       .take(take)
       .getMany();
-    const result = await Promise.all([total, data]);
-    return {
-      numberOfPages: Math.ceil(result[0] / take),
-      data: result[1],
-    };
+    try {
+      const [data, count] = await Promise.all([getMany, getCount]);
+      return {
+        numberOfPages: Math.ceil(count / take),
+        data,
+      };
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        throw AppError.queryFailed();
+      } else throw error;
+    }
   }
 
   async deletePost(postId: string) {

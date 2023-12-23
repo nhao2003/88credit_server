@@ -1,4 +1,4 @@
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, QueryFailedError, Repository } from 'typeorm';
 import { buildOrder, buildQuery } from '~/utils/build_query';
 import AuthServices from './auth.service';
 import { AppError } from '~/models/Error';
@@ -71,17 +71,22 @@ class UserServices {
     if (orders) {
       query = query.orderBy(orders);
     }
-    const total = query.getCount();
+    const getCount = query.getCount();
     const take = appConfig.ResultPerPage;
     query = query.skip((page - 1) * take).take(take);
-    const users = query.getMany();
+    const getMany = query.getMany();
 
-    const result = await Promise.all([total, users]);
-
-    return {
-      num_of_pages: Math.ceil(result[0] / take),
-      users: result[1],
-    };
+    try {
+      const [data, count] = await Promise.all([getMany, getCount]);
+      return {
+        num_of_pages: Math.ceil(count / take),
+        users: data,
+      };
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        throw AppError.queryFailed();
+      } else throw error;
+    }
   }
 
   async banUser(id: string, ban_reason: string, banned_util: Date): Promise<void> {

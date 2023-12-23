@@ -25,6 +25,17 @@ class UserController {
       result: report,
     });
   });
+
+  public readonly getAllUsers = wrapRequestHandler(async (req: Request, res: Response) => {
+    const userQuery = this.userService.buildUserQuery(req.query);
+    const users = await this.userService.getUserByQuery(userQuery);
+    res.json({
+      status: 'success',
+      code: ServerCodes.CommomCode.Success,
+      message: 'Get all users successfully',
+      result: users,
+    });
+  });
 }
 
 export default UserController;

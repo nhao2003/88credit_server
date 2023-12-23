@@ -1,8 +1,9 @@
 import CommonServices from './common.service';
-import { Repository } from 'typeorm';
+import { QueryFailedError, Repository } from 'typeorm';
 import { Service } from 'typedi';
 import Blog from '~/models/databases/Blog';
 import appConfig from '~/constants/configs';
+import { AppError } from '~/models/Error';
 @Service()
 class BlogService extends CommonServices {
   constructor() {
@@ -26,11 +27,17 @@ class BlogService extends CommonServices {
     devQuery = devQuery.setParameters({ current_user_id });
     const getCount = devQuery.getCount();
     const getMany = devQuery.skip(skip).take(take).getMany();
-    const res = await Promise.all([getMany, getCount]);
-    return {
-      num_of_pages: Math.ceil(res[1] / take),
-      data: res[0],
-    };
+    try {
+      const [data, count] = await Promise.all([getMany, getCount]);
+      return {
+        num_of_pages: Math.ceil(count / take),
+        data,
+      };
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        throw AppError.queryFailed();
+      } else throw error;
+    }
   }
 }
 

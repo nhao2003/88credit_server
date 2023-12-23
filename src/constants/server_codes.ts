@@ -9,6 +9,7 @@ const ServerCodes = {
     InternalServerError: 6,
     InvalidUUID: 7,
     BadRequest: 8,
+    QueryFailed: 9,
   },
   AuthCode: {
     PaswordIsIncorrect: 100,
