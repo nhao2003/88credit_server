@@ -31,9 +31,9 @@ export const signToken = ({
       },
       (error: Error | null, token: string | undefined) => {
         if (error) {
-          reject(new AppError(500, error.message, { statusCode: ServerCodes.CommomCode.InternalServerError }));
+          reject(new AppError(500, error.message, { serverCode: ServerCodes.CommomCode.InternalServerError }));
         } else if (!token) {
-          reject(new AppError(500, 'Token is undefined', { statusCode: ServerCodes.CommomCode.InternalServerError }));
+          reject(new AppError(500, 'Token is undefined', { serverCode: ServerCodes.CommomCode.InternalServerError }));
         } else {
           resolve(token);
         }

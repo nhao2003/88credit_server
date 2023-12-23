@@ -15,10 +15,10 @@ class CommonValidation {
   public validateId = wrapRequestHandler(async (req, res, next) => {
     const { id } = req.params;
     if (!this.stringUtils.isUUID(id)) {
-      res.status(HttpStatus.NOT_FOUND).json({
-        status: 'error',
-        code: ServerCodes.CommomCode.NotFound,
-        message: APP_MESSAGES.NotFound,
+      res.status(HttpStatus.BAD_REQUEST).json({
+        status: 'fail',
+        code: ServerCodes.CommomCode.InvalidUUID,
+        message: APP_MESSAGES.InValidUUID,
       });
     } else {
       next();

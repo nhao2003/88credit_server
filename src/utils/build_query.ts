@@ -78,7 +78,7 @@ const getOperatorValueString = (operatorAndValue: Record<string, any>): string =
   }
   throw new AppError(400, APP_MESSAGES.InvalidQueryOperator, {
     details: `Operator ${operator} is not supported`,
-    statusCode: ServerCodes.CommomCode.InvalidQueryOperator,
+    serverCode: ServerCodes.CommomCode.InvalidQueryOperator,
   });
 };
 

@@ -7,7 +7,7 @@ import { Session } from './Sesstion';
 import Post from './Post';
 import LoanRequest from './LoanRequest';
 import Contract from './Contract';
-import BankAccount from './BankAccount';
+import BankCard from './BankCard';
 import Relative from './Relative';
 import Transaction from './Transaction';
 import Report from './Report';
@@ -95,9 +95,9 @@ export class User extends BaseEntity {
   @JoinColumn({ name: 'id' })
   contracts_borrower!: Contract[];
 
-  @OneToMany(() => BankAccount, (bankAccount) => bankAccount.user)
+  @OneToMany(() => BankCard, (bankAccount) => bankAccount.user)
   @JoinColumn({ name: 'id' })
-  bank_accounts!: BankAccount[];
+  bank_accounts!: BankCard[];
 
   @OneToMany(() => Relative, (relative) => relative.user)
   @JoinColumn({ name: 'id' })

@@ -2,32 +2,45 @@ import { checkSchema } from 'express-validator';
 import { Service } from 'typedi';
 import { validate } from '~/utils/validation';
 @Service()
-export class BankAccountValidate {
-  public createBankAccount = [
+export class BankValidate {
+  public addBankCard = [
     validate(
       checkSchema({
-        bank_name: {
+        bank_id: {
           in: ['body'],
           notEmpty: {
-            errorMessage: 'Bank name is required',
+            errorMessage: 'Bank id is required',
           },
           trim: true,
           isString: {
-            errorMessage: 'Bank name is not valid',
+            errorMessage: 'Bank id is not valid',
+          },
+          isUUID: {
+            errorMessage: 'Bank id is not valid',
           },
         },
 
-        bank_account: {
+        card_number: {
           in: ['body'],
           notEmpty: {
-            errorMessage: 'Bank account is required',
+            errorMessage: 'Card number is required',
           },
           trim: true,
           isString: {
-            errorMessage: 'Bank account is not valid',
+            errorMessage: 'Card number is a string',
+          },
+          custom: {
+            errorMessage: 'Card number is not valid',
+            options: (value: any) => {
+              // Card number must be a string number
+              const regex = /^\d+$/;
+              if (!regex.test(value)) {
+                return false;
+              }
+              return 16 <= value.length && value.length <= 19;
+            },
           },
         },
-
         branch: {
           in: ['body'],
           trim: true,

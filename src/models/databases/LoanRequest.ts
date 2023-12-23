@@ -12,7 +12,7 @@ import {
 import { PostgresDataType } from '~/constants/database_constants';
 import { LoanContractRequestStatus } from '~/constants/enum';
 import { User } from './User';
-import BankAccount from './BankAccount';
+import BankCard from './BankCard';
 
 interface LoanRequestInterface {
   id: string;
@@ -111,13 +111,13 @@ class LoanRequest extends BaseEntity implements LoanRequestInterface {
   @JoinColumn({ name: 'receiver_id' })
   receiver!: User;
 
-  @ManyToOne(() => BankAccount, (bank_account) => bank_account.loan_requests_sent)
+  @ManyToOne(() => BankCard, (bank_account) => bank_account.loan_requests_sent)
   @JoinColumn({ name: 'sender_bank_account_id' })
-  sender_bank_account!: BankAccount;
+  sender_bank_account!: BankCard;
 
-  @ManyToOne(() => BankAccount, (bank_account) => bank_account.loan_requests_received)
+  @ManyToOne(() => BankCard, (bank_account) => bank_account.loan_requests_received)
   @JoinColumn({ name: 'receiver_bank_account_id' })
-  receiver_bank_account!: BankAccount;
+  receiver_bank_account!: BankCard;
 }
 
 export default LoanRequest;

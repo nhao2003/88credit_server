@@ -2,24 +2,24 @@ import { Repository, DataSource } from 'typeorm';
 import Contract from '~/models/databases/Contract';
 import ZaloPayService, { ZaloPayCallbackResponse } from './zalopay.service';
 import LoanRequest from '~/models/databases/LoanRequest';
-import BankAccountService from './bank_account.service';
 import ContractTemplate from '~/models/databases/ContractTemplate';
 import { LoanContractRequestStatus, TransactionStatus } from '~/constants/enum';
 import { Service } from 'typedi';
 import Transaction from '~/models/databases/Transaction';
+import BankService from './bank.service';
 @Service()
 class ContractService {
   private contractRepository: Repository<Contract>;
   private loanRequestRepository: Repository<LoanRequest>;
   private zaloPayService: ZaloPayService;
-  private bankAccountService: BankAccountService;
+  private bankService: BankService;
   private contractTemplateRepository: Repository<ContractTemplate>;
   private transactionRepository: Repository<Transaction>;
   constructor(dataSource: DataSource, zaloPayService: ZaloPayService) {
     this.contractRepository = dataSource.getRepository(Contract);
     this.loanRequestRepository = dataSource.getRepository(LoanRequest);
     this.zaloPayService = zaloPayService;
-    this.bankAccountService = new BankAccountService(dataSource);
+    this.bankService = new BankService(dataSource);
     this.contractTemplateRepository = dataSource.getRepository(ContractTemplate);
     this.transactionRepository = dataSource.getRepository(Transaction);
   }

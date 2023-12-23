@@ -20,7 +20,7 @@ export const validate = (validation: RunnableValidationChains<ValidationChain>) 
     });
     next(
       new AppError(401, 'Invalid Request Body', {
-        statusCode: ServerCodes.CommomCode.FieldValidationFailed,
+        serverCode: ServerCodes.CommomCode.FieldValidationFailed,
         details,
       }),
     );

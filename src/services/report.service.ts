@@ -68,7 +68,7 @@ class ReportService extends CommonServices {
     });
     if (report.status !== ReportStatus.pending) {
       throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.ReportMessage.ReportIsAlreadyHandled, {
-        statusCode: ServerCodes.ReportCode.ReportIsAlreadyHandled,
+        serverCode: ServerCodes.ReportCode.ReportIsAlreadyHandled,
       });
     }
     if (!report) {
@@ -98,7 +98,7 @@ class ReportService extends CommonServices {
     });
     if (report) {
       throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.ReportMessage.ReportIsAlreadExisted, {
-        statusCode: ServerCodes.ReportCode.AlReadyReported,
+        serverCode: ServerCodes.ReportCode.AlReadyReported,
       });
     }
     const newReport = new Report();

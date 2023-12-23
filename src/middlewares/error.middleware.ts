@@ -1,3 +1,4 @@
+import { error } from 'console';
 import { NextFunction, Request, Response } from 'express';
 import HttpStatus from '~/constants/httpStatus';
 import { APP_MESSAGES } from '~/constants/message';
@@ -12,29 +13,28 @@ const handleValidationErrorDB = (err: any) => {
     };
   });
   return new AppError(400, APP_MESSAGES.INVALID_INPUT_DATA, {
-    statusCode: HttpStatus.BAD_REQUEST,
+    serverCode: HttpStatus.BAD_REQUEST,
     details,
   });
 };
 
 const handleUserInputError = (error: any): AppError => {
+  console.log('handleUserInputError');
+  console.log(error);
   const keyValue = error.keyValue;
   return new AppError(400, APP_MESSAGES.INVALID_INPUT_DATA, {
-    statusCode: HttpStatus.BAD_REQUEST,
+    serverCode: HttpStatus.BAD_REQUEST,
     details: keyValue,
   });
 };
 
-const handleDevelopmentError = (err: any, res: Response) => {
-  console.log(err);
-  res.status(err.statusCode || HttpStatus.INTERNAL_SERVER_ERROR).json({
-    status: err.status,
-    code: err.code,
+const handleDevelopmentError = (err: Error, res: Response) => {
+  const error = { ...err } as any;
+  res.status(error.statusCode || HttpStatus.INTERNAL_SERVER_ERROR).json({
+    status: error.status || 'error',
+    code: error.statusCode || 500,
     message: err.message,
-    result: {
-      stack: err.stack,
-      details: err.details,
-    },
+    error,
   });
 };
 
@@ -42,12 +42,13 @@ const handleProductionError = (err: any, res: Response) => {
   console.log('Production error: ', err);
   if (err.isOperational !== undefined && err.isOperational) {
     console.log('OPERATIONAL ERROR');
-    res.status(err.statusCode).json({
-      status: err.status,
-      code: err.code,
-      message: err.message,
+    const error = err as AppError;
+    res.status(error.statusCode).json({
+      status: (error.status as 'fail' | 'error') || 'success',
+      code: error.options.serverCode || 500,
+      message: error.message,
       result: {
-        details: err.details,
+        details: error.options.details,
       },
     });
   } else {
@@ -63,6 +64,8 @@ const handleProductionError = (err: any, res: Response) => {
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
   console.log('ERROR HANDLER');
   console.log(process.env.NODE_ENV);
+  if (process.env.NODE_ENV === 'development') console.log(err);
+
   if (process.env.NODE_ENV === 'development') {
     handleDevelopmentError(err, res);
   } else if (process.env.NODE_ENV === 'production') {
@@ -73,11 +76,11 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
     if (error.code === 11000) error = handleUserInputError(error);
     if (error.name === 'JsonWebTokenError')
       error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-        statusCode: ServerCodes.AuthCode.InvalidCredentials,
+        serverCode: ServerCodes.AuthCode.InvalidCredentials,
       });
     if (error.name === 'TokenExpiredError')
       error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
-        statusCode: ServerCodes.AuthCode.TokenIsExpired,
+        serverCode: ServerCodes.AuthCode.TokenIsExpired,
       });
     handleProductionError(error, res);
   } else {

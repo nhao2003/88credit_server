@@ -62,7 +62,7 @@ class PostServices {
       return this.createPostTypeBorrowing(user_id, data);
     }
     throw new AppError(ServerCodes.CommomCode.FieldValidationFailed, APP_MESSAGES.InvalidRequestBody, {
-      statusCode: ServerCodes.CommomCode.FieldValidationFailed,
+      serverCode: ServerCodes.CommomCode.FieldValidationFailed,
       details: 'Invalid type: ' + data.type,
     });
   }
@@ -148,7 +148,7 @@ class PostServices {
     }
     if (post.status === PostStatus.approved) {
       throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.PostMessage.PostIsAlreadyApproved, {
-        statusCode: ServerCodes.PostCode.PostIsAlreadyApproved,
+        serverCode: ServerCodes.PostCode.PostIsAlreadyApproved,
       });
     }
     post.status = PostStatus.approved;

@@ -29,7 +29,7 @@ class CommonServices {
   public async softDelete(id: string): Promise<void> {
     const value = await this.repository.findOne({ where: { id } });
     if (value === undefined || value === null) {
-      throw new AppError(404, APP_MESSAGES.NotFound, { statusCode: ServerCodes.CommomCode.NotFound });
+      throw new AppError(404, APP_MESSAGES.NotFound, { serverCode: ServerCodes.CommomCode.NotFound });
     }
     await this.repository.softDelete(id);
   }

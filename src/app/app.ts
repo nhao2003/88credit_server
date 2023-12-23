@@ -8,7 +8,7 @@ import bankRoutes from '../routes/bank.routes';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { errorHandler } from '../middlewares/error.middleware';
-import bankAccountRoutes from '../routes/bank_account.routes';
+import bankAccountRoutes from '../routes/bank_card.routes';
 import contractRoutes from '../routes/contract.routes';
 import contractTemplateRoutes from '../routes/contract_template.routes';
 import blogRoutes from '../routes/blog.routes';
@@ -36,7 +36,7 @@ export function initApp(): Express {
   app.use(`/api/${version}/auth`, authRoutes);
   app.use(`/api/${version}/post`, postRoutes);
   app.use(`/api/${version}/loan-request`, loanRequestRoutes);
-  app.use(`/api/${version}/bank-account`, bankAccountRoutes);
+  app.use(`/api/${version}/bank-card`, bankAccountRoutes);
   app.use(`/api/${version}/contract`, contractRoutes);
   app.use(`/api/${version}/contract-template`, contractTemplateRoutes);
   app.use(`/api/${version}/admin`, adminRoutes);

@@ -35,7 +35,7 @@ class AuthServices {
     const user = await this.checkUserExistByEmail(email);
     if (user === null || user === undefined) {
       throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, {
-        statusCode: ServerCodes.AuthCode.UserNotFound,
+        serverCode: ServerCodes.AuthCode.UserNotFound,
       });
     }
     const verifyOTPCodes = await this.getOTP(user.id, otp_code, type);
@@ -56,13 +56,13 @@ class AuthServices {
     const user = await this.checkUserExistByEmail(email);
     if (user === null || user === undefined) {
       throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, {
-        statusCode: ServerCodes.AuthCode.UserNotFound,
+        serverCode: ServerCodes.AuthCode.UserNotFound,
       });
     }
     const verifyOTPCodes = await this.verifyOTPCodeAndUse(user.id, otp_code, OTPTypes.password_recovery);
     if (verifyOTPCodes === false) {
       throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.OTPCodeIsIncorrectOrExpired, {
-        statusCode: ServerCodes.AuthCode.OTPCodeIsIncorrectOrExpired,
+        serverCode: ServerCodes.AuthCode.OTPCodeIsIncorrectOrExpired,
       });
     }
     await this.changePassword(user.id, password);
@@ -190,18 +190,18 @@ class AuthServices {
     const { user } = await this.getUserByEmailAndPassword(email, password);
     if (user === null || user === undefined) {
       throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.INCORRECT_EMAIL_OR_PASSWORD, {
-        statusCode: ServerCodes.AuthCode.UserNotFound,
+        serverCode: ServerCodes.AuthCode.UserNotFound,
       });
     }
     const verifyOTPCodes = await this.verifyOTPCodeAndUse(user.id, code, OTPTypes.account_activation);
     if (verifyOTPCodes === false) {
       throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.OTPCodeIsIncorrectOrExpired, {
-        statusCode: ServerCodes.AuthCode.OTPCodeIsIncorrectOrExpired,
+        serverCode: ServerCodes.AuthCode.OTPCodeIsIncorrectOrExpired,
       });
     }
     if (user.status !== UserStatus.unverified) {
       throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.UserIsAlreadyActive, {
-        statusCode: ServerCodes.AuthCode.UserIsAlreadyActive,
+        serverCode: ServerCodes.AuthCode.UserIsAlreadyActive,
       });
     }
     user.status = UserStatus.not_update;
@@ -265,7 +265,7 @@ class AuthServices {
     const user = await this.userRepository.findOne(option);
     if (user === null) {
       throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, {
-        statusCode: ServerCodes.AuthCode.UserNotFound,
+        serverCode: ServerCodes.AuthCode.UserNotFound,
       });
     }
     return user;

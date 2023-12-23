@@ -3,7 +3,7 @@ import { APP_MESSAGES } from '~/constants/message';
 import ServerCodes from '~/constants/server_codes';
 
 interface ErrorOptions {
-  statusCode: number;
+  serverCode: number;
   details?: any;
   stack?: string;
 }
@@ -23,7 +23,14 @@ export class AppError extends Error {
 
   static notFound(details?: any) {
     return new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.NotFound, {
-      statusCode: ServerCodes.CommomCode.NotFound,
+      serverCode: ServerCodes.CommomCode.NotFound,
+      details,
+    });
+  }
+
+  static badRequest(serverCode: number, message: string, details?: any) {
+    return new AppError(HttpStatus.BAD_REQUEST, message, {
+      serverCode: serverCode,
       details,
     });
   }

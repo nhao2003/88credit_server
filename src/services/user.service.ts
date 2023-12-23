@@ -86,7 +86,7 @@ class UserServices {
     }
     if (user.status === UserStatus.banned) {
       throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.AuthMessage.UserHasBeenBaned, {
-        statusCode: ServerCodes.AuthCode.UserHasBeenBaned,
+        serverCode: ServerCodes.AuthCode.UserHasBeenBaned,
       });
     }
     user.status = UserStatus.banned;
@@ -105,7 +105,7 @@ class UserServices {
     }
     if (user.status !== UserStatus.banned) {
       throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.AuthMessage.UserIsNotBaned, {
-        statusCode: ServerCodes.AuthCode.UserIsNotBaned,
+        serverCode: ServerCodes.AuthCode.UserIsNotBaned,
       });
     }
     user.status = UserStatus.verified;

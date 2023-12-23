@@ -4,6 +4,7 @@ export const APP_MESSAGES = {
   InvalidRequestParams: 'Invalid Request Params',
   InvalidQueryOperator: 'Invalid Query Operator',
   NotFound: 'Not Found',
+  InValidUUID: 'Invalid UUID',
 
   // User
   USER_NOT_FOUND: 'User not found',

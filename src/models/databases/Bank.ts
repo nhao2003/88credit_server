@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { PostgresDataType } from '~/constants/database_constants';
-import BankAccount from './BankAccount';
+import BankCard from './BankCard';
 /**
  * Represents a bank.
  */
@@ -9,7 +9,7 @@ export interface IBank {
    * The unique identifier of the bank.
    * @type {number}
    */
-  id: number;
+  id: string;
 
   /**
    * The name of the bank.
@@ -45,7 +45,7 @@ export interface IBank {
 @Entity('banks')
 class Bank extends BaseEntity implements IBank {
   @PrimaryGeneratedColumn(PostgresDataType.uuid)
-  id!: number;
+  id!: string;
 
   @Column(PostgresDataType.varchar, { length: 100 })
   name!: string;
@@ -62,9 +62,9 @@ class Bank extends BaseEntity implements IBank {
   @Column(PostgresDataType.text)
   logo!: string;
 
-  @OneToMany(() => BankAccount, (bankAccount) => bankAccount.bank)
+  @OneToMany(() => BankCard, (bankAccount) => bankAccount.bank)
   @JoinColumn({ name: 'id', referencedColumnName: 'bank_id' })
-  bank_accounts!: BankAccount[];
+  bank_accounts!: BankCard[];
 }
 
 export default Bank;

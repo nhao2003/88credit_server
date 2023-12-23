@@ -28,7 +28,7 @@ class AuthValidation {
     if (!access_token) {
       // return next(new AppError(APP_MESSAGES.ACCESS_TOKEN_IS_REQUIRED, HTTP_STATUS.UNAUTHORIZED));
       const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.ACCESS_TOKEN_IS_REQUIRED, {
-        statusCode: ServerCodes.AuthCode.AccessTokenIsRequired,
+        serverCode: ServerCodes.AuthCode.AccessTokenIsRequired,
       });
       return next(error);
     }
@@ -36,14 +36,14 @@ class AuthValidation {
     if (!result) {
       // return next(new AppError(APP_MESSAGES.INVALID_TOKEN, HTTP_STATUS.UNAUTHORIZED));
       const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-        statusCode: ServerCodes.AuthCode.InvalidCredentials,
+        serverCode: ServerCodes.AuthCode.InvalidCredentials,
       });
       return next(error);
     }
     if (result.expired || !result.payload) {
       // return next(new AppError(APP_MESSAGES.TOKEN_IS_EXPIRED, 401));
       const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
-        statusCode: ServerCodes.AuthCode.TokenIsExpired,
+        serverCode: ServerCodes.AuthCode.TokenIsExpired,
       });
       return next(error);
     }
@@ -51,7 +51,7 @@ class AuthValidation {
     if (session === null || session === undefined) {
       // return next(new AppError(APP_MESSAGES.INVALID_TOKEN, 401));
       const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-        statusCode: ServerCodes.AuthCode.InvalidCredentials,
+        serverCode: ServerCodes.AuthCode.InvalidCredentials,
       });
       return next(error);
     }
@@ -59,7 +59,7 @@ class AuthValidation {
     if (user === null || user === undefined) {
       // return next(new AppError(APP_MESSAGES.INVALID_TOKEN, 401));
       const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-        statusCode: ServerCodes.AuthCode.InvalidCredentials,
+        serverCode: ServerCodes.AuthCode.InvalidCredentials,
       });
       return next(error);
     }
@@ -113,15 +113,19 @@ class AuthValidation {
       }
       if (user.status === UserStatus.unverified) {
         // return next(new AppError(APP_MESSAGES.USER_NOT_VERIFIED, 401));
-        throw new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.USER_NOT_VERIFIED, {
-          statusCode: ServerCodes.AuthCode.UserIsNotVerified,
-        });
+        return next(
+          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.USER_NOT_VERIFIED, {
+            serverCode: ServerCodes.AuthCode.UserIsNotVerified,
+          }),
+        );
       }
       if (password_is_correct === false) {
         // return next(new AppError(APP_MESSAGES.INCORRECT_EMAIL_OR_PASSWORD, 400));
-        throw new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.INCORRECT_EMAIL_OR_PASSWORD, {
-          statusCode: ServerCodes.AuthCode.InvalidCredentials,
-        });
+        return next(
+          new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.INCORRECT_EMAIL_OR_PASSWORD, {
+            serverCode: ServerCodes.AuthCode.InvalidCredentials,
+          }),
+        );
       }
       req.user = user;
       next();
@@ -160,33 +164,41 @@ class AuthValidation {
       if (!access_token) {
         return next(
           new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.ACCESS_TOKEN_IS_REQUIRED, {
-            statusCode: ServerCodes.AuthCode.AccessTokenIsRequired,
+            serverCode: ServerCodes.AuthCode.AccessTokenIsRequired,
           }),
         );
       }
       const result = await verifyToken(access_token, process.env.JWT_SECRET_KEY as string);
       if (!result) {
-        throw new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-          statusCode: ServerCodes.AuthCode.InvalidCredentials,
-        });
+        return next(
+          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
+            serverCode: ServerCodes.AuthCode.InvalidCredentials,
+          }),
+        );
       }
       if (result.expired || !result.payload) {
         // return next(new AppError(APP_MESSAGES.TOKEN_IS_EXPIRED, 401));
-        throw new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
-          statusCode: ServerCodes.AuthCode.TokenIsExpired,
-        });
+        return next(
+          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
+            serverCode: ServerCodes.AuthCode.TokenIsExpired,
+          }),
+        );
       }
       const session = await this.authServices.checkSessionExist((result.payload as UserPayload).session_id);
       if (session === null || session === undefined) {
-        throw new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-          statusCode: ServerCodes.AuthCode.InvalidCredentials,
-        });
+        return next(
+          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
+            serverCode: ServerCodes.AuthCode.InvalidCredentials,
+          }),
+        );
       }
       const user = await this.authServices.checkUserExistByID(session.user_id);
       if (user === null || user === undefined) {
-        throw new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-          statusCode: ServerCodes.AuthCode.InvalidCredentials,
-        });
+        return next(
+          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
+            serverCode: ServerCodes.AuthCode.InvalidCredentials,
+          }),
+        );
       }
       req.user = user;
       req.session = session;
@@ -230,7 +242,7 @@ class AuthValidation {
           custom: {
             options: (value, { req }) => {
               if (value !== req.body.confirm_password) {
-                // throw new AppError(APP_MESSAGES.VALIDATION_MESSAGE.PASSWORD_AND_CONFIRM_PASSWORD_DO_NOT_MATCH, 400);
+                // return next( new AppError(APP_MESSAGES.VALIDATION_MESSAGE.PASSWORD_AND_CONFIRM_PASSWORD_DO_NOT_MATCH, 400);
                 return false;
               }
               return true;
@@ -273,15 +285,19 @@ class AuthValidation {
       }
       const result = await verifyToken(accessToken, process.env.JWT_SECRET_KEY as string);
       if (!result) {
-        // throw new AppError(APP_MESSAGES.INVALID_TOKEN, HttpStatus.UNAUTHORIZED);
-        throw new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-          statusCode: ServerCodes.AuthCode.InvalidCredentials,
-        });
+        // return next( new AppError(APP_MESSAGES.INVALID_TOKEN, HttpStatus.UNAUTHORIZED);
+        return next(
+          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
+            serverCode: ServerCodes.AuthCode.InvalidCredentials,
+          }),
+        );
       }
       if (result.expired || !result.payload) {
-        throw new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
-          statusCode: ServerCodes.AuthCode.TokenIsExpired,
-        });
+        return next(
+          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
+            serverCode: ServerCodes.AuthCode.TokenIsExpired,
+          }),
+        );
       }
       (req as Request).verifyResult = result;
       return next();
@@ -297,9 +313,11 @@ class AuthValidation {
       if (user !== null) {
         if (user.status === UserStatus.unverified) {
           // return next(new AppError(APP_MESSAGES.USER_NOT_VERIFIED, 401));
-          throw new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.USER_NOT_VERIFIED, {
-            statusCode: ServerCodes.AuthCode.UserIsNotVerified,
-          });
+          return next(
+            new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.USER_NOT_VERIFIED, {
+              serverCode: ServerCodes.AuthCode.UserIsNotVerified,
+            }),
+          );
         } else {
           return next();
         }
@@ -309,12 +327,12 @@ class AuthValidation {
     }
     if (expired) {
       const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
-        statusCode: ServerCodes.AuthCode.TokenIsExpired,
+        serverCode: ServerCodes.AuthCode.TokenIsExpired,
       });
       next(error);
     }
     const error = new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-      statusCode: ServerCodes.AuthCode.InvalidCredentials,
+      serverCode: ServerCodes.AuthCode.InvalidCredentials,
     });
     next(error);
   });

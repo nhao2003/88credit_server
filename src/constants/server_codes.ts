@@ -7,6 +7,7 @@ const ServerCodes = {
     FieldValidationFailed: 4,
     InvalidQueryOperator: 5,
     InternalServerError: 6,
+    InvalidUUID: 7,
   },
   AuthCode: {
     PaswordIsIncorrect: 100,
@@ -47,6 +48,9 @@ const ServerCodes = {
   ReportCode: {
     AlReadyReported: 600,
     ReportIsAlreadyHandled: 601,
+  },
+  BankCode: {
+    AddBankAccountFailed: 700,
   },
 };
 export default ServerCodes;

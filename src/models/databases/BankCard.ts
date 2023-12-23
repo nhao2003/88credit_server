@@ -15,12 +15,12 @@ import Contract from './Contract';
 import LoanRequest from './LoanRequest';
 import Bank from './Bank';
 
-interface IBankAccount {
+export interface IBankCard {
   id: string;
   is_primary: boolean;
   user_id: string;
   bank_id: string;
-  bank_account: string;
+  card_number: string;
   branch: string | null;
   created_at: Date;
   deleted_at: Date | null;
@@ -28,8 +28,8 @@ interface IBankAccount {
   bank: Bank;
 }
 
-@Entity('bank_accounts')
-class BankAccount extends BaseEntity implements IBankAccount {
+@Entity('bank_cards')
+class BankCard extends BaseEntity implements IBankCard {
   @PrimaryGeneratedColumn(PostgresDataType.uuid)
   id!: string;
 
@@ -43,7 +43,7 @@ class BankAccount extends BaseEntity implements IBankAccount {
   bank_id!: string;
 
   @Column(PostgresDataType.varchar, { length: 50, unique: true })
-  bank_account!: string;
+  card_number!: string;
 
   @Column(PostgresDataType.varchar, { length: 50, nullable: true })
   branch!: string | null;
@@ -79,4 +79,4 @@ class BankAccount extends BaseEntity implements IBankAccount {
   bank!: Bank;
 }
 
-export default BankAccount;
+export default BankCard;

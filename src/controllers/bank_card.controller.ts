@@ -1,30 +1,30 @@
 import { Service } from 'typedi';
-import BankAccountService from '~/services/bank_account.service';
 import { wrapRequestHandler } from '~/utils/wrapRequestHandler';
 import { Request, Response } from 'express';
 import ServerCodes from '~/constants/server_codes';
-type BankAccountCreateData = {
+import BankService from '~/services/bank.service';
+type BankCardCreateData = {
   user_id: string;
-  bank_name: string;
-  bank_account: string;
+  bank_id: string;
+  card_number: string;
   branch: string | null;
 };
 
 @Service()
 class BankAccountController {
-  private bankAccountService: BankAccountService;
-  constructor(bankAccountService: BankAccountService) {
-    this.bankAccountService = bankAccountService;
+  private bankService: BankService;
+  constructor(bankService: BankService) {
+    this.bankService = bankService;
   }
 
-  createBankAccount = wrapRequestHandler(async (req: Request, res: Response) => {
-    const data: BankAccountCreateData = {
+  addBankCard = wrapRequestHandler(async (req: Request, res: Response) => {
+    const data: BankCardCreateData = {
       user_id: req.user.id,
-      bank_name: req.body.bank_name,
-      bank_account: req.body.bank_account,
+      bank_id: req.body.bank_id,
+      card_number: req.body.card_number,
       branch: req.body.branch,
     };
-    const result = await this.bankAccountService.addBankAccount(data);
+    const result = await this.bankService.addBankCard(data);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,
@@ -34,7 +34,7 @@ class BankAccountController {
   });
 
   getAllBankAccount = wrapRequestHandler(async (req: Request, res: Response) => {
-    const result = await this.bankAccountService.getAllBankAccount(req.user.id);
+    const result = await this.bankService.getAllBankCard(req.user.id);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,
@@ -43,9 +43,9 @@ class BankAccountController {
     });
   });
 
-  getBankAccountById = wrapRequestHandler(async (req: Request, res: Response) => {
+  getBankCardById = wrapRequestHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
-    const result = await this.bankAccountService.getBankAccountById(id);
+    const result = await this.bankService.getBankCardById(id);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,
@@ -54,9 +54,9 @@ class BankAccountController {
     });
   });
 
-  deleteBankAccount = wrapRequestHandler(async (req: Request, res: Response) => {
+  deleteBankCard = wrapRequestHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
-    await this.bankAccountService.deleteBankAccount(id);
+    await this.bankService.deleteBankCard(id);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,
@@ -64,9 +64,9 @@ class BankAccountController {
     });
   });
 
-  markAsPrimaryBankAccount = wrapRequestHandler(async (req: Request, res: Response) => {
+  markAsPrimaryBankCard = wrapRequestHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
-    await this.bankAccountService.updateBankAccount(req.user.id, id);
+    await this.bankService.updateBankAccount(req.user.id, id);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,
@@ -74,8 +74,8 @@ class BankAccountController {
     });
   });
 
-  getPrimaryBankAccount = wrapRequestHandler(async (req: Request, res: Response) => {
-    const result = await this.bankAccountService.getPrimaryBankAccount(req.user.id);
+  getPrimaryBankCard = wrapRequestHandler(async (req: Request, res: Response) => {
+    const result = await this.bankService.getPrimaryBankCard(req.user.id);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,

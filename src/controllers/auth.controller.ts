@@ -35,7 +35,7 @@ class AuthController {
 
     if (otp_code === null || otp_code === undefined) {
       return next(
-        new AppError(404, APP_MESSAGES.INCORRECT_EMAIL_OR_PASSWORD, { statusCode: ServerCodes.AuthCode.UserNotFound }),
+        new AppError(404, APP_MESSAGES.INCORRECT_EMAIL_OR_PASSWORD, { serverCode: ServerCodes.AuthCode.UserNotFound }),
       );
     }
     res.status(200).json({
@@ -84,7 +84,7 @@ class AuthController {
     if (access_token === null || access_token === undefined) {
       return next(
         new AppError(401, APP_MESSAGES.ERROR_MESSAGE.REFRESH_TOKEN_IS_EXPIRED_OR_INVALID, {
-          statusCode: ServerCodes.AuthCode.InvalidCredentials,
+          serverCode: ServerCodes.AuthCode.InvalidCredentials,
         }),
       );
     }
@@ -124,12 +124,12 @@ class AuthController {
     const { old_password, new_password } = req.body;
     const user = req.user;
     if (user === null || user === undefined) {
-      return next(new AppError(404, APP_MESSAGES.USER_NOT_FOUND, { statusCode: ServerCodes.AuthCode.UserNotFound }));
+      return next(new AppError(404, APP_MESSAGES.USER_NOT_FOUND, { serverCode: ServerCodes.AuthCode.UserNotFound }));
     }
     const isMatch = verifyPassword(old_password, user.password as string);
     if (!isMatch) {
       return next(
-        new AppError(400, APP_MESSAGES.INCORRECT_PASSWORD, { statusCode: ServerCodes.AuthCode.UserNotFound }),
+        new AppError(400, APP_MESSAGES.INCORRECT_PASSWORD, { serverCode: ServerCodes.AuthCode.UserNotFound }),
       );
     }
     await this.authServices.changePassword(user.id, new_password);

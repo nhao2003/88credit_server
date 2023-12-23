@@ -14,11 +14,11 @@ import LoanRequestCreateData from '~/models/typing/request/RequestCreateData';
 import { buildOrder, buildQuery } from '~/utils/build_query';
 import ZaloPayService, { ZaloPayOrderRequest } from './zalopay.service';
 import Contract from '~/models/databases/Contract';
-import BankAccountService from './bank_account.service';
 import HttpStatus from '~/constants/httpStatus';
 import { APP_MESSAGES } from '~/constants/message';
 import { Server } from 'http';
 import ServerCodes from '~/constants/server_codes';
+import BankService from './bank.service';
 
 type FindResult = {
   data: LoanRequest[];
@@ -29,12 +29,12 @@ class LoanContractRequestService {
   private loanContractRequestRepository: Repository<LoanRequest>;
   private transactionRepository: Repository<Transaction>;
   private zaloPayService: ZaloPayService;
-  private bankAccountService: BankAccountService;
+  private bankService: BankService;
   constructor(dataSource: DataSource, zaloPayService: ZaloPayService) {
     this.loanContractRequestRepository = dataSource.getRepository(LoanRequest);
     this.transactionRepository = dataSource.getRepository(Transaction);
     this.zaloPayService = zaloPayService;
-    this.bankAccountService = new BankAccountService(dataSource);
+    this.bankService = new BankService(dataSource);
   }
 
   buildLoanContractRequestQuery(query: Record<string, any>): LoanContractRequestQuery {
@@ -168,7 +168,7 @@ class LoanContractRequestService {
         HttpStatus.BAD_REQUEST,
         APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyAcceptWhenStatusIsPending,
         {
-          statusCode: ServerCodes.LoanRequestCode.AcceptFailed,
+          serverCode: ServerCodes.LoanRequestCode.AcceptFailed,
           details: 'Current status: ' + LoanContractRequest.status,
         },
       );
@@ -179,15 +179,15 @@ class LoanContractRequestService {
         HttpStatus.BAD_REQUEST,
         APP_MESSAGES.LoanContractRequestMessage.YouAreNotReceiverOfThisLoanContractRequest,
         {
-          statusCode: ServerCodes.LoanRequestCode.AcceptFailed,
+          serverCode: ServerCodes.LoanRequestCode.AcceptFailed,
         },
       );
     }
     let lenderBankAccount = null;
     if (bank_account_id != null) {
-      lenderBankAccount = await this.bankAccountService.getBankAccountById(bank_account_id);
+      lenderBankAccount = await this.bankService.getBankCardById(bank_account_id);
     } else {
-      lenderBankAccount = await this.bankAccountService.getPrimaryBankAccount(user_id);
+      lenderBankAccount = await this.bankService.getPrimaryBankCard(user_id);
     }
     if (lenderBankAccount == null) {
       throw AppError.notFound(APP_MESSAGES.BankMessage.LenderBankAccountIsNotExisted);
@@ -205,7 +205,7 @@ class LoanContractRequestService {
         HttpStatus.BAD_REQUEST,
         APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyRejectWhenStatusIsPending,
         {
-          statusCode: ServerCodes.LoanRequestCode.RejectFailed,
+          serverCode: ServerCodes.LoanRequestCode.RejectFailed,
           details: 'Current status: ' + loanContractRequest.status,
         },
       );
@@ -220,7 +220,7 @@ class LoanContractRequestService {
         HttpStatus.BAD_REQUEST,
         APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyCancleWhenStatusIsPending,
         {
-          statusCode: ServerCodes.LoanRequestCode.CancleFailed,
+          serverCode: ServerCodes.LoanRequestCode.CancleFailed,
           details: 'This loan contract request is not pending. Current status: ' + loanContractRequest.status,
         },
       );
@@ -233,7 +233,7 @@ class LoanContractRequestService {
         HttpStatus.BAD_REQUEST,
         APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyCancleWhenStatusIsPending,
         {
-          statusCode: ServerCodes.LoanRequestCode.CancleFailed,
+          serverCode: ServerCodes.LoanRequestCode.CancleFailed,
           details:
             'This loan contract request is not waiting for payment. Current status: ' + loanContractRequest.status,
         },
@@ -254,7 +254,7 @@ class LoanContractRequestService {
         HttpStatus.BAD_REQUEST,
         APP_MESSAGES.LoanContractRequestMessage.YouAreNotReceiverOfThisLoanContractRequest,
         {
-          statusCode: ServerCodes.LoanRequestCode.PaymentFailed,
+          serverCode: ServerCodes.LoanRequestCode.PaymentFailed,
         },
       );
     }
@@ -263,7 +263,7 @@ class LoanContractRequestService {
         HttpStatus.BAD_REQUEST,
         APP_MESSAGES.LoanContractRequestMessage.LoanRequestOnlyPayWhenStatusIsWaitingForPayment,
         {
-          statusCode: ServerCodes.LoanRequestCode.PaymentFailed,
+          serverCode: ServerCodes.LoanRequestCode.PaymentFailed,
           details:
             'This loan contract request is not waiting for payment. Current status: ' + loanContractRequest.status,
         },
@@ -294,7 +294,7 @@ class LoanContractRequestService {
         HttpStatus.INTERNAL_SERVER_ERROR,
         APP_MESSAGES.LoanContractRequestMessage.AnErrorOccurredWhileProcessingThePayment,
         {
-          statusCode: ServerCodes.LoanRequestCode.PaymentFailed,
+          serverCode: ServerCodes.LoanRequestCode.PaymentFailed,
           details: zaloPayResponse.return_message,
         },
       );

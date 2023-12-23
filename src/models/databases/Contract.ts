@@ -11,7 +11,7 @@ import {
 import { PostgresDataType } from '~/constants/database_constants';
 import ContractTemplate from './ContractTemplate';
 import { User } from './User';
-import BankAccount from './BankAccount';
+import BankCard from './BankCard';
 
 interface IContract {
   id: string;
@@ -90,13 +90,13 @@ export class Contract extends BaseEntity implements IContract {
   @JoinColumn({ name: 'borrower_id' })
   borrower!: User;
 
-  @ManyToOne(() => BankAccount, (bank_account) => bank_account.lend_contracts)
+  @ManyToOne(() => BankCard, (bank_account) => bank_account.lend_contracts)
   @JoinColumn({ name: 'lender_bank_account_id', referencedColumnName: 'id' })
-  lender_bank_account!: BankAccount;
+  lender_bank_account!: BankCard;
 
-  @ManyToOne(() => BankAccount, (bank_account) => bank_account.borrow_contracts)
+  @ManyToOne(() => BankCard, (bank_account) => bank_account.borrow_contracts)
   @JoinColumn({ name: 'borrower_bank_account_id', referencedColumnName: 'id' })
-  borrower_bank_account!: BankAccount;
+  borrower_bank_account!: BankCard;
 }
 
 export default Contract;
