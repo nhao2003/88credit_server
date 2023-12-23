@@ -68,7 +68,7 @@ class MediaController {
         const appRes: AppResponse = {
           status: 'success',
           message: 'File(s) uploaded successfully.',
-          code: 200,
+          code: ServerCodes.CommomCode.Success,
           result: {
             images: imagesUrls,
             videos: videosUrls,
