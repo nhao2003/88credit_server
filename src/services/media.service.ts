@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import AppConfig from '../constants/configs';
 import { Service } from 'typedi';
 import * as multer from 'multer';
-
 @Service()
 class MediaServices {
   private queue: ConcurrentQueue;
@@ -16,7 +15,7 @@ class MediaServices {
       api_secret: AppConfig.CLOUDINARY_API_SECRET as string,
       secure: true,
     });
-    this.queue = new ConcurrentQueue(1);
+    this.queue = new ConcurrentQueue(10);
   }
 
   public upload(file: Express.Multer.File, folder: string, publicId: string = uuidv4()) {
@@ -24,7 +23,7 @@ class MediaServices {
     const options: UploadApiOptions = {
       public_id: publicId,
       folder,
-      allowed_formats: ['jpg', 'jpeg', 'mp4'],
+      allowed_formats: ['jpg', 'jpeg', 'mp4', 'png'],
       resource_type: resourceType,
     };
     this.queue.add({

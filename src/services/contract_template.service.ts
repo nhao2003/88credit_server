@@ -4,7 +4,7 @@ import { InsertResult } from 'typeorm/browser';
 import { Equal } from 'typeorm/browser';
 import ContractTemplate, { IContractTemplate } from '~/models/databases/ContractTemplate';
 import { BaseQuery } from '~/models/typing/base_query';
-
+import appConfig from '~/constants/configs';
 @Service()
 class ContractTemplateService {
   private contractTemplateRepository: Repository<ContractTemplate>;
@@ -22,8 +22,8 @@ class ContractTemplateService {
     contract_templates: ContractTemplate[];
   }> {
     const page = query.page || 1;
-    const limit = 10;
-    const offset = (page - 1) * limit;
+    const take = appConfig.ResultPerPage;
+    const offset = (page - 1) * take;
     const where = query.wheres || [];
     const order = query.orders || {};
     let queryBuilder = this.contractTemplateRepository.createQueryBuilder();
@@ -33,11 +33,11 @@ class ContractTemplateService {
     queryBuilder = queryBuilder.orderBy(order);
 
     const count = queryBuilder.getCount();
-    const getMany = queryBuilder.limit(limit).offset(offset).getMany();
+    const getMany = queryBuilder.limit(take).offset(offset).getMany();
 
     const [contract_templates, total] = await Promise.all([getMany, count]);
     return {
-      number_of_pages: Math.ceil(total / limit),
+      number_of_pages: Math.ceil(total / take),
       contract_templates,
     };
   }

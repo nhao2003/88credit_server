@@ -5,6 +5,7 @@ import postRoutes from '../routes/post.routes';
 import adminRoutes from '../routes/admin.routes';
 import loanRequestRoutes from '../routes/loan_request.routes';
 import bankRoutes from '../routes/bank.routes';
+import mediaRoutes from '../routes/media.routes';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { errorHandler } from '../middlewares/error.middleware';
@@ -43,6 +44,7 @@ export function initApp(): Express {
   app.use(`/api/${version}/blogs`, blogRoutes);
   app.use(`/api/${version}/report`, reportRoutes);
   app.use(`/api/${version}/bank`, bankRoutes);
+  app.use(`/api/${version}/media`, mediaRoutes);
   app.use((req: Request, res: Response) => {
     res.status(404).json({
       status: 'fail',

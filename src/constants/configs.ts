@@ -31,5 +31,7 @@ class AppConfig {
   public readonly ZALOPAY_API = process.env.ZALOPAY_API;
   public readonly RECOVERY_PASSWORD_EXPIRES_IN = process.env.RECOVERY_PASSWORD_EXPIRES_IN as string;
   public readonly RECOVERY_PASSWORD_SERECT_KEY = process.env.RECOVERY_PASSWORD_SERECT_KEY as string;
+
+  public readonly ResultPerPage = 10;
 }
 export default new AppConfig();

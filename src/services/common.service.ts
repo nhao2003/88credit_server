@@ -7,6 +7,7 @@ import { APP_MESSAGES } from '~/constants/message';
 import { Server } from 'http';
 import ServerCodes from '~/constants/server_codes';
 import StringUtils from '~/utils/StringUtils';
+import appConfig from '~/constants/configs';
 class CommonServices {
   protected repository: Repository<any>;
   constructor(entity: EntityTarget<any>) {
@@ -54,8 +55,8 @@ class CommonServices {
     let { page } = query;
     const { wheres, orders } = query;
     page = Number(page) || 1;
-    const skip = (page - 1) * 10;
-    const take = 10;
+    const take = appConfig.ResultPerPage;
+    const skip = (page - 1) * take;
     let devQuery = this.repository.createQueryBuilder();
     if (wheres) {
       wheres.forEach((where) => {
@@ -69,7 +70,7 @@ class CommonServices {
     const getMany = devQuery.skip(skip).take(take).getMany();
     const res = await Promise.all([getMany, getCount]);
     return {
-      num_of_pages: Math.ceil(res[1] / 10),
+      num_of_pages: Math.ceil(res[1] / take),
       data: res[0],
     };
   };

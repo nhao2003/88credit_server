@@ -12,6 +12,7 @@ import Report from '~/models/databases/Report';
 import { APP_MESSAGES } from '~/constants/message';
 import HttpStatus from '~/constants/httpStatus';
 import ServerCodes from '~/constants/server_codes';
+import appConfig from '~/constants/configs';
 @Service()
 class ReportService extends CommonServices {
   private reportRepository: Repository<Report>;
@@ -30,10 +31,11 @@ class ReportService extends CommonServices {
     num_of_pages: number;
     data: any;
   }> => {
-    let { page, wheres, orders } = query;
+    let { page } = query;
+    const { wheres, orders } = query;
     page = Number(page) || 1;
-    const skip = (page - 1) * 10;
-    const take = 10;
+    const take = appConfig.ResultPerPage;
+    const skip = (page - 1) * take;
     let devQuery = this.repository.createQueryBuilder();
     devQuery = devQuery.leftJoinAndSelect('Report.reporter', 'user');
     devQuery = devQuery.setParameters({ current_user_id: null });
@@ -55,7 +57,7 @@ class ReportService extends CommonServices {
     const values_2 = await Promise.all([getCount, getMany]);
     const [count, reports] = values_2;
     return {
-      num_of_pages: Math.ceil(count / 10),
+      num_of_pages: Math.ceil(count / take),
       data: reports,
     };
   };

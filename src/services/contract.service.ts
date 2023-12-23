@@ -7,6 +7,7 @@ import { LoanContractRequestStatus, TransactionStatus } from '~/constants/enum';
 import { Service } from 'typedi';
 import Transaction from '~/models/databases/Transaction';
 import BankService from './bank.service';
+import appConfig from '~/constants/configs';
 @Service()
 class ContractService {
   private contractRepository: Repository<Contract>;
@@ -37,8 +38,8 @@ class ContractService {
     contracts: Contract[];
   }> {
     const page = query.page || 1;
-    const limit = 10;
-    const offset = (page - 1) * limit;
+    const take = appConfig.ResultPerPage;
+    const offset = (page - 1) * take;
     const where = query.wheres || [];
     const order = query.orders || {};
     let queryBuilder = this.contractRepository.createQueryBuilder();
@@ -48,11 +49,11 @@ class ContractService {
     queryBuilder = queryBuilder.orderBy(order);
 
     const count = queryBuilder.getCount();
-    const getMany = queryBuilder.limit(limit).offset(offset).getMany();
+    const getMany = queryBuilder.limit(take).offset(offset).getMany();
 
     const [contracts, total] = await Promise.all([getMany, count]);
     return {
-      number_of_pages: Math.ceil(total / limit),
+      number_of_pages: Math.ceil(total / take),
       contracts,
     };
   }

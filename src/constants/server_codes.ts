@@ -8,6 +8,7 @@ const ServerCodes = {
     InvalidQueryOperator: 5,
     InternalServerError: 6,
     InvalidUUID: 7,
+    BadRequest: 8,
   },
   AuthCode: {
     PaswordIsIncorrect: 100,

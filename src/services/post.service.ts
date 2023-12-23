@@ -11,7 +11,7 @@ import { AppError } from '~/models/Error';
 import ServerCodes from '~/constants/server_codes';
 import { APP_MESSAGES } from '~/constants/message';
 import HttpStatus from '~/constants/httpStatus';
-
+import appConfig from '~/constants/configs';
 @Service()
 class PostServices {
   private readonly postRepository: Repository<Post>;
@@ -119,15 +119,15 @@ class PostServices {
       });
     }
     query = query.orderBy(postQuery.order);
-
+    const take = appConfig.ResultPerPage;
     const total = query.getCount();
     const data = query
-      .skip((page - 1) * 10)
-      .take(10)
+      .skip((page - 1) * take)
+      .take(take)
       .getMany();
     const result = await Promise.all([total, data]);
     return {
-      numberOfPages: Math.ceil(result[0] / 10),
+      numberOfPages: Math.ceil(result[0] / take),
       data: result[1],
     };
   }

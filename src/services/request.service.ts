@@ -19,7 +19,7 @@ import { APP_MESSAGES } from '~/constants/message';
 import { Server } from 'http';
 import ServerCodes from '~/constants/server_codes';
 import BankService from './bank.service';
-
+import appConfig from '~/constants/configs';
 type FindResult = {
   data: LoanRequest[];
   number_of_pages: number;

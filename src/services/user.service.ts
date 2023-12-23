@@ -8,10 +8,11 @@ import { User } from '~/models/databases/User';
 import HttpStatus from '~/constants/httpStatus';
 import { APP_MESSAGES } from '~/constants/message';
 import ServerCodes from '~/constants/server_codes';
+import appConfig from '~/constants/configs';
 export type UserQuery = {
   page: number;
   wheres: string[] | null;
-  orders: {};
+  orders: Record<string, any>;
 };
 
 @Service()
@@ -33,8 +34,12 @@ class UserServices {
     return true;
   }
 
-  async getUserInfo(id: string, is_active: boolean = true): Promise<User | null> {
-    const user = await this.userRepository.findOne({ where: { id } });
+  async getUserInfo(id: string): Promise<User | null> {
+    const user = await this.userRepository.findOne({
+      where: {
+        id,
+      },
+    });
     return user;
   }
 
@@ -67,14 +72,14 @@ class UserServices {
       query = query.orderBy(orders);
     }
     const total = query.getCount();
-
-    query = query.skip((page - 1) * 10).take(10);
+    const take = appConfig.ResultPerPage;
+    query = query.skip((page - 1) * take).take(take);
     const users = query.getMany();
 
     const result = await Promise.all([total, users]);
 
     return {
-      num_of_pages: Math.ceil(result[0] / 10),
+      num_of_pages: Math.ceil(result[0] / take),
       users: result[1],
     };
   }

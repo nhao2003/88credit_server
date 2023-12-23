@@ -5,6 +5,7 @@ export const APP_MESSAGES = {
   InvalidQueryOperator: 'Invalid Query Operator',
   NotFound: 'Not Found',
   InValidUUID: 'Invalid UUID',
+  ErrorWhenUploadFile: 'Error when upload file(s)',
 
   // User
   USER_NOT_FOUND: 'User not found',
