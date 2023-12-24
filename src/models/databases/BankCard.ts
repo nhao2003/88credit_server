@@ -54,27 +54,27 @@ class BankCard extends BaseEntity implements IBankCard {
   @DeleteDateColumn({ type: PostgresDataType.timestamp_without_timezone })
   deleted_at!: Date | null;
 
-  @ManyToOne(() => User, (user) => user.bank_accounts)
+  @ManyToOne(() => User, (user) => user.bank_cards)
   @JoinColumn({ name: 'user_id' })
   user!: User;
 
-  @OneToMany(() => Contract, (contract) => contract.lender_bank_account)
-  @JoinColumn({ name: 'id', referencedColumnName: 'lender_bank_account_id' })
+  @OneToMany(() => Contract, (contract) => contract.lender_bank_card)
+  @JoinColumn({ name: 'id', referencedColumnName: 'lender_bank_card_id' })
   lend_contracts!: Contract[];
 
-  @OneToMany(() => Contract, (contract) => contract.borrower_bank_account)
-  @JoinColumn({ name: 'id', referencedColumnName: 'borrower_bank_account_id' })
+  @OneToMany(() => Contract, (contract) => contract.borrower_bank_card)
+  @JoinColumn({ name: 'id', referencedColumnName: 'borrower_bank_card_id' })
   borrow_contracts!: Contract[];
 
-  @OneToMany(() => LoanRequest, (loan_request) => loan_request.sender_bank_account)
-  @JoinColumn({ name: 'id', referencedColumnName: 'sender_bank_account_id' })
+  @OneToMany(() => LoanRequest, (loan_request) => loan_request.sender_bank_card)
+  @JoinColumn({ name: 'id', referencedColumnName: 'sender_bank_card_id' })
   loan_requests_sent!: LoanRequest[];
 
-  @OneToMany(() => LoanRequest, (loan_request) => loan_request.receiver_bank_account)
-  @JoinColumn({ name: 'id', referencedColumnName: 'receiver_bank_account_id' })
+  @OneToMany(() => LoanRequest, (loan_request) => loan_request.receiver_bank_card)
+  @JoinColumn({ name: 'id', referencedColumnName: 'receiver_bank_card_id' })
   loan_requests_received!: LoanRequest[];
 
-  @ManyToOne(() => Bank, (bank) => bank.bank_accounts)
+  @ManyToOne(() => Bank, (bank) => bank.bank_cards)
   @JoinColumn({ name: 'bank_id', referencedColumnName: 'id' })
   bank!: Bank;
 }

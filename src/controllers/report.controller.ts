@@ -19,7 +19,7 @@ class ReportController {
       status: 'success',
       code: ServerCodes.CommomCode.Success,
       message: 'Get all reports successfully',
-      num_of_pages: reports.num_of_pages,
+      num_of_pages: reports.number_of_pages,
       result: reports.data,
     };
     res.json(appRes);

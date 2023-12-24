@@ -62,9 +62,9 @@ class Bank extends BaseEntity implements IBank {
   @Column(PostgresDataType.text)
   logo!: string;
 
-  @OneToMany(() => BankCard, (bankAccount) => bankAccount.bank)
+  @OneToMany(() => BankCard, (bankcard) => bankcard.bank)
   @JoinColumn({ name: 'id', referencedColumnName: 'bank_id' })
-  bank_accounts!: BankCard[];
+  bank_cards!: BankCard[];
 }
 
 export default Bank;

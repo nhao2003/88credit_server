@@ -18,9 +18,9 @@ interface IContract {
   loan_contract_request_id: string;
   contract_template_id: string;
   lender_id: string;
-  lender_bank_account_id: string;
+  lender_bank_card_id: string;
   borrower_id: string;
-  borrower_bank_account_id: string;
+  borrower_bank_card_id: string;
   loan_reason_type: string;
   loan_reason: string;
   amount: number;
@@ -46,13 +46,13 @@ export class Contract extends BaseEntity implements IContract {
   lender_id!: string;
 
   @Column(PostgresDataType.uuid)
-  lender_bank_account_id!: string;
+  lender_bank_card_id!: string;
 
   @Column(PostgresDataType.uuid)
   borrower_id!: string;
 
   @Column(PostgresDataType.uuid)
-  borrower_bank_account_id!: string;
+  borrower_bank_card_id!: string;
 
   @Column(PostgresDataType.varchar, { length: 50 })
   loan_reason_type!: string;
@@ -90,13 +90,13 @@ export class Contract extends BaseEntity implements IContract {
   @JoinColumn({ name: 'borrower_id' })
   borrower!: User;
 
-  @ManyToOne(() => BankCard, (bank_account) => bank_account.lend_contracts)
-  @JoinColumn({ name: 'lender_bank_account_id', referencedColumnName: 'id' })
-  lender_bank_account!: BankCard;
+  @ManyToOne(() => BankCard, (bank_card) => bank_card.lend_contracts)
+  @JoinColumn({ name: 'lender_bank_card_id', referencedColumnName: 'id' })
+  lender_bank_card!: BankCard;
 
-  @ManyToOne(() => BankCard, (bank_account) => bank_account.borrow_contracts)
-  @JoinColumn({ name: 'borrower_bank_account_id', referencedColumnName: 'id' })
-  borrower_bank_account!: BankCard;
+  @ManyToOne(() => BankCard, (bank_card) => bank_card.borrow_contracts)
+  @JoinColumn({ name: 'borrower_bank_card_id', referencedColumnName: 'id' })
+  borrower_bank_card!: BankCard;
 }
 
 export default Contract;

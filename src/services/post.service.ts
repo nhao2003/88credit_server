@@ -12,6 +12,7 @@ import ServerCodes from '~/constants/server_codes';
 import { APP_MESSAGES } from '~/constants/message';
 import HttpStatus from '~/constants/httpStatus';
 import appConfig from '~/constants/configs';
+import FindResult from '~/models/typing/findResult';
 @Service()
 class PostServices {
   private readonly postRepository: Repository<Post>;
@@ -103,7 +104,7 @@ class PostServices {
     return await this.postRepository.save(post);
   }
 
-  async getPostsByQuery(postQuery: PostQuery): Promise<{ data: Post[]; numberOfPages: number }> {
+  async getPostsByQuery(postQuery: PostQuery): Promise<FindResult<Post>> {
     const page = postQuery.page || 1;
     let query = this.postRepository.createQueryBuilder().leftJoinAndSelect('Post.user', 'user');
 
@@ -128,7 +129,7 @@ class PostServices {
     try {
       const [data, count] = await Promise.all([getMany, getCount]);
       return {
-        numberOfPages: Math.ceil(count / take),
+        number_of_pages: Math.ceil(count / take),
         data,
       };
     } catch (error) {

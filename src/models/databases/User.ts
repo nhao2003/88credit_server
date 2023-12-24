@@ -95,9 +95,9 @@ export class User extends BaseEntity {
   @JoinColumn({ name: 'id' })
   contracts_borrower!: Contract[];
 
-  @OneToMany(() => BankCard, (bankAccount) => bankAccount.user)
+  @OneToMany(() => BankCard, (bankcard) => bankcard.user)
   @JoinColumn({ name: 'id' })
-  bank_accounts!: BankCard[];
+  bank_cards!: BankCard[];
 
   @OneToMany(() => Relative, (relative) => relative.user)
   @JoinColumn({ name: 'id' })

@@ -4,12 +4,13 @@ import { Service } from 'typedi';
 import Blog from '~/models/databases/Blog';
 import appConfig from '~/constants/configs';
 import { AppError } from '~/models/Error';
+import FindResult from '~/models/typing/findResult';
 @Service()
 class BlogService extends CommonServices {
   constructor() {
     super(Blog);
   }
-  async getAllWithFavoriteByQuery(query: any, current_user_id: string | null) {
+  async getAllWithFavoriteByQuery(query: any, current_user_id: string | null): Promise<FindResult<Blog>> {
     let { page } = query;
     const { wheres, orders } = query;
     page = Number(page) || 1;
@@ -30,7 +31,7 @@ class BlogService extends CommonServices {
     try {
       const [data, count] = await Promise.all([getMany, getCount]);
       return {
-        num_of_pages: Math.ceil(count / take),
+        number_of_pages: Math.ceil(count / take),
         data,
       };
     } catch (error) {

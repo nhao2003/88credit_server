@@ -9,6 +9,7 @@ import HttpStatus from '~/constants/httpStatus';
 import { APP_MESSAGES } from '~/constants/message';
 import ServerCodes from '~/constants/server_codes';
 import appConfig from '~/constants/configs';
+import FindResult from '~/models/typing/findResult';
 export type UserQuery = {
   page: number;
   wheres: string[] | null;
@@ -55,10 +56,7 @@ class UserServices {
     return { page, wheres, orders: buildOrders };
   }
 
-  async getUserByQuery(userQuery: UserQuery): Promise<{
-    num_of_pages: number;
-    users: User[];
-  }> {
+  async getUserByQuery(userQuery: UserQuery): Promise<FindResult<User>> {
     const page = userQuery.page || 1;
     let query = this.userRepository.createQueryBuilder();
     const wheres = userQuery.wheres;
@@ -79,8 +77,8 @@ class UserServices {
     try {
       const [data, count] = await Promise.all([getMany, getCount]);
       return {
-        num_of_pages: Math.ceil(count / take),
-        users: data,
+        number_of_pages: Math.ceil(count / take),
+        data: data,
       };
     } catch (error) {
       if (error instanceof QueryFailedError) {

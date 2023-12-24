@@ -30,8 +30,8 @@ interface LoanRequestInterface {
   portait_photo: string;
   id_card_front_photo: string;
   id_card_back_photo: string;
-  sender_bank_account_id: string;
-  receiver_bank_account_id: string;
+  sender_bank_card_id: string;
+  receiver_bank_card_id: string;
   rejected_reason: string;
   created_at: Date;
   updated_at: Date | null;
@@ -86,10 +86,10 @@ class LoanRequest extends BaseEntity implements LoanRequestInterface {
   id_card_back_photo!: string;
 
   @Column({ type: PostgresDataType.uuid })
-  sender_bank_account_id!: string;
+  sender_bank_card_id!: string;
 
   @Column({ type: PostgresDataType.uuid, nullable: true })
-  receiver_bank_account_id!: string;
+  receiver_bank_card_id!: string;
 
   @Column({ type: PostgresDataType.varchar, length: 255, nullable: true })
   rejected_reason!: string;
@@ -112,12 +112,12 @@ class LoanRequest extends BaseEntity implements LoanRequestInterface {
   receiver!: User;
 
   @ManyToOne(() => BankCard, (bank_account) => bank_account.loan_requests_sent)
-  @JoinColumn({ name: 'sender_bank_account_id' })
-  sender_bank_account!: BankCard;
+  @JoinColumn({ name: 'sender_bank_card_id' })
+  sender_bank_card!: BankCard;
 
   @ManyToOne(() => BankCard, (bank_account) => bank_account.loan_requests_received)
-  @JoinColumn({ name: 'receiver_bank_account_id' })
-  receiver_bank_account!: BankCard;
+  @JoinColumn({ name: 'receiver_bank_card_id' })
+  receiver_bank_card!: BankCard;
 }
 
 export default LoanRequest;

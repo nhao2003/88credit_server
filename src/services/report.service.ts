@@ -13,6 +13,7 @@ import { APP_MESSAGES } from '~/constants/message';
 import HttpStatus from '~/constants/httpStatus';
 import ServerCodes from '~/constants/server_codes';
 import appConfig from '~/constants/configs';
+import FindResult from '~/models/typing/findResult';
 @Service()
 class ReportService extends CommonServices {
   private reportRepository: Repository<Report>;
@@ -25,12 +26,7 @@ class ReportService extends CommonServices {
     this.reportRepository = this.repository;
   }
 
-  public readonly getAllByQuery = async (
-    query: BaseQuery,
-  ): Promise<{
-    num_of_pages: number;
-    data: any;
-  }> => {
+  public readonly getAllByQuery = async (query: BaseQuery): Promise<FindResult<Report>> => {
     let { page } = query;
     const { wheres, orders } = query;
     page = Number(page) || 1;
@@ -57,7 +53,7 @@ class ReportService extends CommonServices {
     try {
       const [data, count] = await Promise.all([getMany, getCount]);
       return {
-        num_of_pages: Math.ceil(count / take),
+        number_of_pages: Math.ceil(count / take),
         data: data,
       };
     } catch (error) {

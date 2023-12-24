@@ -36,7 +36,7 @@ class BlogController {
       status: 'success',
       code: ServerCodes.CommomCode.Success,
       message: 'Get all blogs successfully',
-      num_of_pages: blogs.num_of_pages,
+      num_of_pages: blogs.number_of_pages,
       result: blogs.data,
     };
     res.json(appResponse);

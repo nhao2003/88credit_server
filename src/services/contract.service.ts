@@ -1,4 +1,4 @@
-import { Repository, DataSource } from 'typeorm';
+import { Repository, DataSource, QueryFailedError } from 'typeorm';
 import Contract from '~/models/databases/Contract';
 import ZaloPayService, { ZaloPayCallbackResponse } from './zalopay.service';
 import LoanRequest from '~/models/databases/LoanRequest';
@@ -8,6 +8,10 @@ import { Service } from 'typedi';
 import Transaction from '~/models/databases/Transaction';
 import BankService from './bank.service';
 import appConfig from '~/constants/configs';
+import FindResult from '~/models/typing/findResult';
+import { ContractQuery } from '~/models/typing/base_query';
+import { buildOrder, buildQuery } from '~/utils/build_query';
+import { AppError } from '~/models/Error';
 @Service()
 class ContractService {
   private contractRepository: Repository<Contract>;
@@ -99,9 +103,9 @@ class ContractService {
     contract.loan_contract_request_id = loan_contract_request_id;
     contract.contract_template_id = contractTemplate.id;
     contract.lender_id = loanContractRequest.receiver_id;
-    contract.lender_bank_account_id = loanContractRequest.receiver_bank_account_id;
+    contract.lender_bank_card_id = loanContractRequest.receiver_bank_card_id;
     contract.borrower_id = loanContractRequest.sender_id;
-    contract.borrower_bank_account_id = loanContractRequest.sender_bank_account_id;
+    contract.borrower_bank_card_id = loanContractRequest.sender_bank_card_id;
     contract.loan_reason_type = loanContractRequest.loan_reason_type;
     contract.loan_reason = loanContractRequest.loan_reason;
     contract.amount = loanContractRequest.loan_amount;
@@ -130,6 +134,104 @@ class ContractService {
       return_code: 1,
       return_message: 'Success',
     };
+  }
+  buildContractRequestQuery(query: Record<string, any>): ContractQuery {
+    const { page, orders, search } = query;
+    const pageParam = Number(page) || 1;
+    const postQueries: {
+      [key: string]: any;
+    } = {};
+
+    const lenderQueries: {
+      [key: string]: any;
+    } = {};
+
+    const borrowerQueries: {
+      [key: string]: any;
+    } = {};
+
+    Object.keys(query)
+      .filter((key) => key.startsWith('request_'))
+      .forEach((key) => {
+        postQueries[key.replace('request_', '')] = query[key];
+      });
+
+    Object.keys(query)
+      .filter((key) => key.startsWith('lender_'))
+      .forEach((key) => {
+        lenderQueries[key.replace('lender_', '')] = query[key];
+      });
+
+    Object.keys(query)
+      .filter((key) => key.startsWith('borrower_'))
+      .forEach((key) => {
+        borrowerQueries[key.replace('borrower_', '')] = query[key];
+      });
+
+    const postWhere: string[] = buildQuery(postQueries);
+    const lenderWhere: string[] = buildQuery(lenderQueries);
+    const borrowerWhere: string[] = buildQuery(borrowerQueries);
+
+    const order = buildOrder(orders as string, 'Contract');
+
+    return {
+      page: pageParam,
+      wheres: postWhere,
+      lenderWhere,
+      borrowerWhere,
+      orders: order,
+    };
+  }
+
+  async getLoanContractRequestsByQuery(query: ContractQuery): Promise<FindResult> {
+    const { page, wheres, orders, lenderWhere, borrowerWhere } = query;
+    let queryBuilder = this.contractRepository
+      .createQueryBuilder()
+      .where({
+        lender_id: query.user_id,
+      })
+      .leftJoinAndSelect('Contract.lender', 'lender')
+      .leftJoinAndSelect('Contract.borrower', 'borrower');
+
+    if (wheres != null && wheres.length > 0) {
+      wheres.forEach((where: string) => {
+        queryBuilder = queryBuilder.andWhere('Contract.' + where);
+      });
+    }
+
+    if (lenderWhere != null && lenderWhere.length > 0) {
+      lenderWhere.forEach((where: string) => {
+        queryBuilder = queryBuilder.andWhere('lender.' + where);
+      });
+    }
+
+    if (borrowerWhere != null && borrowerWhere.length > 0) {
+      borrowerWhere.forEach((where: string) => {
+        queryBuilder = queryBuilder.andWhere('borrower.' + where);
+      });
+    }
+
+    const take = appConfig.ResultPerPage;
+    if (orders != null && orders.length > 0) {
+      queryBuilder = queryBuilder.orderBy(orders);
+    }
+
+    queryBuilder = queryBuilder.skip((page - 1) * take).take(take);
+
+    const getCount = queryBuilder.getCount();
+    const getMany = queryBuilder.getMany();
+
+    try {
+      const [data, count] = await Promise.all([getMany, getCount]);
+      return {
+        number_of_pages: Math.ceil(count / take),
+        data,
+      };
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        throw AppError.queryFailed();
+      } else throw error;
+    }
   }
 }
 

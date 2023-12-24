@@ -45,8 +45,8 @@ class AdminController {
       code: ServerCodes.CommomCode.Success,
       status: 'success',
       message: 'Get all user',
-      num_of_pages: result.num_of_pages,
-      result: result.users,
+      num_of_pages: result.number_of_pages,
+      result: result.data,
     };
     res.status(200).json(response);
   });
@@ -58,7 +58,7 @@ class AdminController {
       code: ServerCodes.CommomCode.Success,
       status: 'success',
       message: 'Get all post',
-      num_of_pages: result.numberOfPages,
+      num_of_pages: result.number_of_pages,
       result: result.data,
     };
     res.status(200).json(response);

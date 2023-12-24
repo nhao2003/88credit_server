@@ -20,10 +20,8 @@ import { Server } from 'http';
 import ServerCodes from '~/constants/server_codes';
 import BankService from './bank.service';
 import appConfig from '~/constants/configs';
-type FindResult = {
-  data: LoanRequest[];
-  number_of_pages: number;
-};
+import FindResult from '~/models/typing/findResult';
+
 @Service()
 class LoanContractRequestService {
   private loanContractRequestRepository: Repository<LoanRequest>;
@@ -115,7 +113,7 @@ class LoanContractRequestService {
     return LoanRequest;
   }
 
-  async getLoanContractRequestsByQuery(query: LoanContractRequestQuery): Promise<FindResult> {
+  async getLoanContractRequestsByQuery(query: LoanContractRequestQuery): Promise<FindResult<LoanRequest>> {
     const { page, wheres, orders, lenderWhere, borrowerWhere } = query;
     let queryBuilder = this.loanContractRequestRepository
       .createQueryBuilder()
@@ -200,7 +198,7 @@ class LoanContractRequestService {
     }
     await this.loanContractRequestRepository.update(
       { id },
-      { status: LoanContractRequestStatus.waiting_for_payment, receiver_bank_account_id: lenderBankAccount.id },
+      { status: LoanContractRequestStatus.waiting_for_payment, receiver_bank_card_id: lenderBankAccount.id },
     );
   }
 

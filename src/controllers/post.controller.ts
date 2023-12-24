@@ -47,7 +47,7 @@ class PostController {
       status: 'success',
       code: ServerCodes.CommomCode.Success,
       message: 'Get posts successfully',
-      num_of_pages: posts.numberOfPages,
+      num_of_pages: posts.number_of_pages,
       result: posts.data,
     };
     res.status(200).json(appRes);

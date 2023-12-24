@@ -8,6 +8,7 @@ import { Server } from 'http';
 import ServerCodes from '~/constants/server_codes';
 import StringUtils from '~/utils/StringUtils';
 import appConfig from '~/constants/configs';
+import FindResult from '~/models/typing/findResult';
 class CommonServices {
   protected repository: Repository<any>;
   constructor(entity: EntityTarget<any>) {
@@ -51,7 +52,7 @@ class CommonServices {
     });
   }
 
-  public getAllByQuery = async (query: BaseQuery): Promise<{ num_of_pages: number; data: BaseEntity[] }> => {
+  public getAllByQuery = async (query: BaseQuery): Promise<FindResult> => {
     let { page } = query;
     const { wheres, orders } = query;
     page = Number(page) || 1;
@@ -71,7 +72,7 @@ class CommonServices {
     try {
       const [data, count] = await Promise.all([getMany, getCount]);
       return {
-        num_of_pages: Math.ceil(count / take),
+        number_of_pages: Math.ceil(count / take),
         data,
       };
     } catch (error) {

@@ -27,13 +27,14 @@ class ContractController {
   });
 
   getContracts = wrapRequestHandler(async (req: Request, res: Response) => {
-    const query = buildBaseQuery(req.query);
-    const result = await this.contractService.getContracts(query);
+    const query = await this.contractService.buildContractRequestQuery(req.query);
+    const { number_of_pages, data } = await this.contractService.getLoanContractRequestsByQuery(query);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,
       message: 'Get contracts successfully',
-      result,
+      num_of_pages: number_of_pages,
+      result: data,
     });
   });
 

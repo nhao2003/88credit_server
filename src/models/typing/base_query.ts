@@ -21,3 +21,12 @@ export type LoanContractRequestQuery = {
   borrowerWhere: string[];
   orders: any;
 };
+
+export type ContractQuery = {
+  user_id?: string;
+  page: number;
+  wheres: string[];
+  lenderWhere: string[];
+  borrowerWhere: string[];
+  orders: any;
+}
