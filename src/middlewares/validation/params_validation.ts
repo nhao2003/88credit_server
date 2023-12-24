@@ -110,10 +110,10 @@ export class ParamsValidation {
   public static interest_rate: ParamSchema = {
     in: ['body'],
     isNumeric: {
-      errorMessage: 'Min interest rate is not valid',
+      errorMessage: 'Interest rate is not valid',
     },
     isFloat: {
-      errorMessage: 'Min interest rate is not valid',
+      errorMessage: 'Interest rate is not valid',
     },
     custom: {
       options: (value: number) => {
@@ -122,16 +122,13 @@ export class ParamsValidation {
         }
         return true;
       },
-      errorMessage: 'Min interest rate is not valid',
+      errorMessage: 'Interest rate is not valid',
     },
   };
 
   public static loan_amount: ParamSchema = {
     in: ['body'],
     isNumeric: {
-      errorMessage: 'Loan amount is not valid',
-    },
-    isFloat: {
       errorMessage: 'Loan amount is not valid',
     },
     custom: {
@@ -161,6 +158,25 @@ export class ParamsValidation {
         return true;
       },
       errorMessage: 'Loan term is not valid',
+    },
+  };
+
+  public static tenure_months: ParamSchema = {
+    in: ['body'],
+    isNumeric: {
+      errorMessage: 'Tenure months is not valid',
+    },
+    isInt: {
+      errorMessage: 'Tenure months is not valid',
+    },
+    custom: {
+      options: (value: number) => {
+        if (value <= 0) {
+          return false;
+        }
+        return true;
+      },
+      errorMessage: 'Tenure months is not valid',
     },
   };
 }

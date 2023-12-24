@@ -11,19 +11,40 @@ import BankCard from './BankCard';
 import Relative from './Relative';
 import Transaction from './Transaction';
 import Report from './Report';
+
+interface IUser {
+  id: string;
+  status: UserStatus;
+  is_identity_verified: boolean;
+  role: Role;
+  email: string;
+  password: string;
+  address: Address;
+  first_name: string;
+  last_name: string;
+  gender: boolean;
+  avatar: string;
+  dob: Date;
+  phone: string;
+  last_active_at: Date;
+  created_at: Date;
+  updated_at: Date;
+  banned_util: Date | null;
+  ban_reason: string | null;
+}
 @Entity('users')
-export class User extends BaseEntity {
+export class User extends BaseEntity implements IUser {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
   @Column({ type: PostgresDataType.varchar, length: 50, default: UserStatus.unverified, enum: UserStatus })
-  status!: string;
+  status!: UserStatus;
 
   @Column({ type: PostgresDataType.boolean, default: false })
   is_identity_verified!: boolean;
 
   @Column({ type: PostgresDataType.varchar, default: Role.user })
-  role!: string;
+  role!: Role;
 
   @Column({ type: PostgresDataType.varchar, length: 255, unique: true })
   email!: string;

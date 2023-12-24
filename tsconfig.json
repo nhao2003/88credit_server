@@ -1,5 +1,5 @@
 {
-  "exclude": ["./coverage", "./dist", "tests", "jest.config.ts"], // Đường dẫn exclude cho các file không cần build
+  "exclude": ["./coverage", "./dist", "tests", "jest.config.ts","./sample"], // Đường dẫn exclude cho các file không cần build
   "compilerOptions": {
     "types": ["node", "jest"],
     "emitDecoratorMetadata": true,
