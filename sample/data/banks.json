@@ -1,6 +1,6 @@
 [
   {
-    "id": 17,
+    "id": "fb9b9f3f-b711-4f00-95ae-9444f5b4323a",
     "name": "Ngân hàng TMCP Công thương Việt Nam",
     "code": "ICB",
     "bin": "970415",
@@ -14,7 +14,7 @@
     "swift_code": "ICBVVNVX"
   },
   {
-    "id": 43,
+    "id": "19d70cbb-9f19-425f-af6e-68d48d0a60c1",
     "name": "Ngân hàng TMCP Ngoại Thương Việt Nam",
     "code": "VCB",
     "bin": "970436",
@@ -28,7 +28,7 @@
     "swift_code": "BFTVVNVX"
   },
   {
-    "id": 4,
+    "id": "7c256842-bbc3-448a-b3c2-1ad594ebc754",
     "name": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam",
     "code": "BIDV",
     "bin": "970418",
@@ -42,7 +42,7 @@
     "swift_code": "BIDVVNVX"
   },
   {
-    "id": 42,
+    "id": "cd57db6a-f6d6-406a-93e2-e678a45c6109",
     "name": "Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam",
     "code": "VBA",
     "bin": "970405",
@@ -56,7 +56,7 @@
     "swift_code": "VBAAVNVX"
   },
   {
-    "id": 26,
+    "id": "aec8245d-b28b-4c40-a4ab-38b9815f89be",
     "name": "Ngân hàng TMCP Phương Đông",
     "code": "OCB",
     "bin": "970448",
@@ -70,7 +70,7 @@
     "swift_code": "ORCOVNVX"
   },
   {
-    "id": 21,
+    "id": "f089b412-1b06-48c0-bc86-21b5d0f9c42f",
     "name": "Ngân hàng TMCP Quân đội",
     "code": "MB",
     "bin": "970422",
@@ -84,7 +84,7 @@
     "swift_code": "MSCBVNVX"
   },
   {
-    "id": 38,
+    "id": "8326b361-b61d-4812-ae89-223051459de2",
     "name": "Ngân hàng TMCP Kỹ thương Việt Nam",
     "code": "TCB",
     "bin": "970407",
@@ -98,7 +98,7 @@
     "swift_code": "VTCBVNVX"
   },
   {
-    "id": 2,
+    "id": "61d0a983-761c-4f2f-901c-1d54acb591f7",
     "name": "Ngân hàng TMCP Á Châu",
     "code": "ACB",
     "bin": "970416",
@@ -112,7 +112,7 @@
     "swift_code": "ASCBVNVX"
   },
   {
-    "id": 47,
+    "id": "1da92cda-757c-4fe2-b596-1f68a4fa5b55",
     "name": "Ngân hàng TMCP Việt Nam Thịnh Vượng",
     "code": "VPB",
     "bin": "970432",
@@ -126,7 +126,7 @@
     "swift_code": "VPBKVNVX"
   },
   {
-    "id": 39,
+    "id": "6e743cda-a621-4347-824e-b4482addb2e4",
     "name": "Ngân hàng TMCP Tiên Phong",
     "code": "TPB",
     "bin": "970423",
@@ -140,7 +140,7 @@
     "swift_code": "TPBVVNVX"
   },
   {
-    "id": 36,
+    "id": "1f0219ae-160f-4aec-b6ba-064f6895d730",
     "name": "Ngân hàng TMCP Sài Gòn Thương Tín",
     "code": "STB",
     "bin": "970403",
@@ -154,7 +154,7 @@
     "swift_code": "SGTTVNVX"
   },
   {
-    "id": 12,
+    "id": "d993f3e8-077a-4acb-9ddc-6c5a25f09fbf",
     "name": "Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh",
     "code": "HDB",
     "bin": "970437",
@@ -168,7 +168,7 @@
     "swift_code": "HDBCVNVX"
   },
   {
-    "id": 44,
+    "id": "1b11669e-ed0e-4822-aa79-36fcb8e0d438",
     "name": "Ngân hàng TMCP Bản Việt",
     "code": "VCCB",
     "bin": "970454",
@@ -182,7 +182,7 @@
     "swift_code": "VCBCVNVX"
   },
   {
-    "id": 31,
+    "id": "69262aad-8b90-4d2b-8909-2e5216ddcf6f",
     "name": "Ngân hàng TMCP Sài Gòn",
     "code": "SCB",
     "bin": "970429",
@@ -196,7 +196,7 @@
     "swift_code": "SACLVNVX"
   },
   {
-    "id": 45,
+    "id": "5b8334a1-2b0b-47b5-986f-5c9849de38b0",
     "name": "Ngân hàng TMCP Quốc tế Việt Nam",
     "code": "VIB",
     "bin": "970441",
@@ -210,7 +210,7 @@
     "swift_code": "VNIBVNVX"
   },
   {
-    "id": 35,
+    "id": "ad0ef3bd-02ad-4ae3-981e-25edc8ee4601",
     "name": "Ngân hàng TMCP Sài Gòn - Hà Nội",
     "code": "SHB",
     "bin": "970443",
@@ -224,7 +224,7 @@
     "swift_code": "SHBAVNVX"
   },
   {
-    "id": 10,
+    "id": "45472a5e-a78d-47af-a51e-b26ce4657a15",
     "name": "Ngân hàng TMCP Xuất Nhập khẩu Việt Nam",
     "code": "EIB",
     "bin": "970431",
@@ -238,7 +238,7 @@
     "swift_code": "EBVIVNVX"
   },
   {
-    "id": 22,
+    "id": "0593b930-7e79-4b1d-8166-63c85b349ccb",
     "name": "Ngân hàng TMCP Hàng Hải",
     "code": "MSB",
     "bin": "970426",
@@ -252,7 +252,7 @@
     "swift_code": "MCOBVNVX"
   },
   {
-    "id": 53,
+    "id": "4d3771a9-36d0-42c6-a638-d56c87f8e2d0",
     "name": "TMCP Việt Nam Thịnh Vượng - Ngân hàng số CAKE by VPBank",
     "code": "CAKE",
     "bin": "546034",
@@ -266,7 +266,7 @@
     "swift_code": null
   },
   {
-    "id": 54,
+    "id": "f5c7aaf1-098d-4ffe-9c07-42d1052a406f",
     "name": "TMCP Việt Nam Thịnh Vượng - Ngân hàng số Ubank by VPBank",
     "code": "Ubank",
     "bin": "546035",
@@ -280,7 +280,7 @@
     "swift_code": null
   },
   {
-    "id": 58,
+    "id": "2400188d-6ef1-4ef7-b211-ef87c343e98c",
     "name": "Ngân hàng số Timo by Ban Viet Bank (Timo by Ban Viet Bank)",
     "code": "TIMO",
     "bin": "963388",
@@ -294,7 +294,7 @@
     "swift_code": null
   },
   {
-    "id": 57,
+    "id": "11eac206-b1af-4639-a421-82d7da25f489",
     "name": "Tổng Công ty Dịch vụ số Viettel - Chi nhánh tập đoàn công nghiệp viễn thông Quân Đội",
     "code": "VTLMONEY",
     "bin": "971005",
@@ -308,7 +308,7 @@
     "swift_code": null
   },
   {
-    "id": 56,
+    "id": "ad2ce84f-db1a-41fa-b2e8-497e923eac42",
     "name": "VNPT Money",
     "code": "VNPTMONEY",
     "bin": "971011",
@@ -322,7 +322,7 @@
     "swift_code": null
   },
   {
-    "id": 34,
+    "id": "9377e318-e87d-4324-b55e-6e5d3c38af04",
     "name": "Ngân hàng TMCP Sài Gòn Công Thương",
     "code": "SGICB",
     "bin": "970400",
@@ -336,7 +336,7 @@
     "swift_code": "SBITVNVX"
   },
   {
-    "id": 3,
+    "id": "f924e512-e2ac-4fb1-bcf4-00a17be04b07",
     "name": "Ngân hàng TMCP Bắc Á",
     "code": "BAB",
     "bin": "970409",
@@ -350,7 +350,7 @@
     "swift_code": "NASCVNVX"
   },
   {
-    "id": 30,
+    "id": "06e5b1b5-4988-4b39-9ba9-04f28132b2e2",
     "name": "Ngân hàng TMCP Đại Chúng Việt Nam",
     "code": "PVCB",
     "bin": "970412",
@@ -364,7 +364,7 @@
     "swift_code": "WBVNVNVX"
   },
   {
-    "id": 27,
+    "id": "590864c3-4bf8-47b6-9429-619d0c7d76f5",
     "name": "Ngân hàng Thương mại TNHH MTV Đại Dương",
     "code": "Oceanbank",
     "bin": "970414",
@@ -378,7 +378,7 @@
     "swift_code": "OCBKUS3M"
   },
   {
-    "id": 24,
+    "id": "e41368ed-6500-404e-84bb-7c769d23391a",
     "name": "Ngân hàng TMCP Quốc Dân",
     "code": "NCB",
     "bin": "970419",
@@ -392,7 +392,7 @@
     "swift_code": "NVBAVNVX"
   },
   {
-    "id": 37,
+    "id": "e79d12cb-c84a-48f8-83ac-40add72e9fc2",
     "name": "Ngân hàng TNHH MTV Shinhan Việt Nam",
     "code": "SHBVN",
     "bin": "970424",
@@ -406,7 +406,7 @@
     "swift_code": "SHBKVNVX"
   },
   {
-    "id": 1,
+    "id": "53979256-6074-4b9d-a00a-faeeb869c9d2",
     "name": "Ngân hàng TMCP An Bình",
     "code": "ABB",
     "bin": "970425",
@@ -420,7 +420,7 @@
     "swift_code": "ABBKVNVX"
   },
   {
-    "id": 41,
+    "id": "517eb13a-3413-488d-8a91-84c2b0553769",
     "name": "Ngân hàng TMCP Việt Á",
     "code": "VAB",
     "bin": "970427",
@@ -434,7 +434,7 @@
     "swift_code": "VNACVNVX"
   },
   {
-    "id": 23,
+    "id": "143d5644-3ee6-4631-b48c-5fad54000dd9",
     "name": "Ngân hàng TMCP Nam Á",
     "code": "NAB",
     "bin": "970428",
@@ -448,7 +448,7 @@
     "swift_code": "NAMAVNVX"
   },
   {
-    "id": 29,
+    "id": "1065611d-3f2b-4764-91e9-b048774437f9",
     "name": "Ngân hàng TMCP Xăng dầu Petrolimex",
     "code": "PGB",
     "bin": "970430",
@@ -462,7 +462,7 @@
     "swift_code": "PGBLVNVX"
   },
   {
-    "id": 46,
+    "id": "7ac0c397-6d2e-4f3e-ae3d-a6a8811c05ec",
     "name": "Ngân hàng TMCP Việt Nam Thương Tín",
     "code": "VIETBANK",
     "bin": "970433",
@@ -476,7 +476,7 @@
     "swift_code": "VNTTVNVX"
   },
   {
-    "id": 5,
+    "id": "787a3050-d7b5-42aa-a987-8fc4562323a3",
     "name": "Ngân hàng TMCP Bảo Việt",
     "code": "BVB",
     "bin": "970438",
@@ -490,7 +490,7 @@
     "swift_code": "BVBVVNVX"
   },
   {
-    "id": 33,
+    "id": "9475a183-c898-4cea-b016-e867dfb8cae8",
     "name": "Ngân hàng TMCP Đông Nam Á",
     "code": "SEAB",
     "bin": "970440",
@@ -504,7 +504,7 @@
     "swift_code": "SEAVVNVX"
   },
   {
-    "id": 52,
+    "id": "e9a424b7-dc49-4d8f-940d-6ed2cb7161d5",
     "name": "Ngân hàng Hợp tác xã Việt Nam",
     "code": "COOPBANK",
     "bin": "970446",
@@ -518,7 +518,7 @@
     "swift_code": null
   },
   {
-    "id": 20,
+    "id": "4bc834ad-b351-4a26-8b39-d7c8669d78bf",
     "name": "Ngân hàng TMCP Bưu Điện Liên Việt",
     "code": "LPB",
     "bin": "970449",
@@ -532,7 +532,7 @@
     "swift_code": "LVBKVNVX"
   },
   {
-    "id": 19,
+    "id": "c79d12d1-f4c2-40fe-9c9a-9ae2e205cd9e",
     "name": "Ngân hàng TMCP Kiên Long",
     "code": "KLB",
     "bin": "970452",
@@ -546,7 +546,7 @@
     "swift_code": "KLBKVNVX"
   },
   {
-    "id": 55,
+    "id": "fb70ae1c-3e81-4f7e-bd6f-81d353e51f9f",
     "name": "Ngân hàng Đại chúng TNHH Kasikornbank",
     "code": "KBank",
     "bin": "668888",
@@ -560,7 +560,7 @@
     "swift_code": "KASIVNVX"
   },
   {
-    "id": 40,
+    "id": "5bb1b6d7-0423-4471-b5f0-8d984397a79f",
     "name": "Ngân hàng United Overseas - Chi nhánh TP. Hồ Chí Minh",
     "code": "UOB",
     "bin": "970458",
@@ -574,7 +574,7 @@
     "swift_code": null
   },
   {
-    "id": 32,
+    "id": "b0409abf-983e-4282-9e37-931268716d84",
     "name": "Ngân hàng TNHH MTV Standard Chartered Bank Việt Nam",
     "code": "SCVN",
     "bin": "970410",
@@ -588,7 +588,7 @@
     "swift_code": "SCBLVNVX"
   },
   {
-    "id": 28,
+    "id": "074ec489-aa06-435b-925b-34710487b4c9",
     "name": "Ngân hàng TNHH MTV Public Việt Nam",
     "code": "PBVN",
     "bin": "970439",
@@ -602,7 +602,7 @@
     "swift_code": "VIDPVNVX"
   },
   {
-    "id": 25,
+    "id": "677fcc6b-c03d-4da7-ad37-3c86407222b0",
     "name": "Ngân hàng Nonghyup - Chi nhánh Hà Nội",
     "code": "NHB HN",
     "bin": "801011",
@@ -616,7 +616,7 @@
     "swift_code": null
   },
   {
-    "id": 18,
+    "id": "cb1c7975-010a-4c8a-84e7-f6dc6be5ea42",
     "name": "Ngân hàng TNHH Indovina",
     "code": "IVB",
     "bin": "970434",
@@ -630,7 +630,7 @@
     "swift_code": null
   },
   {
-    "id": 16,
+    "id": "c69cf1ac-2c0b-4f0e-9228-89883999a0b6",
     "name": "Ngân hàng Công nghiệp Hàn Quốc - Chi nhánh TP. Hồ Chí Minh",
     "code": "IBK - HCM",
     "bin": "970456",
@@ -644,7 +644,7 @@
     "swift_code": null
   },
   {
-    "id": 15,
+    "id": "58d332ca-5689-4c43-999a-1815899f715d",
     "name": "Ngân hàng Công nghiệp Hàn Quốc - Chi nhánh Hà Nội",
     "code": "IBK - HN",
     "bin": "970455",
@@ -658,7 +658,7 @@
     "swift_code": null
   },
   {
-    "id": 48,
+    "id": "316f1304-c742-4d18-8c96-a8f2e8247142",
     "name": "Ngân hàng Liên doanh Việt - Nga",
     "code": "VRB",
     "bin": "970421",
@@ -672,7 +672,7 @@
     "swift_code": null
   },
   {
-    "id": 49,
+    "id": "5c7ab8fd-c6c5-42f2-adc8-30b311cf4386",
     "name": "Ngân hàng TNHH MTV Woori Việt Nam",
     "code": "WVN",
     "bin": "970457",
@@ -686,7 +686,7 @@
     "swift_code": null
   },
   {
-    "id": 50,
+    "id": "32a93003-a465-4dab-b7e5-eb066fb4ab36",
     "name": "Ngân hàng Kookmin - Chi nhánh Hà Nội",
     "code": "KBHN",
     "bin": "970462",
@@ -700,7 +700,7 @@
     "swift_code": null
   },
   {
-    "id": 51,
+    "id": "3a3a481f-6d1e-4804-a32f-cb95cc3c7f89",
     "name": "Ngân hàng Kookmin - Chi nhánh Thành phố Hồ Chí Minh",
     "code": "KBHCM",
     "bin": "970463",
@@ -714,7 +714,7 @@
     "swift_code": null
   },
   {
-    "id": 14,
+    "id": "6e17b23a-9ea6-4c51-83f2-342bd277525f",
     "name": "Ngân hàng TNHH MTV HSBC (Việt Nam)",
     "code": "HSBC",
     "bin": "458761",
@@ -728,7 +728,7 @@
     "swift_code": "HSBCVNVX"
   },
   {
-    "id": 13,
+    "id": "b12b1483-2bd6-42d8-b49e-dbf36b5741c4",
     "name": "Ngân hàng TNHH MTV Hong Leong Việt Nam",
     "code": "HLBVN",
     "bin": "970442",
@@ -742,7 +742,7 @@
     "swift_code": "HLBBVNVX"
   },
   {
-    "id": 11,
+    "id": "646a9fd7-4683-4908-a304-0cb184145b7b",
     "name": "Ngân hàng Thương mại TNHH MTV Dầu Khí Toàn Cầu",
     "code": "GPB",
     "bin": "970408",
@@ -756,7 +756,7 @@
     "swift_code": "GBNKVNVX"
   },
   {
-    "id": 9,
+    "id": "5b23133a-705c-418c-a7cd-03a55356674c",
     "name": "Ngân hàng TMCP Đông Á",
     "code": "DOB",
     "bin": "970406",
@@ -770,7 +770,7 @@
     "swift_code": "EACBVNVX"
   },
   {
-    "id": 8,
+    "id": "c38f59ee-5c4f-4b82-9b92-bb716c378107",
     "name": "DBS Bank Ltd - Chi nhánh Thành phố Hồ Chí Minh",
     "code": "DBS",
     "bin": "796500",
@@ -784,7 +784,7 @@
     "swift_code": "DBSSVNVX"
   },
   {
-    "id": 7,
+    "id": "260d1c02-df51-4971-ac50-7faa2998479f",
     "name": "Ngân hàng TNHH MTV CIMB Việt Nam",
     "code": "CIMB",
     "bin": "422589",
@@ -798,7 +798,7 @@
     "swift_code": "CIBBVNVN"
   },
   {
-    "id": 6,
+    "id": "41641517-c2a8-4dd7-9e1c-2bca1426f595",
     "name": "Ngân hàng Thương mại TNHH MTV Xây dựng Việt Nam",
     "code": "CBB",
     "bin": "970444",
@@ -812,7 +812,7 @@
     "swift_code": "GTBAVNVX"
   },
   {
-    "id": 59,
+    "id": "7f484a53-249a-4a9d-8e78-142e4454241c",
     "name": "Ngân hàng Citibank, N.A. - Chi nhánh Hà Nội",
     "code": "CITIBANK",
     "bin": "533948",
@@ -826,7 +826,7 @@
     "swift_code": null
   },
   {
-    "id": 60,
+    "id": "34ec6e53-7bf5-4181-9f5a-0a773f2c7419",
     "name": "Ngân hàng KEB Hana – Chi nhánh Thành phố Hồ Chí Minh",
     "code": "KEBHANAHCM",
     "bin": "970466",
@@ -840,7 +840,7 @@
     "swift_code": null
   },
   {
-    "id": 61,
+    "id": "1d0527fc-53bb-4a7b-8e3f-3cfb8bf72da8",
     "name": "Ngân hàng KEB Hana – Chi nhánh Hà Nội",
     "code": "KEBHANAHN",
     "bin": "970467",
@@ -854,7 +854,7 @@
     "swift_code": null
   },
   {
-    "id": 62,
+    "id": "1b23a621-5104-48c7-8125-13e26f2cd753",
     "name": "Công ty Tài chính TNHH MTV Mirae Asset (Việt Nam) ",
     "code": "MAFC",
     "bin": "977777",
@@ -868,7 +868,7 @@
     "swift_code": null
   },
   {
-    "id": 63,
+    "id": "9f505dc7-a8a2-408d-920c-445186a01340",
     "name": "Ngân hàng Chính sách Xã hội",
     "code": "VBSP",
     "bin": "999888",

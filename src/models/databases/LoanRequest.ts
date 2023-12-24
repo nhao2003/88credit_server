@@ -32,7 +32,7 @@ interface LoanRequestInterface {
   id_card_back_photo: string;
   sender_bank_card_id: string;
   receiver_bank_card_id: string;
-  rejected_reason: string;
+  rejected_reason: string | null;
   created_at: Date;
   updated_at: Date | null;
   deleted_at: Date | null;
@@ -92,7 +92,7 @@ class LoanRequest extends BaseEntity implements LoanRequestInterface {
   receiver_bank_card_id!: string;
 
   @Column({ type: PostgresDataType.varchar, length: 255, nullable: true })
-  rejected_reason!: string;
+  rejected_reason!: string | null;
 
   @CreateDateColumn({ type: PostgresDataType.timestamp_without_timezone })
   created_at!: Date;

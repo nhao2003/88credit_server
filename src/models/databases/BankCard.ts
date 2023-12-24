@@ -24,7 +24,6 @@ export interface IBankCard {
   branch: string | null;
   created_at: Date;
   deleted_at: Date | null;
-
   bank: Bank;
 }
 
