@@ -147,18 +147,7 @@ class AuthValidation {
   );
 
   public readonly accessTokenValidation = [
-    validate(
-      checkSchema({
-        Authorization: {
-          in: ['headers'],
-          notEmpty: {
-            errorMessage: APP_MESSAGES.ACCESS_TOKEN_IS_REQUIRED,
-          },
-          trim: true,
-        },
-      }),
-    ),
-    async (req: Request, res: Response, next: NextFunction) => {
+    wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
       const authorization = req.headers.authorization;
       const access_token = authorization?.split(' ')[1];
       if (!access_token) {
@@ -168,23 +157,22 @@ class AuthValidation {
           }),
         );
       }
-      const result = await verifyToken(access_token, process.env.JWT_SECRET_KEY as string);
-      if (!result) {
-        return next(
-          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-            serverCode: ServerCodes.AuthCode.InvalidCredentials,
-          }),
-        );
-      }
-      if (result.expired || !result.payload) {
-        // return next(new AppError(APP_MESSAGES.TOKEN_IS_EXPIRED, 401));
+      const { payload, expired } = await verifyToken(access_token, process.env.JWT_SECRET_KEY as string);
+      if (expired) {
         return next(
           new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
             serverCode: ServerCodes.AuthCode.TokenIsExpired,
           }),
         );
       }
-      const session = await this.authServices.checkSessionExist((result.payload as UserPayload).session_id);
+      if (!payload) {
+        return next(
+          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
+            serverCode: ServerCodes.AuthCode.InvalidCredentials,
+          }),
+        );
+      }
+      const session = await this.authServices.checkSessionExist((payload as UserPayload).session_id);
       if (session === null || session === undefined) {
         return next(
           new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
@@ -203,7 +191,7 @@ class AuthValidation {
       req.user = user;
       req.session = session;
       next();
-    },
+    }),
   ];
 
   public refreshTokenValidation = validate(
@@ -264,44 +252,6 @@ class AuthValidation {
     //   }
     //   next();
     // },
-  ];
-
-  tokenValidation = [
-    validate(
-      checkSchema({
-        Authorization: {
-          in: ['headers'],
-          notEmpty: {
-            errorMessage: APP_MESSAGES.ACCESS_TOKEN_IS_REQUIRED,
-          },
-          trim: true,
-        },
-      }),
-    ),
-    wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {
-      const accessToken = req.headers.authorization?.split(' ')[1];
-      if (!accessToken) {
-        return false;
-      }
-      const result = await verifyToken(accessToken, process.env.JWT_SECRET_KEY as string);
-      if (!result) {
-        // return next( new AppError(APP_MESSAGES.INVALID_TOKEN, HttpStatus.UNAUTHORIZED);
-        return next(
-          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.INVALID_TOKEN, {
-            serverCode: ServerCodes.AuthCode.InvalidCredentials,
-          }),
-        );
-      }
-      if (result.expired || !result.payload) {
-        return next(
-          new AppError(HttpStatus.UNAUTHORIZED, APP_MESSAGES.TOKEN_IS_EXPIRED, {
-            serverCode: ServerCodes.AuthCode.TokenIsExpired,
-          }),
-        );
-      }
-      (req as Request).verifyResult = result;
-      return next();
-    }),
   ];
 
   protect = wrapRequestHandler(async (req: Request, res: Response, next: NextFunction) => {

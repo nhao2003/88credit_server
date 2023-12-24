@@ -1,5 +1,5 @@
 import { Service } from 'typedi';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, QueryFailedError, Repository } from 'typeorm';
 import {
   LoanContractRequestStatus,
   LoanContractRequestTypes,
@@ -143,21 +143,27 @@ class LoanContractRequestService {
       });
     }
 
+    const take = appConfig.ResultPerPage;
     if (orders != null && orders.length > 0) {
       queryBuilder = queryBuilder.orderBy(orders);
     }
 
-    queryBuilder = queryBuilder.skip((page - 1) * 10).take(10);
+    queryBuilder = queryBuilder.skip((page - 1) * take).take(take);
 
-    const count = queryBuilder.getCount();
-    const data = queryBuilder.getMany();
+    const getCount = queryBuilder.getCount();
+    const getMany = queryBuilder.getMany();
 
-    const result = await Promise.all([count, data]);
-
-    return {
-      data: result[1],
-      number_of_pages: Math.ceil(result[0] / 10),
-    };
+    try {
+      const [data, count] = await Promise.all([getMany, getCount]);
+      return {
+        number_of_pages: Math.ceil(count / take),
+        data,
+      };
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        throw AppError.queryFailed();
+      } else throw error;
+    }
   }
 
   async acceptLoanContractRequest(id: string, user_id: string, bank_account_id: string | null): Promise<void> {

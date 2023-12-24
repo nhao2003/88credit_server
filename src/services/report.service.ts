@@ -1,7 +1,7 @@
 import CommonServices from './common.service';
 import { AppError } from '~/models/Error';
 import { ReportContentType, ReportStatus, ReportType } from '~/constants/enum';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, QueryFailedError, Repository } from 'typeorm';
 import { Service } from 'typedi';
 import { User } from '~/models/databases/User';
 import { BaseQuery } from '~/models/typing/base_query';
@@ -54,12 +54,17 @@ class ReportService extends CommonServices {
     }
     const getCount = devQuery.getCount();
     const getMany = devQuery.skip(skip).take(take).getMany();
-    const values_2 = await Promise.all([getCount, getMany]);
-    const [count, reports] = values_2;
-    return {
-      num_of_pages: Math.ceil(count / take),
-      data: reports,
-    };
+    try {
+      const [data, count] = await Promise.all([getMany, getCount]);
+      return {
+        num_of_pages: Math.ceil(count / take),
+        data: data,
+      };
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        throw AppError.queryFailed();
+      } else throw error;
+    }
   };
 
   updateReportStatus = async (id: string, status: ReportStatus) => {

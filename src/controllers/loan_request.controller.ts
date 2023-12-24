@@ -54,12 +54,13 @@ class LoanContractRequestController {
   getLoanContractRequestsByQuery = wrapRequestHandler(async (req: Request, res: Response) => {
     const query = this.loanContractRequestService.buildLoanContractRequestQuery(req.query);
     query.user_id = req.user.id;
-    const result = await this.loanContractRequestService.getLoanContractRequestsByQuery(query);
+    const { data, number_of_pages } = await this.loanContractRequestService.getLoanContractRequestsByQuery(query);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,
       message: 'Get loan contract requests by query successfully',
-      result,
+      num_of_pages: number_of_pages,
+      result: data,
     });
   });
   lenderAcceptLoanContractRequest = wrapRequestHandler(async (req: Request, res: Response) => {
