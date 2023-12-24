@@ -28,7 +28,7 @@ class ContractController {
 
   getContracts = wrapRequestHandler(async (req: Request, res: Response) => {
     const query = await this.contractService.buildContractRequestQuery(req.query);
-    const { number_of_pages, data } = await this.contractService.getLoanContractRequestsByQuery(query);
+    const { number_of_pages, data } = await this.contractService.getLoanContractRequestsByQuery(query, req.user?.id);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,

@@ -183,13 +183,13 @@ class ContractService {
     };
   }
 
-  async getLoanContractRequestsByQuery(query: ContractQuery): Promise<FindResult> {
+  async getLoanContractRequestsByQuery(query: ContractQuery, user_id?: string): Promise<FindResult> {
     const { page, wheres, orders, lenderWhere, borrowerWhere } = query;
-    let queryBuilder = this.contractRepository
-      .createQueryBuilder()
-      .where({
-        lender_id: query.user_id,
-      })
+    let queryBuilder = this.contractRepository.createQueryBuilder();
+    if (user_id != null)
+      queryBuilder = queryBuilder.where('(lender.id = :user_id OR borrower.id = :user_id)', { user_id });
+
+    queryBuilder = queryBuilder
       .leftJoinAndSelect('Contract.lender', 'lender')
       .leftJoinAndSelect('Contract.borrower', 'borrower');
 
