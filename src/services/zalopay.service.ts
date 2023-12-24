@@ -125,7 +125,7 @@ class ZaloPayService {
       phone: orderRequest.phone,
       email: orderRequest.email,
     };
-
+    console.log(body);
     const response = await fetch(AppConfig.ZALOPAY_API as string, {
       method: 'POST',
       body: JSON.stringify(body),

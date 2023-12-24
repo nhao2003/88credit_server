@@ -14,6 +14,7 @@ export type UserQuery = {
   page: number;
   wheres: string[] | null;
   orders: Record<string, any>;
+  search?: string;
 };
 
 @Service()
@@ -45,15 +46,16 @@ class UserServices {
   }
 
   buildUserQuery(userQuery: any): UserQuery {
-    const { page, orders } = userQuery;
+    const { page, orders, search } = userQuery;
     const handleQuery = {
       ...userQuery,
     };
     delete handleQuery.page;
     delete handleQuery.orders;
+    delete handleQuery.search;
     const wheres = buildQuery(handleQuery);
     const buildOrders = buildOrder(orders);
-    return { page, wheres, orders: buildOrders };
+    return { page, wheres, orders: buildOrders, search };
   }
 
   async getUserByQuery(userQuery: UserQuery): Promise<FindResult<User>> {
@@ -64,6 +66,12 @@ class UserServices {
       wheres.forEach((where) => {
         query = query.andWhere(where);
       });
+    }
+    let search = userQuery.search;
+    if (search) {
+      search = search.replace(/ /g, ' | ');
+      query = query.andWhere(`"User".ts_full_name @@ to_tsquery('simple', unaccent('${search}'))`);
+      query = query.orderBy(`ts_rank(ts_full_name, to_tsquery('simple', unaccent('${search}')))`, 'DESC');
     }
     const orders = userQuery.orders;
     if (orders) {

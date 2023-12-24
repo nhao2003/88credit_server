@@ -1,5 +1,14 @@
 import Address from '../typing/address';
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { PostgresDataType, DatabaseDefaultValues } from '~/constants/database_constants';
 import { Role, UserStatus } from '~/constants/enum';
 import { OTP } from './Otp';
@@ -31,6 +40,7 @@ interface IUser {
   updated_at: Date;
   banned_util: Date | null;
   ban_reason: string | null;
+  ts_full_name: string;
 }
 @Entity('users')
 export class User extends BaseEntity implements IUser {
@@ -87,6 +97,9 @@ export class User extends BaseEntity implements IUser {
 
   @Column(PostgresDataType.text, { nullable: true })
   ban_reason!: string | null;
+
+  @Column({ type: 'tsvector', default: '', select: false })
+  ts_full_name!: string;
 
   @OneToMany(() => OTP, (otp) => otp.user)
   @JoinColumn({ name: 'id' })

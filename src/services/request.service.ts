@@ -100,17 +100,17 @@ class LoanContractRequestService {
   }
 
   async checkLoanContractRequestExistByIdAndUserOrThrowError(id: string, user_id: string): Promise<LoanRequest> {
-    const LoanRequest = await this.loanContractRequestRepository
+    // SELECT * FROM LoanRequest WHERE id = id AND (sender_id = user_id OR receiver_id = user_id)
+    const loanRequest = await this.loanContractRequestRepository
       .createQueryBuilder()
-      .where({
-        id,
-      })
-      .andWhere('sender_id = :user_id OR receiver_id = :user_id', { user_id })
+      .where({ id })
+      .andWhere('(sender_id = :user_id OR receiver_id = :user_id)', { user_id })
       .getOne();
-    if (LoanRequest == null) {
+
+    if (loanRequest == null) {
       throw AppError.notFound();
     }
-    return LoanRequest;
+    return loanRequest;
   }
 
   async getLoanContractRequestsByQuery(query: LoanContractRequestQuery): Promise<FindResult<LoanRequest>> {
@@ -273,10 +273,14 @@ class LoanContractRequestService {
         },
       );
     }
+    const amount =
+      Math.floor(loanContractRequest.loan_amount * 0.01) < 10000
+        ? 10000
+        : Math.floor(loanContractRequest.loan_amount * 0.01);
     const zaloPayOrderRequest: ZaloPayOrderRequest = {
       app_user: user_id,
       app_time: new Date(),
-      amount: loanContractRequest.loan_amount * 0.01,
+      amount: amount,
       description: 'Thanh toán yêu cầu vay ' + loanContractRequest.id,
       embed_data: {
         loan_contract_request_id: loanContractRequest.id,
@@ -286,7 +290,7 @@ class LoanContractRequestService {
           item_id: loanContractRequest.id,
           item_type: 'loan_contract_request',
           item_name: 'Yêu cầu vay ' + loanContractRequest.id,
-          item_price: loanContractRequest.loan_amount * 0.01,
+          item_price: amount,
           item_quantity: 1,
         },
       ],
@@ -299,15 +303,16 @@ class LoanContractRequestService {
         APP_MESSAGES.LoanContractRequestMessage.AnErrorOccurredWhileProcessingThePayment,
         {
           serverCode: ServerCodes.LoanRequestCode.PaymentFailed,
-          details: zaloPayResponse.return_message,
+          details: zaloPayResponse,
         },
       );
     }
-    const transaction: Transaction = new Transaction();
+    const transaction = new Transaction();
+
     transaction.id_third_party = zaloPayResponse.app_trans_id;
-    transaction.payment_method = PaymentMethods.zalo_pay;
+    transaction.payment_method = payment_method;
     transaction.status = TransactionStatus.pending;
-    transaction.amount = loanContractRequest.loan_amount * 0.01;
+    transaction.amount = amount;
     transaction.user_id = user_id;
     transaction.title = 'Thanh toán yêu cầu vay ' + loanContractRequest.id;
     transaction.description = 'Thanh toán yêu cầu vay ' + loanContractRequest.id;
@@ -316,7 +321,7 @@ class LoanContractRequestService {
         item_id: loanContractRequest.id,
         item_type: 'loan_contract_request',
         item_name: 'Yêu cầu vay ' + loanContractRequest.id,
-        item_price: loanContractRequest.loan_amount * 0.01,
+        item_price: amount,
         item_quantity: 1,
       },
     ];

@@ -28,12 +28,13 @@ class UserController {
 
   public readonly getAllUsers = wrapRequestHandler(async (req: Request, res: Response) => {
     const userQuery = this.userService.buildUserQuery(req.query);
-    const users = await this.userService.getUserByQuery(userQuery);
+    const { number_of_pages, data } = await this.userService.getUserByQuery(userQuery);
     res.json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,
       message: 'Get all users successfully',
-      result: users,
+      num_of_pages: number_of_pages,
+      result: data,
     });
   });
 }
