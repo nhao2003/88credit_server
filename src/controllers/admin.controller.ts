@@ -2,6 +2,7 @@ import { Service } from 'typedi';
 import ServerCodes from '~/constants/server_codes';
 import AppResponse from '~/models/typing/AppRespone';
 import PostServices from '~/services/post.service';
+import StatisticService from '~/services/statistic.service';
 import UserServices from '~/services/user.service';
 import { wrapRequestHandler } from '~/utils/wrapRequestHandler';
 
@@ -9,9 +10,11 @@ import { wrapRequestHandler } from '~/utils/wrapRequestHandler';
 class AdminController {
   private postService: PostServices;
   private userService: UserServices;
-  constructor(adminService: PostServices, userService: UserServices) {
+  private statisticService: StatisticService;
+  constructor(adminService: PostServices, userService: UserServices, statisticService: StatisticService) {
     this.postService = adminService;
     this.userService = userService;
+    this.statisticService = statisticService;
   }
 
   public readonly approvePost = wrapRequestHandler(async (req, res) => {
@@ -60,6 +63,34 @@ class AdminController {
       message: 'Get all post',
       num_of_pages: result.number_of_pages,
       result: result.data,
+    };
+    res.status(200).json(response);
+  });
+
+  public readonly statistic = wrapRequestHandler(async (req, res) => {
+    const countPostByStatus = this.statisticService.countPostByStatus();
+    const countPostByTypeInMonthOfYear = this.statisticService.countPostByTypeInMonthOfYear();
+    const getTop10UsersHaveMostPosts = this.statisticService.getTop10UsersHaveMostPosts();
+    const countContractByLoanReasonTypeInYear = this.statisticService.countContractByLoanReasonTypeInYear();
+    const countLoanRequestByLoanReasonTypeInYear = this.statisticService.countLoanRequestByLoanReasonTypeInYear();
+    const result = await Promise.all([
+      countPostByStatus,
+      countPostByTypeInMonthOfYear,
+      getTop10UsersHaveMostPosts,
+      countContractByLoanReasonTypeInYear,
+      countLoanRequestByLoanReasonTypeInYear,
+    ]);
+    const response: AppResponse = {
+      code: ServerCodes.CommomCode.Success,
+      status: 'success',
+      message: 'Get statistic',
+      result: {
+        count_post_by_status: result[0],
+        count_post_by_type_in_month_of_year: result[1],
+        top_10_users_have_most_posts: result[2],
+        count_contract_by_loan_reason_type_in_year: result[3],
+        countLoanRequestByLoanReasonTypeInYear: result[4],
+      },
     };
     res.status(200).json(response);
   });

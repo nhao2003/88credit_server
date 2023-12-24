@@ -20,4 +20,7 @@ router.route('/reports/:id').patch(reportController.updateReport);
 router.route('/blogs').get(blogController.getAllBlog).post(blogController.createBlog);
 router.route('/blogs/:id').patch(blogController.updateBlog).delete(blogController.deleteBlog);
 router.route('/blogs/:id/view').get(blogController.viewBlog);
+
+// Statistic
+router.route('/statistic').get(adminController.statistic);
 export default router;

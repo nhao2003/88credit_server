@@ -33,7 +33,7 @@ const handleDevelopmentError = (err: Error, res: Response) => {
   const error = { ...err } as any;
   res.status(error.statusCode || HttpStatus.INTERNAL_SERVER_ERROR).json({
     status: error.status || 'error',
-    code: error.options.serverCode || 500,
+    code: error?.options?.serverCode || ServerCodes.CommomCode.InternalServerError,
     message: err.message,
     error,
   });
@@ -46,7 +46,7 @@ const handleProductionError = (err: any, res: Response) => {
     const error = err as AppError;
     res.status(error.statusCode).json({
       status: (error.status as 'fail' | 'error') || 'success',
-      code: error.options.serverCode || 500,
+      code: error?.options?.serverCode || ServerCodes.CommomCode.InternalServerError,
       message: error.message,
       result: {
         details: error.options.details,
