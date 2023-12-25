@@ -226,7 +226,7 @@ class LoanContractRequestService {
     );
   }
 
-  async rejectLoanContractRequest(id: string, user_id: string): Promise<void> {
+  async rejectLoanContractRequest(id: string, user_id: string, rejected_reason: string | null): Promise<void> {
     const loanContractRequest = await this.checkLoanContractRequestExistByIdAndUserOrThrowError(id, user_id);
     if (loanContractRequest.receiver_id == user_id && loanContractRequest.status != LoanContractRequestStatus.pending) {
       throw new AppError(
@@ -238,7 +238,10 @@ class LoanContractRequestService {
         },
       );
     }
-    await this.loanContractRequestRepository.update({ id }, { status: LoanContractRequestStatus.rejected });
+    // await this.loanContractRequestRepository.update({ id }, { status: LoanContractRequestStatus.rejected });
+    loanContractRequest.status = LoanContractRequestStatus.rejected;
+    loanContractRequest.rejected_reason = rejected_reason;
+    await this.loanContractRequestRepository.save(loanContractRequest);
   }
 
   async cancelLoanContractRequest(id: string, user_id: string): Promise<void> {
@@ -319,7 +322,7 @@ class LoanContractRequestService {
         },
       ],
       bank_code: 'zalopayapp',
-      callback_url: 'https://eight8credit.onrender.com/contract/verify-zalopay-payment'
+      callback_url: 'https://eight8credit.onrender.com/contract/verify-zalopay-payment',
     };
     const zaloPayResponse = await this.zaloPayService.createOrder(zaloPayOrderRequest);
     if (zaloPayResponse.return_code != 1) {

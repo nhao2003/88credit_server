@@ -89,7 +89,8 @@ class LoanContractRequestController {
 
   rejectLoanContractRequest = wrapRequestHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
-    await this.loanContractRequestService.rejectLoanContractRequest(id, req.user.id);
+    const { rejected_reason } = req.body;
+    await this.loanContractRequestService.rejectLoanContractRequest(id, req.user.id, rejected_reason);
     res.status(200).json({
       status: 'success',
       code: ServerCodes.CommomCode.Success,
