@@ -8,19 +8,6 @@ export class RequestValidation {
   public createRequest = [
     validate(
       checkSchema({
-        sender_id: {
-          in: ['body'],
-          isUUID: {
-            errorMessage: 'Sender id is not valid',
-          },
-          notEmpty: {
-            errorMessage: 'Sender id is required',
-          },
-          trim: true,
-          isString: {
-            errorMessage: 'Sender id is not valid',
-          },
-        },
         receiver_id: {
           in: ['body'],
           isUUID: {
