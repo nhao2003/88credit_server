@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -25,7 +26,7 @@ interface IReport {
 }
 
 @Entity('reports')
-class Report implements IReport {
+class Report extends BaseEntity implements IReport {
   @PrimaryGeneratedColumn(PostgresDataType.uuid)
   id!: string;
 

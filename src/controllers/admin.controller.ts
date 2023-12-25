@@ -31,7 +31,8 @@ class AdminController {
 
   public readonly rejectPost = wrapRequestHandler(async (req, res) => {
     const { postId } = req.params;
-    const result = await this.postService.rejectPost(postId);
+    const rejected_reason = req.body.rejected_reason;
+    const result = await this.postService.rejectPost(postId, rejected_reason);
     const response: AppResponse = {
       code: ServerCodes.CommomCode.Success,
       status: 'success',
@@ -73,12 +74,14 @@ class AdminController {
     const getTop10UsersHaveMostPosts = this.statisticService.getTop10UsersHaveMostPosts();
     const countContractByLoanReasonTypeInYear = this.statisticService.countContractByLoanReasonTypeInYear();
     const countLoanRequestByLoanReasonTypeInYear = this.statisticService.countLoanRequestByLoanReasonTypeInYear();
+    const countUserPerStatus = this.statisticService.countUserPerStatus();
     const result = await Promise.all([
       countPostByStatus,
       countPostByTypeInMonthOfYear,
       getTop10UsersHaveMostPosts,
       countContractByLoanReasonTypeInYear,
       countLoanRequestByLoanReasonTypeInYear,
+      countUserPerStatus,
     ]);
     const response: AppResponse = {
       code: ServerCodes.CommomCode.Success,
@@ -89,7 +92,8 @@ class AdminController {
         count_post_by_type_in_month_of_year: result[1],
         top_10_users_have_most_posts: result[2],
         count_contract_by_loan_reason_type_in_year: result[3],
-        countLoanRequestByLoanReasonTypeInYear: result[4],
+        count_loan_request_by_loan_reason_type_in_year: result[4],
+        count_user_per_status: result[5],
       },
     };
     res.status(200).json(response);

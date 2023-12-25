@@ -1,5 +1,6 @@
 import { Service } from 'typedi';
 import { DataSource, Repository } from 'typeorm';
+import { UserStatus } from '~/constants/enum';
 import Contract from '~/models/databases/Contract';
 import LoanRequest from '~/models/databases/LoanRequest';
 import Post from '~/models/databases/Post';
@@ -21,11 +22,11 @@ class StatisticService {
   async countPostByTypeInMonthOfYear() {
     const result = await this.postRepository
       .createQueryBuilder()
-      .select('EXTRACT(MONTH FROM created_at)', 'month')
+      .select('type')
+      .addSelect('EXTRACT(MONTH FROM created_at)', 'month')
       .addSelect('EXTRACT(YEAR FROM created_at)', 'year')
-      .addSelect('COUNT(*)', 'total_posts_by_type')
-      .where('EXTRACT(YEAR FROM created_at) = EXTRACT(YEAR FROM CURRENT_TIMESTAMP)')
-      .groupBy('EXTRACT(MONTH FROM created_at), EXTRACT(YEAR FROM created_at)')
+      .addSelect('COUNT(*)', 'total')
+      .groupBy('type, EXTRACT(MONTH FROM created_at), EXTRACT(YEAR FROM created_at)')
       .orderBy('EXTRACT(YEAR FROM created_at), EXTRACT(MONTH FROM created_at)')
       .getRawMany();
     return result;
@@ -34,7 +35,7 @@ class StatisticService {
     const result = await this.postRepository
       .createQueryBuilder()
       .select('status')
-      .addSelect('COUNT(*)', 'total_posts_by_status')
+      .addSelect('COUNT(*)', 'total')
       .groupBy('status')
       .orderBy('status')
       .getRawMany();
@@ -82,6 +83,30 @@ class StatisticService {
       .orderBy('EXTRACT(YEAR FROM created_at), loan_reason_type')
       .getRawMany();
     return result;
+  }
+
+  // CountUserPerStatus
+  async countUserPerStatus(): Promise<{
+    num_of_verified: number;
+    num_of_banned: number;
+    num_of_unverified: number;
+  }> {
+    const num_of_verified = this.userRepository.count({
+      where: { status: UserStatus.verified },
+    });
+    const num_of_banned = this.userRepository.count({
+      where: { status: UserStatus.banned },
+    });
+    const num_of_unverified = this.userRepository.count({
+      where: { status: UserStatus.unverified },
+    });
+    return await Promise.all([num_of_verified, num_of_banned, num_of_unverified]).then((result) => {
+      return {
+        num_of_verified: result[0],
+        num_of_banned: result[1],
+        num_of_unverified: result[2],
+      };
+    });
   }
 }
 

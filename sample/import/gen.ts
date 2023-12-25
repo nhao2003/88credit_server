@@ -44,3 +44,7 @@ export function genLoanContractRequestStatus(): string {
   const statuses: string[] = Object.values(LoanContractRequestStatus);
   return statuses[Math.floor(Math.random() * statuses.length)];
 }
+
+export function genRandomDate(from: Date, to: Date): Date {
+  return new Date(from.getTime() + Math.random() * (to.getTime() - from.getTime()));
+}

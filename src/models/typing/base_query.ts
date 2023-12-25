@@ -1,12 +1,12 @@
 export type BaseQuery = {
   user_id?: string;
-  page: number;
+  page: number | 'all';
   wheres: string[];
   orders: any;
 };
 
 export type PostQuery = {
-  page: number;
+  page: number | 'all';
   postWhere: string[];
   order: any;
   userWhere: string[];

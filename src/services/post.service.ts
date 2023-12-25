@@ -24,7 +24,13 @@ class PostServices {
   buildPostQuery(query: Record<string, any>): PostQuery {
     console.log(query);
     const { page, orders, search } = query;
-    const pageParam = Number(page) || 1;
+    // const pageParam = Number(page) || 1;
+    let pageParam;
+    if (page === 'all') {
+      pageParam = 'all';
+    } else {
+      pageParam = Number(page) || 1;
+    }
     const postQueries: {
       [key: string]: any;
     } = {};
@@ -49,7 +55,7 @@ class PostServices {
     const order = buildOrder(orders, 'Post');
 
     return {
-      page: pageParam,
+      page: pageParam as number | 'all',
       postWhere,
       userWhere,
       order,
@@ -105,7 +111,12 @@ class PostServices {
   }
 
   async getPostsByQuery(postQuery: PostQuery): Promise<FindResult<Post>> {
-    const page = postQuery.page || 1;
+    let page;
+    if (postQuery.page === 'all') {
+      page = 'all';
+    } else {
+      page = Number(postQuery.page) || 1;
+    }
     let query = this.postRepository.createQueryBuilder().leftJoinAndSelect('Post.user', 'user');
 
     if (postQuery.postWhere) {
@@ -122,10 +133,14 @@ class PostServices {
     query = query.orderBy(postQuery.order);
     const take = appConfig.ResultPerPage;
     const getCount = query.getCount();
-    const getMany = query
-      .skip((page - 1) * take)
-      .take(take)
-      .getMany();
+    // const getMany = query
+    //   .skip((page - 1) * take)
+    //   .take(take)
+    //   .getMany();
+    if (page !== 'all') {
+      query = query.skip((Number(page) - 1) * take).take(take);
+    }
+    const getMany = query.getMany();
     try {
       const [data, count] = await Promise.all([getMany, getCount]);
       return {
@@ -162,7 +177,7 @@ class PostServices {
     return await this.postRepository.save(post);
   }
 
-  async rejectPost(postId: string) {
+  async rejectPost(postId: string, rejected_reason: string) {
     const post = await this.postRepository.findOne({
       where: {
         id: postId,
@@ -175,6 +190,7 @@ class PostServices {
       throw AppError.notFound();
     }
     post.status = PostStatus.rejected;
+    post.rejected_reason = rejected_reason;
     return await this.postRepository.save(post);
   }
 

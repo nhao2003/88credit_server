@@ -29,9 +29,14 @@ class ReportService extends CommonServices {
   public readonly getAllByQuery = async (query: BaseQuery): Promise<FindResult<Report>> => {
     let { page } = query;
     const { wheres, orders } = query;
-    page = Number(page) || 1;
+    if (page === 'all') {
+      page = 'all';
+    } else {
+      page = Number(page) > 0 ? Number(page) : 1;
+    }
     const take = appConfig.ResultPerPage;
-    const skip = (page - 1) * take;
+    // const skip = (page - 1) * take;
+    const skip = page === 'all' ? 0 : (page - 1) * take;
     let devQuery = this.repository.createQueryBuilder();
     devQuery = devQuery.leftJoinAndSelect('Report.reporter', 'user');
     devQuery = devQuery.setParameters({ current_user_id: null });
@@ -49,7 +54,14 @@ class ReportService extends CommonServices {
       devQuery = devQuery.orderBy(orders);
     }
     const getCount = devQuery.getCount();
-    const getMany = devQuery.skip(skip).take(take).getMany();
+    // const getMany = devQuery.skip(skip).take(take).getMany();
+    let getMany;
+    if (page === 'all') {
+      getMany = devQuery.getMany();
+    } else {
+      getMany = devQuery.skip(skip).take(take).getMany();
+    }
+
     try {
       const [data, count] = await Promise.all([getMany, getCount]);
       return {

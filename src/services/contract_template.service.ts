@@ -21,9 +21,16 @@ class ContractTemplateService {
     number_of_pages: number;
     contract_templates: ContractTemplate[];
   }> {
-    const page = query.page || 1;
+    // const page = query.page || 1;
+    // const take = appConfig.ResultPerPage;
+    // const offset = (page - 1) * take;
+    let { page } = query;
+    if (page === 'all') {
+      page = 'all';
+    } else {
+      page = Number(page) > 0 ? Number(page) : 1;
+    }
     const take = appConfig.ResultPerPage;
-    const offset = (page - 1) * take;
     const where = query.wheres || [];
     const order = query.orders || {};
     let queryBuilder = this.contractTemplateRepository.createQueryBuilder();
@@ -33,8 +40,16 @@ class ContractTemplateService {
     queryBuilder = queryBuilder.orderBy(order);
 
     const count = queryBuilder.getCount();
-    const getMany = queryBuilder.limit(take).offset(offset).getMany();
-
+    // const getMany = queryBuilder.limit(take).offset(offset).getMany();
+    let getMany;
+    if (page === 'all') {
+      getMany = queryBuilder.getMany();
+    } else {
+      getMany = queryBuilder
+        .skip((page - 1) * take)
+        .take(take)
+        .getMany();
+    }
     const [contract_templates, total] = await Promise.all([getMany, count]);
     return {
       number_of_pages: Math.ceil(total / take),
