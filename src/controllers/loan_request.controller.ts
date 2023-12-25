@@ -25,6 +25,7 @@ class LoanContractRequestController {
         portait_photo: req.body.portait_photo,
         id_card_front_photo: req.body.id_card_front_photo,
         id_card_back_photo: req.body.id_card_back_photo,
+        description: req.body.description,
       };
       const result = await this.loanContractRequestService.createLoanContractRequest(data);
       res.status(200).json({

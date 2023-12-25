@@ -3,6 +3,7 @@ import { LoanContractRequestStatus, LoanContractRequestTypes, LoanReasonTypes } 
 interface LoanRequestCreateData {
   sender_id: string;
   receiver_id: string;
+  description: string;
   loan_amount: number;
   interest_rate: number;
   overdue_interest_rate: number;

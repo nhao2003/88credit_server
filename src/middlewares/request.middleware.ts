@@ -163,6 +163,16 @@ export class RequestValidation {
             errorMessage: 'Sender bank account id is not valid',
           },
         },
+        description: {
+          in: ['body'],
+          notEmpty: {
+            errorMessage: 'Description is required',
+          },
+          trim: true,
+          isString: {
+            errorMessage: 'Description is not valid',
+          }
+        },
       }),
     ),
   ];
