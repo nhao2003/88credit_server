@@ -166,7 +166,7 @@ class LoanContractRequestService {
     }
 
     const take = appConfig.ResultPerPage;
-    if (orders != null && orders.length > 0) {
+    if (orders != null) {
       queryBuilder = queryBuilder.orderBy(orders);
     }
 
