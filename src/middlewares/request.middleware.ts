@@ -108,7 +108,7 @@ export class RequestValidation {
           },
         },
 
-        video_comfirmation: {
+        video_confirmation: {
           in: ['body'],
           notEmpty: {
             errorMessage: 'Video confirmation is required',

@@ -9,7 +9,7 @@ interface LoanRequestCreateData {
   loan_tenure_months: number;
   loan_reason_type: string;
   loan_reason: string;
-  video_comfirmation: string;
+  video_confirmation: string;
   portait_photo: string;
   id_card_front_photo: string;
   id_card_back_photo: string;

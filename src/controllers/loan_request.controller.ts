@@ -20,7 +20,7 @@ class LoanContractRequestController {
         loan_tenure_months: req.body.loan_tenure_months,
         loan_reason_type: req.body.loan_reason_type,
         loan_reason: req.body.loan_reason,
-        video_comfirmation: req.body.video_comfirmation,
+        video_confirmation: req.body.video_confirmation,
         sender_bank_account_id: req.body.sender_bank_account_id,
         portait_photo: req.body.portait_photo,
         id_card_front_photo: req.body.id_card_front_photo,

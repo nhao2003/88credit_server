@@ -40,6 +40,19 @@ class ContractTemplateController {
       status: 'success',
       code: ServerCodes.CommomCode.Success,
       message: 'Get contract templates successfully',
+      num_of_pages: result.number_of_pages,
+      result: result.contract_templates,
+    });
+  });
+
+  updateContractTemplate = wrapRequestHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const data = req.body;
+    const result = await this.contractTemplateService.updateContractTemplate(id, data);
+    res.status(200).json({
+      status: 'success',
+      code: ServerCodes.CommomCode.Success,
+      message: 'Update contract template successfully',
       result,
     });
   });
