@@ -151,9 +151,9 @@ class ContractService {
     } = {};
 
     Object.keys(query)
-      .filter((key) => key.startsWith('request_'))
+      .filter((key) => key.startsWith('contract_'))
       .forEach((key) => {
-        postQueries[key.replace('request_', '')] = query[key];
+        postQueries[key.replace('contract_', '')] = query[key];
       });
 
     Object.keys(query)
@@ -220,6 +220,7 @@ class ContractService {
 
     const getCount = queryBuilder.getCount();
     const getMany = queryBuilder.getMany();
+    console.log(queryBuilder.getQuery());
 
     try {
       const [data, count] = await Promise.all([getMany, getCount]);
