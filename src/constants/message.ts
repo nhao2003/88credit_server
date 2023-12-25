@@ -142,6 +142,7 @@ export const APP_MESSAGES = {
   },
   BankMessage: {
     LenderBankAccountIsNotExisted: 'Lender bank account is not existed',
+    BankCardIsNotExisted: 'Bank card is not existed',
   },
   ReportMessage: {
     ReportIsAlreadyApproved: 'Report is already approved',

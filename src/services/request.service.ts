@@ -84,7 +84,27 @@ class LoanContractRequestService {
   }
 
   async createLoanContractRequest(data: LoanRequestCreateData): Promise<void> {
-    await this.loanContractRequestRepository.insert(data);
+    const loanContractRequest = new LoanRequest();
+    loanContractRequest.sender_id = data.sender_id;
+    loanContractRequest.receiver_id = data.receiver_id;
+    loanContractRequest.description = data.description;
+    loanContractRequest.loan_amount = data.loan_amount;
+    loanContractRequest.interest_rate = data.interest_rate;
+    loanContractRequest.overdue_interest_rate = data.overdue_interest_rate;
+    loanContractRequest.loan_tenure_months = data.loan_tenure_months;
+    loanContractRequest.loan_reason_type = data.loan_reason_type;
+    loanContractRequest.loan_reason = data.loan_reason;
+    loanContractRequest.video_confirmation = data.video_confirmation;
+    loanContractRequest.portait_photo = data.portait_photo;
+    loanContractRequest.id_card_front_photo = data.id_card_front_photo;
+    loanContractRequest.id_card_back_photo = data.id_card_back_photo;
+    loanContractRequest.status = LoanContractRequestStatus.pending;
+    const bankCard = await this.bankService.getPrimaryBankCard(data.sender_id);
+    if (bankCard == null) {
+      throw AppError.notFound(APP_MESSAGES.BankMessage.BankCardIsNotExisted);
+    }
+    loanContractRequest.sender_bank_card_id = bankCard.id;
+    await this.loanContractRequestRepository.save(loanContractRequest);
   }
 
   async getLoanContractRequestById(id: string): Promise<LoanRequest | null> {

@@ -14,6 +14,5 @@ interface LoanRequestCreateData {
   portait_photo: string;
   id_card_front_photo: string;
   id_card_back_photo: string;
-  sender_bank_account_id: string;
 }
 export default LoanRequestCreateData;

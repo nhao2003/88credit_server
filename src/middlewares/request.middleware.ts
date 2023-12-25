@@ -150,19 +150,6 @@ export class RequestValidation {
             errorMessage: 'ID card back photo is not valid',
           },
         },
-        sender_bank_account_id: {
-          in: ['body'],
-          isUUID: {
-            errorMessage: 'Sender bank account id is not valid',
-          },
-          notEmpty: {
-            errorMessage: 'Sender bank account id is required',
-          },
-          trim: true,
-          isString: {
-            errorMessage: 'Sender bank account id is not valid',
-          },
-        },
         description: {
           in: ['body'],
           notEmpty: {
@@ -172,7 +159,7 @@ export class RequestValidation {
           isString: {
             errorMessage: 'Description is not valid',
           }
-        },
+        }
       }),
     ),
   ];
