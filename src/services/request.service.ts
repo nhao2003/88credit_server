@@ -137,9 +137,13 @@ class LoanContractRequestService {
     const { page, wheres, orders, lenderWhere, borrowerWhere } = query;
     let queryBuilder = this.loanContractRequestRepository
       .createQueryBuilder()
-      .where({
-        sender_id: query.user_id,
-      })
+      // .where({
+      //   sender_id: query.user_id,
+      // })
+      // .orWhere({
+      //   receiver_id: query.user_id,
+      // })
+      .where('(LoanRequest.sender_id = :user_id OR LoanRequest.receiver_id = :user_id)', { user_id: query.user_id })
       .leftJoinAndSelect('LoanRequest.sender', 'sender')
       .leftJoinAndSelect('LoanRequest.receiver', 'receiver');
 
