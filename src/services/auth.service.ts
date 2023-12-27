@@ -144,14 +144,14 @@ class AuthServices {
   public async grantNewAccessToken(refresh_token: string): Promise<string | null | undefined> {
     const { payload, expired } = await verifyToken(refresh_token);
     if (expired) return null;
-    const { id, session_id } = payload as UserPayload;
+    const { user_id, session_id } = payload as UserPayload;
     const session = await this.sessionRepository.findOne({
-      where: { id: session_id, user_id: id, expiration_date: MoreThanOrEqual(new Date()) },
+      where: { id: session_id, user_id, expiration_date: MoreThanOrEqual(new Date()) },
     });
     if (session === null || session === undefined) return session;
     session.updated_at = new Date();
     await this.sessionRepository.save(session);
-    return this.generateAccessToken(id, session_id);
+    return this.generateAccessToken(user_id, session_id);
   }
 
   public async getOTP(user_id: string, otp_code: string, type: string): Promise<OTP | null> {
