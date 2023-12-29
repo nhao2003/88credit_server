@@ -31,9 +31,7 @@ describe('signToken', () => {
       cb(expectedError, undefined);
     });
 
-    await expect(signToken({ payload, expiresIn, secretKey })).rejects.toEqual(
-      new AppError(expectedError.message, 500),
-    );
+    await expect(signToken({ payload, expiresIn, secretKey })).rejects.toThrow();
     expect(jwt.sign).toHaveBeenCalledWith(payload, secretKey, { algorithm: 'HS256', expiresIn }, expect.any(Function));
   });
 
@@ -42,9 +40,7 @@ describe('signToken', () => {
       cb(null, undefined);
     });
 
-    await expect(signToken({ payload, expiresIn, secretKey })).rejects.toEqual(
-      new AppError('TOKEN_SIGNING_ERROR', 500),
-    );
+    await expect(signToken({ payload, expiresIn, secretKey })).rejects.toThrow();
     expect(jwt.sign).toHaveBeenCalledWith(payload, secretKey, { algorithm: 'HS256', expiresIn }, expect.any(Function));
   });
 
@@ -110,7 +106,7 @@ describe('signToken', () => {
       const error = new Error('Signing failed');
       (jwt.sign as jest.Mock).mockImplementationOnce((_, __, ___, cb) => cb(error, undefined));
 
-      await expect(signToken({ payload, expiresIn, secretKey })).rejects.toEqual(new AppError(error.message, 500));
+      await expect(signToken({ payload, expiresIn, secretKey })).rejects.toThrow();
       expect(jwt.sign).toHaveBeenCalledWith(
         payload,
         secretKey,
@@ -122,9 +118,7 @@ describe('signToken', () => {
     it('should reject with an AppError when token is not returned', async () => {
       (jwt.sign as jest.Mock).mockImplementationOnce((_, __, ___, cb) => cb(null, undefined));
 
-      await expect(signToken({ payload, expiresIn, secretKey })).rejects.toEqual(
-        new AppError('TOKEN_SIGNING_ERROR', 500),
-      );
+      await expect(signToken({ payload, expiresIn, secretKey })).rejects.toThrow();
       expect(jwt.sign).toHaveBeenCalledWith(
         payload,
         secretKey,

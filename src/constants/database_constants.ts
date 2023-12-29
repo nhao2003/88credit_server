@@ -14,7 +14,7 @@ export enum PostgresDataType {
 }
 
 export const DatabaseDefaultValues = {
-  now: 'CURRENT_TIMESTAMP',
+  now: 'now()',
   true: 'true',
   false: 'false',
 };

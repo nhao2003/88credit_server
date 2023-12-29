@@ -6,6 +6,11 @@ import { Session } from '../../src/models/databases/Sesstion';
 import { OTPTypes, UserStatus } from '../../src/constants/enum';
 import * as jwt from '../../src/utils/jwt';
 import * as crypto from '../../src/utils/crypto';
+import { spy } from 'ts-mockito';
+import { AppError } from '../../src/models/Error';
+import HttpStatus from '../../src/constants/httpStatus';
+import ServerCodes from '../../src/constants/server_codes';
+import { APP_MESSAGES } from '../../src/constants/message';
 describe('AuthServices', () => {
   let authServices: AuthServices;
   let userRepository: Repository<User>;
@@ -119,23 +124,39 @@ describe('AuthServices', () => {
 
   describe('signIn', () => {
     it('should return token', async () => {
-      userRepository.findOne = jest.fn().mockReturnValue({ id: '1', status: UserStatus.verified });
+      // userRepository.findOne = jest.fn().mockReturnValue({ id: '1', status: UserStatus.verified });
+      userRepository = {
+        createQueryBuilder: jest.fn().mockReturnValue({
+          where: jest.fn().mockReturnThis(),
+          addSelect: jest.fn().mockReturnThis(),
+          getOne: jest.fn().mockReturnValue({ id: '1', status: UserStatus.verified, password: 'hash' }),
+        }),
+      } as any;
 
       sessionRepository = {
         insert: jest.fn().mockReturnValue({ identifiers: [{ id: '1' }] }),
       } as any;
 
+      jest.spyOn(crypto, 'hashPassword').mockReturnValue('hash');
+
       authServices = new AuthServices(dataSource);
       const createSessionSpy = jest.spyOn(authServices, 'createSession');
-
-      const result = await authServices.signIn('email', 'password');
-      expect(createSessionSpy).toBeCalledWith('1');
+      const result = await authServices.signIn('email', 'hash');
+      expect(createSessionSpy).toHaveBeenCalledTimes(1);
+      console.log(result);
       expect(result).toBeDefined();
     });
 
     it('should return null if user is not found', async () => {
-      userRepository.findOne = jest.fn().mockReturnValue(null);
+      userRepository = {
+        createQueryBuilder: jest.fn().mockReturnValue({
+          where: jest.fn().mockReturnThis(),
+          addSelect: jest.fn().mockReturnThis(),
+          getOne: jest.fn().mockReturnValue(null),
+        }),
+      } as any;
 
+      authServices = new AuthServices(dataSource);
       const result = await authServices.signIn('email', 'password');
       expect(result).toEqual(null);
     });
@@ -210,25 +231,37 @@ describe('AuthServices', () => {
 
   describe('activeAccount', () => {
     it('should return true if otp is found', async () => {
-      const user = { id: '1', status: UserStatus.unverified };
+      const user = { id: '1', status: UserStatus.unverified, email: 'email', password: '123' } as any;
       otpRepository = {
-        findOne: jest.fn().mockReturnValue(user),
+        createQueryBuilder: jest.fn().mockReturnValue({
+          where: jest.fn().mockReturnThis(),
+          getOne: jest.fn().mockReturnValue({ id: '1' }),
+        }),
+        findOne: jest.fn().mockReturnValue({ id: '1' }),
         save: jest.fn().mockReturnValue({}),
       } as any;
       userRepository = {
-        findOne: jest.fn().mockReturnValue(user),
+        createQueryBuilder: jest.fn().mockReturnValue({
+          where: jest.fn().mockReturnThis(),
+          getOne: jest.fn().mockReturnValue(user),
+          addSelect: jest.fn().mockReturnThis(),
+          findOne: jest.fn().mockReturnValue(user),
+        }),
         save: jest.fn().mockReturnValue({}),
       } as any;
+      sessionRepository = {
+        insert: jest.fn().mockReturnValue({ identifiers: [{ id: '1' }] }),
+      } as any;
       authServices = new AuthServices(dataSource);
-      const result = await authServices.activeAccount('1');
-      expect(result).toEqual(true);
+      const result = await authServices.activeAccount(user.email, '123456', '000000');
+      const { access_token, refresh_token } = result;
+      expect(access_token).toBeDefined();
+      expect(refresh_token).toBeDefined();
     });
 
     it('should return false if otp is not found', async () => {
       otpRepository.findOne = jest.fn().mockReturnValue(null);
-
-      const result = await authServices.activeAccount('1');
-      expect(result).toEqual(false);
+      expect(authServices.activeAccount('1', '123456', '000000')).rejects.toThrow('OTP code is incorrect or expired');
     });
   });
 
@@ -284,18 +317,18 @@ describe('AuthServices', () => {
       }));
 
       const result = await authServices.getUserByEmailAndPassword('email', 'password');
-      expect(result).toEqual({ user: { id: '1', password: 'hash' }, password_is_correct: false });
+      expect(result).toEqual({ user: { id: '1', password: 'hash' }, password_is_correct: true });
     });
 
     it('should return user and password_is_correct is false', async () => {
       userRepository.createQueryBuilder = jest.fn().mockReturnValue({
         addSelect: jest.fn().mockReturnThis(),
         where: jest.fn().mockReturnThis(),
-        getOne: jest.fn().mockReturnValue({ id: '1', password: 'hash' }),
+        getOne: jest.fn().mockReturnValue({ id: '1', password: 'hash1' }),
       });
 
       const result = await authServices.getUserByEmailAndPassword('email', 'wrong_password');
-      expect(result).toEqual({ user: { id: '1', password: 'hash' }, password_is_correct: false });
+      expect(result).toEqual({ user: { id: '1', password: 'hash1' }, password_is_correct: false });
     });
 
     it('should return user and password_is_correct is false', async () => {
@@ -355,16 +388,16 @@ describe('AuthServices', () => {
       } as any;
       authServices = new AuthServices(dataSource);
       const result = await authServices.changePassword('1', '123');
-      expect(result).toEqual(true);
+      expect(userRepository.save).toHaveBeenCalledTimes(1);
     });
 
-    it('should return false if user is not found', async () => {
+    it('should throw error if user is not found', async () => {
       userRepository = {
         findOne: jest.fn().mockReturnValue(null),
       } as any;
       authServices = new AuthServices(dataSource);
-      const result = await authServices.changePassword('1', '123');
-      expect(result).toEqual(false);
+      const result = authServices.changePassword('1', '123');
+      expect(result).rejects.toThrow('User not found');
     });
   });
 
@@ -386,8 +419,8 @@ describe('AuthServices', () => {
     it('should return null if user is not found', async () => {
       userRepository.findOne = jest.fn().mockReturnValue(null);
 
-      const result = await authServices.forgotPassword('email');
-      expect(result).toEqual(null);
+      const result = authServices.forgotPassword('email');
+      expect(result).rejects.toThrow('User not found');
     });
   });
 
@@ -398,6 +431,96 @@ describe('AuthServices', () => {
       }));
       const result = await authServices.generateResetPasswordToken('1', '1');
       expect(result).toBeDefined();
+    });
+  });
+
+  describe('resetPassword', () => {
+    it('should reset password and return access token and refresh token', async () => {
+      const user = { id: '1' } as any;
+      const otpCode = '123456';
+      const password = 'newPassword';
+      const accessToken = 'accessToken';
+      const refreshToken = 'refreshToken';
+
+      userRepository.findOne = jest.fn().mockReturnValue(user);
+      authServices.checkUserExistByEmail = jest.fn().mockReturnValue(user);
+      authServices.verifyOTPCodeAndUse = jest.fn().mockReturnValue(true);
+      authServices.changePassword = jest.fn();
+      authServices.signOutAll = jest.fn();
+      authServices.createSession = jest
+        .fn()
+        .mockReturnValue({ access_token: accessToken, refresh_token: refreshToken });
+
+      const result = await authServices.resetPassword('test@example.com', password, otpCode);
+
+      expect(authServices.checkUserExistByEmail).toHaveBeenCalledWith('test@example.com');
+      expect(authServices.verifyOTPCodeAndUse).toHaveBeenCalledWith(user.id, otpCode, OTPTypes.password_recovery);
+      expect(authServices.changePassword).toHaveBeenCalledWith(user.id, password);
+      expect(authServices.signOutAll).toHaveBeenCalledWith(user.id);
+      expect(authServices.createSession).toHaveBeenCalledWith(user.id);
+      expect(result).toEqual({ access_token: accessToken, refresh_token: refreshToken });
+    });
+
+    it('should throw an error if user is not found', async () => {
+      userRepository.findOne = jest.fn().mockReturnValue(null);
+      authServices = new AuthServices(dataSource);
+      await expect(authServices.resetPassword('test@example.com', 'newPassword', '123456')).rejects.toThrow(
+        new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, {
+          serverCode: ServerCodes.AuthCode.UserNotFound,
+        }),
+      );
+    });
+
+    it('should throw an error if OTP code is incorrect or expired', async () => {
+      const user = { id: '1' } as any;
+
+      userRepository.findOne = jest.fn().mockReturnValue(user);
+      authServices.checkUserExistByEmail = jest.fn().mockReturnValue(user);
+      authServices.verifyOTPCodeAndUse = jest.fn().mockReturnValue(false);
+
+      await expect(authServices.resetPassword('test@example.com', 'newPassword', '123456')).rejects.toThrowError(
+        new AppError(HttpStatus.BAD_REQUEST, APP_MESSAGES.OTPCodeIsIncorrectOrExpired, {
+          serverCode: ServerCodes.AuthCode.OTPCodeIsIncorrectOrExpired,
+        }),
+      );
+    });
+  });
+
+  // public async verifyOtpCode(email: string, otp_code: string, type: OTPTypes): Promise<boolean> {
+  //   const user = await this.checkUserExistByEmail(email);
+  //   if (user === null || user === undefined) {
+  //     throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, {
+  //       serverCode: ServerCodes.AuthCode.UserNotFound,
+  //     });
+  //   }
+  //   const verifyOTPCodes = await this.getOTP(user.id, otp_code, type);
+  //   if (verifyOTPCodes === null) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
+
+  describe('verifyOtpCode', () => {
+    it('should return true', async () => {
+      const user = { id: '1' } as any;
+      const otpCode = '123456';
+
+      userRepository.findOne = jest.fn().mockReturnValue(user);
+      authServices.checkUserExistByEmail = jest.fn().mockReturnValue(user);
+      authServices.getOTP = jest.fn().mockReturnValue({ id: '1' });
+
+      const result = await authServices.verifyOtpCode('000000', otpCode, OTPTypes.account_activation);
+      expect(result).toEqual(true);
+    });
+
+    it('should return false if user is not found', async () => {
+      userRepository.findOne = jest.fn().mockReturnValue(null);
+      authServices = new AuthServices(dataSource);
+      await expect(authServices.verifyOtpCode('000000', '123456', OTPTypes.account_activation)).rejects.toThrow(
+        new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.USER_NOT_FOUND, {
+          serverCode: ServerCodes.AuthCode.UserNotFound,
+        }),
+      );
     });
   });
 });

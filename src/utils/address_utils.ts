@@ -101,5 +101,3 @@ class AddressUtils {
   }
 }
 export default AddressUtils.getInstance();
-
-console.log(AddressUtils.getInstance().getProvinces());

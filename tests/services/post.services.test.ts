@@ -250,7 +250,7 @@ describe('PostServices', () => {
       // Assert
       expect(result).toBeDefined();
       expect(result.data).toEqual(posts);
-      expect(result.numberOfPages).toBe(1);
+      expect(result.number_of_pages).toBe(1);
     });
 
     it('should get posts by query without search', async () => {
@@ -309,7 +309,7 @@ describe('PostServices', () => {
       // Assert
       expect(result).toBeDefined();
       expect(result.data).toEqual(posts);
-      expect(result.numberOfPages).toBe(1);
+      expect(result.number_of_pages).toBe(1);
     });
   });
 

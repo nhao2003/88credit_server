@@ -240,7 +240,8 @@ class AuthServices {
     if (user === null) {
       return { user, password_is_correct: false };
     }
-    const password_is_correct = hashPassword(password) === user.password;
+    const hashed_password = hashPassword(password);
+    const password_is_correct = hashed_password === user.password;
     return { user, password_is_correct };
   }
 
@@ -294,6 +295,13 @@ class AuthServices {
     });
     return reset_password_token;
   }
+  verifyUserByAccessToken = async (access_token: string): Promise<User | null> => {
+    const { payload, expired } = await verifyToken(access_token);
+    if (expired) return null;
+    const { user_id } = payload as UserPayload;
+    const user = await this.userRepository.findOne({ where: { id: user_id } });
+    return user;
+  };
 }
 
 export default AuthServices;

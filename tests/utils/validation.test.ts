@@ -52,14 +52,8 @@ describe('validate', () => {
     expect(validation.run).toHaveBeenCalledWith(req);
     expect(validationResult).toHaveBeenCalledWith(req);
     expect(errors.array).toHaveBeenCalled();
-    expect(next).toHaveBeenCalledWith(
-      new AppError('Invalid Request Body', 401, [
-        {
-          message: 'Invalid email',
-          path: 'email',
-          value: 'invalid-email',
-        },
-      ]),
-    );
+    expect(next).toHaveBeenCalledWith(new AppError(401, 'Invalid Request Body', {
+      serverCode: 4,
+    }));
   });
 });

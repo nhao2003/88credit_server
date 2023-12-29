@@ -54,5 +54,9 @@ const ServerCodes = {
   BankCode: {
     AddBankAccountFailed: 700,
   },
+  ConversationCode: {
+    ConversationNotFound: 800,
+    CanNotCreateWithYourSelf: 801,
+  },
 };
 export default ServerCodes;

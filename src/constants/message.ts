@@ -150,4 +150,8 @@ export const APP_MESSAGES = {
     ReportIsAlreadExisted: 'Report is already existed',
     ReportIsAlreadyHandled: 'Report is already handled',
   },
+  ConversationMessage: {
+    ConversationIsAlreadyDeleted: 'Conversation is already deleted',
+    youCannotCreateConversationWithYourself: 'You cannot create conversation with yourself',
+  },
 };
