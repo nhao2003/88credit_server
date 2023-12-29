@@ -7,10 +7,10 @@ import ServerCodes from '~/constants/server_codes';
 
 @Service()
 class BankService {
-  private bankAcountRepository: Repository<BankCard>;
+  private bankCardRepository: Repository<BankCard>;
   private bankRepository: Repository<Bank>;
   constructor(dataSource: DataSource) {
-    this.bankAcountRepository = dataSource.getRepository(BankCard);
+    this.bankCardRepository = dataSource.getRepository(BankCard);
     this.bankRepository = dataSource.getRepository(Bank);
   }
   private banks: Bank[] = [];
@@ -74,7 +74,7 @@ class BankService {
       throw AppError.badRequest(ServerCodes.BankCode.AddBankAccountFailed, validAccountNumber.message);
     }
     const bankAccount = new BankCard();
-    const oldBank = await this.bankAcountRepository.findOne({ where: { user_id: data.user_id } });
+    const oldBank = await this.bankCardRepository.findOne({ where: { user_id: data.user_id } });
     bankAccount.card_number = data.card_number as string;
     bankAccount.bank_id = data.bank_id!;
     bankAccount.is_primary = oldBank === undefined || oldBank === null ? true : oldBank.is_primary;
@@ -84,41 +84,41 @@ class BankService {
     // return await this.bankAcountRepository.upsert(bankAccount, {
     //   conflictPaths: ['bank_account'],
     // });
-    await this.bankAcountRepository.upsert(bankAccount, {
+    await this.bankCardRepository.upsert(bankAccount, {
       conflictPaths: ['card_number'],
     });
     return bankAccount;
   };
 
   public getAllBankCard = async (user_id: string) => {
-    return await this.bankAcountRepository.find({ where: { user_id: user_id } });
+    return await this.bankCardRepository.find({ where: { user_id: user_id } });
   };
 
   public getBankCardById = async (id: string) => {
-    return await this.bankAcountRepository.findOne({ where: { id: id } });
+    return await this.bankCardRepository.findOne({ where: { id: id } });
   };
 
   public deleteBankCard = async (id: string) => {
-    const bankAccount = await this.bankAcountRepository.findOne({ where: { id: id } });
+    const bankAccount = await this.bankCardRepository.findOne({ where: { id: id } });
     if (bankAccount === undefined || bankAccount === null) {
       throw AppError.notFound();
     }
-    await this.bankAcountRepository.softDelete(id);
+    await this.bankCardRepository.softDelete(id);
   };
 
   public updateBankAccount = async (user_id: string, bank_account_id: string) => {
-    const bankAccount = await this.bankAcountRepository.findOne({ where: { id: bank_account_id, user_id } });
+    const bankAccount = await this.bankCardRepository.findOne({ where: { id: bank_account_id, user_id } });
     if (bankAccount === undefined || bankAccount === null) {
       throw AppError.notFound();
     }
     await Promise.all([
-      this.bankAcountRepository.update({ user_id }, { is_primary: false }),
-      this.bankAcountRepository.update({ id: bank_account_id }, { is_primary: true }),
+      this.bankCardRepository.update({ user_id }, { is_primary: false }),
+      this.bankCardRepository.update({ id: bank_account_id }, { is_primary: true }),
     ]);
   };
 
   public getPrimaryBankCard = async (user_id: string) => {
-    return await this.bankAcountRepository.findOne({ where: { user_id, is_primary: true } });
+    return await this.bankCardRepository.findOne({ where: { user_id, is_primary: true } });
   };
 }
 
