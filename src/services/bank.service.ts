@@ -91,7 +91,13 @@ class BankService {
   };
 
   public getAllBankCard = async (user_id: string) => {
-    return await this.bankCardRepository.find({ where: { user_id: user_id } });
+    // return await this.bankCardRepository.find({ where: { user_id: user_id } });
+    return await this.bankCardRepository
+      .createQueryBuilder('bank_card')
+      .leftJoinAndSelect('bank_card.bank', 'bank')
+      .where('bank_card.user_id = :user_id', { user_id })
+      .andWhere('bank_card.deleted_at IS NULL')
+      .getMany();
   };
 
   public getBankCardById = async (id: string) => {
