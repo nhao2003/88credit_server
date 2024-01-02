@@ -124,7 +124,14 @@ class BankService {
   };
 
   public getPrimaryBankCard = async (user_id: string) => {
-    return await this.bankCardRepository.findOne({ where: { user_id, is_primary: true } });
+    // return await this.bankCardRepository.findOne({ where: { user_id, is_primary: true } });
+    return await this.bankCardRepository
+      .createQueryBuilder('bank_card')
+      .leftJoinAndSelect('bank_card.bank', 'bank')
+      .where('bank_card.user_id = :user_id', { user_id })
+      .andWhere('bank_card.is_primary = true')
+      .andWhere('bank_card.deleted_at IS NULL')
+      .getOne();
   };
 }
 

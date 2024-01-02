@@ -217,6 +217,10 @@ class ContractService {
     }
 
     queryBuilder = queryBuilder.skip((page - 1) * take).take(take);
+    queryBuilder = queryBuilder.leftJoinAndSelect('Contract.lender_bank_card', 'lender_bank_card');
+    queryBuilder = queryBuilder.leftJoinAndSelect('Contract.borrower_bank_card', 'borrower_bank_card');
+    queryBuilder = queryBuilder.leftJoinAndSelect('lender_bank_card.bank', 'lender_bank');
+    queryBuilder = queryBuilder.leftJoinAndSelect('borrower_bank_card.bank', 'borrower_bank');
 
     const getCount = queryBuilder.getCount();
     const getMany = queryBuilder.getMany();

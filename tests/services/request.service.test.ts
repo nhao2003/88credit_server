@@ -86,10 +86,20 @@ describe('LoanContractRequestService', () => {
 
       bankRepository = {
         findOne: jest.fn().mockResolvedValue({ id: '1', bin: '123' }),
+        createQueryBuilder: jest.fn().mockReturnValue({
+          where: jest.fn().mockReturnThis(),
+          getOne: jest.fn().mockResolvedValue({ id: '1', bin: '123' }),
+        }),
       } as any;
 
       bankCardRepository = {
         findOne: jest.fn().mockResolvedValue({ id: '1', bank_id: '1', card_number: '123456789' }),
+        createQueryBuilder: jest.fn().mockReturnValue({
+          where: jest.fn().mockReturnThis(),
+          getOne: jest.fn().mockResolvedValue({ id: '1', bank_id: '1', card_number: '123456789' }),
+          leftJoinAndSelect: jest.fn().mockReturnThis(),
+          andWhere: jest.fn().mockReturnThis(),
+        }),
       } as any;
       loanContractRequestRepository = {
         insert: jest.fn().mockImplementation((data) => {
@@ -198,6 +208,12 @@ describe('LoanContractRequestService', () => {
 
         bankCardRepository = {
           findOne: jest.fn().mockResolvedValue({ id: '1', bank_id: '1', card_number: '123456789' }),
+          createQueryBuilder: jest.fn().mockReturnValue({
+            where: jest.fn().mockReturnThis(),
+            getOne: jest.fn().mockResolvedValue({ id: '1', bank_id: '1', card_number: '123456789' }),
+            leftJoinAndSelect: jest.fn().mockReturnThis(),
+            andWhere: jest.fn().mockReturnThis(),
+          }),
         } as any;
         loanContractRequestRepository = {
           insert: jest.fn().mockImplementation((data) => {

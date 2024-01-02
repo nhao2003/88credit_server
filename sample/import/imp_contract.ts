@@ -11,7 +11,6 @@ const contracts = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 
 
 AppDataSource.initialize().then(async (dataSource) => {
   const contractRequestRepository: Repository<Contract> = dataSource.getRepository(Contract);
-
   await contractRequestRepository.delete({});
   contractRequestRepository
     .save(contracts)

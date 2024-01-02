@@ -2,7 +2,7 @@
   {
     "id": "d3832733-16e4-45b1-9b4d-5225b3896313",
     "loan_contract_request_id": "2859f31e-d61e-4595-adb1-aaed3ca542c7",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "lender_bank_card_id": "afccb29d-3671-4090-b2f1-134aa42b3920",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -19,7 +19,7 @@
   {
     "id": "a654379d-5f73-4144-a65c-8d0c015614e1",
     "loan_contract_request_id": "ccc7ddeb-04d0-4112-9235-0f75db675da4",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "lender_bank_card_id": "f8206b15-03dc-4fd1-8f68-28cc4a8ba3e9",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -36,7 +36,7 @@
   {
     "id": "044c4db2-c763-4881-afff-f949e0b835d1",
     "loan_contract_request_id": "67351855-2b8a-4ebd-830a-9c43eeb07846",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
@@ -53,7 +53,7 @@
   {
     "id": "b80eede8-76c5-44ed-a073-dd05acf79bee",
     "loan_contract_request_id": "ab217892-75d9-4a65-a872-08d5c51de808",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "lender_bank_card_id": "da71e788-83a1-41a0-a052-b16479be7d93",
     "borrower_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
@@ -70,7 +70,7 @@
   {
     "id": "88e3c4f4-1e2b-46c6-835f-f3ed84a1b9e8",
     "loan_contract_request_id": "1dd86d69-d22a-475e-8322-2f9a8d114185",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -87,7 +87,7 @@
   {
     "id": "794452fb-4cf2-4ca2-b37d-ab300f121f61",
     "loan_contract_request_id": "5d635e0c-5ce2-4b49-b742-97409e9a126e",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
@@ -104,7 +104,7 @@
   {
     "id": "26c7eb99-6ada-407c-8c54-879a3b6a27eb",
     "loan_contract_request_id": "44541802-5fdb-4fa0-9bf1-184e15218630",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
@@ -121,7 +121,7 @@
   {
     "id": "0bdc1617-582a-4ee0-a9e5-9909db2d5d0d",
     "loan_contract_request_id": "fd4cad3e-83c2-49b7-af0f-5d45286fe20d",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -138,7 +138,7 @@
   {
     "id": "80a29790-a412-4199-aaf8-ee6a7233765a",
     "loan_contract_request_id": "f9165807-7052-40d7-beab-a802e736cc46",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "lender_bank_card_id": "da71e788-83a1-41a0-a052-b16479be7d93",
     "borrower_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
@@ -155,7 +155,7 @@
   {
     "id": "bb3cea07-34f4-44a4-bb33-40b53377295e",
     "loan_contract_request_id": "cb1fdeea-1232-409d-8320-8de80b853464",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
@@ -172,7 +172,7 @@
   {
     "id": "1d95032f-bf94-4c84-aea4-99b6ab60ad95",
     "loan_contract_request_id": "b1f3903a-6f61-41d2-a790-3042568e55bb",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "lender_bank_card_id": "96241f8f-0bff-43d7-be18-bb27a5bc9a13",
     "borrower_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
@@ -189,7 +189,7 @@
   {
     "id": "bd119b18-377e-4127-bf45-40f814a98072",
     "loan_contract_request_id": "91f57878-a1f2-4975-8093-b4937fc7e78f",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -206,7 +206,7 @@
   {
     "id": "c24a7196-7ecc-4716-a7c2-a8e8b2dc8517",
     "loan_contract_request_id": "db6e2e85-191f-438d-9e14-ae552cacd107",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
@@ -223,7 +223,7 @@
   {
     "id": "0d665a10-60b2-4d39-a071-74b4e218f14d",
     "loan_contract_request_id": "c145c367-b619-4f83-9b99-f5878d45e02e",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
@@ -240,7 +240,7 @@
   {
     "id": "b327e155-705f-4145-b07f-34e7a6f90fb9",
     "loan_contract_request_id": "0be25998-431e-424f-abf0-1fa167243e83",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
@@ -257,7 +257,7 @@
   {
     "id": "9185f9ce-bd93-412b-ac9a-4a09435373fa",
     "loan_contract_request_id": "ea2c7e8f-fa6e-44ae-afc2-555fe94569d0",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "lender_bank_card_id": "da71e788-83a1-41a0-a052-b16479be7d93",
     "borrower_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
@@ -274,7 +274,7 @@
   {
     "id": "196c70d8-1b71-4a51-b0b1-d6c92dc43289",
     "loan_contract_request_id": "3b3018f4-53aa-474b-b09f-bb436fdc60ac",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "lender_bank_card_id": "96241f8f-0bff-43d7-be18-bb27a5bc9a13",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -291,7 +291,7 @@
   {
     "id": "2898d62d-d4f4-4f68-824c-9f9b7f195c94",
     "loan_contract_request_id": "6f96da34-b5b0-4764-9db6-5f0c7b293dae",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "lender_bank_card_id": "96241f8f-0bff-43d7-be18-bb27a5bc9a13",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -308,7 +308,7 @@
   {
     "id": "da6410d7-996a-4df2-9b3e-8e7da066f60c",
     "loan_contract_request_id": "8d8696a5-5471-418a-83ce-a1c48cf89d33",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "lender_bank_card_id": "f8206b15-03dc-4fd1-8f68-28cc4a8ba3e9",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -325,7 +325,7 @@
   {
     "id": "40a0c281-1634-4d46-a6bd-5f93073d1425",
     "loan_contract_request_id": "d351fd57-baac-4527-8d01-2ca707ffb26d",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "lender_bank_card_id": "5e10beb9-fcda-4a3a-8204-d2e71c6dd6e7",
     "borrower_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
@@ -342,7 +342,7 @@
   {
     "id": "24336ea4-92e1-490b-97e0-ab5f728687fb",
     "loan_contract_request_id": "ab2cf98a-4344-40db-a72e-ac2cf8e218bb",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
     "lender_bank_card_id": "4629c7a7-a8f1-411c-9937-3d27d0e4c072",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -359,7 +359,7 @@
   {
     "id": "fa270195-fce7-444e-a775-41e1c338841c",
     "loan_contract_request_id": "2a88bfdd-1b91-45c1-900a-5b43c4051f73",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "lender_bank_card_id": "96241f8f-0bff-43d7-be18-bb27a5bc9a13",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -376,7 +376,7 @@
   {
     "id": "0462c851-45eb-4004-bbac-511190eb8401",
     "loan_contract_request_id": "6868a9b2-1350-485f-804a-d760b54c07e2",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
@@ -393,7 +393,7 @@
   {
     "id": "0099a5ab-a5a4-4cb7-befe-417a082571ae",
     "loan_contract_request_id": "311606b8-5bd2-4158-8d12-6d4242d7caf7",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
     "lender_bank_card_id": "4629c7a7-a8f1-411c-9937-3d27d0e4c072",
     "borrower_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
@@ -410,7 +410,7 @@
   {
     "id": "2b92ec48-8e7f-458c-af17-8b826c210743",
     "loan_contract_request_id": "945ea74f-272f-4ee3-a434-6eded0debfc0",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "lender_bank_card_id": "da71e788-83a1-41a0-a052-b16479be7d93",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -427,7 +427,7 @@
   {
     "id": "524d0c41-eb7e-4a1a-87a6-7d622287e6d1",
     "loan_contract_request_id": "32f8e052-82c4-47c1-bc18-7e025751b80c",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "lender_bank_card_id": "afccb29d-3671-4090-b2f1-134aa42b3920",
     "borrower_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
@@ -444,7 +444,7 @@
   {
     "id": "1a273ced-80cf-41d5-b9e4-3f96e9543b2b",
     "loan_contract_request_id": "253f3767-40e1-498d-b2fb-ca474b77640e",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "lender_bank_card_id": "96241f8f-0bff-43d7-be18-bb27a5bc9a13",
     "borrower_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
@@ -461,7 +461,7 @@
   {
     "id": "d75c5884-67dc-4bb3-891a-0d2a71c14b3f",
     "loan_contract_request_id": "9fa4ebed-7531-4461-b324-89dbb12f7c65",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "lender_bank_card_id": "96241f8f-0bff-43d7-be18-bb27a5bc9a13",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -478,7 +478,7 @@
   {
     "id": "f570f372-860f-453f-91fc-f09aac1d4788",
     "loan_contract_request_id": "2f6f862f-c684-4a61-8492-03f177aff602",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "lender_bank_card_id": "f8206b15-03dc-4fd1-8f68-28cc4a8ba3e9",
     "borrower_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
@@ -495,7 +495,7 @@
   {
     "id": "5ed92830-6f8a-4149-a350-0cf55e5cf633",
     "loan_contract_request_id": "e9beb834-4f0f-44fd-a9ea-1624eb6ed1ed",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
     "lender_bank_card_id": "a03f11be-a32e-4e61-aff2-c91884503ac1",
     "borrower_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
@@ -512,7 +512,7 @@
   {
     "id": "1162512e-7fbe-4f39-abff-e38c90272b34",
     "loan_contract_request_id": "5f79b67c-7c78-4045-99d4-2d88cf75cfbb",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
     "lender_bank_card_id": "dbef9363-28b0-4e7d-8820-f58a712bd441",
     "borrower_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
@@ -529,7 +529,7 @@
   {
     "id": "8f728c70-95c6-4acd-8116-d8ce0401e968",
     "loan_contract_request_id": "d04e13f6-21f0-48fc-8de1-065a59909d6e",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
     "lender_bank_card_id": "a03f11be-a32e-4e61-aff2-c91884503ac1",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -546,7 +546,7 @@
   {
     "id": "32bbc18e-0f4d-4324-a2eb-d79baae151e3",
     "loan_contract_request_id": "bc50230e-59c5-496b-acf0-3db7192fff99",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "lender_bank_card_id": "f8206b15-03dc-4fd1-8f68-28cc4a8ba3e9",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
@@ -563,7 +563,7 @@
   {
     "id": "71e81bc1-271f-4aa8-ad5e-dd6fa1ed6a1e",
     "loan_contract_request_id": "12f55970-e1f1-4b7c-a187-64f5bf4c5866",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "lender_bank_card_id": "96241f8f-0bff-43d7-be18-bb27a5bc9a13",
     "borrower_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
@@ -580,7 +580,7 @@
   {
     "id": "faedaca1-610d-4e74-8956-ead39bd73b68",
     "loan_contract_request_id": "4acf1069-79f7-403e-8271-5620da87ff98",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
@@ -597,7 +597,7 @@
   {
     "id": "d9fca2e7-1559-4197-abb4-7cc0f9a9d5fc",
     "loan_contract_request_id": "b0e9c249-6fd2-4156-a444-07a1bc73edbf",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "lender_bank_card_id": "5e10beb9-fcda-4a3a-8204-d2e71c6dd6e7",
     "borrower_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
@@ -614,7 +614,7 @@
   {
     "id": "c19df82c-518b-4535-9345-8b7c06d39bce",
     "loan_contract_request_id": "9cbb1043-ff53-49e8-86bf-0f560bffc3d0",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
@@ -631,7 +631,7 @@
   {
     "id": "9675f9e6-e983-41e6-99e2-52a959f96a32",
     "loan_contract_request_id": "50475eb8-6ee2-45d2-80dd-257adcda545e",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "lender_bank_card_id": "77dc28da-cd67-4df3-a3d6-88657682db36",
     "borrower_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
@@ -648,7 +648,7 @@
   {
     "id": "4b3600e9-bc16-4f90-a0eb-9d7fa1af4913",
     "loan_contract_request_id": "96c3ce5c-6c67-4a7a-91e0-e41c2993b1f6",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
     "lender_bank_card_id": "dbef9363-28b0-4e7d-8820-f58a712bd441",
     "borrower_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
@@ -665,7 +665,7 @@
   {
     "id": "62c9b231-76a0-4eea-a073-ddaadb64439d",
     "loan_contract_request_id": "68b7e289-528d-439f-b191-ed25feee48fb",
-    "contract_template_id": "f52c90be-ab65-4326-8838-b46e2cff6da3",
+    "contract_template_id": "a8a9304f-068b-4c1e-be2d-d7c14a6e33cd",
     "lender_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "lender_bank_card_id": "da71e788-83a1-41a0-a052-b16479be7d93",
     "borrower_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",

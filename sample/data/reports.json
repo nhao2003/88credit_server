@@ -1,1002 +1,1002 @@
 [
   {
-    "id": "f26a3514-1094-4a65-b889-b6642e6dde18",
-    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "reported_id": "d1445f5b-a35f-4b64-ab47-f0bc7b439491",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "fake_news",
-    "description": "apple banana sad apple random happy sun sad happy sad happy apple dog orange orange random dog dog sun dog",
-    "created_date": "2023-12-13T18:07:18.425Z"
-  },
-  {
-    "id": "1b19007d-ee17-48ca-9fdb-63fa55872ca0",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "copyrighted",
-    "description": "banana dog moon cat banana random orange sun moon moon sun orange orange moon cat moon sun moon sun happy",
-    "created_date": "2023-12-19T06:10:10.421Z"
-  },
-  {
-    "id": "36dad28e-0112-4c0e-ba6a-ba1f5841f14f",
+    "id": "ecee85cc-8694-4e46-90a5-a9aec9c40919",
     "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "reported_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
     "status": "pending",
     "type": "user",
-    "content_type": "offensive",
-    "description": "cat moon random dog apple banana apple happy dog sun random moon cat apple orange moon dog orange sun happy",
-    "created_date": "2023-12-27T02:51:24.284Z"
+    "content_type": "copyrighted",
+    "description": "cat random dog cat orange random random sad apple happy apple dog sad random apple sad apple moon cat cat",
+    "created_date": "2023-06-18T12:58:38.599Z"
   },
   {
-    "id": "0167018d-b042-419b-a60b-bbed6ab0049d",
+    "id": "caab4042-9617-4145-a1d7-73320ecf60a9",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "fake_news",
+    "description": "sun random apple cat moon sad sun random moon sun banana sun random banana random cat sun banana dog happy",
+    "created_date": "2023-08-22T14:04:57.644Z"
+  },
+  {
+    "id": "a5970fd0-e604-4d40-a081-2f4bb19431c9",
     "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
-    "status": "resolved",
+    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
+    "status": "pending",
     "type": "post",
-    "content_type": "adult_content",
-    "description": "cat sun random orange moon banana happy sun orange cat banana orange sad orange dog apple sad dog random sad",
-    "created_date": "2023-03-12T07:27:27.292Z"
+    "content_type": "fraud",
+    "description": "orange sun sad banana apple happy cat sun banana random random apple sad sun banana random happy banana cat orange",
+    "created_date": "2023-09-16T00:30:26.483Z"
   },
   {
-    "id": "345cb8d0-754a-4cb3-acc2-2f450a98c648",
-    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "deb5de3c-1e11-4dd4-a76c-ca04640ca8a5",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "discrimination",
-    "description": "apple random banana apple apple cat apple sun cat banana dog dog dog dog happy moon orange sun banana sun",
-    "created_date": "2023-02-09T05:54:28.626Z"
-  },
-  {
-    "id": "ba12b5f6-b7c2-40f9-883b-f95f3de658de",
-    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "harassment",
-    "description": "sad sun banana banana sad moon cat dog sad random random happy banana happy banana dog moon dog apple banana",
-    "created_date": "2023-04-12T02:10:14.600Z"
-  },
-  {
-    "id": "ecbed080-92c7-4bf5-ad4f-da493c16c461",
+    "id": "457d0d5d-9b04-4e58-9926-0e3163628c41",
     "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
-    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
-    "status": "pending",
-    "type": "post",
-    "content_type": "illegal",
-    "description": "sad cat happy moon banana happy sun banana random dog cat random banana orange apple happy sun random apple apple",
-    "created_date": "2023-05-30T14:33:53.158Z"
-  },
-  {
-    "id": "98134af4-8bfc-449e-bcc7-0951a66713df",
-    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "reported_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "copyrighted",
-    "description": "sun apple apple cat apple dog banana sun sad orange dog moon cat cat orange sad sun sun dog moon",
-    "created_date": "2023-09-09T01:19:59.970Z"
-  },
-  {
-    "id": "0d81bbc9-734b-48b3-975a-2f24a6b6dc08",
-    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "harassment",
-    "description": "moon happy moon happy banana cat sun apple banana cat sun dog random sad cat apple dog dog moon dog",
-    "created_date": "2023-08-27T07:20:28.553Z"
-  },
-  {
-    "id": "9c6d6fc1-710a-43c9-a8f7-bba00e6656d9",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "bullying",
-    "description": "banana moon cat apple random cat random orange orange cat apple dog apple apple sad happy apple happy moon happy",
-    "created_date": "2023-10-11T23:52:33.114Z"
-  },
-  {
-    "id": "f3722ff1-a682-4383-a9eb-0fee026ca165",
-    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "reported_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "status": "pending",
-    "type": "user",
-    "content_type": "adult_content",
-    "description": "happy orange random random apple cat banana random sun cat happy sun moon orange happy orange moon cat apple moon",
-    "created_date": "2023-08-01T20:32:17.616Z"
-  },
-  {
-    "id": "15a7648c-5a83-4785-901f-10fd5714478b",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
-    "status": "pending",
-    "type": "post",
-    "content_type": "copyrighted",
-    "description": "apple moon cat cat moon sun apple random dog sun dog random dog orange apple sad random random dog moon",
-    "created_date": "2023-04-26T11:56:11.138Z"
-  },
-  {
-    "id": "84e5a7dc-6cff-4e48-9eb2-d6e8e4934bf6",
-    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "reported_id": "deb5de3c-1e11-4dd4-a76c-ca04640ca8a5",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "misleading",
-    "description": "sun dog banana orange sad cat dog apple orange dog apple happy sad moon orange sad dog banana random orange",
-    "created_date": "2023-06-07T00:32:29.716Z"
-  },
-  {
-    "id": "b707b63e-53f3-46bd-9778-42fbe9aa74b0",
-    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "pending",
-    "type": "user",
-    "content_type": "political_bias",
-    "description": "orange cat sun random moon cat happy random sun dog sun random apple banana sun sun random banana orange random",
-    "created_date": "2023-10-08T10:03:53.365Z"
-  },
-  {
-    "id": "f62884cd-32f6-40d0-b599-7265023582a7",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "illegal",
-    "description": "cat happy random cat sad random dog dog dog orange cat cat banana moon random moon dog moon sad apple",
-    "created_date": "2023-02-04T13:24:04.729Z"
-  },
-  {
-    "id": "9c14ba17-68bb-40c2-9d39-c7deab3e2792",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "fraud",
-    "description": "banana cat sun sad random banana dog orange dog sad orange apple sun sun orange sun cat sun banana cat",
-    "created_date": "2023-08-05T10:31:03.834Z"
-  },
-  {
-    "id": "19594785-1d3f-40f9-a8a4-af9a049d9867",
-    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "reported_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "harassment",
-    "description": "sad sun apple happy cat cat apple apple banana cat apple banana orange sad banana sun dog orange apple dog",
-    "created_date": "2023-04-29T03:16:38.940Z"
-  },
-  {
-    "id": "6eb0b60c-eeae-40c8-b823-241ad6ce85d4",
-    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "reported_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "privacy_violation",
-    "description": "happy sun random sad cat apple orange cat random random orange moon happy dog cat apple sun sad happy dog",
-    "created_date": "2023-05-13T23:44:36.764Z"
-  },
-  {
-    "id": "7d5a8b06-9623-4a6d-9567-4f31ec2324a0",
-    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "impersonation",
-    "description": "sun sad moon moon sun moon sun orange sad sad happy sun moon orange random sad banana dog orange sun",
-    "created_date": "2023-04-26T03:14:30.897Z"
-  },
-  {
-    "id": "b334bbe4-55a1-4ae6-ab78-f4d9a6ed8ab2",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "fake_news",
-    "description": "dog moon moon cat orange apple orange cat happy orange random banana happy moon banana dog moon dog happy random",
-    "created_date": "2023-05-28T23:20:58.130Z"
-  },
-  {
-    "id": "e02ff440-d8af-4ca5-a15e-72331d8cfb81",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "status": "pending",
-    "type": "user",
-    "content_type": "bullying",
-    "description": "random orange dog happy banana random sad random sun random dog happy banana orange random happy random happy happy sad",
-    "created_date": "2023-08-23T08:15:43.797Z"
-  },
-  {
-    "id": "0298609a-f82d-4532-bad2-8a1162e6a066",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "hate_speech",
-    "description": "orange banana happy banana moon cat apple banana cat sun sad cat orange sun banana moon banana happy apple orange",
-    "created_date": "2023-01-26T18:33:41.683Z"
-  },
-  {
-    "id": "39143f44-5808-45be-b8bf-4ba5d6e45ef6",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "privacy_violation",
-    "description": "random cat happy dog sun apple sad orange sun happy moon happy apple cat banana orange orange moon banana moon",
-    "created_date": "2023-08-11T23:55:39.768Z"
-  },
-  {
-    "id": "84bc737d-864c-4a86-8c81-2946492d6490",
-    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "offensive",
-    "description": "sun random moon moon sad random orange sun random banana apple orange banana banana banana sad orange happy sun happy",
-    "created_date": "2023-04-10T04:24:06.263Z"
-  },
-  {
-    "id": "eb44fbb0-d546-46de-a2e3-14798ff7cefe",
-    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "other",
-    "description": "happy moon random moon moon sad sad cat moon banana moon dog cat cat orange moon banana cat dog happy",
-    "created_date": "2023-03-23T20:53:59.295Z"
-  },
-  {
-    "id": "64ba37d4-476a-437b-b4fc-e5d72a71188c",
-    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "reported_id": "d1445f5b-a35f-4b64-ab47-f0bc7b439491",
-    "status": "pending",
-    "type": "post",
-    "content_type": "privacy_violation",
-    "description": "orange orange banana sun sad apple happy dog orange sun cat banana banana happy random happy apple happy moon sun",
-    "created_date": "2023-02-08T01:37:04.481Z"
-  },
-  {
-    "id": "7a8e1bef-111b-4537-bf0f-56f56d265ba2",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "status": "pending",
-    "type": "user",
-    "content_type": "inappropriate",
-    "description": "sun sun sad sun moon banana happy banana sad random random banana happy apple moon random apple orange orange orange",
-    "created_date": "2023-07-05T01:28:56.038Z"
-  },
-  {
-    "id": "4cc5f8dc-3cff-4762-a25d-ebf07fee7056",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "bullying",
-    "description": "cat dog dog cat dog happy moon cat random cat sad happy orange cat sad sun happy cat sun sun",
-    "created_date": "2023-07-02T12:29:16.524Z"
-  },
-  {
-    "id": "fafec6fc-5830-4870-8cda-5d54aed01cac",
-    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "reported_id": "7d459f69-91a4-4a72-a61e-99c0d5c8b140",
-    "status": "pending",
-    "type": "post",
-    "content_type": "inappropriate",
-    "description": "sun happy apple moon sun cat moon moon sad orange happy orange banana sun sun moon orange dog banana sad",
-    "created_date": "2023-03-10T17:10:42.956Z"
-  },
-  {
-    "id": "9bd2a4a5-cdc1-4880-9876-2ef341f21c86",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "impersonation",
-    "description": "banana moon dog banana moon sun apple sun sun dog sun sad sun cat sun apple random banana sun sun",
-    "created_date": "2023-08-20T01:30:11.464Z"
-  },
-  {
-    "id": "8b55a8a6-5b5b-46df-8366-b3523c4b35d3",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "status": "pending",
-    "type": "user",
-    "content_type": "other",
-    "description": "apple sad dog moon banana random happy happy banana happy banana random sad banana moon apple happy banana sun dog",
-    "created_date": "2023-12-04T07:53:20.659Z"
-  },
-  {
-    "id": "65288c8e-e0f7-4f31-8e44-0eb2965c64bf",
-    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
     "reported_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "status": "resolved",
     "type": "user",
-    "content_type": "fraud",
-    "description": "apple moon moon banana sun apple apple cat orange cat banana moon moon sad random moon apple apple cat banana",
-    "created_date": "2023-07-01T06:22:21.099Z"
-  },
-  {
-    "id": "0845523d-fe80-4b00-bf53-6f4f950e8e7d",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "adult_content",
-    "description": "moon banana random cat random apple random apple happy sun banana sad sun random apple banana orange banana moon moon",
-    "created_date": "2023-02-14T18:13:50.260Z"
-  },
-  {
-    "id": "f8209b73-a462-4fc8-944d-0595002695b2",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "pending",
-    "type": "user",
     "content_type": "spam",
-    "description": "orange dog cat random sad sun dog apple moon sun sad cat dog moon sun happy random dog sad dog",
-    "created_date": "2023-11-16T06:09:22.422Z"
+    "description": "dog sad moon dog dog random orange apple sun banana banana sad random cat sad banana apple moon banana random",
+    "created_date": "2023-10-01T07:44:23.261Z"
   },
   {
-    "id": "36f8478e-57a8-4aac-b07f-6022e741e1e0",
-    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
-    "status": "pending",
-    "type": "post",
-    "content_type": "political_bias",
-    "description": "sun orange orange happy sad dog happy dog sun random sad sun happy orange dog cat orange happy cat random",
-    "created_date": "2023-03-19T19:39:45.097Z"
-  },
-  {
-    "id": "fe50b7e3-e70f-4c35-8e0b-afcb01b5f640",
-    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "violence",
-    "description": "happy sun moon orange apple cat apple orange orange random sun sun orange sun moon orange moon sad moon dog",
-    "created_date": "2023-01-06T12:12:44.558Z"
-  },
-  {
-    "id": "b0b59bad-f88e-4886-8fc9-2044cb475595",
-    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "status": "pending",
-    "type": "user",
-    "content_type": "misleading",
-    "description": "happy moon moon happy dog dog moon happy dog apple happy orange moon apple sad apple orange moon random sad",
-    "created_date": "2023-03-18T22:40:07.608Z"
-  },
-  {
-    "id": "b06d31a2-7c05-4fa7-b334-58e4ec0a1911",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "status": "pending",
-    "type": "post",
-    "content_type": "political_bias",
-    "description": "apple dog sad moon sun orange random random banana sad moon random happy sad apple moon orange banana happy random",
-    "created_date": "2023-12-28T06:07:51.501Z"
-  },
-  {
-    "id": "402e0661-96f9-4747-a529-f194d5bbb892",
-    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "status": "pending",
-    "type": "user",
-    "content_type": "offensive",
-    "description": "happy orange sun random sad sun dog moon sad sun dog banana sun sad happy cat dog dog cat dog",
-    "created_date": "2023-07-15T07:32:59.739Z"
-  },
-  {
-    "id": "853b8ff5-da90-4e0d-bf14-6a10b8f4484c",
+    "id": "f0899d80-d914-4cfa-9cbf-5e5199599b42",
     "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "status": "pending",
-    "type": "user",
-    "content_type": "adult_content",
-    "description": "orange sun random cat happy cat apple dog random sun banana orange cat happy happy dog happy random dog dog",
-    "created_date": "2023-05-28T15:13:59.954Z"
-  },
-  {
-    "id": "91907c4c-94db-49e3-b2da-5e1cbe202726",
-    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "fraud",
-    "description": "moon apple dog banana apple moon sad sun sad random banana apple banana random apple cat sad apple banana sad",
-    "created_date": "2023-01-07T22:25:11.092Z"
-  },
-  {
-    "id": "c4c3b10a-8729-4695-9698-f49a675510cc",
-    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "offensive",
-    "description": "moon apple happy cat orange random happy happy sad sad cat happy cat dog moon dog banana sad sun moon",
-    "created_date": "2023-10-23T14:19:45.395Z"
-  },
-  {
-    "id": "55bddd46-94a8-4ef4-b9d0-588e6ae02986",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "privacy_violation",
-    "description": "cat happy happy sun sun random moon sad dog happy happy cat cat sun happy random random happy sun cat",
-    "created_date": "2023-01-12T20:30:45.300Z"
-  },
-  {
-    "id": "1d3626bc-597a-45aa-84f5-4a4de5ac4fcc",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
-    "status": "pending",
-    "type": "post",
-    "content_type": "illegal",
-    "description": "orange moon banana moon moon orange orange orange random happy moon moon moon apple apple moon sun random sun moon",
-    "created_date": "2023-12-11T22:25:11.589Z"
-  },
-  {
-    "id": "81e146ab-dbb5-4162-b733-35f02b831306",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "violence",
-    "description": "cat random apple apple random random orange apple happy sun cat banana orange cat dog moon random dog happy sad",
-    "created_date": "2023-05-01T15:10:03.659Z"
-  },
-  {
-    "id": "1d75a5f0-2533-49b4-a8c7-9d9a82c940ae",
-    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "fraud",
-    "description": "happy moon random banana sad banana orange apple cat banana apple moon dog banana sun happy cat sun happy moon",
-    "created_date": "2023-07-31T21:21:29.385Z"
-  },
-  {
-    "id": "fd98c150-bec7-41ae-88be-443a33665555",
-    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "illegal",
-    "description": "happy apple orange sun dog random dog banana dog random dog cat dog random banana apple moon dog sun moon",
-    "created_date": "2023-06-14T13:05:52.304Z"
-  },
-  {
-    "id": "92c4cf15-21fa-4647-9c27-69739fe7d70c",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "discrimination",
-    "description": "happy happy banana moon banana happy sad banana random moon cat dog sad dog banana random sun apple orange moon",
-    "created_date": "2023-06-05T11:02:38.971Z"
-  },
-  {
-    "id": "e4ec7c11-497e-4f10-87fb-fd4c623363d7",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "fake_news",
-    "description": "orange apple cat sad cat sad happy apple apple moon sad apple sun random apple banana dog orange random happy",
-    "created_date": "2023-08-16T12:50:13.074Z"
-  },
-  {
-    "id": "b491fce7-d1f8-463d-a1dc-180b4da0f2aa",
-    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "harassment",
-    "description": "cat moon apple random apple sad apple happy orange banana sad moon cat cat cat random dog random dog orange",
-    "created_date": "2023-11-11T01:57:56.858Z"
-  },
-  {
-    "id": "cbb7f94b-6e03-41a8-b528-51fca488ab01",
-    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "misleading",
-    "description": "random sad sad random moon moon sad cat apple banana sad random cat moon moon orange apple sun apple banana",
-    "created_date": "2023-09-07T04:12:06.803Z"
-  },
-  {
-    "id": "c1a5d22a-0043-413e-a2d7-5fa3a6b53495",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "bullying",
-    "description": "moon random happy moon banana random happy banana apple dog apple banana moon apple sad apple sad random apple dog",
-    "created_date": "2023-07-24T23:22:57.363Z"
-  },
-  {
-    "id": "59c43f50-ab5c-4411-9436-411437f60982",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "reported_id": "deb5de3c-1e11-4dd4-a76c-ca04640ca8a5",
     "status": "rejected",
     "type": "post",
     "content_type": "harassment",
-    "description": "happy sad apple orange apple dog sad happy moon orange dog random sad sad banana dog sun random orange cat",
-    "created_date": "2023-03-09T16:38:18.033Z"
+    "description": "happy sad banana cat random dog happy apple banana banana sad banana sun sun orange apple moon orange orange happy",
+    "created_date": "2023-04-03T16:43:52.925Z"
   },
   {
-    "id": "6ea8c291-7fb8-44c6-87ce-43263fa6582b",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "id": "0bb9b0c0-ba47-4f47-9e73-b4c7a51d050e",
+    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "inappropriate",
+    "description": "sun cat cat happy orange happy random dog orange moon apple banana random sad moon orange random dog random cat",
+    "created_date": "2023-08-25T08:14:01.594Z"
+  },
+  {
+    "id": "99276c86-256e-497f-bc41-2a5584542d69",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "spam",
+    "description": "cat cat dog apple sun dog sad cat sad apple sun cat dog sun cat sad sad dog random banana",
+    "created_date": "2023-07-06T23:17:22.048Z"
+  },
+  {
+    "id": "3fb9d4d3-fb08-41e5-9248-f2984ff5a53b",
+    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "status": "pending",
+    "type": "user",
+    "content_type": "fake_news",
+    "description": "apple sun sun moon banana sun random banana sad cat cat banana sad orange apple sad sun happy sun happy",
+    "created_date": "2023-11-06T01:22:15.902Z"
+  },
+  {
+    "id": "53b02d5a-2523-42b1-a9ad-061e494e5d01",
+    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "reported_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "discrimination",
+    "description": "random sad orange moon moon random cat sad moon moon happy cat happy moon apple sun dog random happy moon",
+    "created_date": "2023-01-23T18:26:31.153Z"
+  },
+  {
+    "id": "15fcc9a9-8967-4592-a7fa-b6b762b4a124",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "7d459f69-91a4-4a72-a61e-99c0d5c8b140",
     "status": "resolved",
     "type": "post",
-    "content_type": "adult_content",
-    "description": "apple random cat happy random orange happy sad random apple cat random orange sad apple apple dog happy dog cat",
-    "created_date": "2023-08-14T08:20:11.435Z"
+    "content_type": "hate_speech",
+    "description": "random banana banana banana cat moon happy banana sun apple apple cat banana banana moon banana moon dog sun sad",
+    "created_date": "2023-02-21T17:22:27.433Z"
   },
   {
-    "id": "df5af6fd-c9e7-43b2-928d-4c7b2730188e",
+    "id": "3eb16a1c-4b5e-4fda-9e33-4c4b9832892d",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "spam",
+    "description": "cat moon dog sad sad orange sun cat sun sad sad sad apple banana sad banana dog moon apple moon",
+    "created_date": "2023-09-12T07:45:04.884Z"
+  },
+  {
+    "id": "9dd2207c-748a-416b-bb04-3c5dd401d0df",
     "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "impersonation",
+    "description": "banana moon dog orange sad apple sad random dog happy sad orange banana sad orange dog orange sun cat cat",
+    "created_date": "2023-03-07T10:18:54.726Z"
+  },
+  {
+    "id": "7b1ead58-8d53-47f3-b2c9-fece160c2932",
+    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
+    "status": "pending",
+    "type": "post",
+    "content_type": "copyrighted",
+    "description": "banana dog happy sad orange sad happy dog random happy random random orange dog orange cat dog cat banana banana",
+    "created_date": "2023-10-26T16:18:53.189Z"
+  },
+  {
+    "id": "16e50573-9c99-4002-bf4d-f6e576e87484",
+    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "reported_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "status": "pending",
+    "type": "user",
+    "content_type": "political_bias",
+    "description": "random banana apple banana happy random random random banana sun sun dog moon moon random happy sun dog moon dog",
+    "created_date": "2023-06-04T14:10:14.719Z"
+  },
+  {
+    "id": "281c5119-c6ae-4d47-b48e-524d35991799",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "fraud",
+    "description": "sun random apple happy dog sad happy happy cat banana dog orange happy sad sad banana moon orange sun orange",
+    "created_date": "2023-11-20T16:18:08.334Z"
+  },
+  {
+    "id": "8a120149-1296-47b2-b840-a00fce3248c9",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "misleading",
+    "description": "cat banana apple random banana moon sun apple cat cat sad cat cat cat banana apple moon banana happy sun",
+    "created_date": "2023-11-28T16:14:55.015Z"
+  },
+  {
+    "id": "5ff459a0-064a-450f-a4bc-dfaa6bf018f2",
+    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "reported_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "status": "pending",
+    "type": "user",
+    "content_type": "spam",
+    "description": "sun dog happy sun apple orange sad banana banana cat dog cat cat sad sad happy happy dog cat sad",
+    "created_date": "2023-07-22T21:09:27.583Z"
+  },
+  {
+    "id": "59a272a7-02bc-47a2-9fdf-1ee1b7927dc3",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "hate_speech",
+    "description": "banana banana sun banana moon orange dog dog sad sun random cat sun apple happy happy apple happy moon random",
+    "created_date": "2023-12-07T17:33:36.589Z"
+  },
+  {
+    "id": "f62f4b29-a2d9-4dae-860e-84011e225ea8",
+    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "fraud",
+    "description": "orange orange random sad happy dog happy moon random apple happy happy sad sad happy cat orange happy sad dog",
+    "created_date": "2023-07-03T05:45:24.132Z"
+  },
+  {
+    "id": "f72f008b-4bcc-422a-902f-7375508c4232",
+    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "adult_content",
+    "description": "banana apple banana banana moon random orange cat random sun cat banana happy sad cat happy random cat dog sad",
+    "created_date": "2023-03-11T12:46:21.733Z"
+  },
+  {
+    "id": "fbdb627c-2ce8-43d0-9526-b9fd4772fe5f",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "discrimination",
+    "description": "apple apple happy sun cat cat sun banana random random moon dog happy happy cat apple apple dog random dog",
+    "created_date": "2023-07-28T02:10:06.411Z"
+  },
+  {
+    "id": "1e741dbe-f779-411b-bab4-ab584d345ba8",
+    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "reported_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "status": "rejected",
+    "type": "user",
+    "content_type": "fake_news",
+    "description": "banana random sun apple apple sad dog apple happy cat sun orange moon banana banana orange happy orange sad apple",
+    "created_date": "2023-10-17T14:21:07.172Z"
+  },
+  {
+    "id": "d3976ee8-3c8a-4f53-90ac-81e11a213dd2",
+    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "status": "resolved",
     "type": "post",
-    "content_type": "political_bias",
-    "description": "cat apple sun orange sun sad banana banana dog sad cat happy moon random orange happy dog sad dog banana",
-    "created_date": "2023-05-25T16:48:27.155Z"
+    "content_type": "privacy_violation",
+    "description": "random random random apple moon random sad apple apple cat dog moon sun happy moon sad dog cat orange sun",
+    "created_date": "2023-12-12T16:00:28.014Z"
   },
   {
-    "id": "c91ad738-27b5-4208-8577-d9f5f25959dd",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "d1445f5b-a35f-4b64-ab47-f0bc7b439491",
+    "id": "6e83a36e-0eca-48cd-a201-d18c92216268",
+    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "status": "pending",
+    "type": "user",
+    "content_type": "adult_content",
+    "description": "sad orange dog sun cat moon happy moon dog apple cat happy apple moon apple cat orange dog cat sun",
+    "created_date": "2023-03-12T06:27:49.179Z"
+  },
+  {
+    "id": "3161af11-22c9-4bfa-bea0-eeffd23c6712",
+    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "status": "resolved",
     "type": "post",
-    "content_type": "misleading",
-    "description": "dog sun happy sun sad happy sun orange banana banana happy orange moon cat apple sun apple sad dog dog",
-    "created_date": "2023-01-04T19:29:30.575Z"
+    "content_type": "illegal",
+    "description": "orange apple banana moon happy moon sun moon sad apple banana orange cat moon apple orange happy sun sun moon",
+    "created_date": "2023-11-24T02:20:32.409Z"
   },
   {
-    "id": "4dffd5af-b1c1-409a-aeae-ba98277d6f54",
-    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
+    "id": "bf96b6bd-c074-4e6c-ac94-689ae77c707e",
+    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "reported_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "fraud",
+    "description": "cat orange cat cat orange orange sad orange moon banana apple moon orange random cat apple banana happy sun banana",
+    "created_date": "2023-12-25T14:18:41.328Z"
+  },
+  {
+    "id": "6612bacd-9860-4c7d-b617-d7b1e7a391dd",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
     "status": "pending",
     "type": "post",
-    "content_type": "spam",
-    "description": "random sun moon orange sad dog moon cat orange banana orange banana orange orange cat sun sad random apple banana",
-    "created_date": "2023-03-01T23:05:29.851Z"
+    "content_type": "fake_news",
+    "description": "random dog cat cat cat sad cat dog banana random cat dog dog apple orange orange orange happy sun happy",
+    "created_date": "2023-09-25T12:46:58.279Z"
   },
   {
-    "id": "d22468b7-9689-458f-94bf-d7abff1cf653",
+    "id": "b3ca9905-6dc0-40da-a87d-421e4295c1cc",
+    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "political_bias",
+    "description": "cat orange apple moon cat happy moon happy orange cat dog sad orange cat banana happy apple sun sad happy",
+    "created_date": "2023-01-06T18:57:48.043Z"
+  },
+  {
+    "id": "b350ea6a-2a34-4f3e-a439-421018e8051f",
+    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "offensive",
+    "description": "sun random happy sun moon sad dog apple apple dog happy random happy apple sad happy sun sad random sad",
+    "created_date": "2023-04-08T06:05:03.129Z"
+  },
+  {
+    "id": "ec3bd1cc-5b48-4681-85a5-17c68652e589",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "status": "pending",
+    "type": "post",
+    "content_type": "discrimination",
+    "description": "sun cat sad apple sad banana cat sun moon moon random orange orange apple orange sad dog random sun happy",
+    "created_date": "2023-07-05T20:12:08.834Z"
+  },
+  {
+    "id": "be7b66b8-4d19-4f86-aa1a-b5861a55e393",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "7d459f69-91a4-4a72-a61e-99c0d5c8b140",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "political_bias",
+    "description": "sad happy happy banana apple sad happy sun orange apple random dog happy orange cat apple dog sad sad dog",
+    "created_date": "2023-04-13T15:08:29.150Z"
+  },
+  {
+    "id": "bfaa9a5d-07d9-4956-bfba-55a5abbf08d9",
+    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "status": "pending",
+    "type": "user",
+    "content_type": "privacy_violation",
+    "description": "happy sad apple dog sun cat sun happy cat cat apple banana random sad sun moon dog sad random sad",
+    "created_date": "2023-11-11T23:38:04.389Z"
+  },
+  {
+    "id": "bfa399f1-539b-4a0b-b5f7-7105c8d70b4f",
+    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "reported_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "status": "pending",
+    "type": "user",
+    "content_type": "hate_speech",
+    "description": "dog orange banana sad sun cat dog cat happy sad random happy orange random sun dog sad random dog apple",
+    "created_date": "2023-08-17T23:43:48.169Z"
+  },
+  {
+    "id": "35ba485b-5388-42d5-8c5a-b24e33a3e742",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "other",
+    "description": "happy random banana orange dog random apple sun moon sad sun moon dog sad moon apple dog apple happy sad",
+    "created_date": "2023-09-10T21:41:20.005Z"
+  },
+  {
+    "id": "97991088-9ef4-4825-900c-fb8f9ac49357",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "deb5de3c-1e11-4dd4-a76c-ca04640ca8a5",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "violence",
+    "description": "cat sad orange happy dog dog orange sad dog apple happy apple apple dog moon happy dog banana dog apple",
+    "created_date": "2023-10-06T04:02:34.072Z"
+  },
+  {
+    "id": "a7d8e0c8-cf72-4699-a351-5e0689d7e7ca",
     "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
     "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "status": "pending",
     "type": "user",
-    "content_type": "violence",
-    "description": "cat dog cat moon cat happy apple happy sad dog moon sun orange apple moon sad dog banana happy cat",
-    "created_date": "2023-11-22T06:54:39.950Z"
+    "content_type": "other",
+    "description": "sun sun sad random dog cat moon dog banana orange moon happy sun cat moon dog moon dog happy orange",
+    "created_date": "2023-03-04T08:20:16.389Z"
   },
   {
-    "id": "db3bdd04-c2a6-4597-898b-a4fd8c9273ac",
+    "id": "31787703-70e1-483e-be2b-dfd7937f0bb7",
     "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "violence",
+    "description": "orange dog random banana sad random apple orange sad sun orange sun apple moon sun random apple sun random cat",
+    "created_date": "2023-09-19T01:56:27.755Z"
+  },
+  {
+    "id": "ba8a45e2-bea6-4106-8958-372616e29385",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "status": "rejected",
+    "type": "user",
+    "content_type": "fake_news",
+    "description": "cat cat sad sun moon cat banana happy moon dog orange dog banana cat dog sad moon cat moon random",
+    "created_date": "2023-09-25T10:39:28.203Z"
+  },
+  {
+    "id": "cf55fe6c-5b51-45f8-b2e9-f2282f8c91ee",
+    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "political_bias",
+    "description": "cat banana sad sun cat dog sun happy dog sad sun orange cat apple apple sad random cat happy sun",
+    "created_date": "2023-05-10T02:23:25.044Z"
+  },
+  {
+    "id": "4de8d7d5-ab9b-42e7-b1fb-a91b4fdebed5",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "d1445f5b-a35f-4b64-ab47-f0bc7b439491",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "spam",
+    "description": "sad dog random cat orange sad orange sun cat orange sun cat sun sun sun apple orange banana sad dog",
+    "created_date": "2023-02-09T10:56:39.989Z"
+  },
+  {
+    "id": "fe4eaf49-30f7-4968-903a-688d656dcb90",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "harassment",
+    "description": "orange orange dog apple orange moon sad apple moon apple happy banana sad orange moon sad sad sad dog sun",
+    "created_date": "2023-11-21T07:41:59.051Z"
+  },
+  {
+    "id": "bf203941-5c9a-4b45-b984-1f2a0076161c",
+    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "reported_id": "d1445f5b-a35f-4b64-ab47-f0bc7b439491",
+    "status": "pending",
+    "type": "post",
+    "content_type": "copyrighted",
+    "description": "happy orange orange sun sun apple sun happy sun cat cat dog happy sad moon sun happy moon dog random",
+    "created_date": "2023-05-26T23:59:00.094Z"
+  },
+  {
+    "id": "228c1823-5a1a-448a-9851-e5c51ecfee9e",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "fake_news",
+    "description": "apple sad moon moon random moon cat dog sun dog apple apple sun sun random moon banana happy random happy",
+    "created_date": "2023-09-09T21:04:29.999Z"
+  },
+  {
+    "id": "bbc3ef0b-a79d-4342-9369-57d2bc172d90",
+    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "inappropriate",
+    "description": "cat banana happy apple sad random apple sad sun orange sad apple sad random sun sun banana orange apple random",
+    "created_date": "2023-03-19T09:17:37.583Z"
+  },
+  {
+    "id": "8e207bea-9ce1-4926-8e59-bca129755508",
+    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "pending",
+    "type": "post",
+    "content_type": "misleading",
+    "description": "moon random moon sun dog sun dog cat apple happy banana sun orange dog happy sun sad sad orange apple",
+    "created_date": "2023-06-05T16:38:34.717Z"
+  },
+  {
+    "id": "5eab8fde-28fc-4d33-b4ea-3718a0c0dbd0",
+    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "adult_content",
+    "description": "apple sun orange orange dog orange apple moon sad banana orange dog banana dog happy banana apple apple orange dog",
+    "created_date": "2023-05-03T11:13:29.528Z"
+  },
+  {
+    "id": "cc3ff900-ce27-4a8e-8415-8fa44a92fade",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "spam",
+    "description": "happy happy happy apple cat banana random happy apple orange dog dog orange random sun orange moon happy dog apple",
+    "created_date": "2023-07-22T05:13:43.777Z"
+  },
+  {
+    "id": "5102b2e8-51c9-435f-abda-3f0fb8e83134",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "inappropriate",
+    "description": "random moon moon dog sun apple sun random sun happy orange sad cat orange random banana orange banana orange banana",
+    "created_date": "2023-01-11T10:59:38.463Z"
+  },
+  {
+    "id": "449071b5-dcb9-432c-8211-a9dd1c346be1",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "other",
+    "description": "sun orange orange orange moon dog orange sun sad cat apple cat sun dog sun random cat moon happy cat",
+    "created_date": "2023-11-07T05:05:33.714Z"
+  },
+  {
+    "id": "2c42f122-ef44-4542-ab08-f6e44d875ec7",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "other",
+    "description": "cat apple cat sun sad orange sun random happy dog happy moon sad sun banana sad sun moon sun random",
+    "created_date": "2023-06-24T17:36:17.515Z"
+  },
+  {
+    "id": "ae090039-1757-4808-a637-672fe56f9369",
+    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "fraud",
+    "description": "sad orange banana sad random cat moon dog dog sun dog dog random banana moon apple sad cat moon random",
+    "created_date": "2023-12-30T11:34:45.793Z"
+  },
+  {
+    "id": "69e62d00-5474-4cb8-a4fc-99fd8d534fd1",
+    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "reported_id": "7d459f69-91a4-4a72-a61e-99c0d5c8b140",
+    "status": "pending",
+    "type": "post",
+    "content_type": "political_bias",
+    "description": "sun cat sun dog sun orange apple sun moon random cat banana dog sun sad sun dog banana banana cat",
+    "created_date": "2023-03-19T09:37:02.912Z"
+  },
+  {
+    "id": "41c8d516-769c-4f2f-ab07-9c4569c815e4",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "fraud",
+    "description": "apple random moon sun happy moon dog happy random banana apple cat dog banana apple moon cat sun moon orange",
+    "created_date": "2023-04-26T06:28:30.929Z"
+  },
+  {
+    "id": "896c3421-9aab-489c-9e0b-922b1678b405",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "harassment",
+    "description": "cat sad apple cat random random sun orange apple orange banana random sun sad happy happy dog sad cat cat",
+    "created_date": "2023-11-30T21:47:18.620Z"
+  },
+  {
+    "id": "2bfc76e7-b0d1-46e9-a756-faa57290eee7",
+    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "status": "pending",
+    "type": "user",
+    "content_type": "privacy_violation",
+    "description": "orange moon banana apple apple sun sad sad cat apple dog orange moon sad dog happy sad dog cat cat",
+    "created_date": "2023-04-16T05:50:23.693Z"
+  },
+  {
+    "id": "fc8fd091-9203-4097-9538-ea726aae4e74",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "hate_speech",
+    "description": "moon sad random moon random random sun moon moon banana cat dog happy moon sun apple cat happy orange happy",
+    "created_date": "2023-12-06T20:34:44.182Z"
+  },
+  {
+    "id": "14d9a614-c650-4ae2-a367-3d7c06d55573",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "status": "rejected",
+    "type": "user",
+    "content_type": "inappropriate",
+    "description": "banana banana orange moon orange sun happy moon cat dog sun random sun happy random random cat moon apple random",
+    "created_date": "2023-07-12T12:10:54.376Z"
+  },
+  {
+    "id": "a6245268-97e7-4609-a518-d85c8a2bf5fd",
+    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "reported_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "status": "pending",
+    "type": "user",
+    "content_type": "fake_news",
+    "description": "sun random apple dog cat sun random apple cat random sun banana moon orange happy orange sad happy apple moon",
+    "created_date": "2023-07-21T07:01:04.847Z"
+  },
+  {
+    "id": "d46ae221-4c3b-448e-bb2d-70e16f0b1628",
+    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "spam",
+    "description": "apple sun cat orange cat dog orange orange cat orange random cat random happy dog dog moon random sun banana",
+    "created_date": "2023-07-14T15:01:28.275Z"
+  },
+  {
+    "id": "47b7a993-530f-404f-8c30-df8cda1fa344",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "status": "pending",
+    "type": "user",
+    "content_type": "fake_news",
+    "description": "moon orange apple banana sad cat dog apple random orange dog sad happy sun orange sun random sad apple dog",
+    "created_date": "2023-11-30T16:57:15.141Z"
+  },
+  {
+    "id": "146b5d69-7ad2-4ac9-8246-37824d767fd1",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "status": "rejected",
+    "type": "user",
+    "content_type": "discrimination",
+    "description": "sun apple banana random banana happy sad apple sad sun apple moon moon sad cat orange cat happy dog sad",
+    "created_date": "2023-12-12T17:20:59.268Z"
+  },
+  {
+    "id": "d80f5432-ba46-4f72-8c36-86270c615c2e",
+    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "offensive",
+    "description": "dog orange happy banana orange random cat sad banana apple banana orange cat sun sad random random banana sad moon",
+    "created_date": "2023-07-31T13:59:26.842Z"
+  },
+  {
+    "id": "7eb65e97-c322-47cb-af37-aa68550fa7cb",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "harassment",
+    "description": "sun banana moon banana random sad sad banana random dog cat orange dog dog banana sad apple sun apple sad",
+    "created_date": "2023-10-10T06:49:26.130Z"
+  },
+  {
+    "id": "96187ec0-2349-42a4-a30f-5b8ad3dc9d64",
+    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
+    "status": "pending",
+    "type": "post",
+    "content_type": "fake_news",
+    "description": "banana random banana orange random apple apple moon banana orange cat cat orange sad sad apple cat random dog random",
+    "created_date": "2023-12-12T02:47:13.263Z"
+  },
+  {
+    "id": "c568218f-0127-4513-8978-0ce6f4e3f5d4",
+    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "reported_id": "deb5de3c-1e11-4dd4-a76c-ca04640ca8a5",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "hate_speech",
+    "description": "moon cat sun moon banana moon sun apple dog happy random moon moon happy sun sun random sun happy happy",
+    "created_date": "2023-06-07T17:31:52.747Z"
+  },
+  {
+    "id": "532d7448-5a24-4c97-8c0d-67b93049dbc3",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
+    "status": "pending",
+    "type": "post",
+    "content_type": "impersonation",
+    "description": "moon sad apple random orange dog happy dog sun cat orange cat dog sad dog cat sun random cat banana",
+    "created_date": "2023-07-02T13:42:12.115Z"
+  },
+  {
+    "id": "e353475a-9f9c-41f6-a206-dcfab0f77c92",
+    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "status": "pending",
+    "type": "post",
+    "content_type": "violence",
+    "description": "sun cat orange orange sun dog random random orange sad sun orange dog sad sad orange random apple orange banana",
+    "created_date": "2023-05-28T03:24:06.877Z"
+  },
+  {
+    "id": "57d3bd95-4f30-4926-a334-ea9a940796b7",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "offensive",
+    "description": "dog random banana moon happy sad apple random cat moon random sun banana orange sad sad sun random dog happy",
+    "created_date": "2023-06-27T23:17:58.566Z"
+  },
+  {
+    "id": "ee0cbd56-cbc5-434a-a913-aa3db5552c4d",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "status": "rejected",
+    "type": "user",
+    "content_type": "political_bias",
+    "description": "orange banana apple random moon random moon banana banana dog sad sun sun cat apple dog cat random happy random",
+    "created_date": "2023-03-03T17:29:56.657Z"
+  },
+  {
+    "id": "757602d7-d8ac-4030-ab9c-0616e0bb084d",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "harassment",
+    "description": "sun sad sad happy dog cat orange sad sad sun sad orange moon banana banana happy cat sad cat moon",
+    "created_date": "2023-08-17T18:29:17.241Z"
+  },
+  {
+    "id": "a8dd4c1b-6ff3-4446-9446-b0a0ef650215",
+    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
     "reported_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "status": "resolved",
     "type": "user",
-    "content_type": "fraud",
-    "description": "orange apple banana sun sad sun banana moon apple sun sun apple sun happy banana moon cat happy sun random",
-    "created_date": "2023-05-26T06:59:11.309Z"
-  },
-  {
-    "id": "7315183e-05f0-4538-ae1f-6103a1541cd9",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "adult_content",
-    "description": "happy sad moon sun sad happy cat banana sun dog dog cat banana dog dog cat dog happy banana cat",
-    "created_date": "2023-07-15T23:46:16.679Z"
-  },
-  {
-    "id": "53d2c6d8-ce7d-49d3-a04b-2db375aff021",
-    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "bullying",
-    "description": "banana sad apple dog orange sun banana cat cat sad orange moon moon apple banana banana happy orange random sad",
-    "created_date": "2023-01-07T16:12:47.567Z"
-  },
-  {
-    "id": "0d2a035c-0286-44b6-a40f-e944115725a7",
-    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "political_bias",
-    "description": "random banana random apple sad cat sad cat happy sun orange happy apple dog apple orange moon happy banana sad",
-    "created_date": "2023-11-29T15:06:39.658Z"
-  },
-  {
-    "id": "e57a1003-2e5a-45d3-8871-03e0fa3699f4",
-    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "pending",
-    "type": "user",
     "content_type": "offensive",
-    "description": "cat random cat random cat moon cat banana orange happy moon random orange cat banana apple banana orange sun apple",
-    "created_date": "2023-11-14T18:33:15.895Z"
+    "description": "sad sad apple orange banana moon happy orange sad banana sad orange apple cat random moon moon sun sun sad",
+    "created_date": "2023-07-22T08:54:51.153Z"
   },
   {
-    "id": "7fc47170-3342-40ae-9814-65356c780fdf",
-    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "reported_id": "7d459f69-91a4-4a72-a61e-99c0d5c8b140",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "fake_news",
-    "description": "sun sun dog cat happy happy banana cat orange apple cat dog orange sad dog orange sad orange dog banana",
-    "created_date": "2023-02-28T06:08:27.823Z"
-  },
-  {
-    "id": "0f170607-6e45-4e8e-b73c-d5b7ef695f77",
-    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "political_bias",
-    "description": "dog sad dog random sad cat cat sun banana sun sad orange happy sun orange sad moon moon dog banana",
-    "created_date": "2023-07-01T10:02:55.571Z"
-  },
-  {
-    "id": "2e88cdab-1bfd-42bb-8ac5-4c20e49c694b",
-    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "political_bias",
-    "description": "moon orange dog happy apple orange happy apple apple sun happy cat moon cat cat sun happy random moon orange",
-    "created_date": "2023-10-11T10:06:42.037Z"
-  },
-  {
-    "id": "fab6ce4b-9bae-4d36-817a-1a631dcdef9f",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
-    "status": "pending",
-    "type": "post",
-    "content_type": "hate_speech",
-    "description": "moon apple apple cat happy moon happy happy moon moon random happy cat happy moon dog moon random moon apple",
-    "created_date": "2023-03-19T08:42:26.951Z"
-  },
-  {
-    "id": "22a8c4e5-ddce-4e57-80c8-4df67105bf89",
+    "id": "ccc26939-238e-481f-95fc-b4b40a86c77b",
     "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
     "status": "rejected",
-    "type": "user",
-    "content_type": "illegal",
-    "description": "dog orange sun moon banana random happy sun dog cat banana sun banana happy dog cat apple orange banana cat",
-    "created_date": "2023-10-06T21:57:45.321Z"
+    "type": "post",
+    "content_type": "adult_content",
+    "description": "dog happy moon random sun apple apple cat random moon sun happy orange dog happy banana dog dog sun dog",
+    "created_date": "2023-07-06T22:55:02.822Z"
   },
   {
-    "id": "e968cc83-2384-4f53-9d3f-278d2ff5d371",
-    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "reported_id": "d1445f5b-a35f-4b64-ab47-f0bc7b439491",
+    "id": "487cfc09-f9a0-4cde-94de-fc2899625ab7",
+    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "reported_id": "deb5de3c-1e11-4dd4-a76c-ca04640ca8a5",
     "status": "pending",
     "type": "post",
-    "content_type": "discrimination",
-    "description": "sun moon apple banana moon sad sun dog apple dog dog dog happy orange banana banana dog orange banana sun",
-    "created_date": "2023-05-08T15:54:53.899Z"
+    "content_type": "misleading",
+    "description": "sun dog orange moon sun orange sad orange sun cat banana sun happy moon dog random orange random dog apple",
+    "created_date": "2023-12-13T12:30:38.368Z"
   },
   {
-    "id": "b15721d7-35da-48f9-ad5f-3cdc0d9f34f7",
-    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "reported_id": "d1445f5b-a35f-4b64-ab47-f0bc7b439491",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "privacy_violation",
-    "description": "sun cat cat random moon sun happy dog orange random moon dog happy random moon moon sun apple orange happy",
-    "created_date": "2023-09-12T08:49:59.722Z"
-  },
-  {
-    "id": "e2500478-bdeb-4b6b-9053-6fdd232f0960",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "copyrighted",
-    "description": "orange happy orange banana random orange sad sad apple sad happy happy dog sun random random sun moon orange cat",
-    "created_date": "2023-05-28T21:58:29.910Z"
-  },
-  {
-    "id": "210890a9-cfed-4e44-918c-a90996c46ec5",
+    "id": "04d43c4b-3326-4796-823a-c1c4d6fb154e",
     "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
     "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
-    "status": "resolved",
+    "status": "rejected",
     "type": "post",
-    "content_type": "political_bias",
-    "description": "orange happy happy happy sun banana banana moon orange dog moon orange sad moon happy banana banana happy sad dog",
-    "created_date": "2023-02-16T21:35:30.116Z"
+    "content_type": "illegal",
+    "description": "orange dog orange random moon random banana apple banana dog orange apple sad random moon moon happy banana cat dog",
+    "created_date": "2023-07-23T07:31:13.926Z"
   },
   {
-    "id": "8ef2d7af-5eaa-4248-aeba-28e82ebd14fe",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
-    "status": "rejected",
+    "id": "615cf729-e4b6-45bd-84f2-c65b04edace2",
+    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
+    "status": "pending",
     "type": "post",
     "content_type": "other",
-    "description": "apple apple sad random apple cat moon happy sad sun happy sun banana banana happy happy sun apple orange banana",
-    "created_date": "2023-01-29T13:23:46.020Z"
+    "description": "banana moon apple sad sun banana random dog orange random cat apple sun moon sun sad apple dog cat sun",
+    "created_date": "2023-03-13T08:40:16.564Z"
   },
   {
-    "id": "bcf7d7fc-e21f-4e0c-b211-a2520eaa7b5c",
+    "id": "a9d8d2c4-6a6b-4d43-b77f-462e2522a0f2",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "07a6a903-f785-462a-80fc-253649ff1483",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "spam",
+    "description": "random moon cat happy random orange banana cat sad orange dog banana sad orange sun sun moon cat dog moon",
+    "created_date": "2023-03-04T06:29:24.031Z"
+  },
+  {
+    "id": "e99aa9ef-a860-4e1c-b907-b6e43d0c37d5",
     "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "reported_id": "d1445f5b-a35f-4b64-ab47-f0bc7b439491",
-    "status": "pending",
-    "type": "post",
-    "content_type": "violence",
-    "description": "cat apple dog sun cat moon random apple banana orange dog cat random sun sad orange banana sun banana cat",
-    "created_date": "2023-02-16T03:56:36.682Z"
-  },
-  {
-    "id": "46044749-5131-48cf-a63d-4540af249592",
-    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "reported_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "copyrighted",
-    "description": "apple happy happy cat banana cat dog cat orange cat dog sad dog banana random apple moon moon apple banana",
-    "created_date": "2023-07-29T00:35:14.538Z"
-  },
-  {
-    "id": "7a3d2cc8-7323-47b1-95cd-0bd5e60b1499",
-    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
-    "status": "pending",
-    "type": "post",
-    "content_type": "bullying",
-    "description": "sun random cat moon cat sun happy sad sun orange sad banana cat sun cat dog sad sad dog random",
-    "created_date": "2023-02-22T03:33:50.838Z"
-  },
-  {
-    "id": "6de77f32-de0d-460b-970b-8d00fe098d38",
-    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "pending",
-    "type": "user",
-    "content_type": "illegal",
-    "description": "dog random apple dog orange random banana apple random apple happy cat random orange moon orange apple dog happy moon",
-    "created_date": "2023-01-15T12:35:15.576Z"
-  },
-  {
-    "id": "f48c3992-35d9-4143-afe1-124831f0533c",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "status": "pending",
-    "type": "user",
-    "content_type": "illegal",
-    "description": "happy happy sun moon orange dog moon random apple sad sun dog random happy cat moon dog banana dog cat",
-    "created_date": "2023-06-18T09:29:59.755Z"
-  },
-  {
-    "id": "a6529a52-7136-45c8-95c3-b5a46648525d",
-    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "reported_id": "d1445f5b-a35f-4b64-ab47-f0bc7b439491",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "copyrighted",
-    "description": "sad banana cat orange sad random dog dog cat sad dog banana moon dog sun banana apple happy orange dog",
-    "created_date": "2023-02-24T13:41:32.781Z"
-  },
-  {
-    "id": "fb1cadcb-0cef-4082-94df-05cef183d752",
-    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "7d459f69-91a4-4a72-a61e-99c0d5c8b140",
-    "status": "rejected",
+    "status": "resolved",
     "type": "post",
     "content_type": "fraud",
-    "description": "sad dog orange banana random random orange orange random random apple happy sun orange sun apple apple sun dog cat",
-    "created_date": "2023-10-27T23:23:40.752Z"
+    "description": "cat apple dog random cat apple banana banana cat apple sad cat sun apple dog sad happy orange banana sad",
+    "created_date": "2023-05-17T04:07:12.150Z"
   },
   {
-    "id": "753cbb82-d57f-4093-affc-147be382b31a",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
-    "status": "pending",
-    "type": "user",
-    "content_type": "political_bias",
-    "description": "banana sun apple sad orange happy banana sun sun random sun orange sad orange moon dog happy moon banana cat",
-    "created_date": "2023-02-15T08:07:28.035Z"
-  },
-  {
-    "id": "d93ef36c-d9fd-4912-9a6c-c32c41533b9d",
-    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
-    "status": "rejected",
-    "type": "post",
-    "content_type": "hate_speech",
-    "description": "moon random apple orange cat random apple sun dog sad cat moon dog cat orange moon moon happy random cat",
-    "created_date": "2023-01-09T10:21:06.784Z"
-  },
-  {
-    "id": "8e8d9b59-27ff-4b4c-b067-497676dcaacb",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "deb5de3c-1e11-4dd4-a76c-ca04640ca8a5",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "adult_content",
-    "description": "sad dog cat orange sun sad banana happy apple banana moon dog cat cat random moon cat random sun sun",
-    "created_date": "2023-01-30T00:30:32.068Z"
-  },
-  {
-    "id": "84ee2cbe-f519-4b2a-a565-50355de4729f",
-    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
-    "status": "pending",
-    "type": "post",
-    "content_type": "illegal",
-    "description": "dog banana moon sad happy orange dog sad happy sad dog banana cat sad banana moon orange apple happy sad",
-    "created_date": "2023-11-03T02:48:00.348Z"
-  },
-  {
-    "id": "2e7624e5-ac4e-4573-9465-5cd3632d8981",
-    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "reported_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "harassment",
-    "description": "moon happy orange cat orange dog sun cat happy moon dog sad banana cat dog sun orange random cat moon",
-    "created_date": "2023-02-25T15:07:28.958Z"
-  },
-  {
-    "id": "669d93d1-d649-45f0-becf-383a7823c6ca",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "copyrighted",
-    "description": "apple cat sad moon random happy orange sun dog banana moon apple dog cat orange sad cat banana sun moon",
-    "created_date": "2023-04-29T10:18:56.115Z"
-  },
-  {
-    "id": "222040bd-bd7f-4cfc-b6af-e7014d6fd37c",
-    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "reported_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "other",
-    "description": "moon dog cat apple banana random sun sun dog banana random moon happy sun banana sad random banana dog happy",
-    "created_date": "2023-11-08T05:59:31.188Z"
-  },
-  {
-    "id": "352d145e-285e-4ca0-89e6-4d28a1c83e8e",
-    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "reported_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
-    "status": "rejected",
-    "type": "user",
-    "content_type": "violence",
-    "description": "moon banana banana cat sun orange dog apple sun happy sad banana random happy cat sad random dog happy sun",
-    "created_date": "2023-03-15T02:58:20.339Z"
-  },
-  {
-    "id": "09ae515c-4062-445b-8853-e566ac8c4b09",
-    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
-    "status": "pending",
-    "type": "post",
-    "content_type": "privacy_violation",
-    "description": "sun sad apple sun sun random sad banana apple random apple dog sun random cat random dog orange banana random",
-    "created_date": "2023-11-21T19:10:15.205Z"
-  },
-  {
-    "id": "1a971a76-5646-46e5-a168-fc798164aa99",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "pending",
-    "type": "post",
-    "content_type": "copyrighted",
-    "description": "dog sun random moon banana cat apple happy apple cat sad banana cat dog happy sun banana dog cat cat",
-    "created_date": "2023-02-24T23:27:12.427Z"
-  },
-  {
-    "id": "398a4c0d-10e8-442d-8cfc-55a71bad705c",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "illegal",
-    "description": "happy cat orange dog orange apple happy cat apple random banana sad banana moon apple sad moon sun orange cat",
-    "created_date": "2023-11-05T22:40:54.594Z"
-  },
-  {
-    "id": "e00f7a54-779e-41d6-b05e-105b717d1ef0",
-    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
-    "reported_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "harassment",
-    "description": "banana sad sad cat apple random moon moon sad apple cat dog apple moon cat apple sun apple sad sun",
-    "created_date": "2023-06-21T02:35:45.008Z"
-  },
-  {
-    "id": "d0d41981-0446-4fd5-aae2-757905d37d6c",
-    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
-    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "impersonation",
-    "description": "apple banana happy sun cat banana sad orange happy sun random orange banana dog sad cat sun apple dog moon",
-    "created_date": "2023-07-31T15:51:04.683Z"
-  },
-  {
-    "id": "d0d77a8c-02d4-49ed-bffe-db53c9e04abe",
-    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
-    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
-    "status": "pending",
-    "type": "user",
-    "content_type": "adult_content",
-    "description": "apple random cat banana happy dog sad random sad moon happy banana random sad sad apple random moon random orange",
-    "created_date": "2023-04-09T12:09:43.923Z"
-  },
-  {
-    "id": "35ed4796-181b-4da1-878f-b6cf716bf8cb",
+    "id": "04509552-aae5-45fd-aaf8-e820b56822bd",
     "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "reported_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
-    "status": "resolved",
-    "type": "user",
-    "content_type": "misleading",
-    "description": "moon sad cat sun apple dog cat cat cat banana sun sun dog banana random sad cat moon sad banana",
-    "created_date": "2023-12-22T21:49:35.229Z"
-  },
-  {
-    "id": "c99dc0cf-2099-42dc-99b1-263f9a3a0d3c",
-    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
-    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "fraud",
-    "description": "sad sad moon sun moon moon cat cat cat banana random random banana random banana cat sun sun banana dog",
-    "created_date": "2023-05-03T11:20:34.681Z"
-  },
-  {
-    "id": "5035f03b-93dc-4fb3-baba-4f64988e9475",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
-    "status": "resolved",
-    "type": "post",
-    "content_type": "political_bias",
-    "description": "sun moon dog random apple happy dog sad banana cat apple dog sad random cat happy dog sun random banana",
-    "created_date": "2023-01-24T18:33:27.953Z"
-  },
-  {
-    "id": "f8df0ad6-2125-430d-b9b2-5666e2c81485",
-    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
-    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "status": "pending",
     "type": "user",
-    "content_type": "discrimination",
-    "description": "orange cat orange apple cat cat cat apple dog cat happy apple moon dog sun cat random dog random sun",
-    "created_date": "2023-06-21T22:53:27.736Z"
+    "content_type": "other",
+    "description": "banana orange happy moon moon sun orange apple apple apple random random sad dog sun moon random orange random apple",
+    "created_date": "2023-06-07T06:26:40.593Z"
   },
   {
-    "id": "1e1a2874-2acf-4187-806e-17e3502932c8",
-    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
-    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
-    "status": "pending",
-    "type": "post",
-    "content_type": "privacy_violation",
-    "description": "sad dog apple banana random happy moon banana apple dog random cat banana sun orange random sun orange moon dog",
-    "created_date": "2023-02-05T04:22:11.074Z"
-  },
-  {
-    "id": "449ec3fb-5bd6-48e9-9027-354d1b81df8c",
-    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
-    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "id": "abb94f25-8687-44a9-9d05-c634944f817a",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "status": "rejected",
     "type": "user",
+    "content_type": "other",
+    "description": "cat dog banana banana cat moon apple random dog dog sun happy happy dog random banana sun banana orange moon",
+    "created_date": "2023-01-25T01:10:23.450Z"
+  },
+  {
+    "id": "b93e972c-be0a-4138-8e18-d71d9919e834",
+    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "reported_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "status": "pending",
+    "type": "user",
+    "content_type": "bullying",
+    "description": "sun cat apple banana cat orange cat banana moon cat happy apple sad happy apple banana moon random sad orange",
+    "created_date": "2023-11-17T00:14:43.985Z"
+  },
+  {
+    "id": "3d3cba0e-0951-4343-9aee-1f6d5320d8d7",
+    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "pending",
+    "type": "post",
+    "content_type": "offensive",
+    "description": "sun moon banana happy banana moon sad sad apple sad happy moon sad sad random cat dog random sun random",
+    "created_date": "2023-09-24T10:29:27.907Z"
+  },
+  {
+    "id": "6c5402fa-2018-45e6-aece-3f5c425978f6",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "ac7b7593-031e-4fc1-af7a-9d067f96144d",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "other",
+    "description": "dog orange happy random sun orange sad sad dog banana banana dog orange happy happy orange sun apple banana sun",
+    "created_date": "2023-12-28T09:20:05.585Z"
+  },
+  {
+    "id": "2b541add-ff99-4719-bdeb-508adcea5305",
+    "reporter_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "bullying",
+    "description": "apple moon sun orange happy sad banana random dog sad dog happy sun random banana cat orange moon moon apple",
+    "created_date": "2023-04-29T03:42:43.099Z"
+  },
+  {
+    "id": "9fd4d9d4-d4ab-4cf7-acc5-b6ae30cf6871",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "pending",
+    "type": "post",
+    "content_type": "adult_content",
+    "description": "sun random cat banana banana apple happy cat sun happy moon dog sad random sad cat orange random banana orange",
+    "created_date": "2023-07-29T11:37:25.508Z"
+  },
+  {
+    "id": "074a7f5a-c0e9-4e9c-bd5b-d70b193ead64",
+    "reporter_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "status": "resolved",
+    "type": "user",
     "content_type": "fake_news",
-    "description": "apple dog apple moon apple random banana banana happy banana sad dog dog sun sun sun dog dog dog moon",
-    "created_date": "2023-07-10T04:07:44.329Z"
+    "description": "moon sad orange banana sad cat sun random apple moon moon sad happy sad random dog sad cat apple happy",
+    "created_date": "2023-08-02T11:23:14.671Z"
+  },
+  {
+    "id": "e7531a29-bdeb-42b6-a580-b1b2daaa7d3b",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
+    "status": "pending",
+    "type": "post",
+    "content_type": "harassment",
+    "description": "moon happy dog cat sad sad happy moon happy moon sad banana cat happy orange sun sad apple random sad",
+    "created_date": "2023-05-23T23:27:21.982Z"
+  },
+  {
+    "id": "560fc3a9-a5de-4711-b2bb-aea24d3a450c",
+    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "reported_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "status": "pending",
+    "type": "user",
+    "content_type": "misleading",
+    "description": "sad random orange random sad orange orange sun sun random sad sad cat happy sad orange orange orange random moon",
+    "created_date": "2023-09-26T03:04:23.451Z"
+  },
+  {
+    "id": "2ddadd15-d1fb-48ac-b333-9a788b89eb67",
+    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
+    "status": "pending",
+    "type": "post",
+    "content_type": "inappropriate",
+    "description": "apple happy dog apple cat dog orange dog happy sun happy happy sad sad happy dog cat apple banana banana",
+    "created_date": "2023-02-20T12:53:58.348Z"
+  },
+  {
+    "id": "477b37c6-5fbf-4413-ad9b-3909b2b5b584",
+    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "reported_id": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "status": "pending",
+    "type": "user",
+    "content_type": "adult_content",
+    "description": "orange cat apple banana orange happy random happy dog sun banana happy orange sun sun sad happy apple random orange",
+    "created_date": "2023-12-02T10:55:42.686Z"
+  },
+  {
+    "id": "bfa48b20-e730-49fb-9372-742198e20da0",
+    "reporter_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "impersonation",
+    "description": "moon cat moon orange random orange apple moon orange cat sun cat orange cat random moon dog sad moon dog",
+    "created_date": "2023-05-18T20:53:56.846Z"
+  },
+  {
+    "id": "7e3605b4-e0d5-4c61-afe5-18ee54dab926",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "status": "rejected",
+    "type": "user",
+    "content_type": "offensive",
+    "description": "cat dog orange sun sad dog sun dog random happy banana cat apple sun random banana happy random sad dog",
+    "created_date": "2023-10-15T13:49:37.948Z"
+  },
+  {
+    "id": "412c63ad-8702-455f-a0fd-795abd908acf",
+    "reporter_id": "8c18e123-74c2-488c-a243-83cb431159e2",
+    "reported_id": "5f289177-c87d-4ff4-9e4f-2326a2cb7d89",
+    "status": "pending",
+    "type": "post",
+    "content_type": "discrimination",
+    "description": "dog sun sun cat banana apple happy moon banana orange banana banana dog random happy cat sad moon sad orange",
+    "created_date": "2023-10-11T13:47:33.645Z"
+  },
+  {
+    "id": "628c187b-d7dc-4b33-adf6-ea72b6ccbe6c",
+    "reporter_id": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "reported_id": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "political_bias",
+    "description": "random apple random orange sun sad orange happy cat happy dog sun random moon random orange cat cat orange orange",
+    "created_date": "2023-05-15T12:26:17.619Z"
+  },
+  {
+    "id": "fc3b9bba-fad7-4aa4-8b65-b45c5176e9a5",
+    "reporter_id": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "reported_id": "b8cd1322-5778-417e-94d9-5335e8c9f7a8",
+    "status": "pending",
+    "type": "post",
+    "content_type": "fraud",
+    "description": "orange happy banana banana dog apple orange dog moon orange cat sun apple happy happy banana sad orange dog happy",
+    "created_date": "2023-12-24T04:37:06.527Z"
+  },
+  {
+    "id": "72a54210-fc4d-433d-a9c0-452fb8f47592",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "deb5de3c-1e11-4dd4-a76c-ca04640ca8a5",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "adult_content",
+    "description": "banana apple random apple moon apple apple cat sun moon sad banana dog sad happy sad cat dog orange sun",
+    "created_date": "2023-08-30T00:02:04.444Z"
+  },
+  {
+    "id": "f1700fa4-f2b0-4efe-a292-d76f5a5667d1",
+    "reporter_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "reported_id": "7d459f69-91a4-4a72-a61e-99c0d5c8b140",
+    "status": "rejected",
+    "type": "post",
+    "content_type": "impersonation",
+    "description": "apple cat happy apple sun apple banana orange dog sun sad banana dog happy dog moon random happy sad banana",
+    "created_date": "2023-08-10T17:12:07.810Z"
+  },
+  {
+    "id": "cbed4b09-c9ee-467c-9198-53091982f4ea",
+    "reporter_id": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "other",
+    "description": "moon cat orange random sad sad happy apple sad random random banana cat dog orange moon banana happy random moon",
+    "created_date": "2023-05-24T11:53:10.286Z"
+  },
+  {
+    "id": "5d78c20d-6776-4425-a568-8ac9e48c4013",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "status": "rejected",
+    "type": "user",
+    "content_type": "other",
+    "description": "happy happy cat sad sun moon sad apple cat orange sun happy orange cat orange banana random happy random banana",
+    "created_date": "2023-04-27T11:25:58.025Z"
+  },
+  {
+    "id": "5f9a4172-d2e6-4032-8687-1afc544a9068",
+    "reporter_id": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "reported_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "status": "resolved",
+    "type": "user",
+    "content_type": "copyrighted",
+    "description": "sad moon happy sad orange dog sun sun orange happy random moon orange dog cat cat apple moon orange sun",
+    "created_date": "2023-08-06T04:15:10.443Z"
+  },
+  {
+    "id": "cc098efd-05d9-413b-8394-86f124290c14",
+    "reporter_id": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "reported_id": "3d98a780-3eae-46b8-91bb-6a24867fb25a",
+    "status": "resolved",
+    "type": "post",
+    "content_type": "adult_content",
+    "description": "moon happy happy orange apple random sun orange cat random orange apple orange random banana orange sad apple orange random",
+    "created_date": "2023-04-06T09:34:02.018Z"
   }
 ]
