@@ -129,6 +129,11 @@ class UserServices {
     user.banned_util = null;
     await this.userRepository.save(user);
   }
+
+  async getUserById(id: string): Promise<User | null> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    return user;
+  }
 }
 
 export default UserServices;

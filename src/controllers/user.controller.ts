@@ -5,6 +5,9 @@ import ReportService from '~/services/report.service';
 import PostServices from '~/services/post.service';
 import UserServices from '~/services/user.service';
 import ServerCodes from '~/constants/server_codes';
+import HttpStatus from '~/constants/httpStatus';
+import { APP_MESSAGES } from '~/constants/message';
+import { AppError } from '~/models/Error';
 @Service()
 class UserController {
   constructor(
@@ -35,6 +38,37 @@ class UserController {
       message: 'Get all users successfully',
       num_of_pages: number_of_pages,
       result: data,
+    });
+  });
+
+  public getUserById = wrapRequestHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const user = await this.userService.getUserInfo(id);
+    if (!user) {
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.NotFound, {
+        serverCode: ServerCodes.CommomCode.NotFound,
+      });
+    }
+    res.json({
+      status: 'success',
+      code: ServerCodes.CommomCode.Success,
+      message: 'Get user successfully',
+      result: user,
+    });
+  });
+
+  public getMe = wrapRequestHandler(async (req: Request, res: Response) => {
+    const user = await this.userService.getUserInfo(req.user.id);
+    if (!user) {
+      throw new AppError(HttpStatus.NOT_FOUND, APP_MESSAGES.NotFound, {
+        serverCode: ServerCodes.CommomCode.NotFound,
+      });
+    }
+    res.json({
+      status: 'success',
+      code: ServerCodes.CommomCode.Success,
+      message: 'Get user successfully',
+      result: user,
     });
   });
 }

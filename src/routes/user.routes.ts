@@ -9,6 +9,8 @@ const authValidation = DependencyInjection.get<AuthValidation>(AuthValidation);
 const userControllers: UserController = DependencyInjection.get(UserController);
 const router = Router();
 router.route('/').get(userControllers.getAllUsers);
+router.route('/me').get(authValidation.accessTokenValidation, userControllers.getMe);
+router.route('/:id').get(commonValidation.validateId, userControllers.getUserById);
 router
   .route('/report/:id')
   .post(authValidation.accessTokenValidation, commonValidation.validateId, userControllers.reportUser);

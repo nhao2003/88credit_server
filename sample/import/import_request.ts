@@ -14,11 +14,11 @@ AppDataSource.initialize().then(async (dataSource) => {
   await loanRequestRepository.delete({});
   loanRequestRepository
     .save(requests)
-    .then((result) => {
+    .then((result: any) => {
       console.log('Imported', result.length, 'loan requests');
       console.log(result);
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.log(err);
     });
 });
