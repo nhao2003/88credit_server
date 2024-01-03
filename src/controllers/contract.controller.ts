@@ -48,5 +48,21 @@ class ContractController {
       result,
     });
   });
+
+  getTotalAmountOfLoanContract = wrapRequestHandler(async (req: Request, res: Response) => {
+    const id = req.user.id as string;
+    const getTotalAmountOfLoanContract = await this.contractService.getTotalAmountOfLoanContract(id);
+    const getTotalAmountOfLoanContractBorrower = await this.contractService.getTotalAmountOfLoanContractBorrower(id);
+
+    res.status(200).json({
+      status: 'success',
+      code: ServerCodes.CommomCode.Success,
+      message: 'Get total amount of loan contract successfully',
+      result: {
+        total_amount_of_loan_contract: getTotalAmountOfLoanContract, // Số tiền đã cho vay
+        total_amount_of_loan_contract_borrower: getTotalAmountOfLoanContractBorrower, // Số tiền đã vay
+      },
+    });
+  });
 }
 export default ContractController;

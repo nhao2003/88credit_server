@@ -238,6 +238,29 @@ class ContractService {
       } else throw error;
     }
   }
+
+  //Thống kê tổng số tiền cho vay của hợp đồng còn hiệu lực
+  async getTotalAmountOfLoanContract(user_id: string): Promise<number> {
+    const queryBuilder = this.contractRepository
+      .createQueryBuilder('Contract')
+      // .where('Contract.expired_at > :now', { now: new Date() })
+      .where('Contract.lender_id = :user_id', { user_id })
+      .groupBy('Contract.lender_id')
+      .select('SUM(Contract.amount)', 'total_amount');
+    const { total_amount } = await queryBuilder.getRawOne();
+    return total_amount == null ? 0 : total_amount;
+  }
+
+  //Thống kê tổng số tiền vay của hợp đồng còn hiệu lực
+  async getTotalAmountOfLoanContractBorrower(user_id: string): Promise<number> {
+    const queryBuilder = this.contractRepository
+      .createQueryBuilder('Contract')
+      // .where('Contract.expired_at > :now', { now: new Date() })
+      .andWhere('Contract.borrower_id = :user_id', { user_id })
+      .select('SUM(Contract.amount)', 'total_amount');
+    const { total_amount } = await queryBuilder.getRawOne();
+    return total_amount == null ? 0 : total_amount;
+  }
 }
 
 export default ContractService;

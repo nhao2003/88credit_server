@@ -8,6 +8,7 @@ const router = express.Router();
 const contractController = DependencyInjection.get<ContractController>(ContractController);
 const commonValidation = DependencyInjection.get<CommonValidation>(CommonValidation);
 const authValidation = DependencyInjection.get<AuthValidation>(AuthValidation);
+router.get('/total-amount', authValidation.accessTokenValidation, contractController.getTotalAmountOfLoanContract);
 router.get('/:id', commonValidation.validateId, contractController.getContractById);
 router.get('/', authValidation.accessTokenValidation, contractController.getContracts);
 router.post('/verify-zalopay-payment', contractController.verifyZaloPayPaymentAndCreateContract);

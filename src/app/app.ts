@@ -15,6 +15,7 @@ import contractRoutes from '../routes/contract.routes';
 import contractTemplateRoutes from '../routes/contract_template.routes';
 import blogRoutes from '../routes/blog.routes';
 import reportRoutes from '../routes/report.routes';
+import conversationRoutes from '../routes/conversation.routes';
 import ServerCodes from '~/constants/server_codes';
 export function initApp(): Express {
   const app = express();
@@ -50,6 +51,7 @@ export function initApp(): Express {
   app.use(`/api/${version}/bank`, bankRoutes);
   app.use(`/api/${version}/media`, mediaRoutes);
   app.use(`/api/${version}/user`, userRoutes);
+  app.use('/api/v1/conversations', conversationRoutes);
   app.use((req: Request, res: Response) => {
     res.status(404).json({
       status: 'fail',
