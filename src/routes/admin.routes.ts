@@ -16,6 +16,9 @@ const contractController = di.get<ContractTemplateController>(ContractTemplateCo
 router.route('/approve-post/:postId').patch(adminController.approvePost);
 router.route('/reject-post/:postId').patch(adminController.rejectPost);
 router.route('/users').get(adminController.getAllUser);
+router.route('/users/:id/ban').patch(adminController.banUser);
+router.route('/users/:id/unban').patch(adminController.unbanUser);
+
 router.route('/posts').get(adminController.getAllPost);
 router.route('/reports').get(reportController.getAllReport);
 router.route('/reports/:id').patch(reportController.updateReport);

@@ -28,6 +28,9 @@ export function initApp(): Express {
     console.log('Request URL:', req.originalUrl);
     console.log('Request Time:', new Date().toLocaleString());
     console.log('Request Type:', req.method);
+    console.log('Request Params:', req.params);
+    console.log('Request Query:', req.query);
+    console.log('Request Headers:', req.headers);
     console.log('Request Body:', req.body);
     console.log('/***********************/');
 

@@ -5,7 +5,7 @@ import PostServices from '~/services/post.service';
 import StatisticService from '~/services/statistic.service';
 import UserServices from '~/services/user.service';
 import { wrapRequestHandler } from '~/utils/wrapRequestHandler';
-
+import { Request, Response } from 'express';
 @Service()
 class AdminController {
   private postService: PostServices;
@@ -97,6 +97,31 @@ class AdminController {
       },
     };
     res.status(200).json(response);
+  });
+
+    public readonly banUser = wrapRequestHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { ban_reason, banned_util } = req.body;
+    const result = await this.userService.banUser(id, ban_reason, banned_util);
+    const appRes: AppResponse = {
+      status: 'success',
+      code: ServerCodes.CommomCode.Success,
+      message: 'Ban user successfully',
+      result: result,
+    };
+    res.status(200).json(appRes);
+  });
+
+  public readonly unbanUser = wrapRequestHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await this.userService.unbanUser(id);
+    const appRes: AppResponse = {
+      status: 'success',
+      code: ServerCodes.CommomCode.Success,
+      message: 'Unban user successfully',
+      result: result,
+    };
+    res.status(200).json(appRes);
   });
 }
 

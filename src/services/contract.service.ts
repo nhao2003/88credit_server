@@ -226,8 +226,6 @@ class ContractService {
 
     const getCount = queryBuilder.getCount();
     const getMany = queryBuilder.getMany();
-    console.log(queryBuilder.getQuery());
-
     try {
       const [data, count] = await Promise.all([getMany, getCount]);
       return {
