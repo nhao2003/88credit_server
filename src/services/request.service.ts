@@ -320,7 +320,7 @@ class LoanContractRequestService {
         },
       ],
       bank_code: 'zalopayapp',
-      callback_url: 'https://eight8credit.onrender.com/contract/verify-zalopay-payment',
+      callback_url: 'https://eight8credit.onrender.com/api/v1/contract/verify-zalopay-payment',
     };
     const zaloPayResponse = await this.zaloPayService.createOrder(zaloPayOrderRequest);
     if (zaloPayResponse.return_code != 1) {
