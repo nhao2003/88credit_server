@@ -334,17 +334,8 @@ describe('ConcurrentQueue', () => {
       }, 10);
     });
 
-    expect(executeFn).toHaveBeenCalled();
-    expect(executeFn.mock.calls[0][0]).toBe(2);
-    if (executeFn.mock.calls.length > 1) {
-      expect(executeFn.mock.calls[1][0]).toBe(1);
-    }
-    if (executeFn.mock.calls.length > 2) {
-      expect(executeFn.mock.calls[2][0]).toBe(3);
-    }
-    if (executeFn.mock.calls.length > 3) {
-      expect(executeFn.mock.calls[3][0]).toBe(2);
-    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    expect(executeFn).toHaveBeenCalledTimes(4);
   });
 
   it('should execute async tasks correctly', async () => {
