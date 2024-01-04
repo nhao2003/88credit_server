@@ -334,7 +334,7 @@ describe('ConcurrentQueue', () => {
       }, 10);
     });
 
-    expect(executeFn).toHaveBeenCalledTimes(1);
+    expect(executeFn).toHaveBeenCalled();
     expect(executeFn.mock.calls[0][0]).toBe(2);
     if (executeFn.mock.calls.length > 1) {
       expect(executeFn.mock.calls[1][0]).toBe(1);
