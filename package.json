@@ -64,6 +64,6 @@
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "test": "jest  --coverage",
-    "multation": "stryker run"
+    "mutation": "stryker run"
   }
 }
