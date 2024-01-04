@@ -51,11 +51,11 @@ class PostServices {
       search,
     };
   }
-  async createPost(user_id: string, data: PostCreateData): Promise<Post> {
+  async createPost(data: PostCreateData): Promise<Post> {
     if (data.type === PostTypes.lending) {
-      return this.createPostTypeLending(user_id, data);
+      return this.createPostTypeLending(data.user_id, data);
     } else if (data.type === PostTypes.borrowing) {
-      return this.createPostTypeBorrowing(user_id, data);
+      return this.createPostTypeBorrowing(data.user_id, data);
     }
     throw new AppError('Invalid post type', 400);
   }

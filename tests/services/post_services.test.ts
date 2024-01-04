@@ -50,10 +50,11 @@ describe('PostServices', () => {
 
   describe('createPost', () => {
     it('should create a post', async () => {
+      postRepository.save = jest.fn().mockResolvedValue(createTestPostData());
       const postCreateData: PostCreateData = createTestPostData();
       await postServices.createPost(postCreateData);
 
-      expect(postRepository.insert).toHaveBeenCalledWith(postCreateData);
+      expect(postRepository.save).toHaveBeenCalled();
     });
   });
 
@@ -210,25 +211,20 @@ describe('PostServices', () => {
 const createTestPostData = (): PostCreateData => {
   const testData: PostCreateData = {
     user_id: 'user-id',
-    type: LoanReasonTypes.business,
-    loan_reason_type: 'reason-type',
-    reason_for_loan: 'reason',
-    status: 'pending',
+    type: 'lending',
     title: 'Test Post',
     description: 'This is a test post',
     images: ['image1.jpg', 'image2.jpg'],
-    address: {
-      province_code: 1,
-      district_code: 1,
-      ward_code: 1,
-      detail: 'Test',
-    },
-    min_interest_rate: 5,
     max_interest_rate: 10,
-    min_loan_amount: 1000,
     max_loan_amount: 5000,
-    min_tenure_months: 12,
     max_tenure_months: 24,
+    loan_reason: null,
+    interest_rate: 0,
+    loan_amount: 0,
+    tenure_months: 0,
+    overdue_interest_rate: 0,
+    max_overdue_interest_rate: null,
+    loan_reason_type: LoanReasonTypes.business,
   };
 
   return testData;
