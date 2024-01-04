@@ -27,6 +27,6 @@
     "!src/services/contract_template.service.ts",
     "!src/services/contract.service.ts",
     "!src/services/request.service.ts",
-    "!src/services/zalopay.service.ts "
+    "!src/services/zalopay.service.ts"
   ]
 }
