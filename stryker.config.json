@@ -21,6 +21,12 @@
     "!src/middlewares/**",
     "!src/controllers/**",
     "!src/di/di.ts",
-    "!src/index.ts"
+    "!src/index.ts",
+    "!src/services/bank_account.service.ts",
+    "!src/services/common.service.ts",
+    "!src/services/contract_template.service.ts",
+    "!src/services/contract.service.ts",
+    "!src/services/request.service.ts",
+    "!src/services/zalopay.service.ts "
   ]
 }

@@ -14,7 +14,7 @@ class PostController {
 
   public readonly createPost = wrapRequestHandler(
     async (req: Request<ParamsDictionary, any, PostCreateData>, res: Response, next: NextFunction) => {
-      const post = await this.postService.createPost(req.user.id, req.body);
+      const post = await this.postService.createPost(req.body);
       res.json({
         status: 'success',
         code: 200,
