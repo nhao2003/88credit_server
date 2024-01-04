@@ -5,7 +5,7 @@
   "author": "nnhao2003",
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=14.0.0"
   },
   "types": "dist/index.d.ts",
   "dependencies": {
