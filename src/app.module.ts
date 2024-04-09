@@ -1,29 +1,28 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { CommonModule } from './common/common.module';
-import { DatabaseModule } from './common/database/database.module';
-import { SwaggerModule } from './common/swagger/swagger.module';
-import { UserModule } from './user/user.module';
-import { PrismaModule } from './prisma/prisma.module';
-import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/services/core.module';
 import { AppService } from './app.service';
 import { AccessTokenJwtGuard } from './common/guards/access-token.guard';
 import { TransformationInterceptor } from './common/interceptors';
+import { SwaggerModule } from '@nestjs/swagger';
+import { AuthModule } from './app/auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
+import { NotificationModule } from './app/notification/notification.module';
+import { PostModule } from './app/post/post.module';
 
 @Module({
   imports: [
-    CommonModule,
-    DatabaseModule,
-    SwaggerModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    UserModule,
-    PrismaModule,
+    CoreModule,
+    SwaggerModule,
+    NotificationModule,
+    // UserModule,
     AuthModule,
+    // BlogModule,
+    PostModule,
+    // OtpModule,
   ],
-  controllers: [AppController],
   providers: [
     AppService,
     {
@@ -35,5 +34,6 @@ import { TransformationInterceptor } from './common/interceptors';
       useClass: TransformationInterceptor,
     },
   ],
+  exports: [],
 })
 export class AppModule {}

@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "sessions" ALTER COLUMN "refreshAt" SET DEFAULT CURRENT_TIMESTAMP;
