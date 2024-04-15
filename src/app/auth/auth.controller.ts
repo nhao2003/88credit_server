@@ -90,6 +90,7 @@ export class AuthController {
   async resetPassword() {
     return this.authService.resetPassword();
   }
+
   @Public()
   @UseGuards(RefreshTokenJwtGuard)
   @Post('refresh-token')

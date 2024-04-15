@@ -14,6 +14,7 @@ export class AccessTokenJwtGuard extends AuthGuard('jwt-access') {
       context.getClass(),
     ]);
 
+    // Return true means that the route is public and no need to check the token
     if (isPublic) return true;
 
     return super.canActivate(context);

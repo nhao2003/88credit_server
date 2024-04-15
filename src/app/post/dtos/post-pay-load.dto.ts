@@ -1,14 +1,20 @@
 import { $Enums } from '@prisma/client';
 import {
+  IsBoolean,
   IsNotEmpty,
   IsNumber,
   IsString,
-  Max,
   MaxLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 class CreatePostDto {
+  @ApiProperty({
+    description: 'The post type',
+  })
+  @IsBoolean()
+  isLease: boolean;
+
   @IsString()
   @IsNotEmpty()
   @MaxLength(255)
@@ -108,4 +114,10 @@ class CreatePostDto {
   maxOverdueInterestRate: number | null;
 }
 
-export { CreatePostDto };
+class CreatePostWithUserIdDto extends CreatePostDto {
+  @IsString()
+  @IsNotEmpty()
+  userId: string;
+}
+
+export { CreatePostDto, CreatePostWithUserIdDto };

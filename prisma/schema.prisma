@@ -110,6 +110,7 @@ model Post {
   status      PostStatus @default(PENDING)
   loanReason  LoanReasonTypes
   loanReasonDescription String
+  isLease     Boolean
   title       String
   description String
   images      String[]

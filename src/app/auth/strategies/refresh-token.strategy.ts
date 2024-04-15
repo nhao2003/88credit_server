@@ -34,7 +34,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
     if (!session) {
       throw new ForbiddenException('Session not found');
     }
-
+    console.log('payload', payload);
     return {
       ...payload,
       refreshToken,

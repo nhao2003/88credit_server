@@ -3,6 +3,8 @@ import {
   HttpException,
   HttpStatus,
   Injectable,
+  NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { Tokens } from './types';
@@ -73,7 +75,7 @@ export class AuthService {
     });
 
     if (!user) {
-      throw new Error('User not found');
+      throw new UnauthorizedException('Email or password is incorrect');
     }
 
     const isPasswordValid = await bcrypt.compare(
@@ -82,7 +84,7 @@ export class AuthService {
     );
 
     if (!isPasswordValid) {
-      throw new ForbiddenException('Invalid password');
+      throw new ForbiddenException('Email or password is incorrect');
     }
 
     return this.createSession(user.id);
@@ -148,7 +150,7 @@ export class AuthService {
       },
     });
     if (!user) {
-      throw new ForbiddenException('Access Denied');
+      throw new ForbiddenException('Access Denied for this user');
     }
 
     const tokens = await Promise.all([
