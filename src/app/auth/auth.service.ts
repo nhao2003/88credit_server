@@ -33,7 +33,7 @@ export class AuthService {
     return this.jwtService.signAsync(
       { userId, sessionId },
       {
-        expiresIn: '15m',
+        expiresIn: '1d',
         secret: this.configService.get<string>('ACCESS_TOKEN_SECRET'),
       },
     );

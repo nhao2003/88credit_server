@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { PostService } from './post.service';
 import {
@@ -33,8 +33,8 @@ export class PostController {
   @Get()
   @HttpCode(HttpStatus.OK)
   @ResponseMessage('Posts fetched successfully')
-  async getPosts() {
-    return await this.postService.getPosts();
+async getPosts(@Query('page') page: number | null, @Query('limit') limit: number | null) {
+    return await this.postService.getPosts(page, limit);
   }
 }
  
