@@ -1,5 +1,8 @@
 import { Body, Injectable } from '@nestjs/common';
-import { CreatePostDto, CreatePostWithUserIdDto } from './dtos/post-pay-load.dto';
+import {
+  CreatePostDto,
+  CreatePostWithUserIdDto,
+} from './dtos/post-pay-load.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import { CheckValidPost } from './decorators/check_valid_post.decorator';
@@ -9,7 +12,7 @@ import { Post } from '@prisma/client';
 @Injectable()
 @ApiTags('Post')
 export class PostService {
-  constructor(private prisamService: PrismaService) { }
+  constructor(private prisamService: PrismaService) {}
 
   async createPost(@CheckValidPost() post: CreatePostWithUserIdDto) {
     return await this.prisamService.post.create({
@@ -19,8 +22,11 @@ export class PostService {
     });
   }
 
-  async getPosts(page: number | null, limit: number | null): Promise<Paging<Post>> {
-    const take = limit || 20;
+  async getPosts(
+    page: number | null,
+    take: number | null,
+  ): Promise<Paging<Post>> {
+    take = take || 20;
     page = page || 1;
     const skip = (page - 1) * take;
     const [items, total] = await Promise.all([
@@ -34,7 +40,7 @@ export class PostService {
     return {
       page,
       totalPages: Math.ceil(total / take),
-      limit: take,
+      take: take,
       items,
     };
   }

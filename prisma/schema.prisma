@@ -25,7 +25,7 @@ enum AccountStatus {
 }
 
 model User {
-  id                   String        @id @default(cuid())
+  id                   String        @id @default(uuid())
   role                 Role          @default(USER)
   status               AccountStatus @default(ACTIVE)
   is_identity_verified Boolean       @default(false)
@@ -36,7 +36,7 @@ model User {
   gender               Boolean
   dob                  DateTime
   phone                String
-  last_active          DateTime     @default(now())
+  last_active          DateTime      @default(now())
   bio                  String?
   ban_reason           String?
   ban_until            DateTime?
@@ -45,12 +45,15 @@ model User {
   sessions             Session[]
   Otp                  Otp[]
   Post                 Post[]
+  LoanRequestReceived  LoanRequest[] @relation("LoanRequestReceiver")
+  LoanRequestSent      LoanRequest[] @relation("LoanRequestSender")
+  BankCard             BankCard[]
 
   @@map("users")
 }
 
 model Session {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   refreshAt DateTime @default(now())
@@ -72,15 +75,15 @@ enum OtpPurpose {
 }
 
 model Otp {
-  id        String     @id @default(cuid())
-  userId    String
-  user      User       @relation(fields: [userId], references: [id])
-  type      OtpType
-  purpose   OtpPurpose
-  token     String
+  id         String     @id @default(uuid())
+  userId     String
+  user       User       @relation(fields: [userId], references: [id])
+  type       OtpType
+  purpose    OtpPurpose
+  token      String
   verifiedAt DateTime?
-  expiresAt DateTime
-  createdAt DateTime   @default(now())
+  expiresAt  DateTime
+  createdAt  DateTime   @default(now())
 
   @@map("otps")
 }
@@ -105,26 +108,92 @@ enum LoanReasonTypes {
 }
 
 model Post {
-  id          String     @id @default(cuid())
-  userId      String
-  status      PostStatus @default(PENDING)
-  loanReason  LoanReasonTypes
-  loanReasonDescription String
-  isLease     Boolean
-  title       String
-  description String
-  images      String[]
-  interestRate Float
-  amount      Float
-  duration    Int
-  overdueInterestRate Float
-  maxInterestRate Float?
-  maxAmount   Float?
-  maxDuration Int?
+  id                     String          @id @default(uuid())
+  userId                 String
+  status                 PostStatus      @default(PENDING)
+  loanReason             LoanReasonTypes
+  loanReasonDescription  String
+  isLease                Boolean
+  title                  String
+  description            String
+  images                 String[]
+  interestRate           Float
+  amount                 Float
+  duration               Int
+  overdueInterestRate    Float
+  maxInterestRate        Float?
+  maxAmount              Float?
+  maxDuration            Int?
   maxOverdueInterestRate Float?
-  rejectionReason String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  user        User       @relation(fields: [userId], references: [id])
+  rejectionReason        String?
+  createdAt              DateTime        @default(now())
+  updatedAt              DateTime        @updatedAt
+  user                   User            @relation(fields: [userId], references: [id])
+
   @@map("posts")
+}
+
+enum LoanContractRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+model LoanRequest {
+  id                   String                    @id @default(uuid())
+  status               LoanContractRequestStatus @default(PENDING)
+  senderId             String
+  receiverId           String
+  description          String
+  loanAmount           Float
+  interestRate         Float
+  overdueInterestRate  Float
+  loanTenureMonths     Int
+  loanReasonType       LoanReasonTypes
+  loanReason           String
+  videoConfirmationUrl String
+  portaitPhotoUrl      String
+  idCardFrontPhotoUrl  String
+  idCardBackPhotoUrl   String
+  senderBankCardId     String
+  receiverBankCardId   String
+  rejectedReason       String?
+  createdAt            DateTime                  @default(now())
+  updatedAt            DateTime                  @updatedAt
+  deletedAt            DateTime?
+  sender               User                      @relation("LoanRequestSender", fields: [senderId], references: [id])
+  receiver             User                      @relation("LoanRequestReceiver", fields: [receiverId], references: [id])
+
+  @@map("loan_requests")
+}
+
+model Bank {
+  id        String     @id @default(uuid())
+  name      String
+  code      String
+  bin       String
+  shortName String
+  logo      String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  accounts  BankCard[]
+
+  @@map("banks")
+}
+
+model BankCard {
+  id         String   @id @default(uuid())
+  isPrimary  Boolean
+  bankId     String
+  userId     String
+  cardNumber String
+  brand      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+  bank Bank @relation(fields: [bankId], references: [id])
+
+  @@map("bank_accounts")
 }

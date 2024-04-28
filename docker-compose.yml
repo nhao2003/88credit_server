@@ -1,10 +1,27 @@
-version: '1.0'
+version: '3.8'
+
 services:
   db:
-    image: postgres:16
+    image: postgres
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_DB: nestjs
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/nestjs?schema=public
+      ACCESS_TOKEN_SECRET: access-token-secret
+      REFRESH_TOKEN_SECRET: refresh-token-secret
+    volumes:
+      - .:/app

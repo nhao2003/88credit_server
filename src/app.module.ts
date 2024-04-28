@@ -8,6 +8,11 @@ import { AuthModule } from './app/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { NotificationModule } from './app/notification/notification.module';
 import { PostModule } from './app/post/post.module';
+import { LoanRequestModule } from './app/loan_request/loan_request.module';
+import { LoanRequestController } from './app/loan_request/loan_request.controller';
+import { LoanRequestService } from './app/loan_request/loan_request.service';
+import { LoanRequest } from './app/loan_request/dtos/loan_request';
+import { BankModule } from './app/bank/bank.module';
 
 @Module({
   imports: [
@@ -21,7 +26,9 @@ import { PostModule } from './app/post/post.module';
     AuthModule,
     // BlogModule,
     PostModule,
+    LoanRequestModule,
     // OtpModule,
+    BankModule,
   ],
   providers: [
     AppService,
@@ -33,7 +40,10 @@ import { PostModule } from './app/post/post.module';
       provide: 'APP_INTERCEPTOR',
       useClass: TransformationInterceptor,
     },
+    LoanRequestService,
+    LoanRequest,
   ],
   exports: [],
+  controllers: [LoanRequestController],
 })
 export class AppModule {}
