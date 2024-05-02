@@ -11,8 +11,8 @@ import { PostModule } from './app/post/post.module';
 import { LoanRequestModule } from './app/loan_request/loan_request.module';
 import { LoanRequestController } from './app/loan_request/loan_request.controller';
 import { LoanRequestService } from './app/loan_request/loan_request.service';
-import { LoanRequest } from './app/loan_request/dtos/loan_request';
 import { BankModule } from './app/bank/bank.module';
+import { BankCardModule } from './app/bank_card/bank_card.module';
 
 @Module({
   imports: [
@@ -29,6 +29,7 @@ import { BankModule } from './app/bank/bank.module';
     LoanRequestModule,
     // OtpModule,
     BankModule,
+    BankCardModule,
   ],
   providers: [
     AppService,
@@ -41,7 +42,6 @@ import { BankModule } from './app/bank/bank.module';
       useClass: TransformationInterceptor,
     },
     LoanRequestService,
-    LoanRequest,
   ],
   exports: [],
   controllers: [LoanRequestController],

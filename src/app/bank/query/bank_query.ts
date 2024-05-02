@@ -1,14 +1,8 @@
 import { ApiQuery } from '@nestjs/swagger';
-import BaseQueryPayLoad from 'src/common/types/base_query';
+import { BaseQuery, BaseQueryPayLoad } from 'src/common/query/base_query';
 class BankQueryPayload extends BaseQueryPayLoad {}
 
-type BankQuery = {
-  skip: number;
-  take: number;
-  orderBy?: {
-    [key: string]: 'asc' | 'desc';
-  };
-};
+type BankQuery = BaseQuery;
 class BankQueryBuilder {
   private query: BankQuery;
 

@@ -157,13 +157,15 @@ model LoanRequest {
   idCardFrontPhotoUrl  String
   idCardBackPhotoUrl   String
   senderBankCardId     String
-  receiverBankCardId   String
+  receiverBankCardId   String?
   rejectedReason       String?
   createdAt            DateTime                  @default(now())
   updatedAt            DateTime                  @updatedAt
   deletedAt            DateTime?
   sender               User                      @relation("LoanRequestSender", fields: [senderId], references: [id])
   receiver             User                      @relation("LoanRequestReceiver", fields: [receiverId], references: [id])
+  senderBankCard       BankCard                  @relation("SenderBankCard", fields: [senderBankCardId], references: [id])
+  receiverBankCard     BankCard?                 @relation("ReceiverBankCard", fields: [receiverBankCardId], references: [id])
 
   @@map("loan_requests")
 }
@@ -171,7 +173,7 @@ model LoanRequest {
 model Bank {
   id        String     @id @default(uuid())
   name      String
-  code      String
+  code      String     @unique
   bin       String
   shortName String
   logo      String
@@ -183,17 +185,20 @@ model Bank {
 }
 
 model BankCard {
-  id         String   @id @default(uuid())
+  id         String    @id @default(uuid())
   isPrimary  Boolean
   bankId     String
   userId     String
-  cardNumber String
+  cardNumber String    @unique
   brand      String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
 
-  user User @relation(fields: [userId], references: [id])
-  bank Bank @relation(fields: [bankId], references: [id])
+  user        User          @relation(fields: [userId], references: [id])
+  bank        Bank          @relation(fields: [bankId], references: [id])
+  LoanRequestSent LoanRequest[] @relation("SenderBankCard")
+  LoanRequestReceived LoanRequest[] @relation("ReceiverBankCard")
 
   @@map("bank_accounts")
 }
