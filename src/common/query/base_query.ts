@@ -52,6 +52,22 @@ class BaseQueryPayLoad {
   @IsOptional()
   @IsString()
   orderBy?: string | null;
+
+  public getPage(): number {
+    return this.page || 1;
+  }
+
+  public getTake(): number {
+    return this.take || 20;
+  }
+
+  public getLimit(): number {
+    return this.getTake();
+  }
+
+  public getSkip(): number {
+    return (this.getPage() - 1) * this.getTake();
+  }
 }
 
 // type BaseQuery = {
@@ -61,14 +77,19 @@ class BaseQueryPayLoad {
 //     [key: string]: 'asc' | 'desc';
 //   };
 // };
-abstract class WhereQuery {}
 
-abstract class OrderByQuery {}
+// type OrderByQuery = 'asc' | 'desc';
+
+export type OrderBy = 'asc' | 'desc';
+
+export abstract class WhereQuery {}
+
+export abstract class OrderByQueryInput {}
 class BaseQuery {
   skip: number = 1;
   take: number = 20;
   where?: WhereQuery;
-  orderBy?: OrderByQuery;
+  orderBy?: OrderByQueryInput;
 }
 
 export {

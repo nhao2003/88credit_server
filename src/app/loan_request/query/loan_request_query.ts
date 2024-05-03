@@ -11,35 +11,40 @@ import {
   BaseQueryPayLoad,
   EnumFilter,
   NumberFilter,
+  OrderBy,
+  OrderByQueryInput,
   QueryBuildHelper,
   QueryFilter,
   QueryFilterType,
   StringFilter,
+  WhereQuery,
 } from 'src/common/query';
 import {} from 'src/common/types';
 
-// type LoanRequestQuery = BaseQuery & {
-//   where?: {
-//     id?: StringFilter;
-//     receiverId?: StringFilter;
-//     loanAmount?: NumberFilter;
-//     interestRate?: NumberFilter;
-//     overdueInterestRate?: NumberFilter;
-//     loanTenureMonths?: NumberFilter;
-//     loanReasonType?: EnumFilter<$Enums.LoanReasonTypes>;
-//   };
-// };
+class LoanRequestWhereInput extends WhereQuery {
+  id?: StringFilter;
+  receiverId?: StringFilter;
+  loanAmount?: NumberFilter;
+  interestRate?: NumberFilter;
+  overdueInterestRate?: NumberFilter;
+  loanTenureMonths?: NumberFilter;
+  loanReasonType?: EnumFilter<$Enums.LoanReasonTypes>;
+}
+
+class LoanRequestOrderByInput extends OrderByQueryInput {
+  id?: OrderBy;
+  receiverId?: OrderBy;
+  loanAmount?: OrderBy;
+  interestRate?: OrderBy;
+  overdueInterestRate?: OrderBy;
+  loanTenureMonths?: OrderBy;
+  loanReasonType?: OrderBy;
+  createdAt?: OrderBy;
+}
+
 class LoanRequestQuery extends BaseQuery {
-  @IsObject()
-  where: {
-    id?: StringFilter;
-    receiverId?: StringFilter;
-    loanAmount?: NumberFilter;
-    interestRate?: NumberFilter;
-    overdueInterestRate?: NumberFilter;
-    loanTenureMonths?: NumberFilter;
-    loanReasonType?: EnumFilter<$Enums.LoanReasonTypes>;
-  };
+  where?: LoanRequestWhereInput;
+  orderBy?: LoanRequestOrderByInput;
 }
 
 class LoanRequestQueryPayload extends BaseQueryPayLoad {
@@ -115,9 +120,20 @@ class LoanRequestQueryBuilder {
   }
 
   buildLoanReasonType(loanReasonType: QueryFilter) {
-    this.query.where.loanReasonType = {};
-    if (loanReasonType['eq']) {
-      this.query.where.loanReasonType['equals'] = loanReasonType['eq'];
+    this.query.where.loanReasonType =
+      QueryBuildHelper.buildEnumQuery<$Enums.LoanReasonTypes>(loanReasonType);
+    return this;
+  }
+
+  buildOrderBy(orderBy: string) {
+    const orders = orderBy.split(',');
+    this.query.orderBy = {};
+    for (const order of orders) {
+      if (order.startsWith('-')) {
+        this.query.orderBy[order.slice(1)] = 'desc';
+      } else {
+        this.query.orderBy[order] = 'asc';
+      }
     }
     return this;
   }
@@ -131,9 +147,11 @@ class LoanRequestQueryBuilderDirector {
   private query: LoanRequestQuery;
 
   constructor(private payload: LoanRequestQueryPayload) {
+    const page = this.payload.page || 1;
+    const take = this.payload.take || 20;
     this.query = {
-      skip: this.payload.page ? this.payload.page : 0,
-      take: this.payload.take ? this.payload.take : 20,
+      skip: (page - 1) * take,
+      take: take,
       where: {},
     };
   }
@@ -161,6 +179,9 @@ class LoanRequestQueryBuilderDirector {
     }
     if (this.payload.loanReasonType) {
       builder = builder.buildLoanReasonType(this.payload.loanReasonType);
+    }
+    if (this.payload.orderBy) {
+      builder = builder.buildOrderBy(this.payload.orderBy);
     }
     return builder.build();
   }

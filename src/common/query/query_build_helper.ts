@@ -117,6 +117,23 @@ class QueryBuildHelper {
     }
     return dateFilter;
   }
+
+  static buildEnumQuery<T>(
+    value: QueryFilter,
+  ): QueryFilter<T> | undefined | null {
+    if (!value) {
+      return null;
+    }
+    if (value['eq']) {
+      return { equals: value['eq'] };
+    }
+    if (value['in']) {
+      return { in: value['in'].split(',') as any };
+    }
+    if (value['notIn']) {
+      return { notIn: value['notIn'].split(',') as any };
+    }
+  }
 }
 
 export { QueryBuildHelper };

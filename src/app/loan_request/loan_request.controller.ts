@@ -29,6 +29,6 @@ export class LoanRequestController {
   ) {
     const director = new LoanRequestQueryBuilderDirector(query);
     const queryBuilder = director.build();
-    return queryBuilder;
+    return await this.loanRequestService.getLoanRequests(userId, queryBuilder);
   }
 }

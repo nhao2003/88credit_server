@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { $Enums } from '@prisma/client';
 import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import CreateLoanRequestDto from './dtos/loan_request';
+import { LoanRequestQuery } from './query/loan_request_query';
 
 @Injectable()
 export class LoanRequestService {
@@ -42,8 +43,10 @@ export class LoanRequestService {
     });
   }
 
-  async getLoanRequests(userId: string) {
+  async getLoanRequests(userId: string, query: LoanRequestQuery) {
     return await this.prismaService.loanRequest.findMany({
+      take: query.take,
+      skip: query.skip,
       where: {
         OR: [
           {
@@ -53,9 +56,10 @@ export class LoanRequestService {
             receiverId: userId,
           },
         ],
-        deletedAt: {
-          equals: null,
-        },
+        ...query.where,
+      },
+      orderBy: {
+        ...query.orderBy,
       },
     });
   }
