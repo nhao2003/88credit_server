@@ -14,18 +14,22 @@ banks.forEach((bank: any) => {
   delete bank.swift_code;
 });
 
-const prisma = new PrismaClient();
+fs.writeFileSync(
+  path.join(__dirname, 'banks.json'),
+  JSON.stringify(banks, null, 2),
+);
+// const prisma = new PrismaClient();
 
-async function main() {
-  await prisma.bank.createMany({
-    data: banks,
-  });
-}
+// async function main() {
+//   await prisma.bank.createMany({
+//     data: banks,
+//   });
+// }
 
-main()
-  .catch((e) => {
-    throw e;
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+// main()
+//   .catch((e) => {
+//     throw e;
+//   })
+//   .finally(async () => {
+//     await prisma.$disconnect();
+//   });

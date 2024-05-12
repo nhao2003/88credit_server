@@ -14,40 +14,43 @@ datasource db {
 }
 
 enum Role {
-  ADMIN
-  USER
+  ADMIN @map("admin")
+  USER  @map("user")
 }
 
 enum AccountStatus {
-  ACTIVE
-  INACTIVE
-  LOCKED
+  UNVERIFIED  @map("unverified")
+  NOT_UPDATED @map("notUpdated")
+  BANNED      @map("banned")
+  DELETED     @map("deleted")
+  VERIFIED    @map("verified")
 }
 
 model User {
-  id                   String        @id @default(uuid())
-  role                 Role          @default(USER)
-  status               AccountStatus @default(ACTIVE)
-  is_identity_verified Boolean       @default(false)
-  email                String        @unique
-  password             String
-  firstName            String
-  lastName             String
-  gender               Boolean
-  dob                  DateTime
-  phone                String
-  last_active          DateTime      @default(now())
-  bio                  String?
-  ban_reason           String?
-  ban_until            DateTime?
-  createdAt            DateTime      @default(now())
-  updatedAt            DateTime      @updatedAt
-  sessions             Session[]
-  Otp                  Otp[]
-  Post                 Post[]
-  LoanRequestReceived  LoanRequest[] @relation("LoanRequestReceiver")
-  LoanRequestSent      LoanRequest[] @relation("LoanRequestSender")
-  BankCard             BankCard[]
+  id                  String        @id @default(uuid())
+  role                Role          @default(USER)
+  status              AccountStatus @default(UNVERIFIED)
+  isIdentityVerified  Boolean       @default(false)
+  email               String        @unique
+  password            String
+  firstName           String
+  avatar              String
+  address             Json          @default("{}")
+  lastName            String
+  gender              Boolean
+  dob                 DateTime
+  phone               String
+  banReason           String?
+  banUntil            DateTime?
+  lastActiveAt        DateTime      @default(now())
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  sessions            Session[]
+  Otp                 Otp[]
+  Post                Post[]
+  LoanRequestReceived LoanRequest[] @relation("LoanRequestReceiver")
+  LoanRequestSent     LoanRequest[] @relation("LoanRequestSender")
+  BankCard            BankCard[]
 
   @@map("users")
 }
@@ -55,7 +58,7 @@ model User {
 model Session {
   id        String   @id @default(uuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   refreshAt DateTime @default(now())
   timestamp DateTime @default(now())
 
@@ -68,16 +71,16 @@ enum OtpType {
 }
 
 enum OtpPurpose {
-  PASSWORD_RESET
-  EMAIL_VERIFICATION
-  PHONE_VERIFICATION
-  TWO_FACTOR_AUTH
+  PASSWORD_RESET     @map("passwordReset")
+  EMAIL_VERIFICATION @map("emailVerification")
+  PHONE_VERIFICATION @map("phoneVerification")
+  TWO_FACTOR_AUTH    @map("twoFactorAuth")
 }
 
 model Otp {
   id         String     @id @default(uuid())
   userId     String
-  user       User       @relation(fields: [userId], references: [id])
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   type       OtpType
   purpose    OtpPurpose
   token      String
@@ -89,22 +92,26 @@ model Otp {
 }
 
 enum PostStatus {
-  PENDING
-  APPROVED
-  REJECTED
-  HIDDEN
+  PENDING  @map("pending")
+  APPROVED @map("approved")
+  REJECTED @map("rejected")
+  HIDDEN   @map("hidden")
+
+  @@map("post_status")
 }
 
 enum LoanReasonTypes {
-  BUSINESS
-  EDUCATION
-  TRAVEL
-  WEDDING
-  MEDICAL
-  SHOPPING
-  HOUSE_BUYING
-  CAR_BUYING
-  OTHER
+  BUSINESS     @map("business")
+  EDUCATION    @map("education")
+  TRAVEL       @map("travel")
+  WEDDING      @map("wedding")
+  MEDICAL      @map("medical")
+  SHOPPING     @map("shopping")
+  HOUSE_BUYING @map("houseBuying")
+  CAR_BUYING   @map("carBuying")
+  OTHER        @map("other")
+
+  @@map("loan_reason_types")
 }
 
 model Post {
@@ -128,21 +135,30 @@ model Post {
   rejectionReason        String?
   createdAt              DateTime        @default(now())
   updatedAt              DateTime        @updatedAt
-  user                   User            @relation(fields: [userId], references: [id])
+  user                   User            @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("posts")
 }
 
 enum LoanContractRequestStatus {
-  PENDING
-  APPROVED
-  REJECTED
-  CANCELLED
+  pending   @map("pending")
+  approved  @map("approved")
+  rejected  @map("rejected")
+  cancelled @map("cancelled")
+}
+
+enum LoanRequestStatus {
+  PENDING           @map("pending")
+  APPROVED          @map("approved")
+  REJECTED          @map("rejected")
+  CANCELLED         @map("cancelled")
+  WAITING_FOR_PAYMENT @map("waitingForPayment")
+  PAID              @map("paid")
 }
 
 model LoanRequest {
-  id                   String                    @id @default(uuid())
-  status               LoanContractRequestStatus @default(PENDING)
+  id                   String            @id @default(uuid())
+  status               LoanRequestStatus @default(PENDING)
   senderId             String
   receiverId           String
   description          String
@@ -159,13 +175,13 @@ model LoanRequest {
   senderBankCardId     String
   receiverBankCardId   String?
   rejectedReason       String?
-  createdAt            DateTime                  @default(now())
-  updatedAt            DateTime                  @updatedAt
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
   deletedAt            DateTime?
-  sender               User                      @relation("LoanRequestSender", fields: [senderId], references: [id])
-  receiver             User                      @relation("LoanRequestReceiver", fields: [receiverId], references: [id])
-  senderBankCard       BankCard                  @relation("SenderBankCard", fields: [senderBankCardId], references: [id])
-  receiverBankCard     BankCard?                 @relation("ReceiverBankCard", fields: [receiverBankCardId], references: [id])
+  sender               User              @relation("LoanRequestSender", fields: [senderId], references: [id])
+  receiver             User              @relation("LoanRequestReceiver", fields: [receiverId], references: [id])
+  senderBankCard       BankCard          @relation("SenderBankCard", fields: [senderBankCardId], references: [id])
+  receiverBankCard     BankCard?         @relation("ReceiverBankCard", fields: [receiverBankCardId], references: [id])
 
   @@map("loan_requests")
 }
@@ -190,15 +206,28 @@ model BankCard {
   bankId     String
   userId     String
   cardNumber String    @unique
-  brand      String?
+  branch     String?
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   deletedAt  DateTime?
 
-  user        User          @relation(fields: [userId], references: [id])
-  bank        Bank          @relation(fields: [bankId], references: [id])
-  LoanRequestSent LoanRequest[] @relation("SenderBankCard")
+  user                User          @relation(fields: [userId], references: [id])
+  bank                Bank          @relation(fields: [bankId], references: [id])
+  LoanRequestSent     LoanRequest[] @relation("SenderBankCard")
   LoanRequestReceived LoanRequest[] @relation("ReceiverBankCard")
 
-  @@map("bank_accounts")
+  @@map("bank_cards")
+}
+
+model Blog {
+  id               String   @id @default(uuid())
+  title            String
+  shortDescription String
+  author           String
+  content          String
+  thumbnail        String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("blogs")
 }

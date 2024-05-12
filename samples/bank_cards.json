@@ -1,0 +1,192 @@
+[
+  {
+    "id": "77dc28da-cd67-4df3-a3d6-88657682db36",
+    "isPrimary": true,
+    "userId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "bankId": "d993f3e8-077a-4acb-9ddc-6c5a25f09fbf",
+    "cardNumber": "9704372581407556",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "09082f6b-2da7-45c7-ac9f-69cbca3b17bb",
+    "isPrimary": false,
+    "userId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "bankId": "61d0a983-761c-4f2f-901c-1d54acb591f7",
+    "cardNumber": "9704163342884674",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "ae422b53-eb40-4748-b737-2cc66015cd0a",
+    "isPrimary": false,
+    "userId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "bankId": "ad0ef3bd-02ad-4ae3-981e-25edc8ee4601",
+    "cardNumber": "9704437068311802",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "833d1ff4-ae4a-4b34-8ce1-854fd955ca06",
+    "isPrimary": false,
+    "userId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
+    "bankId": "c69cf1ac-2c0b-4f0e-9228-89883999a0b6",
+    "cardNumber": "9704564435875724",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "da71e788-83a1-41a0-a052-b16479be7d93",
+    "isPrimary": true,
+    "userId": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "bankId": "5b8334a1-2b0b-47b5-986f-5c9849de38b0",
+    "cardNumber": "9704414652827682",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "b1fa9129-dbfc-4efe-a830-25f9c5cb91d0",
+    "isPrimary": false,
+    "userId": "2f434eae-7b6d-4b5e-8c09-38f315173743",
+    "bankId": "ad2ce84f-db1a-41fa-b2e8-497e923eac42",
+    "cardNumber": "9710113056899142",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "f8206b15-03dc-4fd1-8f68-28cc4a8ba3e9",
+    "isPrimary": true,
+    "userId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "bankId": "316f1304-c742-4d18-8c96-a8f2e8247142",
+    "cardNumber": "9704210770634663",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "c9e63e1c-c714-43e5-b62c-e5f9e8754d94",
+    "isPrimary": false,
+    "userId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "bankId": "3a3a481f-6d1e-4804-a32f-cb95cc3c7f89",
+    "cardNumber": "9704630815927869",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "45327b56-18c7-4639-8d0d-b18c3a3fb4b1",
+    "isPrimary": false,
+    "userId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "bankId": "69262aad-8b90-4d2b-8909-2e5216ddcf6f",
+    "cardNumber": "9704294082567675",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "50419e4f-e6a3-4311-9c2e-230989fa4e1a",
+    "isPrimary": false,
+    "userId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
+    "bankId": "1b23a621-5104-48c7-8125-13e26f2cd753",
+    "cardNumber": "9777772696297272",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "96241f8f-0bff-43d7-be18-bb27a5bc9a13",
+    "isPrimary": true,
+    "userId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "bankId": "1b11669e-ed0e-4822-aa79-36fcb8e0d438",
+    "cardNumber": "9704546756818229",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "941bb213-ed5e-4529-b40b-3c013965f25c",
+    "isPrimary": false,
+    "userId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
+    "bankId": "677fcc6b-c03d-4da7-ad37-3c86407222b0",
+    "cardNumber": "8010119451466659",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "a03f11be-a32e-4e61-aff2-c91884503ac1",
+    "isPrimary": true,
+    "userId": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "bankId": "1f0219ae-160f-4aec-b6ba-064f6895d730",
+    "cardNumber": "9704035773208395",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "357d7342-9a08-4c41-987f-35da96357655",
+    "isPrimary": false,
+    "userId": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
+    "bankId": "4bc834ad-b351-4a26-8b39-d7c8669d78bf",
+    "cardNumber": "9704495466117247",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "4629c7a7-a8f1-411c-9937-3d27d0e4c072",
+    "isPrimary": true,
+    "userId": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
+    "bankId": "c69cf1ac-2c0b-4f0e-9228-89883999a0b6",
+    "cardNumber": "9704567654992288",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "afccb29d-3671-4090-b2f1-134aa42b3920",
+    "isPrimary": true,
+    "userId": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
+    "bankId": "fb70ae1c-3e81-4f7e-bd6f-81d353e51f9f",
+    "cardNumber": "6688883323184830",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "5e10beb9-fcda-4a3a-8204-d2e71c6dd6e7",
+    "isPrimary": true,
+    "userId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "bankId": "5b23133a-705c-418c-a7cd-03a55356674c",
+    "cardNumber": "9704062606187410",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "56e8277c-ef36-4778-bcfb-fcfe9b77e4ba",
+    "isPrimary": false,
+    "userId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
+    "bankId": "4bc834ad-b351-4a26-8b39-d7c8669d78bf",
+    "cardNumber": "9704495998826047",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  },
+  {
+    "id": "dbef9363-28b0-4e7d-8820-f58a712bd441",
+    "isPrimary": true,
+    "userId": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
+    "bankId": "aec8245d-b28b-4c40-a4ab-38b9815f89be",
+    "cardNumber": "9704480624213190",
+    "branch": null,
+    "createdAt": "2023-12-24T05:49:47.714Z",
+    "deletedAt": null
+  }
+]

@@ -111,6 +111,7 @@ export class AuthService {
         phone: '',
         email: authPayload.email,
         password: hashedPassword,
+        avatar: '',
       },
     });
     const otp = await this.otpService.createOtp({

@@ -1,8 +1,13 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { $Enums } from '@prisma/client';
 import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import CreateLoanRequestDto from './dtos/loan_request';
 import { LoanRequestQuery } from './query/loan_request_query';
+import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class LoanRequestService {
@@ -36,7 +41,7 @@ export class LoanRequestService {
 
     return await this.prismaService.loanRequest.create({
       data: {
-        status: $Enums.LoanContractRequestStatus.PENDING,
+        status: $Enums.LoanRequestStatus.PENDING,
         senderId: userId,
         ...data,
       },
@@ -60,6 +65,66 @@ export class LoanRequestService {
       },
       orderBy: {
         ...query.orderBy,
+      },
+    });
+  }
+  private async getInvolvedLoanRequest(userId: string, loanRequestId: string) {
+    const loanRequest = await this.prismaService.loanRequest.findFirst({
+      where: {
+        id: loanRequestId,
+      },
+    });
+
+    if (!loanRequest) {
+      throw new NotFoundException('Loan request not found');
+    }
+
+    if (loanRequest.senderId !== userId && loanRequest.receiverId !== userId) {
+      throw new BadRequestException(
+        'You are not involved in this loan request',
+      );
+    }
+
+    return loanRequest;
+  }
+
+  async approveLoanRequest(userId: string, loanRequestId: string) {
+    const loanRequest = await this.getInvolvedLoanRequest(
+      userId,
+      loanRequestId,
+    );
+
+    if (loanRequest.status !== $Enums.LoanRequestStatus.PENDING) {
+      throw new BadRequestException('Loan request is not pending');
+    }
+
+    return this.prismaService.loanRequest.update({
+      where: {
+        id: loanRequestId,
+      },
+      data: {
+        status: $Enums.LoanRequestStatus.APPROVED,
+        receiverId: userId,
+      },
+    });
+  }
+
+  async rejectLoanRequest(userId: string, loanRequestId: string) {
+    const loanRequest = await this.getInvolvedLoanRequest(
+      userId,
+      loanRequestId,
+    );
+
+    if (loanRequest.status !== $Enums.LoanRequestStatus.PENDING) {
+      throw new BadRequestException('Loan request is not pending');
+    }
+    return this.prismaService.loanRequest.update({
+      where: {
+        id: loanRequestId,
+      },
+      data: {
+        status: $Enums.LoanRequestStatus.REJECTED,
+        receiverId: userId,
       },
     });
   }

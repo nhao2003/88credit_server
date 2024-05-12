@@ -13,6 +13,8 @@ import { LoanRequestController } from './app/loan_request/loan_request.controlle
 import { LoanRequestService } from './app/loan_request/loan_request.service';
 import { BankModule } from './app/bank/bank.module';
 import { BankCardModule } from './app/bank_card/bank_card.module';
+import { LoanContractModule } from './app/loan_contract/loan_contract.module';
+import { BlogModule } from './app/blog/blog.module';
 
 @Module({
   imports: [
@@ -24,12 +26,13 @@ import { BankCardModule } from './app/bank_card/bank_card.module';
     NotificationModule,
     // UserModule,
     AuthModule,
-    // BlogModule,
+    BlogModule,
     PostModule,
     LoanRequestModule,
     // OtpModule,
     BankModule,
     BankCardModule,
+    LoanContractModule,
   ],
   providers: [
     AppService,
