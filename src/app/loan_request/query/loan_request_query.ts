@@ -23,6 +23,7 @@ import {} from 'src/common/types';
 
 class LoanRequestWhereInput extends WhereQuery {
   id?: StringFilter;
+  status?: EnumFilter<$Enums.LoanRequestStatus>;
   receiverId?: StringFilter;
   loanAmount?: NumberFilter;
   interestRate?: NumberFilter;
@@ -51,6 +52,12 @@ class LoanRequestQueryPayload extends BaseQueryPayLoad {
   @IsOptional()
   @IsStringQueryParam()
   id?: QueryFilter<string>;
+
+  @IsOptional()
+  @IsEnumQueryParam({
+    enum: $Enums.LoanRequestStatus,
+  })
+  status?: QueryFilter<$Enums.LoanRequestStatus>;
 
   @IsOptional()
   @IsUUIDQueryParam()
@@ -88,6 +95,12 @@ class LoanRequestQueryBuilder {
 
   buildId(value: QueryFilter<string>) {
     this.query.where.id = QueryBuildHelper.buildStringQuery(value);
+    return this;
+  }
+
+  buildStatus(status: QueryFilter) {
+    this.query.where.status =
+      QueryBuildHelper.buildEnumQuery<$Enums.LoanRequestStatus>(status);
     return this;
   }
 
@@ -159,6 +172,9 @@ class LoanRequestQueryBuilderDirector {
     let builder = new LoanRequestQueryBuilder(this.query);
     if (this.payload.id) {
       builder = builder.buildId(this.payload.id);
+    }
+    if (this.payload.status) {
+      builder = builder.buildStatus(this.payload.status);
     }
     if (this.payload.receiverId) {
       builder = builder.buildReceiverId(this.payload.receiverId);

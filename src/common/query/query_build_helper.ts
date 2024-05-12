@@ -118,14 +118,14 @@ class QueryBuildHelper {
     return dateFilter;
   }
 
-  static buildEnumQuery<T>(
+  static buildEnumQuery<T = any>(
     value: QueryFilter,
   ): QueryFilter<T> | undefined | null {
     if (!value) {
       return null;
     }
-    if (value['eq']) {
-      return { equals: value['eq'] };
+    if (value['equals']) {
+      return { equals: value['equals'] };
     }
     if (value['in']) {
       return { in: value['in'].split(',') as any };

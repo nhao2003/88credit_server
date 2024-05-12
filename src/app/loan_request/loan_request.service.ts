@@ -3,11 +3,12 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { $Enums } from '@prisma/client';
+import { $Enums, LoanRequest, LoanRequestStatus, Post } from '@prisma/client';
 import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import CreateLoanRequestDto from './dtos/loan_request';
 import { LoanRequestQuery } from './query/loan_request_query';
 import { NotFoundError } from 'rxjs';
+import Paging from 'src/common/types/paging.type';
 
 @Injectable()
 export class LoanRequestService {
@@ -48,8 +49,11 @@ export class LoanRequestService {
     });
   }
 
-  async getLoanRequests(userId: string, query: LoanRequestQuery) {
-    return await this.prismaService.loanRequest.findMany({
+  async getLoanRequests(
+    userId: string,
+    query: LoanRequestQuery,
+  ): Promise<Paging<LoanRequest>> {
+    const filter = {
       take: query.take,
       skip: query.skip,
       where: {
@@ -66,7 +70,17 @@ export class LoanRequestService {
       orderBy: {
         ...query.orderBy,
       },
-    });
+    };
+    const result = await Promise.all([
+      this.prismaService.loanRequest.count(filter),
+      await this.prismaService.loanRequest.findMany(filter),
+    ]);
+    return {
+      page: query.skip / query.take + 1,
+      take: query.take,
+      totalPages: Math.ceil(result[0] / query.take),
+      items: result[1],
+    };
   }
   private async getInvolvedLoanRequest(userId: string, loanRequestId: string) {
     const loanRequest = await this.prismaService.loanRequest.findFirst({

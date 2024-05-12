@@ -1,13 +1,5 @@
-import {
-  IsDecimal,
-  IsNumber,
-  IsOptional,
-  IsPositive,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
-import e from 'express';
-import { IsQueryFilter } from '../decorators/validation';
+import { IsDecimal, IsOptional, IsString } from 'class-validator';
+import { IsPositiveNumberString } from '../decorators/validation';
 
 enum QueryOperator {
   eq = 'eq',
@@ -41,12 +33,12 @@ type QueryFilter<T = any> = {
 class BaseQueryPayLoad {
   @IsOptional()
   @IsDecimal()
-  @IsPositive()
+  // @IsPositiveNumberString()
   page?: number;
 
   @IsOptional()
   @IsDecimal()
-  @IsPositive()
+  // @IsPositiveNumberString()
   take?: number;
 
   @IsOptional()
