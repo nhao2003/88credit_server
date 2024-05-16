@@ -30,7 +30,7 @@ export class PostController {
   @ResponseMessage('Post created successfully')
   async createPost(
     @GetCurrentUser() userId: JwtPayloadWithRefreshToken,
-    @CheckValidPost() post: CreatePostDto,
+    @Body() post: CreatePostDto,
   ) {
     return await this.postService.createPost({
       ...post,

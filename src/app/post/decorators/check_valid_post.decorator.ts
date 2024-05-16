@@ -1,5 +1,8 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
-import { CreatePostDto, CreatePostWithUserIdDto } from '../dtos/post-pay-load.dto';
+import {
+  CreatePostDto,
+  CreatePostWithUserIdDto,
+} from '../dtos/post-pay-load.dto';
 
 export const CheckValidPost = createParamDecorator(
   (data: unknown, ctx: ExecutionContext): CreatePostWithUserIdDto => {
