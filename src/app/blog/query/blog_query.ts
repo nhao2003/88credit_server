@@ -1,3 +1,4 @@
+import { ApiQuery } from '@nestjs/swagger';
 import {
   BaseQuery,
   BaseQueryPayLoad,

@@ -14,6 +14,10 @@ class QueryBuildHelper {
     if (!value) {
       return null;
     }
+    if (typeof value === 'string') {
+      stringFilter.equals = value;
+      return stringFilter;
+    }
     if (value['eq']) {
       stringFilter.equals = value['eq'];
     }
@@ -52,6 +56,10 @@ class QueryBuildHelper {
     if (!value) {
       return null;
     }
+    if (typeof value === 'number') {
+      numberFilter.equals = Number(value);
+      return numberFilter;
+    }
     if (value['eq']) {
       numberFilter.equals = Number(value['eq']);
     }
@@ -82,16 +90,23 @@ class QueryBuildHelper {
     if (!value) {
       return null;
     }
+    if (typeof value === 'boolean') {
+      return { equals: Boolean(value) };
+    }
     if (value['eq']) {
       return { equals: Boolean(value['eq']) };
     }
   }
 
   static buildDateQuery(value: QueryFilter): DateFilter | undefined | null {
+    const dateFilter: DateFilter = {};
     if (!value) {
       return null;
     }
-    const dateFilter: DateFilter = {};
+    if (typeof value === 'string') {
+      dateFilter.equals = new Date(value);
+      return dateFilter;
+    }
     if (value['eq']) {
       dateFilter.equals = new Date(value['eq']);
     }
@@ -123,6 +138,9 @@ class QueryBuildHelper {
   ): QueryFilter<T> | undefined | null {
     if (!value) {
       return null;
+    }
+    if (value['eq']) {
+      return { equals: value['eq'] };
     }
     if (value['equals']) {
       return { equals: value['equals'] };

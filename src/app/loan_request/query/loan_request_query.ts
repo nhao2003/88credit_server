@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { $Enums } from '@prisma/client';
 import { IsObject, IsOptional } from 'class-validator';
 import {
@@ -51,36 +52,68 @@ class LoanRequestQuery extends BaseQuery {
 class LoanRequestQueryPayload extends BaseQueryPayLoad {
   @IsOptional()
   @IsStringQueryParam()
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   id?: QueryFilter<string>;
 
   @IsOptional()
   @IsEnumQueryParam({
     enum: $Enums.LoanRequestStatus,
   })
+  @ApiProperty({
+    required: false,
+    enum: $Enums.LoanRequestStatus,
+  })
   status?: QueryFilter<$Enums.LoanRequestStatus>;
 
   @IsOptional()
   @IsUUIDQueryParam()
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   receiverId?: QueryFilter<string>;
 
   @IsOptional()
   @IsNumberQueryParam()
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
   loanAmount?: QueryFilter<number>;
 
   @IsOptional()
   @IsNumberQueryParam()
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
   interestRate?: QueryFilter<number>;
 
   @IsOptional()
   @IsNumberQueryParam()
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
   overdueInterestRate?: QueryFilter<number>;
 
   @IsOptional()
   @IsNumberQueryParam()
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
   loanTenureMonths?: QueryFilter<number>;
 
   @IsOptional()
   @IsEnumQueryParam({
+    enum: $Enums.LoanReasonTypes,
+  })
+  @ApiProperty({
+    required: false,
     enum: $Enums.LoanReasonTypes,
   })
   loanReasonType?: QueryFilter<$Enums.LoanReasonTypes>;
@@ -160,8 +193,8 @@ class LoanRequestQueryBuilderDirector {
   private query: LoanRequestQuery;
 
   constructor(private payload: LoanRequestQueryPayload) {
-    const page = this.payload.page || 1;
-    const take = this.payload.take || 20;
+    const page = Number(this.payload.page) || 1;
+    const take = Number(this.payload.take) || 20;
     this.query = {
       skip: (page - 1) * take,
       take: take,

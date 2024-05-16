@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { BlogService } from './blog.service';
 import BlogPayload from './dtos/blog_payload';
-import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BlogQueryDirector, BlogQueryPayload } from './query/blog_query';
 
 @ApiTags('Blog')

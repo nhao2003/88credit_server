@@ -1,5 +1,7 @@
 import { IsDecimal, IsOptional, IsString } from 'class-validator';
 import { IsPositiveNumberString } from '../decorators/validation';
+import { ApiParam, ApiProperty, ApiQuery } from '@nestjs/swagger';
+import { Query } from '@nestjs/common';
 
 enum QueryOperator {
   eq = 'eq',
@@ -33,16 +35,25 @@ type QueryFilter<T = any> = {
 class BaseQueryPayLoad {
   @IsOptional()
   @IsDecimal()
-  // @IsPositiveNumberString()
+  @ApiProperty({
+    default: 1,
+    required: false,
+  })
   page?: number;
 
   @IsOptional()
   @IsDecimal()
-  // @IsPositiveNumberString()
+  @ApiProperty({
+    default: 20,
+    required: false,
+  })
   take?: number;
 
   @IsOptional()
   @IsString()
+  @ApiProperty({
+    required: false,
+  })
   orderBy?: string | null;
 
   public getPage(): number {
@@ -78,7 +89,7 @@ export abstract class WhereQuery {}
 
 export abstract class OrderByQueryInput {}
 class BaseQuery {
-  skip: number = 1;
+  skip: number = 0;
   take: number = 20;
   where?: WhereQuery;
   orderBy?: OrderByQueryInput;
