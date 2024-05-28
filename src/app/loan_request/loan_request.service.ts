@@ -90,8 +90,16 @@ export class LoanRequestService {
         include: {
           sender: this.userSelect,
           receiver: this.userSelect,
-          receiverBankCard: true,
-          senderBankCard: true,
+          receiverBankCard: {
+            include: {
+              bank: true,
+            },
+          },
+          senderBankCard: {
+            include: {
+              bank: true,
+            },
+          },
         },
       }),
     ]);
@@ -118,8 +126,16 @@ export class LoanRequestService {
       include: {
         sender: this.userSelect,
         receiver: this.userSelect,
-        receiverBankCard: true,
-        senderBankCard: true,
+        receiverBankCard: {
+          include: {
+            bank: true,
+          },
+        },
+        senderBankCard: {
+          include: {
+            bank: true,
+          },
+        },
       },
     });
 
@@ -151,8 +167,16 @@ export class LoanRequestService {
       include: {
         sender: this.userSelect,
         receiver: this.userSelect,
-        receiverBankCard: true,
-        senderBankCard: true,
+        receiverBankCard: {
+          include: {
+            bank: true,
+          },
+        },
+        senderBankCard: {
+          include: {
+            bank: true,
+          },
+        },
       },
     });
   }
@@ -177,8 +201,16 @@ export class LoanRequestService {
       include: {
         sender: this.userSelect,
         receiver: this.userSelect,
-        receiverBankCard: true,
-        senderBankCard: true,
+        receiverBankCard: {
+          include: {
+            bank: true,
+          },
+        },
+        senderBankCard: {
+          include: {
+            bank: true,
+          },
+        },
       },
     });
   }
