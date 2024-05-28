@@ -10,7 +10,7 @@ import {
   Response,
 } from '@nestjs/common';
 import CreateBankCardDto from './dtos/create_bank_card_dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import {
   GetCurrentUser,
   GetCurrentUserId,
@@ -20,6 +20,7 @@ import { BankCardService } from './bank_card.service';
 
 @Controller('bank-card')
 @ApiTags('Bank Card')
+@ApiBearerAuth()
 export class BankCardController {
   constructor(private readonly bankCardService: BankCardService) {}
 

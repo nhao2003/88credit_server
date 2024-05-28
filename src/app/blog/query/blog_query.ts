@@ -42,8 +42,8 @@ class BlogQueryBuilder {
 class BlogQueryDirector {
   private query: BlogQuery;
   constructor(private payload: BlogQueryPayload) {
-    const page = payload.page || 1;
-    const take = payload.take || 20;
+    const page = Number(payload.page) || 1;
+    const take = Number(payload.take) || 20;
     this.query = {
       skip: (page - 1) * take,
       take: take,

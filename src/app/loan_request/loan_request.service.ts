@@ -3,16 +3,28 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { $Enums, LoanRequest, LoanRequestStatus, Post } from '@prisma/client';
+import { $Enums, LoanRequest } from '@prisma/client';
 import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import CreateLoanRequestDto from './dtos/loan_request';
 import { LoanRequestQuery } from './query/loan_request_query';
-import { NotFoundError } from 'rxjs';
 import Paging from 'src/common/types/paging.type';
 
 @Injectable()
 export class LoanRequestService {
   private prismaService: PrismaService;
+  private userSelect = {
+    select: {
+      id: true,
+      email: true,
+      firstName: true,
+      lastName: true,
+      avatar: true,
+      gender: true,
+      dob: true,
+      phone: true,
+      address: true,
+    },
+  };
 
   constructor(prismaService: PrismaService) {
     this.prismaService = prismaService;
@@ -73,7 +85,15 @@ export class LoanRequestService {
     };
     const result = await Promise.all([
       this.prismaService.loanRequest.count(filter),
-      await this.prismaService.loanRequest.findMany(filter),
+      await this.prismaService.loanRequest.findMany({
+        ...filter,
+        include: {
+          sender: this.userSelect,
+          receiver: this.userSelect,
+          receiverBankCard: true,
+          senderBankCard: true,
+        },
+      }),
     ]);
     return {
       page: query.skip / query.take + 1,
@@ -86,17 +106,25 @@ export class LoanRequestService {
     const loanRequest = await this.prismaService.loanRequest.findFirst({
       where: {
         id: loanRequestId,
+        OR: [
+          {
+            senderId: userId,
+          },
+          {
+            receiverId: userId,
+          },
+        ],
+      },
+      include: {
+        sender: this.userSelect,
+        receiver: this.userSelect,
+        receiverBankCard: true,
+        senderBankCard: true,
       },
     });
 
     if (!loanRequest) {
       throw new NotFoundException('Loan request not found');
-    }
-
-    if (loanRequest.senderId !== userId && loanRequest.receiverId !== userId) {
-      throw new BadRequestException(
-        'You are not involved in this loan request',
-      );
     }
 
     return loanRequest;
@@ -120,6 +148,12 @@ export class LoanRequestService {
         status: $Enums.LoanRequestStatus.APPROVED,
         receiverId: userId,
       },
+      include: {
+        sender: this.userSelect,
+        receiver: this.userSelect,
+        receiverBankCard: true,
+        senderBankCard: true,
+      },
     });
   }
 
@@ -139,6 +173,12 @@ export class LoanRequestService {
       data: {
         status: $Enums.LoanRequestStatus.REJECTED,
         receiverId: userId,
+      },
+      include: {
+        sender: this.userSelect,
+        receiver: this.userSelect,
+        receiverBankCard: true,
+        senderBankCard: true,
       },
     });
   }

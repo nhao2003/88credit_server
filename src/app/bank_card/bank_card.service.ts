@@ -14,7 +14,9 @@ export class BankCardService {
     return await this.prismaService.bankCard.findMany({
       where: {
         userId,
-        deletedAt: null,
+      },
+      include: {
+        bank: true,
       },
     });
   }
@@ -96,6 +98,9 @@ export class BankCardService {
       where: {
         userId,
         isPrimary: true,
+      },
+      include: {
+        bank: true,
       },
     });
   }
