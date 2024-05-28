@@ -94,7 +94,6 @@ export class AuthController {
   @Public()
   @UseGuards(RefreshTokenJwtGuard)
   @Post('refresh-token')
-  @ApiSecurity('refresh_token')
   @ApiHeader({
     name: 'Authorization',
     description: 'Bearer <refresh_token>',

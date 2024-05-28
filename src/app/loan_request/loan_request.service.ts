@@ -182,4 +182,52 @@ export class LoanRequestService {
       },
     });
   }
+
+  async cancelLoanRequest(userId: string, id: string) {
+    const loanRequest = await this.getInvolvedLoanRequest(userId, id);
+
+    const allowedStatusSenders: $Enums.LoanRequestStatus[] = [
+      $Enums.LoanRequestStatus.PENDING,
+      $Enums.LoanRequestStatus.APPROVED,
+    ];
+
+    const allowedStatusReceivers: $Enums.LoanRequestStatus[] = [
+      $Enums.LoanRequestStatus.PENDING,
+      $Enums.LoanRequestStatus.APPROVED,
+      $Enums.LoanRequestStatus.WAITING_FOR_PAYMENT,
+    ];
+
+    if (
+      (loanRequest.senderId === userId &&
+        !allowedStatusSenders.includes(loanRequest.status)) ||
+      (loanRequest.receiverId === userId &&
+        !allowedStatusReceivers.includes(loanRequest.status))
+    ) {
+      throw new BadRequestException('Loan request cannot be cancelled', {
+        cause: {
+          status: loanRequest.status,
+          senderId: loanRequest.senderId,
+          receiverId: loanRequest.receiverId,
+        },
+        description:
+          userId === loanRequest.senderId
+            ? 'You only can cancel pending or approved loan request'
+            : 'You only can cancel pending, approved or waiting for payment loan request',
+      });
+    }
+    return this.prismaService.loanRequest.update({
+      where: {
+        id,
+      },
+      data: {
+        status: $Enums.LoanRequestStatus.CANCELLED,
+      },
+      include: {
+        sender: this.userSelect,
+        receiver: this.userSelect,
+        receiverBankCard: true,
+        senderBankCard: true,
+      },
+    });
+  }
 }
