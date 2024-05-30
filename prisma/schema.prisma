@@ -241,7 +241,7 @@ model Blog {
 
 model LoanContract {
   id                    String          @id @default(uuid())
-  loanContractRequestId String
+  loanRequestId String
   lenderId              String
   lenderBankCardId      String
   borrowerId            String
@@ -255,7 +255,7 @@ model LoanContract {
   createdAt             DateTime        @default(now())
   expiredAt             DateTime        @default(dbgenerated("now() + interval '1 day'"))
 
-  loanContractRequest LoanRequest @relation(fields: [loanContractRequestId], references: [id])
+  loanRequest LoanRequest @relation(fields: [loanRequestId], references: [id])
   lenderBankCard      BankCard   @relation("LenderBankCard", fields: [lenderBankCardId], references: [id])
   borrowerBankCard    BankCard   @relation("BorrowerBankCard", fields: [borrowerBankCardId], references: [id])
   lender              User        @relation("LoanContractLender", fields: [lenderId], references: [id])

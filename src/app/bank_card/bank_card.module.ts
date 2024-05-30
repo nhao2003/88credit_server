@@ -5,5 +5,6 @@ import { BankCardController } from './bank_card.controller';
 @Module({
   providers: [BankCardService],
   controllers: [BankCardController],
+  exports: [BankCardService],
 })
 export class BankCardModule {}

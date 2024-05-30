@@ -9,6 +9,7 @@ import CreateLoanRequestDto from './dtos/loan_request';
 import { LoanRequestQuery } from './query/loan_request_query';
 import Paging from 'src/common/types/paging.type';
 import { ZaloPayService } from 'src/core/services/payment/zalopay.service';
+import { BankCardService } from '../bank_card/bank_card.service';
 
 @Injectable()
 export class LoanRequestService {
@@ -88,6 +89,7 @@ export class LoanRequestService {
   constructor(
     private readonly prismaService: PrismaService,
     private readonly zalopayService: ZaloPayService,
+    private bankCardService: BankCardService,
   ) {}
 
   async createLoanRequest(userId: string, data: CreateLoanRequestDto) {
@@ -209,6 +211,16 @@ export class LoanRequestService {
       throw new BadRequestException('Loan request is not pending');
     }
 
+    if (loanRequest.senderId === userId) {
+      throw new BadRequestException('You cannot approve your own loan request');
+    }
+
+    const bankCard = await this.bankCardService.getPrimaryBankCard(userId);
+
+    if (!bankCard) {
+      throw new BadRequestException('You must have a primary bank card');
+    }
+
     return this.prismaService.loanRequest.update({
       where: {
         id: loanRequestId,
@@ -216,6 +228,7 @@ export class LoanRequestService {
       data: {
         status: $Enums.LoanRequestStatus.APPROVED,
         receiverId: userId,
+        receiverBankCardId: bankCard.id,
       },
       include: this.requestInclude,
     });
@@ -283,5 +296,33 @@ export class LoanRequestService {
       },
       include: this.requestInclude,
     });
+  }
+
+  async markLoanRequestPaid(loanRequestId: string) {
+    const request = await this.prismaService.loanRequest.update({
+      where: {
+        id: loanRequestId,
+      },
+      data: {
+        status: $Enums.LoanRequestStatus.PAID,
+      },
+      include: this.requestInclude,
+    });
+    const result = await this.prismaService.loanContract.create({
+      data: {
+        borrowerId: request.senderId,
+        lenderId: request.receiverId,
+        amount: request.loanAmount,
+        loanRequestId: request.id,
+        tenureInMonths: request.loanTenureMonths,
+        interestRate: request.interestRate,
+        loanReason: request.loanReason,
+        loanReasonType: request.loanReasonType,
+        overdueInterestRate: request.overdueInterestRate,
+        borrowerBankCardId: request.senderBankCardId,
+        lenderBankCardId: request.receiverBankCardId,
+      },
+    });
+    return result;
   }
 }

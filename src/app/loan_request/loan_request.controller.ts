@@ -80,4 +80,10 @@ export class LoanRequestController {
   ) {
     return await this.loanRequestService.payLoanRequest(userId, id);
   }
+
+  // Mark lệ phí vay đã thanh toán
+  @Post(':id/mark-paid')
+  async markLoanRequestPaid(@GetParamId() id: string) {
+    return await this.loanRequestService.markLoanRequestPaid(id);
+  }
 }
