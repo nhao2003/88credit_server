@@ -71,4 +71,13 @@ export class LoanRequestController {
   ) {
     return await this.loanRequestService.cancelLoanRequest(userId, id);
   }
+
+  // Thanh thoán lệ phí vay
+  @Post(':id/pay')
+  async payLoanRequest(
+    @GetCurrentUserId() userId: string,
+    @GetParamId() id: string,
+  ) {
+    return await this.loanRequestService.payLoanRequest(userId, id);
+  }
 }

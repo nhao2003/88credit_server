@@ -8,11 +8,52 @@ import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import CreateLoanRequestDto from './dtos/loan_request';
 import { LoanRequestQuery } from './query/loan_request_query';
 import Paging from 'src/common/types/paging.type';
+import { ZaloPayService } from 'src/core/services/payment/zalopay.service';
 
 @Injectable()
 export class LoanRequestService {
-  private prismaService: PrismaService;
-
+  async payLoanRequest(userId: string, id: string) {
+    const loanRequest = await this.getInvolvedLoanRequest(userId, id);
+    const allowStatus: $Enums.LoanRequestStatus[] = [
+      $Enums.LoanRequestStatus.APPROVED,
+      $Enums.LoanRequestStatus.WAITING_FOR_PAYMENT,
+    ];
+    if (userId !== loanRequest.receiverId) {
+      throw new BadRequestException(
+        'You are not the receiver of this loan request',
+      );
+    } else if (!allowStatus.includes(loanRequest.status)) {
+      throw new BadRequestException(
+        'Loan request is not approved or waiting for payment',
+      );
+    }
+    if (loanRequest.status === $Enums.LoanRequestStatus.APPROVED) {
+      await this.prismaService.loanRequest.update({
+        where: {
+          id,
+        },
+        data: {
+          status: $Enums.LoanRequestStatus.WAITING_FOR_PAYMENT,
+        },
+      });
+    }
+    return this.zalopayService.createOrder({
+      amount: 10000,
+      description: 'Pay loan request',
+      app_user: userId,
+      item: [
+        {
+          item: 'Loan request',
+          id: loanRequest.id,
+        },
+      ],
+      embed_data: {
+        loan_request_id: loanRequest.id,
+      },
+      bank_code: 'zalopayapp',
+      app_time: new Date(),
+    });
+  }
   private requestInclude = {
     sender: {
       select: {
@@ -44,9 +85,10 @@ export class LoanRequestService {
     },
   };
 
-  constructor(prismaService: PrismaService) {
-    this.prismaService = prismaService;
-  }
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly zalopayService: ZaloPayService,
+  ) {}
 
   async createLoanRequest(userId: string, data: CreateLoanRequestDto) {
     const [receiver, bankCard] = await Promise.all([

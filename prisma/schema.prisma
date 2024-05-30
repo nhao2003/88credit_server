@@ -27,30 +27,32 @@ enum AccountStatus {
 }
 
 model User {
-  id                  String        @id @default(uuid())
-  role                Role          @default(USER)
-  status              AccountStatus @default(UNVERIFIED)
-  isIdentityVerified  Boolean       @default(false)
-  email               String        @unique
-  password            String
-  firstName           String
-  avatar              String
-  address             Json          @default("{}")
-  lastName            String
-  gender              Boolean
-  dob                 DateTime
-  phone               String
-  banReason           String?
-  banUntil            DateTime?
-  lastActiveAt        DateTime      @default(now())
-  createdAt           DateTime      @default(now())
-  updatedAt           DateTime      @updatedAt
-  sessions            Session[]
-  Otp                 Otp[]
-  Post                Post[]
-  LoanRequestReceived LoanRequest[] @relation("LoanRequestReceiver")
-  LoanRequestSent     LoanRequest[] @relation("LoanRequestSender")
-  BankCard            BankCard[]
+  id                   String         @id @default(uuid())
+  role                 Role           @default(USER)
+  status               AccountStatus  @default(UNVERIFIED)
+  isIdentityVerified   Boolean        @default(false)
+  email                String         @unique
+  password             String
+  firstName            String
+  avatar               String
+  address              Json           @default("{}")
+  lastName             String
+  gender               Boolean
+  dob                  DateTime
+  phone                String
+  banReason            String?
+  banUntil             DateTime?
+  lastActiveAt         DateTime       @default(now())
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  sessions             Session[]
+  Otp                  Otp[]
+  Post                 Post[]
+  LoanRequestReceived  LoanRequest[]  @relation("LoanRequestReceiver")
+  LoanRequestSent      LoanRequest[]  @relation("LoanRequestSender")
+  BankCard             BankCard[]
+  LoanContractBorrower LoanContract[] @relation("LoanContractBorrower")
+  LoanContractLender   LoanContract[] @relation("LoanContractLender")
 
   @@map("users")
 }
@@ -148,12 +150,12 @@ enum LoanContractRequestStatus {
 }
 
 enum LoanRequestStatus {
-  PENDING           @map("pending")
-  APPROVED          @map("approved")
-  REJECTED          @map("rejected")
-  CANCELLED         @map("cancelled")
+  PENDING             @map("pending")
+  APPROVED            @map("approved")
+  REJECTED            @map("rejected")
+  CANCELLED           @map("cancelled")
   WAITING_FOR_PAYMENT @map("waitingForPayment")
-  PAID              @map("paid")
+  PAID                @map("paid")
 }
 
 model LoanRequest {
@@ -182,6 +184,7 @@ model LoanRequest {
   receiver             User              @relation("LoanRequestReceiver", fields: [receiverId], references: [id])
   senderBankCard       BankCard          @relation("SenderBankCard", fields: [senderBankCardId], references: [id])
   receiverBankCard     BankCard?         @relation("ReceiverBankCard", fields: [receiverBankCardId], references: [id])
+  LoanContract         LoanContract[]
 
   @@map("loan_requests")
 }
@@ -211,10 +214,14 @@ model BankCard {
   updatedAt  DateTime  @updatedAt
   deletedAt  DateTime?
 
-  user                User          @relation(fields: [userId], references: [id])
-  bank                Bank          @relation(fields: [bankId], references: [id])
-  LoanRequestSent     LoanRequest[] @relation("SenderBankCard")
-  LoanRequestReceived LoanRequest[] @relation("ReceiverBankCard")
+  user                User           @relation(fields: [userId], references: [id])
+  bank                Bank           @relation(fields: [bankId], references: [id])
+  LoanRequestSent     LoanRequest[]  @relation("SenderBankCard")
+  LoanRequestReceived LoanRequest[]  @relation("ReceiverBankCard")
+  LoanContractBorrower LoanContract[] @relation("BorrowerBankCard")
+  LoanContractLender   LoanContract[] @relation("LenderBankCard")
+
+
 
   @@map("bank_cards")
 }
@@ -230,4 +237,29 @@ model Blog {
   updatedAt        DateTime @updatedAt
 
   @@map("blogs")
+}
+
+model LoanContract {
+  id                    String          @id @default(uuid())
+  loanContractRequestId String
+  lenderId              String
+  lenderBankCardId      String
+  borrowerId            String
+  borrowerBankCardId    String
+  loanReasonType        LoanReasonTypes
+  loanReason            String
+  amount                Float
+  interestRate          Float
+  tenureInMonths        Int
+  overdueInterestRate   Float
+  createdAt             DateTime        @default(now())
+  expiredAt             DateTime        @default(dbgenerated("now() + interval '1 day'"))
+
+  loanContractRequest LoanRequest @relation(fields: [loanContractRequestId], references: [id])
+  lenderBankCard      BankCard   @relation("LenderBankCard", fields: [lenderBankCardId], references: [id])
+  borrowerBankCard    BankCard   @relation("BorrowerBankCard", fields: [borrowerBankCardId], references: [id])
+  lender              User        @relation("LoanContractLender", fields: [lenderId], references: [id])
+  borrower            User        @relation("LoanContractBorrower", fields: [borrowerId], references: [id])
+
+  @@map("loan_contracts")
 }
