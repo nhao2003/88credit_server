@@ -12,17 +12,35 @@ import Paging from 'src/common/types/paging.type';
 @Injectable()
 export class LoanRequestService {
   private prismaService: PrismaService;
-  private userSelect = {
-    select: {
-      id: true,
-      email: true,
-      firstName: true,
-      lastName: true,
-      avatar: true,
-      gender: true,
-      dob: true,
-      phone: true,
-      address: true,
+
+  private requestInclude = {
+    sender: {
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        avatar: true,
+      },
+    },
+    receiver: {
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        avatar: true,
+      },
+    },
+    receiverBankCard: {
+      include: {
+        bank: true,
+      },
+    },
+    senderBankCard: {
+      include: {
+        bank: true,
+      },
     },
   };
 
@@ -61,7 +79,7 @@ export class LoanRequestService {
     });
   }
 
-  async getLoanRequests(
+  async getSentLoanRequests(
     userId: string,
     query: LoanRequestQuery,
   ): Promise<Paging<LoanRequest>> {
@@ -69,38 +87,44 @@ export class LoanRequestService {
       take: query.take,
       skip: query.skip,
       where: {
-        OR: [
-          {
-            senderId: userId,
-          },
-          {
-            receiverId: userId,
-          },
-        ],
+        senderId: userId,
         ...query.where,
       },
       orderBy: {
         ...query.orderBy,
       },
     };
+    return this.getLoanRequests(query, filter, this.requestInclude);
+  }
+
+  async getReceivedLoanRequests(
+    userId: string,
+    query: LoanRequestQuery,
+  ): Promise<Paging<LoanRequest>> {
+    const filter = {
+      take: query.take,
+      skip: query.skip,
+      where: {
+        receiverId: userId,
+        ...query.where,
+      },
+      orderBy: {
+        ...query.orderBy,
+      },
+    };
+    return this.getLoanRequests(query, filter, this.requestInclude);
+  }
+
+  private async getLoanRequests(
+    query: LoanRequestQuery,
+    filter?: any,
+    include?: any,
+  ): Promise<Paging<LoanRequest>> {
     const result = await Promise.all([
       this.prismaService.loanRequest.count(filter),
       await this.prismaService.loanRequest.findMany({
         ...filter,
-        include: {
-          sender: this.userSelect,
-          receiver: this.userSelect,
-          receiverBankCard: {
-            include: {
-              bank: true,
-            },
-          },
-          senderBankCard: {
-            include: {
-              bank: true,
-            },
-          },
-        },
+        include: include,
       }),
     ]);
     return {
@@ -123,20 +147,7 @@ export class LoanRequestService {
           },
         ],
       },
-      include: {
-        sender: this.userSelect,
-        receiver: this.userSelect,
-        receiverBankCard: {
-          include: {
-            bank: true,
-          },
-        },
-        senderBankCard: {
-          include: {
-            bank: true,
-          },
-        },
-      },
+      include: this.requestInclude,
     });
 
     if (!loanRequest) {
@@ -164,20 +175,7 @@ export class LoanRequestService {
         status: $Enums.LoanRequestStatus.APPROVED,
         receiverId: userId,
       },
-      include: {
-        sender: this.userSelect,
-        receiver: this.userSelect,
-        receiverBankCard: {
-          include: {
-            bank: true,
-          },
-        },
-        senderBankCard: {
-          include: {
-            bank: true,
-          },
-        },
-      },
+      include: this.requestInclude,
     });
   }
 
@@ -198,20 +196,7 @@ export class LoanRequestService {
         status: $Enums.LoanRequestStatus.REJECTED,
         receiverId: userId,
       },
-      include: {
-        sender: this.userSelect,
-        receiver: this.userSelect,
-        receiverBankCard: {
-          include: {
-            bank: true,
-          },
-        },
-        senderBankCard: {
-          include: {
-            bank: true,
-          },
-        },
-      },
+      include: this.requestInclude,
     });
   }
 
@@ -254,12 +239,7 @@ export class LoanRequestService {
       data: {
         status: $Enums.LoanRequestStatus.CANCELLED,
       },
-      include: {
-        sender: this.userSelect,
-        receiver: this.userSelect,
-        receiverBankCard: true,
-        senderBankCard: true,
-      },
+      include: this.requestInclude,
     });
   }
 }

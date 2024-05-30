@@ -25,7 +25,7 @@ import {} from 'src/common/types';
 class LoanRequestWhereInput extends WhereQuery {
   id?: StringFilter;
   status?: EnumFilter<$Enums.LoanRequestStatus>;
-  receiverId?: StringFilter;
+  // receiverId?: StringFilter;
   loanAmount?: NumberFilter;
   interestRate?: NumberFilter;
   overdueInterestRate?: NumberFilter;
@@ -35,7 +35,7 @@ class LoanRequestWhereInput extends WhereQuery {
 
 class LoanRequestOrderByInput extends OrderByQueryInput {
   id?: OrderBy;
-  receiverId?: OrderBy;
+  // receiverId?: OrderBy;
   loanAmount?: OrderBy;
   interestRate?: OrderBy;
   overdueInterestRate?: OrderBy;
@@ -137,10 +137,10 @@ class LoanRequestQueryBuilder {
     return this;
   }
 
-  buildReceiverId(receiverId: QueryFilter) {
-    this.query.where.receiverId = QueryBuildHelper.buildStringQuery(receiverId);
-    return this;
-  }
+  // buildReceiverId(receiverId: QueryFilter) {
+  //   this.query.where.receiverId = QueryBuildHelper.buildStringQuery(receiverId);
+  //   return this;
+  // }
 
   buildLoanAmount(loanAmount: QueryFilter) {
     this.query.where.loanAmount = QueryBuildHelper.buildNumberQuery(loanAmount);
@@ -209,9 +209,9 @@ class LoanRequestQueryBuilderDirector {
     if (this.payload.status) {
       builder = builder.buildStatus(this.payload.status);
     }
-    if (this.payload.receiverId) {
-      builder = builder.buildReceiverId(this.payload.receiverId);
-    }
+    // if (this.payload.receiverId) {
+    //   builder = builder.buildReceiverId(this.payload.receiverId);
+    // }
     if (this.payload.loanAmount) {
       builder = builder.buildLoanAmount(this.payload.loanAmount);
     }

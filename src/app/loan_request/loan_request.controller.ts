@@ -22,14 +22,30 @@ export class LoanRequestController {
     return await this.loanRequestService.createLoanRequest(userId, data);
   }
 
-  @Get()
-  async getLoanRequest(
+  @Get('sent')
+  async getSentLoanRequests(
     @GetCurrentUserId() userId: string,
     @Query() query: LoanRequestQueryPayload,
   ) {
     const director = new LoanRequestQueryBuilderDirector(query);
     const queryBuilder = director.build();
-    return await this.loanRequestService.getLoanRequests(userId, queryBuilder);
+    return await this.loanRequestService.getSentLoanRequests(
+      userId,
+      queryBuilder,
+    );
+  }
+
+  @Get('received')
+  async getReceivedLoanRequests(
+    @GetCurrentUserId() userId: string,
+    @Query() query: LoanRequestQueryPayload,
+  ) {
+    const director = new LoanRequestQueryBuilderDirector(query);
+    const queryBuilder = director.build();
+    return await this.loanRequestService.getReceivedLoanRequests(
+      userId,
+      queryBuilder,
+    );
   }
 
   @Post(':id/approve')
