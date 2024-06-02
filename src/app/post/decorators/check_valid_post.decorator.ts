@@ -3,13 +3,14 @@ import {
   CreatePostDto,
   CreatePostWithUserIdDto,
 } from '../dtos/post-pay-load.dto';
+import { $Enums } from '@prisma/client';
 
 export const CheckValidPost = createParamDecorator(
   (data: unknown, ctx: ExecutionContext): CreatePostWithUserIdDto => {
     const request = ctx.switchToHttp().getRequest();
     const post: CreatePostWithUserIdDto = request.body;
 
-    if (post.isLease) {
+    if (post.type === $Enums.PostTypes.lending) {
       if (post.maxAmount === null || post.maxAmount === undefined) {
         throw new Error('maxAmount is required for lease post');
       } else if (post.maxDuration === null || post.maxDuration === undefined) {

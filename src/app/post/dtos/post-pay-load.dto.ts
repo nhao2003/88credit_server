@@ -13,7 +13,7 @@ class CreatePostDto {
     description: 'The post type',
   })
   @IsBoolean()
-  isLease: boolean;
+  type: $Enums.PostTypes;
 
   @IsString()
   @IsNotEmpty()

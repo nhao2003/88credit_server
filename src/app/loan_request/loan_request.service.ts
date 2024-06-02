@@ -16,8 +16,7 @@ export class LoanRequestService {
   async payLoanRequest(userId: string, id: string) {
     const loanRequest = await this.getInvolvedLoanRequest(userId, id);
     const allowStatus: $Enums.LoanRequestStatus[] = [
-      $Enums.LoanRequestStatus.APPROVED,
-      $Enums.LoanRequestStatus.WAITING_FOR_PAYMENT,
+      $Enums.LoanRequestStatus.approved,
     ];
     if (userId !== loanRequest.receiverId) {
       throw new BadRequestException(
@@ -27,16 +26,6 @@ export class LoanRequestService {
       throw new BadRequestException(
         'Loan request is not approved or waiting for payment',
       );
-    }
-    if (loanRequest.status === $Enums.LoanRequestStatus.APPROVED) {
-      await this.prismaService.loanRequest.update({
-        where: {
-          id,
-        },
-        data: {
-          status: $Enums.LoanRequestStatus.WAITING_FOR_PAYMENT,
-        },
-      });
     }
     return this.zalopayService.createOrder({
       amount: 10000,
@@ -116,7 +105,7 @@ export class LoanRequestService {
 
     return await this.prismaService.loanRequest.create({
       data: {
-        status: $Enums.LoanRequestStatus.PENDING,
+        status: $Enums.LoanRequestStatus.pending,
         senderId: userId,
         ...data,
       },
@@ -207,7 +196,7 @@ export class LoanRequestService {
       loanRequestId,
     );
 
-    if (loanRequest.status !== $Enums.LoanRequestStatus.PENDING) {
+    if (loanRequest.status !== $Enums.LoanRequestStatus.pending) {
       throw new BadRequestException('Loan request is not pending');
     }
 
@@ -226,7 +215,7 @@ export class LoanRequestService {
         id: loanRequestId,
       },
       data: {
-        status: $Enums.LoanRequestStatus.APPROVED,
+        status: $Enums.LoanRequestStatus.approved,
         receiverId: userId,
         receiverBankCardId: bankCard.id,
       },
@@ -240,7 +229,7 @@ export class LoanRequestService {
       loanRequestId,
     );
 
-    if (loanRequest.status !== $Enums.LoanRequestStatus.PENDING) {
+    if (loanRequest.status !== $Enums.LoanRequestStatus.pending) {
       throw new BadRequestException('Loan request is not pending');
     }
     return this.prismaService.loanRequest.update({
@@ -248,7 +237,7 @@ export class LoanRequestService {
         id: loanRequestId,
       },
       data: {
-        status: $Enums.LoanRequestStatus.REJECTED,
+        status: $Enums.LoanRequestStatus.rejected,
         receiverId: userId,
       },
       include: this.requestInclude,
@@ -259,14 +248,13 @@ export class LoanRequestService {
     const loanRequest = await this.getInvolvedLoanRequest(userId, id);
 
     const allowedStatusSenders: $Enums.LoanRequestStatus[] = [
-      $Enums.LoanRequestStatus.PENDING,
-      $Enums.LoanRequestStatus.APPROVED,
+      $Enums.LoanRequestStatus.paid,
+      $Enums.LoanRequestStatus.approved,
     ];
 
     const allowedStatusReceivers: $Enums.LoanRequestStatus[] = [
-      $Enums.LoanRequestStatus.PENDING,
-      $Enums.LoanRequestStatus.APPROVED,
-      $Enums.LoanRequestStatus.WAITING_FOR_PAYMENT,
+      $Enums.LoanRequestStatus.paid,
+      $Enums.LoanRequestStatus.approved,
     ];
 
     if (
@@ -292,7 +280,7 @@ export class LoanRequestService {
         id,
       },
       data: {
-        status: $Enums.LoanRequestStatus.CANCELLED,
+        status: $Enums.LoanRequestStatus.cancelled,
       },
       include: this.requestInclude,
     });
@@ -304,7 +292,7 @@ export class LoanRequestService {
         id: loanRequestId,
       },
       data: {
-        status: $Enums.LoanRequestStatus.PAID,
+        status: $Enums.LoanRequestStatus.paid,
       },
       include: this.requestInclude,
     });

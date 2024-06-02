@@ -117,8 +117,8 @@ export class AuthService {
     const otp = await this.otpService.createOtp({
       userId: newUser.id,
       expiresAt: new Date(),
-      type: OtpType.EMAIL,
-      purpose: OtpPurpose.EMAIL_VERIFICATION,
+      type: OtpType.email,
+      purpose: OtpPurpose.emailVerification,
     });
     this.mailService.sendMail({
       to: newUser.email,

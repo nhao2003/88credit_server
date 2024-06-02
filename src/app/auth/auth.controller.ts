@@ -1,11 +1,8 @@
 import {
   Body,
   Controller,
-  Header,
-  Headers,
   HttpCode,
   HttpStatus,
-  Ip,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -22,7 +19,6 @@ import {
   ApiBearerAuth,
   ApiHeader,
   ApiResponse,
-  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
 import { AuthPayLoad } from './dto';
