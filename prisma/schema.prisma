@@ -14,22 +14,22 @@ datasource db {
 }
 
 enum Role {
-  ADMIN @map("admin")
-  USER  @map("user")
+  admin @map("admin")
+  user  @map("user")
 }
 
 enum AccountStatus {
-  UNVERIFIED  @map("unverified")
-  NOT_UPDATED @map("notUpdated")
-  BANNED      @map("banned")
-  DELETED     @map("deleted")
-  VERIFIED    @map("verified")
+  unverified
+  notUpdated
+  banned
+  deleted
+  verified
 }
 
 model User {
   id                   String         @id @default(uuid())
-  role                 Role           @default(USER)
-  status               AccountStatus  @default(UNVERIFIED)
+  role                 Role           @default(user)
+  status               AccountStatus  @default(unverified)
   isIdentityVerified   Boolean        @default(false)
   email                String         @unique
   password             String
@@ -68,15 +68,15 @@ model Session {
 }
 
 enum OtpType {
-  EMAIL
-  PHONE
+  email
+  phone
 }
 
 enum OtpPurpose {
-  PASSWORD_RESET     @map("passwordReset")
-  EMAIL_VERIFICATION @map("emailVerification")
-  PHONE_VERIFICATION @map("phoneVerification")
-  TWO_FACTOR_AUTH    @map("twoFactorAuth")
+  passwordReset     @map("passwordReset")
+  emailVerification @map("emailVerification")
+  phoneVerification @map("phoneVerification")
+  twoFactorAuth     @map("twoFactorAuth")
 }
 
 model Otp {
@@ -94,35 +94,40 @@ model Otp {
 }
 
 enum PostStatus {
-  PENDING  @map("pending")
-  APPROVED @map("approved")
-  REJECTED @map("rejected")
-  HIDDEN   @map("hidden")
+  pending  @map("pending")
+  approved @map("approved")
+  rejected @map("rejected")
+  hidden   @map("hidden")
 
   @@map("post_status")
 }
 
 enum LoanReasonTypes {
-  BUSINESS     @map("business")
-  EDUCATION    @map("education")
-  TRAVEL       @map("travel")
-  WEDDING      @map("wedding")
-  MEDICAL      @map("medical")
-  SHOPPING     @map("shopping")
-  HOUSE_BUYING @map("houseBuying")
-  CAR_BUYING   @map("carBuying")
-  OTHER        @map("other")
+  business    @map("business")
+  education   @map("education")
+  travel      @map("travel")
+  wedding     @map("wedding")
+  medical     @map("medical")
+  shopping    @map("shopping")
+  houseBuying @map("houseBuying")
+  carBuying   @map("carBuying")
+  other       @map("other")
 
   @@map("loan_reason_types")
+}
+
+enum PostTypes {
+  lending   @map("lending")
+  borrowing @map("borrowing")
 }
 
 model Post {
   id                     String          @id @default(uuid())
   userId                 String
-  status                 PostStatus      @default(PENDING)
+  status                 PostStatus      @default(pending)
   loanReason             LoanReasonTypes
   loanReasonDescription  String
-  isLease                Boolean
+  type                   PostTypes
   title                  String
   description            String
   images                 String[]
@@ -150,17 +155,16 @@ enum LoanContractRequestStatus {
 }
 
 enum LoanRequestStatus {
-  PENDING             @map("pending")
-  APPROVED            @map("approved")
-  REJECTED            @map("rejected")
-  CANCELLED           @map("cancelled")
-  WAITING_FOR_PAYMENT @map("waitingForPayment")
-  PAID                @map("paid")
+  pending
+  approved
+  rejected
+  cancelled
+  paid
 }
 
 model LoanRequest {
   id                   String            @id @default(uuid())
-  status               LoanRequestStatus @default(PENDING)
+  status               LoanRequestStatus @default(pending)
   senderId             String
   receiverId           String
   description          String
@@ -214,14 +218,12 @@ model BankCard {
   updatedAt  DateTime  @updatedAt
   deletedAt  DateTime?
 
-  user                User           @relation(fields: [userId], references: [id])
-  bank                Bank           @relation(fields: [bankId], references: [id])
-  LoanRequestSent     LoanRequest[]  @relation("SenderBankCard")
-  LoanRequestReceived LoanRequest[]  @relation("ReceiverBankCard")
+  user                 User           @relation(fields: [userId], references: [id])
+  bank                 Bank           @relation(fields: [bankId], references: [id])
+  LoanRequestSent      LoanRequest[]  @relation("SenderBankCard")
+  LoanRequestReceived  LoanRequest[]  @relation("ReceiverBankCard")
   LoanContractBorrower LoanContract[] @relation("BorrowerBankCard")
   LoanContractLender   LoanContract[] @relation("LenderBankCard")
-
-
 
   @@map("bank_cards")
 }
@@ -240,26 +242,26 @@ model Blog {
 }
 
 model LoanContract {
-  id                    String          @id @default(uuid())
-  loanRequestId String
-  lenderId              String
-  lenderBankCardId      String
-  borrowerId            String
-  borrowerBankCardId    String
-  loanReasonType        LoanReasonTypes
-  loanReason            String
-  amount                Float
-  interestRate          Float
-  tenureInMonths        Int
-  overdueInterestRate   Float
-  createdAt             DateTime        @default(now())
-  expiredAt             DateTime        @default(dbgenerated("now() + interval '1 day'"))
+  id                  String          @id @default(uuid())
+  loanRequestId       String
+  lenderId            String
+  lenderBankCardId    String
+  borrowerId          String
+  borrowerBankCardId  String
+  loanReasonType      LoanReasonTypes
+  loanReason          String
+  amount              Float
+  interestRate        Float
+  tenureInMonths      Int
+  overdueInterestRate Float
+  createdAt           DateTime        @default(now())
+  expiredAt           DateTime        @default(dbgenerated("now() + interval '1 day'"))
 
-  loanRequest LoanRequest @relation(fields: [loanRequestId], references: [id])
-  lenderBankCard      BankCard   @relation("LenderBankCard", fields: [lenderBankCardId], references: [id])
-  borrowerBankCard    BankCard   @relation("BorrowerBankCard", fields: [borrowerBankCardId], references: [id])
-  lender              User        @relation("LoanContractLender", fields: [lenderId], references: [id])
-  borrower            User        @relation("LoanContractBorrower", fields: [borrowerId], references: [id])
+  loanRequest      LoanRequest @relation(fields: [loanRequestId], references: [id])
+  lenderBankCard   BankCard    @relation("LenderBankCard", fields: [lenderBankCardId], references: [id])
+  borrowerBankCard BankCard    @relation("BorrowerBankCard", fields: [borrowerBankCardId], references: [id])
+  lender           User        @relation("LoanContractLender", fields: [lenderId], references: [id])
+  borrower         User        @relation("LoanContractBorrower", fields: [borrowerId], references: [id])
 
   @@map("loan_contracts")
 }

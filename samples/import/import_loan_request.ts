@@ -18,12 +18,11 @@ const requests = JSON.parse(
 //   }
 
 const loanRequestStringToStatus = {
-  pending: LoanRequestStatus.PENDING,
-  approved: LoanRequestStatus.APPROVED,
-  rejected: LoanRequestStatus.REJECTED,
-  cancelled: LoanRequestStatus.CANCELLED,
-  waitingForPayment: LoanRequestStatus.WAITING_FOR_PAYMENT,
-  paid: LoanRequestStatus.PAID,
+  pending: LoanRequestStatus.pending,
+  approved: LoanRequestStatus.approved,
+  rejected: LoanRequestStatus.rejected,
+  cancelled: LoanRequestStatus.cancelled,
+  paid: LoanRequestStatus.paid,
 };
 
 const loanReasonStringToEnum = (reason: string) => {
@@ -37,7 +36,7 @@ const loanReasonStringToEnum = (reason: string) => {
       return enumValue;
     }
   }
-  return $Enums.LoanReasonTypes.OTHER;
+  return $Enums.LoanReasonTypes.other;
 };
 const prisma = new PrismaClient();
 

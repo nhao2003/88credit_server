@@ -5,30 +5,30 @@ const users = JSON.parse(
   fs.readFileSync(path.join(__dirname, '..', 'users.json'), 'utf8'),
 );
 
-users.forEach((user: any) => {
-  user.password =
-    '$2b$10$ncEX/2jmLUFm9GQzapSJle4vz5MMuhG0aV8hIWEZP/vaw3EJIIFZe';
-  user.dob = new Date(user.dob);
-});
+// users.forEach((user: any) => {
+//   user.password =
+//     '$2b$10$ncEX/2jmLUFm9GQzapSJle4vz5MMuhG0aV8hIWEZP/vaw3EJIIFZe';
+//   user.dob = new Date(user.dob);
+// });
 
-fs.writeFileSync(
-  path.join(__dirname, '..', 'users.json'),
-  JSON.stringify(users, null, 2),
-);
+// fs.writeFileSync(
+//   path.join(__dirname, '..', 'users.json'),
+//   JSON.stringify(users, null, 2),
+// );
 
 const prisma = new PrismaClient();
 
 const mapStatus = {
-  unverified: AccountStatus.UNVERIFIED,
-  verified: AccountStatus.VERIFIED,
-  notUpdated: AccountStatus.NOT_UPDATED,
-  banned: AccountStatus.BANNED,
-  deleted: AccountStatus.DELETED,
+  unverified: AccountStatus.unverified,
+  verified: AccountStatus.verified,
+  notUpdated: AccountStatus.notUpdated,
+  banned: AccountStatus.banned,
+  deleted: AccountStatus.deleted,
 };
 
 const mapRole = {
-  user: Role.USER,
-  admin: Role.ADMIN,
+  user: Role.user,
+  admin: Role.admin,
 };
 
 async function main() {

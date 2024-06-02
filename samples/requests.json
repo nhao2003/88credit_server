@@ -40,7 +40,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "receiverId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "description": "random moon sad orange moon banana orange apple moon orange orange dog apple banana happy apple orange sad dog cat",
@@ -220,7 +220,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
     "receiverId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "description": "cat orange happy sun happy banana happy cat banana cat sun apple happy moon sun sad moon random moon moon",
@@ -240,7 +240,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
     "receiverId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "description": "moon dog banana dog banana apple sun sun banana banana sun sad moon dog orange random random moon random happy",
@@ -320,7 +320,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "receiverId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "description": "moon orange banana apple dog sun orange random sad sad dog happy orange cat sad moon happy banana sun apple",
@@ -780,7 +780,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "receiverId": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "description": "happy banana dog orange moon orange moon happy sun happy orange dog moon banana banana moon cat sad orange random",
@@ -880,7 +880,7 @@
     "rejectedReason": "orange cat cat dog sun apple happy banana random random apple sun cat sad sad dog banana orange apple random"
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "receiverId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "description": "random dog banana orange sad random orange banana sad dog orange apple random banana moon happy orange cat random cat",
@@ -900,7 +900,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "receiverId": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "description": "random moon dog orange cat dog orange banana banana orange moon cat dog happy apple banana random orange moon cat",
@@ -980,7 +980,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "receiverId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "description": "apple moon orange banana moon sad happy orange random sun dog apple cat sad dog random random dog dog sad",
@@ -1480,7 +1480,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "receiverId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "description": "sad sun orange happy apple cat banana banana cat orange dog moon sad happy dog apple happy moon orange cat",
@@ -1540,7 +1540,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "receiverId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "description": "sun sun orange sad moon banana happy banana dog dog happy cat cat happy random apple apple apple orange random",
@@ -1580,7 +1580,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "receiverId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "description": "moon moon orange cat banana sun sun cat dog sun happy sad banana apple banana orange orange happy sun happy",
@@ -1740,7 +1740,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "receiverId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "description": "moon happy banana sad banana moon sun happy dog banana happy cat orange random random dog orange moon random banana",
@@ -1780,7 +1780,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "receiverId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "description": "moon apple orange cat happy cat banana banana apple sun dog sun dog cat cat dog banana sun cat banana",
@@ -1840,7 +1840,7 @@
     "rejectedReason": "orange apple dog sun moon orange sad sad apple banana sun sun happy banana moon orange random sad sun happy"
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "receiverId": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
     "description": "banana sad random dog orange orange banana cat sad happy sad apple banana banana cat orange cat banana sad orange",
@@ -1980,7 +1980,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "receiverId": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
     "description": "sad apple happy cat apple sad cat sad banana orange dog sad moon cat cat orange dog cat random happy",
@@ -2020,7 +2020,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "receiverId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "description": "moon dog sun sun orange sad apple happy sun dog happy banana apple random dog happy happy cat banana random",
@@ -2060,7 +2060,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "receiverId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "description": "sun banana moon random banana dog moon cat apple apple sun happy orange apple happy orange cat orange dog sun",
@@ -2120,7 +2120,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
     "receiverId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "description": "sun happy moon banana happy sad moon apple random happy orange orange banana sun happy random sad cat banana sun",
@@ -2160,7 +2160,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "receiverId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "description": "moon banana dog apple sad apple random random random random apple random sun apple moon random apple sun moon orange",
@@ -2200,7 +2200,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "receiverId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "description": "cat happy cat dog happy cat moon cat happy orange moon cat banana orange banana sun cat happy moon cat",
@@ -2480,7 +2480,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "receiverId": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "description": "sad sun sun cat apple orange banana orange sad happy happy cat banana happy happy moon cat happy moon happy",
@@ -2500,7 +2500,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "receiverId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "description": "moon sad happy sun cat banana sad orange apple apple happy moon moon moon dog cat moon orange sun moon",
@@ -2560,7 +2560,7 @@
     "rejectedReason": "apple cat happy happy moon random cat happy sun dog sad happy happy random moon happy apple cat apple dog"
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "receiverId": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
     "description": "apple orange banana banana moon dog sun sun happy happy sad cat apple sun sun dog sun dog banana dog",
@@ -2780,7 +2780,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "receiverId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "description": "sad sad cat dog sad sun banana random sad banana sad banana moon banana banana apple cat random banana moon",
@@ -2860,7 +2860,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "receiverId": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
     "description": "moon orange dog sun dog sad happy sun random sun cat happy sun dog happy orange orange banana moon moon",
@@ -2920,7 +2920,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "receiverId": "a924c7ae-1494-4ccf-95a7-cf218e6e2aa1",
     "description": "dog orange random banana orange happy sad banana random sad sun banana random happy moon moon sad cat banana moon",
@@ -2980,7 +2980,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "receiverId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "description": "happy happy random moon sad moon apple dog sun random sad sun cat moon orange random dog happy random sad",
@@ -3020,7 +3020,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "receiverId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "description": "moon moon random banana moon sun banana random moon sun happy cat orange random happy orange random cat happy banana",
@@ -3220,7 +3220,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "2f434eae-7b6d-4b5e-8c09-38f315173743",
     "receiverId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "description": "happy moon apple dog sad happy orange orange sun banana sad random moon banana banana orange cat banana dog cat",
@@ -3300,7 +3300,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "receiverId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "description": "dog banana banana cat random happy dog dog apple sun sad sad dog apple sun sad happy dog dog moon",
@@ -3480,7 +3480,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "receiverId": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
     "description": "apple orange cat cat sad cat moon sad orange sun dog moon happy sun orange sad sad happy random cat",
@@ -3500,7 +3500,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "receiverId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "description": "apple orange apple dog moon random sun banana cat sad sun orange apple banana sun dog orange banana moon sad",
@@ -3640,7 +3640,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "5a2f7e85-dc7d-41a0-a55e-4b94f9c4d13a",
     "receiverId": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "description": "happy moon dog cat orange happy cat sad happy apple apple banana apple dog random cat random cat cat apple",
@@ -3700,7 +3700,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "receiverId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "description": "random moon cat banana happy dog sad random cat sun cat dog banana sun moon sad happy sun dog happy",
@@ -3840,7 +3840,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "f12225f2-6c35-452f-8c39-8652f64e05c6",
     "receiverId": "4b2c4b89-6939-4dab-b5d2-5cfd0f0b8b5d",
     "description": "dog orange cat cat sun banana apple happy moon dog apple dog apple happy moon sad random banana moon apple",
@@ -3920,7 +3920,7 @@
     "rejectedReason": "sad cat moon dog sun banana happy sad sad sun banana orange orange happy banana cat banana dog moon apple"
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "7c90e199-d3c7-4b50-8b08-7f8c40ab5412",
     "receiverId": "6e7258c4-5ee5-4de0-b70d-c5dd26eeac32",
     "description": "sad cat random random banana apple random moon sad dog sad sad apple banana random sad orange banana cat sun",
@@ -3960,7 +3960,7 @@
     "rejectedReason": null
   },
   {
-    "status": "waitingForPayment",
+    "status": "approved",
     "senderId": "9b14d576-ee5d-408b-8d9a-bf23c3a0f1af",
     "receiverId": "3b05eb4a-346f-481c-a682-58e24e06d32e",
     "description": "orange sad sun apple orange happy banana dog sun orange banana happy orange orange cat random happy happy sad random",
