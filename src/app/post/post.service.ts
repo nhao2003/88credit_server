@@ -33,6 +33,9 @@ export class PostService {
       this.prisamService.post.findMany({
         take,
         skip,
+        include: {
+          user: true,
+        },
       }),
       this.prisamService.post.count(),
     ]);
