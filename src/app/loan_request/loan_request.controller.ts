@@ -1,12 +1,19 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import CreateLoanRequestDto from './dtos/loan_request';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { GetCurrentUserId, GetParamId } from 'src/common/decorators';
+import {
+  GetParamId,
+  RpcBody,
+  RpcParam,
+  RpcQuery,
+  RpcUserId,
+} from 'src/common/decorators';
 import { LoanRequestService } from './loan_request.service';
 import {
   LoanRequestQueryBuilderDirector,
   LoanRequestQueryPayload,
 } from './query/loan_request_query';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller('loan-request')
 @ApiTags('Loan Request')
@@ -14,18 +21,18 @@ import {
 export class LoanRequestController {
   constructor(private readonly loanRequestService: LoanRequestService) {}
 
-  @Post()
+  @MessagePattern('loan_request.create')
   async createLoanRequest(
-    @Body() data: CreateLoanRequestDto,
-    @GetCurrentUserId() userId: string,
+    @RpcBody() data: CreateLoanRequestDto,
+    @RpcUserId() userId: string,
   ) {
     return await this.loanRequestService.createLoanRequest(userId, data);
   }
 
-  @Get('sent')
+  @MessagePattern('loan_request.get_sent_requests')
   async getSentLoanRequests(
-    @GetCurrentUserId() userId: string,
-    @Query() query: LoanRequestQueryPayload,
+    @RpcUserId() userId: string,
+    @RpcQuery() query: LoanRequestQueryPayload,
   ) {
     const director = new LoanRequestQueryBuilderDirector(query);
     const queryBuilder = director.build();
@@ -35,10 +42,10 @@ export class LoanRequestController {
     );
   }
 
-  @Get('received')
+  @MessagePattern('loan_request.get_received_requests')
   async getReceivedLoanRequests(
-    @GetCurrentUserId() userId: string,
-    @Query() query: LoanRequestQueryPayload,
+    @RpcUserId() userId: string,
+    @RpcQuery() query: LoanRequestQueryPayload,
   ) {
     const director = new LoanRequestQueryBuilderDirector(query);
     const queryBuilder = director.build();
@@ -48,42 +55,42 @@ export class LoanRequestController {
     );
   }
 
-  @Post(':id/approve')
+  @MessagePattern('loan_request.approve')
   async approveLoanRequest(
-    @GetCurrentUserId() userId: string,
-    @GetParamId() id: string,
+    @RpcUserId() userId: string,
+    @RpcParam('id') id: string,
   ) {
     await this.loanRequestService.approveLoanRequest(userId, id);
   }
 
-  @Post(':id/reject')
+  @MessagePattern('loan_request.reject')
   async rejectLoanRequest(
-    @GetCurrentUserId() userId: string,
-    @GetParamId() id: string,
+    @RpcUserId() userId: string,
+    @RpcParam('id') id: string,
   ) {
     return await this.loanRequestService.rejectLoanRequest(userId, id);
   }
 
-  @Post(':id/cancel')
+  @MessagePattern('loan_request.cancel')
   async cancelLoanRequest(
-    @GetCurrentUserId() userId: string,
-    @GetParamId() id: string,
+    @RpcUserId() userId: string,
+    @RpcParam('id') id: string,
   ) {
     return await this.loanRequestService.cancelLoanRequest(userId, id);
   }
 
   // Thanh thoán lệ phí vay
-  @Post(':id/pay')
+  @MessagePattern('loan_request.pay')
   async payLoanRequest(
-    @GetCurrentUserId() userId: string,
-    @GetParamId() id: string,
+    @RpcUserId() userId: string,
+    @RpcParam('id') id: string,
   ) {
     return await this.loanRequestService.payLoanRequest(userId, id);
   }
 
   // Mark lệ phí vay đã thanh toán
-  @Post(':id/mark-paid')
-  async markLoanRequestPaid(@GetParamId() id: string) {
+  @MessagePattern('loan_request.mark_as_paid')
+  async markLoanRequestPaid(@RpcParam('id') id: string) {
     return await this.loanRequestService.markLoanRequestPaid(id);
   }
 }

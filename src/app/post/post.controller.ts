@@ -1,49 +1,29 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  HttpStatus,
-  Post,
-  Query,
-} from '@nestjs/common';
-import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
+import { Controller } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { PostService } from './post.service';
-import {
-  GetCurrentUser,
-  GetCurrentUserId,
-  Public,
-  ResponseMessage,
-} from 'src/common/decorators';
+import { RpcBody, RpcQuery, RpcUserId } from 'src/common/decorators';
 import { CreatePostDto } from './dtos/post-pay-load.dto';
-import { JwtPayloadWithRefreshToken } from '../auth/types/jwt-payload-with-rt';
-import { CheckValidPost } from './decorators/check_valid_post.decorator';
+import { MessagePattern } from '@nestjs/microservices';
 
-@Controller('post')
-@ApiTags('Post')
+@Controller()
 export class PostController {
   constructor(private postService: PostService) {}
 
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  @ApiBearerAuth()
-  @ResponseMessage('Post created successfully')
+  @MessagePattern('post.create')
   async createPost(
-    @GetCurrentUser() userId: JwtPayloadWithRefreshToken,
-    @Body() post: CreatePostDto,
+    @RpcUserId() userId: string,
+    @RpcBody() post: CreatePostDto,
   ) {
     return await this.postService.createPost({
       ...post,
-      userId: userId.userId,
+      userId: userId,
     });
   }
 
-  @Get()
-  @HttpCode(HttpStatus.OK)
-  @ResponseMessage('Posts fetched successfully')
+  @MessagePattern('post.get')
   async getPosts(
-    @Query('page') page: number | null,
-    @Query('limit') limit: number | null,
+    @RpcQuery('page') page: number | null,
+    @RpcQuery('limit') limit: number | null,
   ) {
     return await this.postService.getPosts(page, limit);
   }

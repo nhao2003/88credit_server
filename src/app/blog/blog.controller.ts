@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  NotFoundException,
   Param,
   Post,
   Put,
@@ -15,55 +16,38 @@ import { BlogService } from './blog.service';
 import BlogPayload from './dtos/blog_payload';
 import { ApiBearerAuth, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BlogQueryDirector, BlogQueryPayload } from './query/blog_query';
+import { MessagePattern } from '@nestjs/microservices';
+import { NotFoundError } from 'rxjs';
+import { RpcBody, RpcParam, RpcQuery } from 'src/common/decorators';
 
-@ApiTags('Blog')
-@Controller('blog')
+@Controller()
 @ApiBearerAuth()
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  @ApiResponse({
-    status: HttpStatus.CREATED,
-    description: 'Blog created successfully',
-  })
-  async createBlog(@Body() createBlogPayload: BlogPayload) {
+  @MessagePattern('blog.create')
+  async createBlog(@RpcBody() createBlogPayload: BlogPayload) {
     return this.blogService.createBlog(createBlogPayload);
   }
-
-  @Get()
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: 'Blogs fetched successfully',
-  })
-  async getBlogs(@Query() query: BlogQueryPayload) {
+  @MessagePattern('blog.get')
+  async getBlogs(@RpcQuery() query: BlogQueryPayload) {
     const director = new BlogQueryDirector(query);
     const queryBuilder = director.build();
     return this.blogService.getBlogs(queryBuilder);
   }
-
-  @Get(':id')
-  async getBlogById(@Param('id') id: string) {
+  @MessagePattern('blog.get-by-id')
+  async getBlogById(@RpcParam('id') id: string) {
     return this.blogService.getBlogById(id);
   }
-
-  @Put(':id')
-  @HttpCode(HttpStatus.OK)
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: 'Blog updated successfully',
-  })
+  @MessagePattern('blog.update')
   async updateBlog(
-    @Param('id') id: string,
-    @Body() createBlogPayload: BlogPayload,
+    @RpcParam('id') id: string,
+    @RpcBody() createBlogPayload: BlogPayload,
   ) {
     return this.blogService.updateBlog(id, createBlogPayload);
   }
-
-  @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  async deleteBlog(@Param('id') id: string) {
+  @MessagePattern('blog.delete')
+  async deleteBlog(@RpcParam('id') id: string) {
     return this.blogService.deleteBlog(id);
   }
 }
