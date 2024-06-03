@@ -2,7 +2,10 @@ import { Module } from '@nestjs/common';
 import { CoreModule } from './core/services/core.module';
 import { AppService } from './app.service';
 import { AccessTokenJwtGuard } from './common/guards/access-token.guard';
-import { TransformationInterceptor } from './common/interceptors';
+import {
+  LoggingInterceptor,
+  TransformationInterceptor,
+} from './common/interceptors';
 import { SwaggerModule } from '@nestjs/swagger';
 import { AuthModule } from './app/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
@@ -15,6 +18,8 @@ import { BankModule } from './app/bank/bank.module';
 import { BankCardModule } from './app/bank_card/bank_card.module';
 import { LoanContractModule } from './app/loan_contract/loan_contract.module';
 import { BlogModule } from './app/blog/blog.module';
+import { AppController } from './app.controller';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -37,16 +42,12 @@ import { BlogModule } from './app/blog/blog.module';
   providers: [
     AppService,
     {
-      provide: 'APP_GUARD',
-      useClass: AccessTokenJwtGuard,
-    },
-    {
-      provide: 'APP_INTERCEPTOR',
-      useClass: TransformationInterceptor,
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
     },
     LoanRequestService,
   ],
   exports: [],
-  controllers: [LoanRequestController],
+  controllers: [AppController],
 })
 export class AppModule {}

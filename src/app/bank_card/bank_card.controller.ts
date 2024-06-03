@@ -15,8 +15,12 @@ import {
   GetCurrentUser,
   GetCurrentUserId,
   ResponseMessage,
+  RpcBody,
+  RpcParam,
+  RpcUserId,
 } from 'src/common/decorators';
 import { BankCardService } from './bank_card.service';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller('bank-card')
 @ApiTags('Bank Card')
@@ -24,30 +28,41 @@ import { BankCardService } from './bank_card.service';
 export class BankCardController {
   constructor(private readonly bankCardService: BankCardService) {}
 
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
+  @MessagePattern('create-bank-card')
   async createBankCard(
-    @GetCurrentUserId() userId: string,
-    @Body() data: CreateBankCardDto,
+    @RpcUserId() userId: string,
+    @RpcBody() data: CreateBankCardDto,
   ) {
     return await this.bankCardService.createBankCard(userId, data);
   }
 
-  @Get()
-  async getBankCards(@GetCurrentUserId() userId: string) {
-    return await this.bankCardService.getBankCardsByUserId(userId);
+  @MessagePattern('get-bank-cards')
+  async getBankCards(@RpcUserId() userId: string) {
+    // return (await this.bankCardService.getBankCardsByUserId(userId)) || [];
+    const bankCards = await this.bankCardService.getBankCardsByUserId(userId);
+    return bankCards || [];
   }
 
-  @Patch(':cardNumber/primary')
+  @MessagePattern('get-bank-card')
+  async getBankCard(
+    @RpcUserId() userId: string,
+    @RpcParam('cardNumber') cardNumber: string,
+  ) {
+    return await this.bankCardService.getBankCard(userId, cardNumber);
+  }
+
+  @MessagePattern('mark-primary-bank-card')
   async makePrimaryBankCard(
-    @GetCurrentUserId() userId: string,
-    @Param('cardNumber') cardNumber: string,
+    @RpcUserId() userId: string,
+    @RpcParam('cardNumber') cardNumber: string,
   ) {
     return await this.bankCardService.makePrimaryBankCard(userId, cardNumber);
   }
 
-  @Get('primary')
-  async getPrimaryBankCard(@GetCurrentUserId() userId: string) {
-    return await this.bankCardService.getPrimaryBankCard(userId);
+  @MessagePattern('get-primary-bank-card')
+  async getPrimaryBankCard(@RpcUserId() userId: string) {
+    const primaryBankCard =
+      await this.bankCardService.getPrimaryBankCard(userId);
+    return primaryBankCard;
   }
 }

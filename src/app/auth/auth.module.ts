@@ -10,6 +10,6 @@ import { OtpModule } from '../otp/otp.module';
 @Module({
   imports: [JwtModule.register({}), NotificationModule, OtpModule],
   controllers: [AuthController],
-  providers: [AuthService, AccessTokenStrategy, RefreshTokenStrategy],
+  providers: [AuthService],
 })
 export class AuthModule {}

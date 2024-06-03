@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpCode,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -12,12 +13,9 @@ import {
 import { BankService } from './bank.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import Paging from 'src/common/types/paging.type';
-import {
-  BankQuery,
-  BankQueryBuilder,
-  BankQueryBuilderDirector,
-  BankQueryPayload,
-} from './query/bank_query';
+import { BankQueryBuilderDirector, BankQueryPayload } from './query/bank_query';
+import { MessagePattern } from '@nestjs/microservices';
+import { RpcBody, RpcParam, RpcQuery } from 'src/common/decorators';
 
 @ApiTags('Bank')
 @ApiBearerAuth()
@@ -25,31 +23,34 @@ import {
 export class BankController {
   constructor(private readonly bankService: BankService) {}
 
-  @Get()
-  @HttpCode(200)
-  async getBanks(@Query() query: BankQueryPayload): Promise<Paging<any>> {
+  @MessagePattern('get-banks')
+  async getBanks(@RpcQuery() query: BankQueryPayload): Promise<Paging<any>> {
     const director = new BankQueryBuilderDirector(query);
     console.log(director.build());
     return await this.bankService.getBanks(director.build());
   }
 
-  @Get(':id')
-  async getBank(@Param('id') id: string) {
-    return await this.bankService.getBank(id);
+  @MessagePattern('get-bank')
+  async getBank(@RpcParam('id') id: string) {
+    const res = await this.bankService.getBank(id);
+    if (!res) {
+      throw new NotFoundException('Bank not found');
+    }
+    return res;
   }
 
-  @Post()
-  async createBank(@Body() data: any) {
+  @MessagePattern('create-bank')
+  async createBank(@RpcBody() data: any) {
     return await this.bankService.createBank(data);
   }
 
-  @Patch(':id')
-  async updateBank(@Param('id') id: string, @Body() data: any) {
+  @MessagePattern('update-bank')
+  async updateBank(@RpcParam('id') id: string, @Body() data: any) {
     return await this.bankService.updateBank(id, data);
   }
 
-  @Delete(':id')
-  async deleteBank(@Param('id') id: string) {
+  @MessagePattern('delete-bank')
+  async deleteBank(@RpcParam('id') id: string) {
     return await this.bankService.deleteBank(id);
   }
 }
