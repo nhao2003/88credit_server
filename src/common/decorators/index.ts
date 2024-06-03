@@ -3,3 +3,7 @@ export * from './get-current-user-id.decorator';
 export * from './public.decorator';
 export * from './response_message.decorator';
 export * from './get-param-id.decorator';
+export * from './rpc_param.decorator';
+export * from './rpc_query.decorator';
+export * from './rpc_user.decorator';
+export * from './rpc_body.decorator';

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import BlogPayload from './dtos/blog_payload';
 import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import { Blog } from '@prisma/client';
@@ -40,14 +40,20 @@ export class BlogService {
   }
 
   async getBlogById(id: string): Promise<Blog> {
-    return this.prismService.blog.findUnique({
+    const blog = await this.prismService.blog.findUnique({
       where: {
         id,
       },
     });
+
+    if (!blog) {
+      throw new NotFoundException('Blog not found');
+    }
+    return blog;
   }
 
   async updateBlog(id: string, createBlogPayload: BlogPayload): Promise<Blog> {
+    const blog = await this.getBlogById(id);
     return this.prismService.blog.update({
       where: {
         id,
@@ -59,6 +65,7 @@ export class BlogService {
   }
 
   async deleteBlog(id: string): Promise<Blog> {
+    await this.getBlogById(id);
     return this.prismService.blog.delete({
       where: {
         id,

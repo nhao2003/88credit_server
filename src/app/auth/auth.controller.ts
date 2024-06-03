@@ -12,6 +12,9 @@ import {
   GetCurrentUserId,
   Public,
   ResponseMessage,
+  RpcBody,
+  RpcUser,
+  RpcUserId,
 } from 'src/common/decorators';
 import { RefreshTokenJwtGuard } from 'src/common/guards/refresh-token.guard';
 import { AccessTokenJwtGuard } from 'src/common/guards/access-token.guard';
@@ -22,83 +25,51 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { AuthPayLoad } from './dto';
+import { Tokens } from './types';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
-@Controller('auth')
 @ApiTags('Authentications')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('profile')
-  @UseGuards(AccessTokenJwtGuard)
-  @HttpCode(HttpStatus.OK)
-  @ApiBearerAuth()
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: 'Profile fetched successfully',
-    schema: {
-      type: 'object',
-      properties: {
-        id: { type: 'string' },
-        email: { type: 'string' },
-      },
-    },
-  })
-  @ApiResponse({
-    status: HttpStatus.UNAUTHORIZED,
-    description: 'Unauthorized',
-  })
-  @ResponseMessage('Profile fetched successfully')
-  async profile(@GetCurrentUser() user: any) {
+  @MessagePattern('profile')
+  async profile(@RpcUser() user: any) {
     return user;
   }
 
-  @Public()
-  @Post('sign-in')
-  @HttpCode(HttpStatus.OK)
-  async signIn(@Body() body: AuthPayLoad) {
+  @MessagePattern('sign-in')
+  async signIn(@RpcBody() body: any): Promise<Tokens> {
+    console.log('body', body);
     return this.authService.signIn(body);
   }
 
-  @Public()
-  @Post('sign-up')
-  @HttpCode(HttpStatus.CREATED)
-  async signUp(@Body() body: AuthPayLoad) {
+  @MessagePattern('sign-up')
+  async signUp(@RpcBody() body: AuthPayLoad): Promise<Tokens> {
     return this.authService.signUp(body);
   }
 
-  @UseGuards(AccessTokenJwtGuard)
-  @Post('sign-out')
-  @ApiBearerAuth()
+  @MessagePattern('sign-out')
   @HttpCode(HttpStatus.OK)
-  async signOut(@GetCurrentUser('sessionId') sessionId: string) {
+  async signOut(@RpcUser('sessionId') sessionId: string): Promise<void> {
     return this.authService.signOut(sessionId);
   }
 
   @Public()
-  @Post('forgot-password')
-  async forgotPassword() {
+  @MessagePattern('forgot-password')
+  async forgotPassword(): Promise<string> {
     return this.authService.forgotPassword();
   }
 
-  @Post('reset-password')
-  // Use RefreshTokenJwtGuard to protect the route
-  @ApiBearerAuth()
-  async resetPassword() {
+  @MessagePattern('reset-password')
+  async resetPassword(): Promise<string> {
     return this.authService.resetPassword();
   }
 
-  @Public()
-  @UseGuards(RefreshTokenJwtGuard)
-  @Post('refresh-token')
-  @ApiHeader({
-    name: 'Authorization',
-    description: 'Bearer <refresh_token>',
-  })
-  @HttpCode(HttpStatus.OK)
+  @MessagePattern('refresh-token')
   async refreshToken(
-    @GetCurrentUserId() userId: string,
-    @GetCurrentUser('sessionId') sessionId: string,
-  ) {
+    @RpcUserId() userId: string,
+    @RpcUser('sessionId') sessionId: string,
+  ): Promise<Tokens> {
     return this.authService.refreshToken(userId, sessionId);
   }
 }

@@ -9,6 +9,7 @@ import {
   BankQueryPayload,
 } from './query/bank_query';
 import { query } from 'express';
+
 @Injectable()
 export class BankService {
   private prismaService: PrismaService;

@@ -1,6 +1,7 @@
 import { $Enums } from '@prisma/client';
 import {
   IsBoolean,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsString,
@@ -12,7 +13,7 @@ class CreatePostDto {
   @ApiProperty({
     description: 'The post type',
   })
-  @IsBoolean()
+  @IsEnum($Enums.PostTypes)
   type: $Enums.PostTypes;
 
   @IsString()
@@ -46,7 +47,7 @@ class CreatePostDto {
     enum: $Enums.LoanReasonTypes,
     description: 'The reason for the loan',
   })
-  @IsString()
+  @IsEnum($Enums.LoanReasonTypes)
   @IsNotEmpty()
   loanReason: $Enums.LoanReasonTypes;
 

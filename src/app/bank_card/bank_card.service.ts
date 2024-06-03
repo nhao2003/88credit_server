@@ -10,6 +10,15 @@ export class BankCardService {
     return await this.prismaService.bankCard.findMany();
   }
 
+  getBankCard(userId: string, cardNumber: string) {
+    return this.prismaService.bankCard.findUnique({
+      where: {
+        userId,
+        cardNumber,
+      },
+    });
+  }
+
   async getBankCardsByUserId(userId: string) {
     return await this.prismaService.bankCard.findMany({
       where: {
