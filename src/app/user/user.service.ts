@@ -1,21 +1,31 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import { UserQuery } from './query/user-query';
-import { User } from '@prisma/client';
+import { $Enums, User } from '@prisma/client';
 import Paging from 'src/common/types/paging.type';
 
 @Injectable()
 export class UserService {
   constructor(private readonly prisamService: PrismaService) {}
 
-  getUserById(id: string) {
-    return this.prisamService.user.findUnique({
+  async getUserById(id: string) {
+    const res = await this.prisamService.user.findUnique({
       where: {
         id,
       },
     });
+
+    if (!res) {
+      throw new NotFoundException('User not found');
+    }
+
+    return res;
   }
 
   async getUsers(query: UserQuery): Promise<Paging<User>> {
@@ -39,27 +49,46 @@ export class UserService {
     };
   }
 
-  ban(id: string, banUntil: Date, reason: string) {
-    return this.prisamService.user.update({
+  async ban(id: string, banUntil: Date, reason: string) {
+    const user = await this.getUserById(id);
+    user.banUntil = new Date(banUntil);
+    user.banReason = reason;
+    return await this.prisamService.user.update({
       where: {
         id,
       },
-      data: {
-        banUntil,
-        banReason: reason,
-      },
+      data: user,
     });
   }
 
-  unban(id: string) {
-    return this.prisamService.user.update({
+  async unban(id: string) {
+    const user = await this.getUserById(id);
+    user.banUntil = null;
+    user.banReason = null;
+    return await this.prisamService.user.update({
       where: {
         id,
       },
-      data: {
-        banUntil: null,
-        banReason: null,
+      data: user,
+    });
+  }
+
+  async updateUser(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.getUserById(id);
+    user.phone = updateUserDto.phone;
+    user.firstName = updateUserDto.firstName;
+    user.lastName = updateUserDto.lastName;
+    user.dob = new Date(updateUserDto.dob);
+
+    if (user.status === $Enums.AccountStatus.notUpdated) {
+      user.status = $Enums.AccountStatus.verified;
+    }
+
+    return await this.prisamService.user.update({
+      where: {
+        id,
       },
+      data: user,
     });
   }
 }

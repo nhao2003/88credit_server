@@ -1,8 +1,9 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UserService } from './user.service';
-import { RpcBody, RpcParam, RpcQuery } from 'src/common/decorators';
+import { RpcBody, RpcParam, RpcQuery, RpcUserId } from 'src/common/decorators';
 import { UserQueryBuilderDirector, UserQueryPayload } from './query/user-query';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller()
 export class UserController {
@@ -27,5 +28,10 @@ export class UserController {
   @MessagePattern('user.unban')
   unban(@RpcParam('id') id) {
     return this.userService.unban(id);
+  }
+
+  @MessagePattern('user.update')
+  update(@RpcUserId() id, @RpcBody() data: UpdateUserDto) {
+    return this.userService.updateUser(id, data);
   }
 }

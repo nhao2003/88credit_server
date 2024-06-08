@@ -35,7 +35,7 @@ model User {
   password             String
   firstName            String
   avatar               String
-  address              Json           @default("{}")
+  address              String           @default("")
   lastName             String
   gender               Boolean
   dob                  DateTime
