@@ -8,6 +8,7 @@ import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import { CheckValidPost } from './decorators/check_valid_post.decorator';
 import Paging from 'src/common/types/paging.type';
 import { Post } from '@prisma/client';
+import { PostQuery } from './query/post_query';
 
 @Injectable()
 @ApiTags('Post')
@@ -22,29 +23,24 @@ export class PostService {
     });
   }
 
-  async getPosts(
-    page: number | null,
-    take: number | null,
-  ): Promise<Paging<Post>> {
-    take = take || 20;
-    page = page || 1;
-    const skip = (page - 1) * take;
-    const [items, total] = await Promise.all([
-      this.prisamService.post.findMany({
-        take,
-        skip,
-        include: {
-          user: true,
-        },
+  async getPosts(query: PostQuery): Promise<Paging<Post>> {
+    const filter = {
+      where: query.where,
+      orderBy: query.orderBy,
+      skip: query.skip,
+      take: query.take,
+    };
+    const [posts, total] = await Promise.all([
+      this.prisamService.post.findMany(filter),
+      this.prisamService.post.count({
+        where: query.where,
       }),
-      this.prisamService.post.count(),
     ]);
-
     return {
-      page,
-      totalPages: Math.ceil(total / take),
-      take: take,
-      items,
+      page: query.skip / query.take + 1,
+      take: query.take,
+      totalPages: Math.ceil(total / query.take),
+      items: posts,
     };
   }
 

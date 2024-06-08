@@ -73,16 +73,6 @@ class BaseQueryPayLoad {
   }
 }
 
-// type BaseQuery = {
-//   skip: number;
-//   take: number;
-//   orderBy?: {
-//     [key: string]: 'asc' | 'desc';
-//   };
-// };
-
-// type OrderByQuery = 'asc' | 'desc';
-
 export type OrderBy = 'asc' | 'desc';
 
 export abstract class WhereQuery {}

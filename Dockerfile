@@ -17,6 +17,9 @@ RUN yarn prisma generate
 # Build the application
 RUN yarn build
 
+# Set the environment variables
+ENV RABBITMQ_HOST=rabbitmq
+
 # Expose the port the app runs on
 EXPOSE 5555
 

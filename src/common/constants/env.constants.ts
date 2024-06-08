@@ -17,6 +17,8 @@ abstract class EnvConstants {
   public static readonly zalopaySandboxAppId = 'ZALOPAY_SANDBOX_APP_ID';
   public static readonly zalopaySandboxKey1 = 'ZALOPAY_SANDBOX_KEY1';
   public static readonly zalopaySandboxKey2 = 'ZALOPAY_SANDBOX_KEY2';
+
+  public static RABBITMQ_HOST: string = 'RABBITMQ_HOST';
 }
 
 export { EnvConstants };

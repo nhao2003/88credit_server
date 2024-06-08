@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { BaseRpcExceptionFilter, Transport } from '@nestjs/microservices';
 import { throwError } from 'rxjs';
+import { EnvConstants } from './common/constants';
 
 @Catch()
 export class AllExceptionsFilter extends BaseRpcExceptionFilter {
@@ -27,10 +28,11 @@ export class AllExceptionsFilter extends BaseRpcExceptionFilter {
 }
 
 async function bootstrap() {
+  const rabbitmqHost = process.env[EnvConstants.RABBITMQ_HOST] || 'localhost';
   const app = await NestFactory.createMicroservice(AppModule, {
     transport: Transport.RMQ,
     options: {
-      urls: ['amqp://guest:guest@rabbitmq:5672'],
+      urls: ['amqp://guest:guest@' + rabbitmqHost + ':5672'],
       queue: 'server_queue',
     },
   });
