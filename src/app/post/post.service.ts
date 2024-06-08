@@ -31,7 +31,12 @@ export class PostService {
       take: query.take,
     };
     const [posts, total] = await Promise.all([
-      this.prisamService.post.findMany(filter),
+      this.prisamService.post.findMany({
+        ...filter,
+        include: {
+          user: true,
+        },
+      }),
       this.prisamService.post.count({
         where: query.where,
       }),
@@ -48,6 +53,9 @@ export class PostService {
     return await this.prisamService.post.findUnique({
       where: {
         id,
+      },
+      include: {
+        user: true,
       },
     });
   }
