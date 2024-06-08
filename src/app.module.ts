@@ -15,6 +15,7 @@ import { BlogModule } from './app/blog/blog.module';
 import { AppController } from './app.controller';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from './common/interceptors';
+import { UserModule } from './app/user/user.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { LoggingInterceptor } from './common/interceptors';
     BankModule,
     BankCardModule,
     LoanContractModule,
+    UserModule,
   ],
   providers: [
     AppService,

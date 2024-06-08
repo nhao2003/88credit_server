@@ -4,6 +4,8 @@ import { PostService } from './post.service';
 import { RpcBody, RpcQuery, RpcUserId } from 'src/common/decorators';
 import { CreatePostDto } from './dtos/post-pay-load.dto';
 import { MessagePattern } from '@nestjs/microservices';
+import { query } from 'express';
+import { PostQueryBuilderDirector, PostQueryPayload } from './query/post_query';
 
 @Controller()
 export class PostController {
@@ -21,10 +23,8 @@ export class PostController {
   }
 
   @MessagePattern('post.get')
-  async getPosts(
-    @RpcQuery('page') page: number | null,
-    @RpcQuery('limit') limit: number | null,
-  ) {
-    return await this.postService.getPosts(page, limit);
+  async getPosts(@RpcQuery() payload: PostQueryPayload) {
+    const query = new PostQueryBuilderDirector(payload).build();
+    return await this.postService.getPosts(query);
   }
 }
