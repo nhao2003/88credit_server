@@ -7,16 +7,16 @@ import {
   LoanContractQueryBuilderDirector,
   LoanContractQueryPayload,
 } from './query/loan_contract.query';
-import { GetCurrentUserId } from 'src/common/decorators';
+import { GetCurrentUserId, RpcQuery, RpcUserId } from 'src/common/decorators';
+import { MessagePattern } from '@nestjs/microservices';
 
-@Controller('loan-contract')
 export class LoanContractController {
   constructor(private readonly loanContractService: LoanContractService) {}
 
-  @Get('borrow')
+  @MessagePattern('loan_contract.get_borrow_loan_contracts')
   async getBorrowLoanContracts(
-    @GetCurrentUserId() userId: string,
-    @Query() query: LoanContractQueryPayload,
+    @RpcUserId() userId: string,
+    @RpcQuery() query: LoanContractQueryPayload,
   ): Promise<Paging<LoanContract>> {
     const director = new LoanContractQueryBuilderDirector(query);
     const queryBuilder = director.build();
@@ -26,10 +26,10 @@ export class LoanContractController {
     );
   }
 
-  @Get('lend')
+  @MessagePattern('loan_contract.get_lend_loan_contracts')
   async getLendLoanContracts(
-    @GetCurrentUserId() userId: string,
-    @Query() query: LoanContractQueryPayload,
+    @RpcUserId() userId: string,
+    @RpcQuery() query: LoanContractQueryPayload,
   ): Promise<Paging<LoanContract>> {
     const director = new LoanContractQueryBuilderDirector(query);
     const queryBuilder = director.build();
