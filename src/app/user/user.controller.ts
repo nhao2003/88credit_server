@@ -34,4 +34,9 @@ export class UserController {
   update(@RpcUserId() id, @RpcBody() data: UpdateUserDto) {
     return this.userService.updateUser(id, data);
   }
+
+  @MessagePattern('user.me')
+  me(@RpcUserId() id) {
+    return this.userService.getUserById(id);
+  }
 }
