@@ -248,12 +248,12 @@ export class LoanRequestService {
     const loanRequest = await this.getInvolvedLoanRequest(userId, id);
 
     const allowedStatusSenders: $Enums.LoanRequestStatus[] = [
-      $Enums.LoanRequestStatus.paid,
+      $Enums.LoanRequestStatus.pending,
       $Enums.LoanRequestStatus.approved,
     ];
 
     const allowedStatusReceivers: $Enums.LoanRequestStatus[] = [
-      $Enums.LoanRequestStatus.paid,
+      $Enums.LoanRequestStatus.approved,
       $Enums.LoanRequestStatus.approved,
     ];
 
