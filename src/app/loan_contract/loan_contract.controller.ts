@@ -9,7 +9,7 @@ import {
 } from './query/loan_contract.query';
 import { GetCurrentUserId, RpcQuery, RpcUserId } from 'src/common/decorators';
 import { MessagePattern } from '@nestjs/microservices';
-
+@Controller()
 export class LoanContractController {
   constructor(private readonly loanContractService: LoanContractService) {}
 

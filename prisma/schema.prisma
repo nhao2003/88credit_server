@@ -255,7 +255,6 @@ model LoanContract {
   tenureInMonths      Int
   overdueInterestRate Float
   createdAt           DateTime        @default(now())
-  expiredAt           DateTime        @default(dbgenerated("now() + interval '1 day'"))
 
   loanRequest      LoanRequest @relation(fields: [loanRequestId], references: [id])
   lenderBankCard   BankCard    @relation("LenderBankCard", fields: [lenderBankCardId], references: [id])
