@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core';
+import { BaseExceptionFilter, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import {
   ArgumentsHost,
@@ -7,12 +7,12 @@ import {
   HttpStatus,
   ValidationPipe,
 } from '@nestjs/common';
-import { BaseRpcExceptionFilter, Transport } from '@nestjs/microservices';
+import { Transport } from '@nestjs/microservices';
 import { throwError } from 'rxjs';
 import { EnvConstants } from './common/constants';
 
 @Catch()
-export class AllExceptionsFilter extends BaseRpcExceptionFilter {
+export class AllExceptionsFilter extends BaseExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
     console.error(exception);
     const status =
