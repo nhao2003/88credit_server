@@ -10,6 +10,7 @@ import { LoanRequestQuery } from './query/loan_request_query';
 import Paging from 'src/common/types/paging.type';
 import { ZaloPayService } from 'src/core/services/payment/zalopay.service';
 import { BankCardService } from '../bank_card/bank_card.service';
+import { BlockchainService } from '../blockchain/blockchain.service';
 
 @Injectable()
 export class LoanRequestService {
@@ -76,6 +77,7 @@ export class LoanRequestService {
   };
 
   constructor(
+    private readonly blockChainService: BlockchainService,
     private readonly prismaService: PrismaService,
     private readonly zalopayService: ZaloPayService,
     private bankCardService: BankCardService,
@@ -311,6 +313,21 @@ export class LoanRequestService {
         lenderBankCardId: request.receiverBankCardId,
       },
     });
+
+    const res = await this.blockChainService.addLoanContract({
+      loanId: result.id,
+      borrowerId: request.senderId,
+      lenderId: request.receiverId,
+      amount: request.loanAmount,
+      tenureInMonths: request.loanTenureMonths,
+      interest: request.interestRate,
+      overdueInterest: request.overdueInterestRate,
+      borrowerBankCardNo: request.senderBankCard.cardNumber,
+      lenderBankCardNo: request.receiverBankCard.cardNumber,
+      startDate: result.createdAt.getTime(),
+    });
+
+    result.transactionHash = res.transactionHash;
     return result;
   }
 }

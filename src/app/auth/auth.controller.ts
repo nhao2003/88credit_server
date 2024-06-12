@@ -28,7 +28,7 @@ import { AuthPayLoad } from './dto';
 import { Tokens } from './types';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 
-@ApiTags('Authentications')
+@Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
