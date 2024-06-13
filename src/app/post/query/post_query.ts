@@ -20,6 +20,7 @@ import {
 } from 'src/common/query';
 
 export class PostWhereInput extends WhereQuery {
+  status?: EnumFilter<$Enums.PostStatus>;
   type?: EnumFilter<$Enums.PostTypes>;
   interestRate?: NumberFilter;
   amount?: NumberFilter;
@@ -51,6 +52,11 @@ export class PostQuery extends BaseQuery {
 }
 
 export class PostQueryPayload extends BaseQueryPayLoad {
+  @IsOptional()
+  @IsEnumQueryParam({ enum: $Enums.PostStatus })
+  @ApiProperty({ required: false, enum: $Enums.PostStatus })
+  status?: QueryFilter<$Enums.PostStatus>;
+
   @IsOptional()
   @IsEnumQueryParam({ enum: $Enums.PostTypes })
   @ApiProperty({ required: false, enum: $Enums.PostTypes })
@@ -107,6 +113,11 @@ class PostQueryBuilder {
 
   constructor(query: PostQuery) {
     this.query = query;
+  }
+
+  buildStatus(value: QueryFilter<$Enums.PostStatus>) {
+    this.query.where.status = QueryBuildHelper.buildEnumQuery(value);
+    return this;
   }
 
   buildType(value: QueryFilter<$Enums.PostTypes>) {
@@ -194,6 +205,11 @@ export class PostQueryBuilderDirector {
 
   build() {
     let builder = new PostQueryBuilder(this.query);
+
+    if (this.payload.status) {
+      builder = builder.buildStatus(this.payload.status);
+    }
+
     if (this.payload.type) {
       builder = builder.buildType(this.payload.type);
     }
