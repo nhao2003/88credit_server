@@ -210,7 +210,7 @@ export class LoanRequestService {
       throw new BadRequestException('You must have a primary bank card');
     }
 
-    return this.prismaService.loanRequest.update({
+    return await this.prismaService.loanRequest.update({
       where: {
         id: loanRequestId,
       },

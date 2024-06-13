@@ -60,7 +60,7 @@ export class LoanRequestController {
     @RpcUserId() userId: string,
     @RpcParam('id') id: string,
   ) {
-    await this.loanRequestService.approveLoanRequest(userId, id);
+    return await this.loanRequestService.approveLoanRequest(userId, id);
   }
 
   @MessagePattern('loan_request.reject')
