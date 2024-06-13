@@ -7,7 +7,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { PrismaService } from 'src/core/services/prisma/prisma.service';
 import { CheckValidPost } from './decorators/check_valid_post.decorator';
 import Paging from 'src/common/types/paging.type';
-import { Post } from '@prisma/client';
+import { $Enums, Post } from '@prisma/client';
 import { PostQuery } from './query/post_query';
 
 @Injectable()
@@ -67,6 +67,29 @@ export class PostService {
       },
       data: {
         ...post,
+      },
+    });
+  }
+
+  async approvePost(id: string) {
+    return await this.prisamService.post.update({
+      where: {
+        id,
+      },
+      data: {
+        status: $Enums.PostStatus.approved,
+      },
+    });
+  }
+
+  async rejectPost(id: string, rejectionReason: string) {
+    return await this.prisamService.post.update({
+      where: {
+        id,
+      },
+      data: {
+        status: $Enums.PostStatus.rejected,
+        rejectionReason,
       },
     });
   }

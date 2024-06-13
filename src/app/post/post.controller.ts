@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { PostService } from './post.service';
-import { RpcBody, RpcQuery, RpcUserId } from 'src/common/decorators';
+import { RpcBody, RpcParam, RpcQuery, RpcUserId } from 'src/common/decorators';
 import { CreatePostDto } from './dtos/post-pay-load.dto';
 import { MessagePattern } from '@nestjs/microservices';
 import { query } from 'express';
@@ -26,5 +26,21 @@ export class PostController {
   async getPosts(@RpcQuery() payload: PostQueryPayload) {
     const query = new PostQueryBuilderDirector(payload).build();
     return await this.postService.getPosts(query);
+  }
+
+  @MessagePattern('post.approve')
+  async approvePost(@RpcParam('id') id: string) {
+    return await this.postService.approvePost(id);
+  }
+
+  @MessagePattern('post.reject')
+  async rejectPost(
+    @RpcParam('id') id: string,
+    @RpcBody()
+    body: {
+      rejectionReason: string;
+    },
+  ) {
+    return await this.postService.rejectPost(id, body.rejectionReason);
   }
 }
