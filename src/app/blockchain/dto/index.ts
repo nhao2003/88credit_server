@@ -29,6 +29,8 @@ export interface CreateLoanContractDTO {
   loanId: string;
   borrowerId: string;
   lenderId: string;
+  borrwer: string;
+  lender: string;
   lenderBankCardNo: string;
   borrowerBankCardNo: string;
   amount: number;

@@ -318,6 +318,8 @@ export class LoanRequestService {
       loanId: result.id,
       borrowerId: request.senderId,
       lenderId: request.receiverId,
+      borrwer: '0xa5d4f4015Ce0371c2e061baceD0e0bbaeCfc4635',
+      lender: '0x777eA791c93C565c24f3373192603FDd4325016C',
       amount: request.loanAmount,
       tenureInMonths: request.loanTenureMonths,
       interest: request.interestRate,
@@ -328,6 +330,16 @@ export class LoanRequestService {
     });
 
     result.transactionHash = res.transactionHash;
+
+    await this.prismaService.loanContract.update({
+      where: {
+        id: result.id,
+      },
+      data: {
+        transactionHash: res.transactionHash,
+      },
+    });
+
     return result;
   }
 }
