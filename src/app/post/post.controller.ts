@@ -48,4 +48,9 @@ export class PostController {
   async deletePost(@RpcParam('id') id: string) {
     return await this.postService.deletePost(id);
   }
+
+  @MessagePattern('post.getOne')
+  async getPostById(@RpcParam('id') id: string) {
+    return await this.postService.getPostById(id);
+  }
 }
