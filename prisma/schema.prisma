@@ -249,7 +249,6 @@ model LoanContract {
   borrowerId          String
   borrowerBankCardId  String
   loanReasonType      LoanReasonTypes
-  transactionHash     String?
   loanReason          String
   amount              Float
   interestRate        Float
