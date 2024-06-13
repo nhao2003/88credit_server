@@ -5,6 +5,7 @@ import { readFileSync } from 'fs';
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 import { Web3 } from 'web3';
 import { ppid } from 'process';
+import { ConfigService } from '@nestjs/config';
 const mnemonic =
   'mosquito bind toe kit reward math embrace rally sing acoustic rally matrix';
 @Injectable()
@@ -13,11 +14,16 @@ export class BlockchainService implements IBlockchainService {
   private accountAddress: string = '0x418EDE79a5E0045185794a4cC3300e356318a704';
   private logger: Logger = new Logger('EkycBlockchainService');
 
-  constructor() {
+  constructor(private readonly configService: ConfigService) {
+    console.log(
+      this.configService.get('ETHEREUM_PROVIDER') || 'http://localhost:7545',
+    );
     const provider = new HDWalletProvider({
       mnemonic,
-      providerOrUrl: 'http://localhost:7545',
-    }); // Use 'any' as a workaround to bypass type check
+      // providerOrUrl: 'http://localhost:7545',
+      providerOrUrl:
+        this.configService.get('ETHEREUM_PROVIDER') || 'http://localhost:7545',
+    });
     const web3 = new Web3(provider as any);
     const contractAbi = JSON.parse(
       readFileSync('blockchain/build/LoanContractManager.json', 'utf8'),
