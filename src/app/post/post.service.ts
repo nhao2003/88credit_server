@@ -93,4 +93,12 @@ export class PostService {
       },
     });
   }
+
+  async deletePost(id: string) {
+    return await this.prisamService.post.delete({
+      where: {
+        id,
+      },
+    });
+  }
 }

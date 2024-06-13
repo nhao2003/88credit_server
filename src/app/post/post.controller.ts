@@ -43,4 +43,9 @@ export class PostController {
   ) {
     return await this.postService.rejectPost(id, body.rejectionReason);
   }
+
+  @MessagePattern('post.delete')
+  async deletePost(@RpcParam('id') id: string) {
+    return await this.postService.deletePost(id);
+  }
 }
