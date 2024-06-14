@@ -16,6 +16,7 @@ import { AppController } from './app.controller';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from './common/interceptors';
 import { UserModule } from './app/user/user.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { UserModule } from './app/user/user.module';
     BankCardModule,
     LoanContractModule,
     UserModule,
+    DashboardModule,
   ],
   providers: [
     AppService,
