@@ -39,4 +39,9 @@ export class UserController {
   me(@RpcUserId() id) {
     return this.userService.getUserById(id);
   }
+
+  @MessagePattern('user.verify')
+  verify(@Payload() payload: { userId: string }) {
+    return this.userService.markUserAsVerified(payload.userId);
+  }
 }

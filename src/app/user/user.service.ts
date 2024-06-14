@@ -12,6 +12,16 @@ import Paging from 'src/common/types/paging.type';
 
 @Injectable()
 export class UserService {
+  markUserAsVerified(userId: string) {
+    return this.prisamService.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        isIdentityVerified: true,
+      },
+    });
+  }
   constructor(private readonly prisamService: PrismaService) {}
 
   async getUserById(id: string) {
